@@ -1,7 +1,7 @@
 {
   "name": "stikerinbot",
   "version": "1.0.0",
-  "description": "Customizable WhatsApp Bot",
+  "description": "WhatsApp Bot Ringan",
   "main": "index.js",
   "scripts": {
     "start": "node index.js --self",

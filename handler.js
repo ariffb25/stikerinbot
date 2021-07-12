@@ -39,6 +39,7 @@ module.exports = {
           if (!('afkReason' in user)) user.afkReason = ''
           if (!('banned' in user)) user.banned = false
           if (!isNumber(user.level)) user.level = 0
+          if (!isNumber(user.call)) user.call = 0
           if (!user.role) user.role = 'Beginner'
           if (!('autolevelup' in user)) user.autolevelup = false
         } else global.db.data.users[m.sender] = {
@@ -53,7 +54,8 @@ module.exports = {
           afkReason: '',
           banned: false,
           level: 0,
-          role: 'Beginner',
+          call: 0,
+          role: 'Pemula',
           autolevelup: false,
         }
 
@@ -69,6 +71,7 @@ module.exports = {
           if (!('sDemote' in chat)) chat.sDemote = ''
           if (!('delete' in chat)) chat.delete = true
           if (!('antiLink' in chat)) chat.antiLink = false
+          if (!isNumber(chat.expired)) chat.expired = 0
         } else global.db.data.chats[m.chat] = {
           isBanned: false,
           welcome: false,
@@ -79,6 +82,25 @@ module.exports = {
           sDemote: '',
           delete: true,
           antiLink: false,
+          expired: 0,
+        }
+
+        let settings = global.db.data.settings
+        if (typeof settings !== 'object') global.db.data.settings = {}
+        if (settings) {
+          if (!'antispam' in settings) settings.antispam = true
+          if (!'antitroli' in settings) settings.antitroli = true
+          if (!'backup' in settings) settings.backup = false
+          if (!isNumber(settings.backupDB)) settings.backupDB = 0
+          if (!'groupOnly' in settings) settings.groupOnly = false
+          if (!'nsfw' in settings) settings.nsfw = true
+        } else global.db.data.settings = {
+          antispam: true,
+          antitroli: true,
+          backup: false,
+          backupDB: 0,
+          groupOnly: false,
+          nsfw: true
         }
       } catch (e) {
         console.error(e)
@@ -100,6 +122,10 @@ module.exports = {
         }
       }
       if (m.isBaileys) return
+      if (m.chat.endsWith('broadcast')) return // Supaya tidak merespon di status
+      if (!m.isGroup && global.DATABASE.data.settings.groupOnly) return m.reply('Saat ini bot sedang *mode grup* jadi hanya bisa digunakan digrup saja') // Ketika mode grup diaktifkan
+      let blockList = conn.blocklist.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').filter(v => v != conn.user.jid)
+      if (blockList.includes(m.sender)) return // Pengguna yang diblokir tidak bisa menggunakan bot
       m.exp += Math.ceil(Math.random() * 10)
 
       let usedPrefix
@@ -112,9 +138,10 @@ module.exports = {
       let groupMetadata = m.isGroup ? this.chats.get(m.chat).metadata || await this.groupMetadata(m.chat) : {} || {}
       let participants = m.isGroup ? groupMetadata.participants : [] || []
       let user = m.isGroup ? participants.find(u => u.jid == m.sender) : {} // User Data
-      let bot = m.isGroup ? participants.find(u => u.jid == this.user.jid) : {} // Your Data
-      let isAdmin = user.isAdmin || user.isSuperAdmin || false // Is User Admin?
-      let isBotAdmin = bot.isAdmin || bot.isSuperAdmin || false // Are you Admin?
+      let bot = m.isGroup ? participants.find(u => u.jid == this.user.jid) : {} // Data Kamu (bot)
+      let isAdmin = user.isAdmin || user.isSuperAdmin || false // Apakah user admin?
+      let isBotAdmin = bot.isAdmin || bot.isSuperAdmin || false // Apakah kamu (bot) admin?
+      let isBlocked = this.blocklist.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').filter(v => v != this.user.jid).includes(m.sender) // Apakah user diblokir?
       for (let name in global.plugins) {
         let plugin = global.plugins[name]
         if (!plugin) continue
@@ -148,6 +175,7 @@ module.exports = {
           isBotAdmin,
           isPrems,
           chatUpdate,
+          isBlocked,
         })) continue
         if (typeof plugin !== 'function') continue
         if ((usedPrefix = (match[0] || '')[0])) {
@@ -157,7 +185,7 @@ module.exports = {
           let _args = noPrefix.trim().split` `.slice(1)
           let text = _args.join` `
           command = (command || '').toLowerCase()
-          let fail = plugin.fail || global.dfail // When failed
+          let fail = plugin.fail || global.dfail // Ketika gagal
           let isAccept = plugin.command instanceof RegExp ? // RegExp Mode?
             plugin.command.test(command) :
             Array.isArray(plugin.command) ? // Array?
@@ -174,18 +202,18 @@ module.exports = {
           if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
             let chat = global.db.data.chats[m.chat]
             let user = global.db.data.users[m.sender]
-            if (name != 'unbanchat.js' && chat && chat.isBanned) return // Except this
+            if (!['unbanchat.js'].includes(name) && chat && chat.isBanned) return // Kecuali ini, bisa digunakan
             if (name != 'unbanuser.js' && user && user.banned) return
           }
-          if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { // Both Owner
+          if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { // Keduanya Owner
             fail('owner', m, this)
             continue
           }
-          if (plugin.rowner && !isROwner) { // Real Owner
+          if (plugin.rowner && !isROwner) { // Owner sebenarnya
             fail('rowner', m, this)
             continue
           }
-          if (plugin.owner && !isOwner) { // Number Owner
+          if (plugin.owner && !isOwner) { // Owner bot
             fail('owner', m, this)
             continue
           }
@@ -197,17 +225,17 @@ module.exports = {
             fail('premium', m, this)
             continue
           }
-          if (plugin.group && !m.isGroup) { // Group Only
+          if (plugin.group && !m.isGroup) { // Hanya grup
             fail('group', m, this)
             continue
-          } else if (plugin.botAdmin && !isBotAdmin) { // You Admin
+          } else if (plugin.botAdmin && !isBotAdmin) { // Kamu Admin
             fail('botAdmin', m, this)
             continue
           } else if (plugin.admin && !isAdmin) { // User Admin
             fail('admin', m, this)
             continue
           }
-          if (plugin.private && m.isGroup) { // Private Chat Only
+          if (plugin.private && m.isGroup) { // Hanya Private Chat
             fail('private', m, this)
             continue
           }
@@ -215,18 +243,22 @@ module.exports = {
             fail('unreg', m, this)
             continue
           }
+          if (plugin.nsfw && !global.db.data.settings.nsfw) { // Nsfw
+            fail('nsfw', m, this)
+            continue
+          }
 
           m.isCommand = true
-          let xp = 'exp' in plugin ? parseInt(plugin.exp) : 17 // XP Earning per command
+          let xp = 'exp' in plugin ? parseInt(plugin.exp) : 17 // Pendapatkan XP per Command
           if (xp > 200) m.reply('Ngecit -_-') // Hehehe
           else m.exp += xp
           if (!isPrems && plugin.limit && global.db.data.users[m.sender].limit < plugin.limit * 1) {
-            this.reply(m.chat, `Limit anda habis, silahkan beli melalui *${usedPrefix}buy*`, m)
+            this.reply(m.chat, `Limit kamu habis, silahkan beli melalui *${usedPrefix}buy*`, m)
             continue // Limit habis
           }
           if (plugin.level > _user.level) {
             this.reply(m.chat, `diperlukan level ${plugin.level} untuk menggunakan perintah ini. Level kamu ${_user.level}`, m)
-            continue // If the level has not been reached
+            continue // Jika levelnya belum tercapai
           }
           let extra = {
             match,
@@ -247,12 +279,13 @@ module.exports = {
             isBotAdmin,
             isPrems,
             chatUpdate,
+            isBlocked,
           }
           try {
             await plugin.call(this, m, extra)
             if (!isPrems) m.limit = m.limit || plugin.limit || false
           } catch (e) {
-            // Error occured
+            // Terjadi kesalahan
             m.error = e
             console.error(e)
             if (e) {
@@ -270,7 +303,7 @@ module.exports = {
                 console.error(e)
               }
             }
-            if (m.limit) m.reply(+ m.limit + ' Limit terpakai')
+            if (m.limit) m.reply(+ m.limit + ' Limit terpakai') // Jadikan sebagai komentar jika kamu risih dengan pesan ini
           }
           break
         }
@@ -330,8 +363,8 @@ module.exports = {
               pp = await this.getProfilePicture(user)
             } catch (e) {
             } finally {
-              text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', this.getName(jid)).replace('@desc', groupMetadata.desc) :
-                (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
+              text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Selamat datang, @user!').replace('@subject', this.getName(jid)).replace('@desc', groupMetadata.desc) :
+                (chat.sBye || this.bye || conn.bye || 'Sampai jumpa, @user!')).replace('@user', '@' + user.split`@`[0])
               this.sendFile(jid, pp, 'pp.jpg', text, null, false, {
                 contextInfo: {
                   mentionedJid: [user]
@@ -342,10 +375,10 @@ module.exports = {
         }
         break
       case 'promote':
-        text = (chat.sPromote || this.spromote || conn.spromote || '@user ```is now Admin```')
+        text = (chat.sPromote || this.spromote || conn.spromote || '@user sekarang Admin')
       case 'demote':
-        if (!text) text = (chat.sDemote || this.sdemote || conn.sdemote || '@user ```is no longer Admin```')
-        text = text.replace('@user', '@' + participants[0].split('@')[0])
+        if (!text) text = (chat.sDemote || this.sdemote || conn.sdemote || '@user sekarang bukan Admin')
+        text = text.replace('@user', '@' + participants[0].split`@`[0])
         if (chat.detect) this.sendMessage(jid, text, MessageType.extendedText, {
           contextInfo: {
             mentionedJid: this.parseMention(text)
@@ -362,7 +395,7 @@ module.exports = {
 Terdeteksi @${m.participant.split`@`[0]} telah menghapus pesan
 
 Untuk mematikan fitur ini, ketik
-*.enable delete*
+*.on delete*
 `.trim(), m.message, {
       contextInfo: {
         mentionedJid: [m.participant]
@@ -381,22 +414,26 @@ Untuk mematikan fitur ini, ketik
           return
         break
     }
-    await this.sendMessage(from, 'Maaf, karena anda menelfon bot. anda diblokir otomatis', MessageType.extendedText)
-    await this.blockUser(from, 'add')
+    user.call += 1
+    await this.reply(from, `Jika kamu menelepon lebih dari 5, maka kamu akan dibokir.\n\n${user.call} / 5`, null)
+    if (user.call == 5) {
+      await this.blockUser(from, 'add')
+      user.call = 0
+    }
   }
 }
 
 global.dfail = (type, m, conn) => {
   let msg = {
-    rowner: 'Perintah ini hanya dapat digunakan oleh _*OWWNER!1!1!*_',
-    owner: 'Perintah ini hanya dapat digunakan oleh _*Owner Bot*_!',
-    mods: 'Perintah ini hanya dapat digunakan oleh _*Moderator*_ !',
-    premium: 'Perintah ini hanya untuk member _*Premium*_ !',
-    group: 'Perintah ini hanya dapat digunakan di grup!',
-    private: 'Perintah ini hanya dapat digunakan di Chat Pribadi!',
-    admin: 'Perintah ini hanya untuk *Admin* grup!',
-    botAdmin: 'Jadikan bot sebagai *Admin* untuk menggunakan perintah ini!',
-    unreg: 'Silahkan daftar untuk menggunakan fitur ini dengan cara mengetik:\n\n*#daftar nama.umur*\n\nContoh: *#daftar Manusia.16*'
+    rowner: 'Perintah ini hanya dapat digunakan oleh _*Pemilik Bot*_',
+    owner: 'Perintah ini hanya dapat digunakan oleh _*Pemilik Bot*_',
+    mods: 'Perintah ini hanya dapat digunakan oleh _*Moderator*_',
+    premium: 'Perintah ini hanya untuk pengguna _*Premium*_',
+    group: 'Perintah ini hanya dapat digunakan di grup',
+    private: 'Perintah ini hanya dapat digunakan di Chat Pribadi',
+    admin: 'Perintah ini hanya untuk *Admin* grup',
+    botAdmin: 'Jadikan bot sebagai *Admin* untuk menggunakan perintah ini',
+    unreg: 'Silahkan daftar untuk menggunakan fitur ini dengan cara mengetik:\n\n*#daftar nama.umur*\n\nContoh: *#daftar Arif.19*'
   }[type]
   if (msg) return m.reply(msg)
 }

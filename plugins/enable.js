@@ -2,6 +2,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
   let isEnable = /true|enable|(turn)?on|1/i.test(command)
   let chat = global.db.data.chats[m.chat]
   let user = global.db.data.users[m.sender]
+  let setting = global.db.data.settings
   let type = (args[0] || '').toLowerCase()
   let isAll = false
   let isUser = false
@@ -93,9 +94,44 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       conn.callWhitelistMode = isEnable
       break
+    case 'grouponly':
+      if (!isOwner) {
+        global.dfail('owner', m, conn)
+        throw false
+      }
+      setting.groupOnly = isEnable
+      break
+    case 'backup':
+      if (!isOwner) {
+        global.dfail('owner', m, conn)
+        throw false
+      }
+      setting.backup = isEnable
+      break
+    case 'antitroli':
+      if (!isOwner) {
+        global.dfail('owner', m, conn)
+        throw false
+      }
+      setting.antitroli = isEnable
+      break
+    case 'antispam':
+      if (!isOwner) {
+        global.dfail('owner', m, conn)
+        throw false
+      }
+      setting.antispam = isEnable
+      break
+    case 'nsfw':
+      if (!isOwner) {
+        global.dfail('owner', m, conn)
+        throw false
+      }
+      setting.nsfw = isEnable
+      break
     default:
       if (!/[01]/.test(command)) throw `
-List option: welcome | delete | public | antilink | autolevelup | detect | document | whitelistmycontacts
+List option: welcome | delete | public | antilink | autolevelup | detect | document | whitelistmycontacts | grouponly | backup | antitroli | antispam | nsfw
 
 Contoh:
 ${usedPrefix}enable welcome

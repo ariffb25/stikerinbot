@@ -1,16 +1,17 @@
 let handler = m => m
 
 let linkRegex = /chat.whatsapp.com\/(?:invite\/)?([0-9A-Za-z]{20,24})/i
-handler.before = function (m, { isAdmin, isBotAdmin }) {
+handler.before = async function (m, { isAdmin, isBotAdmin }) {
   if (m.isBaileys && m.fromMe) return true
   let chat = global.db.data.chats[m.chat]
   let isGroupLink = linkRegex.exec(m.text)
 
-  if (chat.antiLink && isGroupLink) {
-    m.reply('Hapus!!\n\nLink Grup terdeteksi')
+  if (chat.antiLink && isGroupLink && !isAdmin && !m.isBaileys && m.isGroup) {
+    let thisGroup = `https://chat.whatsapp.com/${await conn.groupInviteCode(m.chat)}`
+    if (m.text.includes(thisGroup)) throw false
+    m.reply(`*Link Grup Terdeteksi!*${isBotAdmin ? '' : '\n\nbukan admin jadi gabisa kick t_t'}\n\n*.off antilink* - untuk mematikan fitur ini`)
     if (global.opts['restrict']) {
-      if (isAdmin || !isBotAdmin) return true
-      // this.groupRemove(m.chat, [m.sender])
+      if (isBotAdmin) this.groupRemove(m.chat, [m.sender])
     }
   }
   return true

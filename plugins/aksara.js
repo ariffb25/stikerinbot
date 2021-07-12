@@ -1,6 +1,6 @@
 let fetch = require('node-fetch')
 
-let handler = async (m, { conn, args, usedPrefix, command }) => {
+let handler = async (m, { args, usedPrefix, command }) => {
     let er = `Opsi tersedia:
 • latinkejawa
 • latinkesunda

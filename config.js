@@ -1,15 +1,16 @@
-global.owner = ['6281515860089', '6281334177340'] // Put your number here
-global.mods = [] // Want some help?
-global.prems = [] // Premium user has unlimited limit
+let fs = require('fs')
+global.owner = ['6283128734012'] // Letakan nomor kamu disini
+global.mods = [] // Moderator?
+global.prems = JSON.parse(fs.readFileSync('./src/premium.json')) // Pengguna premium tidak memerlukan limit
 global.APIs = { // API Prefix
-  // name: 'https://website'
+  // nama: 'https://website'
   nrtm: 'https://nurutomo.herokuapp.com',
   xteam: 'https://api.xteam.xyz',
   zahir: 'https://zahirr-web.herokuapp.com',
   zeks: 'https://api.zeks.xyz',
   pencarikode: 'https://pencarikode.xyz'
 }
-global.APIKeys = { // APIKey Here
+global.APIKeys = { // APIKey nya disini
   // 'https://website': 'apikey'
   'https://api.xteam.xyz': 'd90a9e986e18778b',
   'https://zahirr-web.herokuapp.com': 'zahirgans',
@@ -18,12 +19,11 @@ global.APIKeys = { // APIKey Here
 }
 
 // Sticker WM
-global.packname = 'I hope you\'re fine'
-global.author = 'Nurutomo'
+global.packname = 'ily'
+global.author = 'ariffb'
 
-global.multiplier = 69 // The higher, The harder levelup
+global.multiplier = 69 // Semakin tinggi, semakin sulit naik level
 
-let fs = require('fs')
 let chalk = require('chalk')
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {

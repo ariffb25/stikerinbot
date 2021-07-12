@@ -1,15 +1,15 @@
-console.log('Starting...')
+console.log('Memulai...')
 let { spawn } = require('child_process')
 let path = require('path')
 let fs = require('fs')
 let package = require('./package.json')
-const CFonts  = require('cfonts')
-CFonts.say('Lightweight\nWhatsApp Bot', {
+const CFonts = require('cfonts')
+CFonts.say('Stikerin Bot', {
   font: 'chrome',
   align: 'center',
   gradient: ['red', 'magenta']
 })
-CFonts.say(`'${package.name}' By @${package.author.name || package.author}`, {
+CFonts.say(`'${package.name}' Oleh @${package.author.name || package.author}`, {
   font: 'console',
   align: 'center',
   gradient: ['red', 'magenta']
