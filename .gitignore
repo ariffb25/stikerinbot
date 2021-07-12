@@ -11,8 +11,6 @@ node_modules
 database.json
 *_database.json
 
-tmp
-
 # Okay
 # config.js
 
