@@ -3,7 +3,7 @@ let handler = async (m, { conn, usedPrefix, text }) => {
   let users = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user.jid)])]
   let cc = text ? m : m.quoted ? await m.getQuotedObj() : false || m
   let teks = text ? text : cc.text
-  let content = conn.cMod(m.chat, cc, /bc|broadcast/i.test(teks) ? teks : teks + '\n' + readMore + '「 All Jadibot Broadcast 」')
+  let content = conn.cMod(m.chat, cc, /bc|broadcast/i.test(teks) ? teks : teks + '\n' + readMore + '「 Stikerin Broadcast 」')
   for (let id of users) {
     await delay(1500)
     await conn.copyNForward(id, content, true)
