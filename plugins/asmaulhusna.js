@@ -3,8 +3,7 @@ let handler = async (m, { args }) => {
     let json = JSON.parse(asmaulhusna)
     let data = json.result.data.map((v, i) => `${i + 1}. ${v.latin}\n${v.arabic}\n${v.translation_id}`).join('\n\n')
     if (args[0]) {
-        if (args[0] < 1) throw `minimal 1!`
-        if (args[0] > 99) throw `maksimal 99!`
+        if (args[0] < 1 || args[0] > 99) throw `minimal 1 & maksimal 99!`
         let { index, latin, arabic, translation_id, translation_en } = json.result.data.find(v => v.index == args[0])
         return m.reply(`No. ${index}
 

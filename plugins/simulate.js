@@ -1,4 +1,5 @@
 let handler = async (m, { conn, args: [event], text }) => {
+    if (!event) throw `List Event: welcome, bye, delete, promote, demote`
     let mentions = text.replace(event, '').trimStart()
     let who = mentions ? conn.parseMention(mentions) : []
     let participants = who.length ? who : [m.sender]
@@ -25,7 +26,8 @@ let handler = async (m, { conn, args: [event], text }) => {
         case 'delete':
             deleted = m
             break
-        default: throw `List Event: welcome, bye, delete, promote, demote`
+        default:
+            throw `List Event: welcome, bye, delete, promote, demote`
     }
     if (action) return conn.onParticipantsUpdate({
         jid: m.chat,

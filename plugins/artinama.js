@@ -24,8 +24,8 @@ const artinama_api = [
   }]
 ]
 
-let handler = async (m, { text }) => {
-  if (!text) throw 'Namanya siapa?'
+let handler = async (m, { text, usedPrefix, command }) => {
+  if (!text) throw `Contoh:\n${usedPrefix + command} ariffb`
   let result = ''
   for (let [origin, pathname, query, apikey, fn] of artinama_api) {
     try {

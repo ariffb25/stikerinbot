@@ -24,3 +24,6 @@ waweb
 # planned
 web-client
 package-lock.json
+
+# Vscode Settings
+.vscode

@@ -14,21 +14,21 @@ let handler = async (m, { conn, usedPrefix }) => {
     let username = conn.getName(who)
     let math = max - xp
     let str = `
-Name: ${username} ${registered ? '(' + name + ') ': ''}(@${who.replace(/@.+/, '')})${about ? '\nAbout: ' + about : ''}
-Number: ${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}
-Link: https://wa.me/${who.split`@`[0]}${registered ? '\nAge: ' + age : ''}
-XP: TOTAL ${exp} (${exp - min} / ${xp}) [${math <= 0 ? `Ready to *${usedPrefix}levelup*` : `${math} XP left to levelup`}]
+Nama: ${username} ${registered ? '(' + name + ') ' : ''}(@${who.replace(/@.+/, '')})${about ? '\nInfo: ' + about : ''}
+Nomor: ${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}
+Link: https://wa.me/${who.split`@`[0]}${registered ? '\nUmur: ' + age : ''}
+XP: TOTAL ${exp} (${exp - min} / ${xp}) [${math <= 0 ? `Siap untuk *${usedPrefix}levelup*` : `${math} XP lagi untuk levelup`}]
 Level: ${level}
 Role: *${role}*
 Limit: ${limit}
-Registered: ${registered ? 'Yes (' + new Date(regTime) + ')': 'No'}${lastclaim > 0 ? '\nLast Claim: ' + new Date(lastclaim) : ''}
+Terdaftar: ${registered ? 'Ya (' + new Date(regTime) + ')' : 'Tidak'}${lastclaim > 0 ? '\nTerakhir Klaim: ' + new Date(lastclaim) : ''}
 `.trim()
     let mentionedJid = [who]
-    conn.sendFile(m.chat, pp, 'pp.jpg', str, m, false, { contextInfo: { mentionedJid }})
+    conn.sendFile(m.chat, pp, 'pp.jpg', str, m, false, { contextInfo: { mentionedJid } })
   }
 }
 handler.help = ['profile [@user]']
 handler.tags = ['tools']
-handler.command = /^profile$/i
+handler.command = /^profile?$/i
 module.exports = handler
 

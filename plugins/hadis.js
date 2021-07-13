@@ -1,6 +1,6 @@
 let fetch = require('node-fetch')
 let handler = async (m, { usedPrefix, command, args }) => {
-    if (!args[0]) throw `contoh:
+    if (!args[0]) throw `Contoh:
 ${usedPrefix + command} bukhari 1
 ${usedPrefix + command} abu-daud 1
 
@@ -36,6 +36,6 @@ ${id}`)
     }
 }
 handler.help = ['hadis']
-handler.tags = ['quran', 'tools']
+handler.tags = ['quran']
 handler.command = /^(hadist?)$/i
 module.exports = handler

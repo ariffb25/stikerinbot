@@ -1,5 +1,5 @@
 let fetch = require('node-fetch')
-let handler = async (m, { text }) => {
+let handler = async (m) => {
   let res = await fetch(global.API('pencarikode', '/api/truthid', {}, 'apikey'))
   if (!res.ok) throw await res.text()
   let json = await res.json()
@@ -9,6 +9,6 @@ let handler = async (m, { text }) => {
 }
 handler.help = ['truth']
 handler.tags = ['fun']
-handler.command = /^(truth|kebenaran|kejujuran)$/i
+handler.command = /^(truth)$/i
 //ftwr
 module.exports = handler

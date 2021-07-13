@@ -4,8 +4,8 @@ const { promisify } = require('util')
 const { join } = require('path')
 
 let confirmation = {}
-let repository = 'Nurutomo/wabot-aq'
-let branch = 'master'
+let repository = 'ariffb25/stikerinbot'
+let branch = 'main'
 
 async function handler(m, { text }) {
     let res = await fetch(`https://raw.githubusercontent.com/${repository}/${branch}/${text}`)
@@ -16,13 +16,13 @@ async function handler(m, { text }) {
             res,
             filename,
             text,
-            timeout: setTimeout(() => (m.reply('timed out'),delete confirmation[m.sender]), 60000)
+            timeout: setTimeout(() => (m.reply('timed out'), delete confirmation[m.sender]), 60000)
         }
-        throw 'File exists, are you sure want to overwrite? (Y/n) (60s Timeout)'
+        throw 'File sudah ada, yakin ingin menimpa? (Y/n) (60s Timeout)'
     }
     res.body.pipe(createWriteStream(filename))
     res.body.once('end', () => {
-        m.reply('Done update!')
+        m.reply('Berhasil memperbaharui!')
         conn.sendFile(m.chat, filename, text, null, m).catch(console.error)
     })
 }

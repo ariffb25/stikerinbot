@@ -18,10 +18,10 @@ async function handler(m, { command }) {
             if (Object.values(this.anonymous).find(room => room.check(m.sender))) throw 'Kamu masih berada di dalam anonymous chat'
             let room = Object.values(this.anonymous).find(room => room.state === 'WAITING' && !room.check(m.sender))
             if (room) {
-                this.sendMessage(room.a, 'Menemukan partner!', MessageType.text)
+                this.sendMessage(room.a, 'Partner ditemukan!', MessageType.text)
                 room.b = m.sender
                 room.state = 'CHATTING'
-                m.reply('Menemukan partner!')
+                m.reply('Partner ditemukan!')
             } else {
                 let id = + new Date
                 this.anonymous[id] = {

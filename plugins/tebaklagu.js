@@ -1,7 +1,7 @@
 let fetch = require('node-fetch')
 
 let timeout = 120000
-let poin = 1000
+let poin = 500
 let handler = async (m, { conn, usedPrefix }) => {
     conn.tebaklagu = conn.tebaklagu ? conn.tebaklagu : {}
     let id = m.chat
@@ -29,10 +29,10 @@ Bonus: ${poin} XP
             delete conn.tebaklagu[id]
         }, timeout)
     ]
-    await conn.sendFile(m.chat, json.preview, 'coba-lagi.mp3', '', m)
+    await conn.sendFile(m.chat, json.preview, 'eror.mp3', '', m, true, { mimetype: 'audio/mp4' })
 }
 handler.help = ['tebaklagu']
 handler.tags = ['game']
 handler.command = /^tebaklagu$/i
-handler.limit = true
+
 module.exports = handler

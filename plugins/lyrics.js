@@ -1,8 +1,6 @@
-// Pngocok handal
-
 let fetch = require('node-fetch')
 let handler = async (m, { text }) => {
-  if (!text) throw 'Missing \'title\' query'
+  if (!text) throw 'Uhm. Teksnya mana?'
   let res = await fetch(global.API('https://scrap.terhambar.com', '/lirik', {
     word: text
   }))
@@ -14,8 +12,8 @@ let handler = async (m, { text }) => {
 ${json.result.lirik}
 `.trim())
 }
-handler.help = ['lirik'].map(v => v + ' <Apa>')
+handler.help = ['lirik'].map(v => v + ' <teks>')
 handler.tags = ['internet']
-handler.command = /^(lirik|lyrics|lyric)$/i
+handler.command = /^(lirik|lyrics?)$/i
 
 module.exports = handler

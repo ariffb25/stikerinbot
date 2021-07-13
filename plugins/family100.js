@@ -4,7 +4,7 @@ async function handler(m) {
     this.game = this.game ? this.game : {}
     let id = 'family100_' + m.chat
     if (id in this.game) {
-        this.reply(m.chat, 'Masih ada kuis yang belum terjawab di chat ini', this.game[id].msg)
+        this.reply(m.chat, 'Masih ada kuis yang belum terjawab di chat ini, ketik *nyerah* untuk mengakhirinya', this.game[id].msg)
         throw false
     }
     let res = await fetch(global.API('xteam', '/game/family100', {}, 'APIKEY'))

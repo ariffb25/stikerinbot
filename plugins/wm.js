@@ -6,14 +6,14 @@ let handler = async (m, { conn, text }) => {
     let [packname, ...author] = text.split('|')
     author = (author || []).join('|')
     let mime = m.quoted.mimetype || ''
-    if (!/webp/.test(mime)) throw 'Reply sticker!'
+    if (!/webp/.test(mime)) throw 'Balas stikernya!'
     let img = await m.quoted.download()
     stiker = await sticker(img, false, packname || '', author || '')
   } finally {
     if (stiker) conn.sendMessage(m.chat, stiker, MessageType.sticker, {
       quoted: m
     })
-    else throw 'Conversion failed'
+    else throw 'Gagal'
   }
 }
 handler.help = ['wm <packname>|<author>']

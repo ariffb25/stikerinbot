@@ -1,14 +1,11 @@
 const fetch = require('node-fetch')
 
 let handler = async (m, { conn }) => {
-    try {
-        let res = await fetch(global.API('xteam', '/randomimage/wpmobile', {}, 'APIKEY'))
-        if (res.status != 200) throw await res.text()
-        let img = await res.buffer()
-        conn.sendFile(m.chat, img, '', '*© stikerin*', m, false, { thumbnail: Buffer.alloc(0) })
-    } catch (e) {
-        throw `Limit apikey habis atau error!`
-    }
+    let res = await fetch(global.API('xteam', '/randomimage/wpmobile', {}, 'APIKEY'))
+    if (!res.ok) throw await res.text()
+    let img = await res.buffer()
+    if (!img) throw img
+    conn.sendFile(m.chat, img, '', '*© stikerin*', m, 0, { thumbnail: Buffer.alloc(0) })
 }
 handler.help = ['wallpaperanime']
 handler.tags = ['internet']

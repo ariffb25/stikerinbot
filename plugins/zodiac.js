@@ -2,11 +2,11 @@ let handler = (m, { usedPrefix, command, text }) => {
     if (!text) throw `contoh:\n${usedPrefix + command} 2002 02 25`
 
     const date = new Date(text)
-    if (date == 'Invalid Date') throw date
+    if (date == 'Invalid Date') throw `contoh:\n${usedPrefix + command} 2002 02 25`
     const d = new Date()
     const [tahun, bulan, tanggal] = [d.getFullYear(), d.getMonth() + 1, d.getDate()]
     const birth = [date.getFullYear(), date.getMonth() + 1, date.getDate()]
-    
+
     const zodiac = getZodiac(birth[1], birth[2])
     const ageD = new Date(d - date)
     const age = ageD.getFullYear() - new Date(1970, 0, 1).getFullYear()
@@ -47,5 +47,5 @@ const zodiak = [
 
 function getZodiac(month, day) {
     let d = new Date(1970, month - 1, day)
-    return zodiak.find(([_,_d]) => d >= _d)[0]
+    return zodiak.find(([_, _d]) => d >= _d)[0]
 }

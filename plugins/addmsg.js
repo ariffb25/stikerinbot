@@ -11,7 +11,7 @@ let handler = async (m, { command, usedPrefix, text }) => {
     
 Akses dengan ${usedPrefix}get${which} ${text}`)
 }
-handler.help = ['vn', 'msg', 'video', 'audio', 'img', 'sticker'].map(v => 'add' + v + ' <text>')
+handler.help = ['vn', 'msg', 'video', 'audio', 'img', 'sticker'].map(v => 'add' + v + ' <teks>')
 handler.tags = ['database']
 handler.command = /^add(vn|msg|video|audio|img|sticker)$/
 

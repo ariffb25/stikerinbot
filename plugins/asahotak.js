@@ -1,5 +1,4 @@
 let fetch = require('node-fetch')
-
 let timeout = 120000
 let poin = 500
 let handler = async (m, { conn, usedPrefix }) => {
@@ -10,7 +9,7 @@ let handler = async (m, { conn, usedPrefix }) => {
         throw false
     }
     let res = await fetch(global.API('xteam', '/game/asahotak', {}, 'APIKEY'))
-    if (res.status !== 200) throw await res.text()
+    if (!res.ok) throw await res.text()
     let json = await res.json()
     if (!json.status) throw json
     let caption = `

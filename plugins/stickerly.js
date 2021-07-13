@@ -12,6 +12,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!json.status) throw json
     m.reply(`
 *Total stiker:* ${json.result.stickerlist.length}
+*Estimasi selesai:* ${json.result.stickerlist.length * 1.5} detik
         `.trim())
 
     for (let i of json.result.stickerlist) {

@@ -18,7 +18,7 @@ handler.before = m => {
 
         if (before !== user.level) {
                 m.reply(`
-Selamat, anda telah naik level!
+Selamat, kamu telah naik level!
 *${before}* -> *${user.level}*
 gunakan *.profile* untuk mengecek
 	`.trim())

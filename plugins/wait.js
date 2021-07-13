@@ -18,12 +18,12 @@ let handler = async (m, { conn, usedPrefix }) => {
   ${similarity < 0.89 ? 'Saya Memiliki Keyakinan Rendah Tentang Hal Ini' : ''}
 
 Anilist : *${anilist}*
-Filename : *${filename}*
-Similarity : *${(similarity * 100).toFixed(1)}%*
+Nama File : *${filename}*
+Kesamaan : *${(similarity * 100).toFixed(1)}%*
 Episode : *${episode.toString()}*
   `.trim(), m)
 }
-handler.help = ['wait (caption|reply image)']
+handler.help = ['wait']
 handler.tags = ['tools']
 handler.command = /^(wait)$/i
 

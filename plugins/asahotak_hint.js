@@ -3,9 +3,8 @@ let handler = async (m, { conn }) => {
     let id = m.chat
     if (!(id in conn.asahotak)) throw false
     let json = conn.asahotak[id][1]
-    let ans = json.result.jawaban
-    let clue = ans.replace(/[bcdfghjklmnpqrstvwxyz]/g, '_')
-    m.reply('```' + clue + '```')
+    let clue = json.result.jawaban.replace(/[AIUEOaiueo]/g, '_')
+    conn.reply(m.chat, '```' + clue + '```\nBalas soalnya, bukan pesan ini', conn.asahotak[id][0])
 }
 handler.command = /^ao$/i
 handler.limit = true

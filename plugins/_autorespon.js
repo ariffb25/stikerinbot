@@ -2,7 +2,8 @@ let fs = require('fs')
 let handler = m => m
 
 handler.all = async function (m, { isBlocked }) {
-    if (isBlocked) return
+
+    if (isBlocked) return // Yang diblock ga direspon
     let setting = global.db.data.settings
 
     // ketika ada yang invite/kirim link grup di chat pribadi
@@ -13,7 +14,8 @@ handler.all = async function (m, { isBlocked }) {
 │ 7 Hari / Rp 
 │ 30 Hari / Rp 
 └────
-`.trim(), m)
+Hubungi @${global.owner[0]}
+`.trim(), m, { contextIfo: { mentionedJid: [global.owner[0] + '@s.whatsapp.net'] } })
     }
 
     // salam
@@ -38,6 +40,7 @@ handler.all = async function (m, { isBlocked }) {
             setting.backupDB = new Date() * 1
         }
     }
+
 }
 
 module.exports = handler

@@ -12,9 +12,10 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     let json = await res.json()
     if (!json.status) throw json
     m.reply(`
-*Title:* ${json.result.title} 
-*Author:* ${json.result.author}
-*Animated:* ${json.result.animated}
+*Judul:* ${json.result.title} 
+*Pembuat:* ${json.result.author}
+*Animasi:* ${json.result.animated ? 'Iya' : 'Tidak'}
+*Estimasi selesai:* ${json.result.stickers.length * 1.5} detik
         `.trim())
 
     for (let i of json.result.stickers) {

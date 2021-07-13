@@ -1,7 +1,7 @@
 let handler = async (m, { conn }) => {
   let now = new Date() * 1
   let txt = conn.chats.all().filter(v => v.jid.endsWith('g.us')).map(v => `${conn.getName(v.jid)}\n${v.jid} [${v.read_only ? 'Left' : 'Joined'}]\n${msToDate(global.db.data.chats[v.jid].expired - now)}`).join`\n\n`
-  conn.reply(m.chat, 'List Groups:\n' + txt, m)
+  conn.reply(m.chat, 'Daftar Grup:\n' + txt, m)
 }
 handler.help = ['groups', 'grouplist']
 handler.tags = ['info']

@@ -1,58 +1,172 @@
-// Terimakasih kpd RC047 :v
-// Fitur By Xteams
-// Modified by Nurutomo (Update Xteam :v)
-
+const { MessageType } = require('@adiwajshing/baileys')
 const { sticker } = require('../lib/sticker')
-const fetch = require('node-fetch')
-const defaultType = 'whatsapp'
-let handler = async (m, { usedPrefix, conn, args, text }) => {
-  let [tipe, emoji] = text.includes('|') ? text.split('|') : args
-  if (tipe && !emoji) {
-    emoji = tipe
-    tipe = defaultType
+const { EmojiAPI } = require("emoji-api")
+const emoji = new EmojiAPI()
+
+let handler = async (m, { conn, args, usedPrefix, command, isPrems }) => {
+  let er = `Contoh penggunaan:
+
+*${usedPrefix}emo(spasi)ap(spasi)❤️*
+*${usedPrefix}emo ap ❤️*
+
+Opsi yang tersedia:
+• ap = apple
+• fa = facebook
+• go = google
+• ht = htc
+• lg
+• mi = microsoft
+• mo = mozilla
+• op = openmoji
+• pi = pixel
+• sa = samsung
+• tw = twitter
+• wh = whatsapp
+
+Hanya bisa 1 emoji, perhatikan spasi, jangan spam!
+
+Mau bikin stiker tapi 2/3 emoji? klik http://wa.me/62851577296390?text=%23stikeremoji`
+  if (!args[0]) throw er
+
+  let template = (args[0] || '').toLowerCase()
+  if (!args[1]) throw er
+  if (/emo/i.test(command)) {
+    try {
+      switch (template) {
+        case 'apple':
+        case 'ip':
+        case 'ap':
+          emoji.get(`${args[1]}`)
+            .then(async emoji => {
+              let stiker = await sticker(false, emoji.images[0].url, global.packname, global.author)
+              await conn.sendMessage(m.chat, stiker, MessageType.sticker, {
+                quoted: m
+              })
+            })
+          break
+        case 'facebook':
+        case 'fb':
+        case 'fa':
+          emoji.get(`${args[1]}`)
+            .then(async emoji => {
+              let stiker = await sticker(false, emoji.images[6].url, global.packname, global.author)
+              await conn.sendMessage(m.chat, stiker, MessageType.sticker, {
+                quoted: m
+              })
+            })
+          break
+        case 'google':
+        case 'go':
+          emoji.get(`${args[1]}`)
+            .then(async emoji => {
+              let stiker = await sticker(false, emoji.images[1].url, global.packname, global.author)
+              await conn.sendMessage(m.chat, stiker, MessageType.sticker, {
+                quoted: m
+              })
+            })
+          break
+        case 'htc':
+        case 'ht':
+          emoji.get(`${args[1]}`)
+            .then(async emoji => {
+              let stiker = await sticker(false, emoji.images[12].url, global.packname, global.author)
+              await conn.sendMessage(m.chat, stiker, MessageType.sticker, {
+                quoted: m
+              })
+            })
+          break
+        case 'lg':
+          emoji.get(`${args[1]}`)
+            .then(async emoji => {
+              let stiker = await sticker(false, emoji.images[11].url, global.packname, global.author)
+              await conn.sendMessage(m.chat, stiker, MessageType.sticker, {
+                quoted: m
+              })
+            })
+          break
+        case 'microsoft':
+        case 'mc':
+        case 'mi':
+          emoji.get(`${args[1]}`)
+            .then(async emoji => {
+              let stiker = await sticker(false, emoji.images[3].url, global.packname, global.author)
+              await conn.sendMessage(m.chat, stiker, MessageType.sticker, {
+                quoted: m
+              })
+            })
+          break
+        case 'mozilla':
+        case 'moz':
+        case 'mo':
+          emoji.get(`${args[1]}`)
+            .then(async emoji => {
+              let stiker = await sticker(false, emoji.images[13].url, global.packname, global.author)
+              await conn.sendMessage(m.chat, stiker, MessageType.sticker, {
+                quoted: m
+              })
+            })
+          break
+        case 'openmoji':
+        case 'omoji':
+        case 'op':
+          emoji.get(`${args[1]}`)
+            .then(async emoji => {
+              let stiker = await sticker(false, emoji.images[8].url, global.packname, global.author)
+              await conn.sendMessage(m.chat, stiker, MessageType.sticker, {
+                quoted: m
+              })
+            })
+          break
+        case 'pixel':
+        case 'pi':
+          emoji.get(`${args[1]}`)
+            .then(async emoji => {
+              let stiker = await sticker(false, emoji.images[7].url, global.packname, global.author)
+              await conn.sendMessage(m.chat, stiker, MessageType.sticker, {
+                quoted: m
+              })
+            })
+          break
+        case 'samsung':
+        case 'ss':
+        case 'sa':
+          emoji.get(`${args[1]}`)
+            .then(async emoji => {
+              let stiker = await sticker(false, emoji.images[2].url, global.packname, global.author)
+              await conn.sendMessage(m.chat, stiker, MessageType.sticker, {
+                quoted: m
+              })
+            })
+          break
+        case 'twitter':
+        case 'tw':
+          emoji.get(`${args[1]}`)
+            .then(async emoji => {
+              let stiker = await sticker(false, emoji.images[5].url, global.packname, global.author)
+              await conn.sendMessage(m.chat, stiker, MessageType.sticker, {
+                quoted: m
+              })
+            })
+          break
+        case 'whatsapp':
+        case 'wa':
+        case 'wh':
+          emoji.get(`${args[1]}`)
+            .then(async emoji => {
+              let stiker = await sticker(false, emoji.images[4].url, global.packname, global.author)
+              await conn.sendMessage(m.chat, stiker, MessageType.sticker, {
+                quoted: m
+              })
+            })
+          break
+      }
+    } catch (e) {
+      throw er
+    }
   }
-  if (!emoji) throw `
-Silahkan masukan emojinya
-
-Misal ${usedPrefix}semoji whatsapp 😎
-
-List Tipe:
-${[
-  "apple",
-  "google",
-  "samsung",
-  "microsoft",
-  "whatsapp",
-  "twitter",
-  "facebook",
-  "joypixels",
-  "openmoji",
-  "emojidex",
-  "messenger",
-  "lg",
-  "htc",
-  "mozilla",
-  "softbank",
-  "docomo",
-  "au_by_kddi"
-].map(v => `- ${v}`).join('\n')}
-`.trim()
-  emoji = emoji.trim()
-  tipe = tipe.trim().toLowerCase()
-
-  let res = await fetch(global.API('xteam', '/sticker/emojitopng', { emo: emoji.trim() }, 'APIKEY'))
-  if (!res.ok) throw res.text()
-  let json = await res.json()
-  if (!json.status) throw json
-  if (!(tipe in json.result)) tipe = defaultType
-  let stiker = await sticker(null, json.result[tipe].img, global.packname, global.author, [emoji], { name: json.result[tipe].name })
-  //   m.reply(`
-  // Tipe: ${tipe}
-  // Emoji: ${emoji}
-  // `.trim())
-  m.reply(stiker)
 }
-handler.help = ['semoji [tipe] <emoji>']
+handler.help = ['semoji']
 handler.tags = ['sticker']
-handler.command = /^s?emo(ji)?$/i
+handler.command = /^((s(tic?ker)?)?emo(ji)?)$/i
+handler.limit = true
 module.exports = handler

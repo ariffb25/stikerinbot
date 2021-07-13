@@ -1,3 +1,5 @@
+const similarity = require('similarity')
+const threshold = 0.72
 let handler = m => m
 handler.before = async function (m) {
     let id = m.chat
@@ -12,7 +14,7 @@ handler.before = async function (m) {
             m.reply(`*Benar!*\n+${conn.tebakkimia[id][2]} XP`)
             clearTimeout(conn.tebakkimia[id][3])
             delete conn.tebakkimia[id]
-        } else if (m.text.toLowerCase().endsWith(json.name.split` `[1])) m.reply(`*Dikit Lagi!*`)
+        } else if (similarity(m.text.toLowerCase(), json.name.toLowerCase().trim()) >= threshold) m.reply(`*Dikit Lagi!*`)
         else m.reply(`*Salah!*`)
     }
     return !0

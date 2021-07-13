@@ -4,8 +4,8 @@ let handler = async (m, { conn }) => {
     if (!(id in conn.tebakkata)) throw false
     let json = conn.tebakkata[id][1]
     let ans = json.result.jawaban.trim()
-    let clue = ans.replace(/[AIUEO]/g, '_')
-    m.reply('```' + clue + '```')
+    let clue = ans.replace(/[AIUEOaiueo]/g, '_')
+    conn.reply(m.chat, '```' + clue + '```\nBalas soalnya, bukan pesan ini', conn.tebakkata[id][0])
 }
 handler.command = /^teka$/i
 handler.limit = true

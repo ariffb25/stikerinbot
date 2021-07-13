@@ -1,7 +1,7 @@
 let handler = async (m, { conn, text }) => {
 
     let who
-    if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text
+    if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text + '@s.whatsapp.net'
     else who = m.chat
     if (!who) throw `tag orangnya!`
     if (global.prems.includes(who.split`@`[0])) throw 'dia udah premium!'
