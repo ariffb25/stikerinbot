@@ -13,7 +13,7 @@ ${usedPrefix + command} remove 6281111111111,12345678901,0
         if (!user) user = global.db.data.users[who] = {}
         user.whitelist = type
     }
-    m.reply(`Done ${type ? 'add' : 'remove'} whitelist ${users.length} user(s)`)
+    m.reply(`Berhasil ${type ? 'menambah' : 'menghapus'} whitelist ${users.length} pengguna`)
 }
 handler.help = ['whitelist'].map(v => v + ' nomor,nomor')
 handler.tags = ['owner']

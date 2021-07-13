@@ -1,11 +1,15 @@
 let fetch = require('node-fetch')
 
 let handler = async (m, { args, usedPrefix, command }) => {
-    let er = `Opsi tersedia:
-• latinkejawa
-• latinkesunda
-• jawakelatin
-• sundakelatin
+    let er = `
+┌〔 Opsi tersedia 〕
+│ 
+├ latinkejawa
+├ latinkesunda
+├ jawakelatin
+├ sundakelatin
+│ 
+└────
 
 Contoh penggunaan:
 ${usedPrefix + command} latinkejawa selamat pagi

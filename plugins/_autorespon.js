@@ -8,14 +8,17 @@ handler.all = async function (m, { isBlocked }) {
 
     // ketika ada yang invite/kirim link grup di chat pribadi
     if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('Buka tautan ini')) && !m.isBaileys && !m.isGroup) {
-        this.reply(m.chat, `┌ *「 Invite Grup 」*
-│ ✅Join 1 grup
+        this.reply(m.chat, `┌〔 Undang Bot ke Grup 〕
 │ 
-│ 7 Hari / Rp 
-│ 30 Hari / Rp 
+├ 7 Hari / Rp 5000
+├ 30 Hari / Rp 10000
+│ 
+├ Hubungi @${global.owner[0]}
 └────
-Hubungi @${global.owner[0]}
-`.trim(), m, { contextIfo: { mentionedJid: [global.owner[0] + '@s.whatsapp.net'] } })
+
+
+https://github.com/ariffb25/stikerinbot
+`.trim(), m, { contextInfo: { mentionedJid: [global.owner[0] + '@s.whatsapp.net'] } })
     }
 
     // salam
@@ -34,7 +37,7 @@ Hubungi @${global.owner[0]}
                 month: 'long',
                 year: 'numeric'
             })
-            await global.db.save()
+            await global.db.write()
             this.reply(global.owner[0] + '@s.whatsapp.net', `Database: ${date}`, null)
             this.sendFile(global.owner[0] + '@s.whatsapp.net', fs.readFileSync('./database.json'), 'database.json', '', false, false, { mimetype: 'application/json' })
             setting.backupDB = new Date() * 1

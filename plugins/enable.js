@@ -95,6 +95,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       conn.callWhitelistMode = isEnable
       break
     case 'grouponly':
+      isAll = true
       if (!isOwner) {
         global.dfail('owner', m, conn)
         throw false
@@ -102,6 +103,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       setting.groupOnly = isEnable
       break
     case 'backup':
+      isAll = true
       if (!isOwner) {
         global.dfail('owner', m, conn)
         throw false
@@ -109,6 +111,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       setting.backup = isEnable
       break
     case 'antitroli':
+      isAll = true
       if (!isOwner) {
         global.dfail('owner', m, conn)
         throw false
@@ -116,6 +119,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       setting.antitroli = isEnable
       break
     case 'antispam':
+      isAll = true
       if (!isOwner) {
         global.dfail('owner', m, conn)
         throw false
@@ -123,6 +127,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       setting.antispam = isEnable
       break
     case 'nsfw':
+      isAll = true
       if (!isOwner) {
         global.dfail('owner', m, conn)
         throw false
@@ -131,8 +136,23 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       break
     default:
       if (!/[01]/.test(command)) throw `
-List option: welcome | delete | public | antilink | autolevelup | detect | document | whitelistmycontacts | grouponly | backup | antitroli | antispam | nsfw
-
+┌〔 Daftar Opsi 〕
+│ 
+├ welcome
+├ delete
+├ public
+├ antilink
+├ autolevelup
+├ detect
+├ document
+├ whitelistmycontacts
+├ grouponly
+├ backup
+├ antitroli
+├ antispam
+├ nsfw
+│ 
+└────
 Contoh:
 ${usedPrefix}enable welcome
 ${usedPrefix}disable welcome

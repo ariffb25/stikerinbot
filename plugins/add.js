@@ -18,7 +18,7 @@ let handler = async (m, { conn, text, participants }) => {
       invite_code,
       invite_code_exp
     }]] = Object.entries(user)
-    let teks = `Mengundang @${jid.split('@')[0]} menggunakan invite...`
+    let teks = `Mengundang @${jid.split`@`[0]} menggunakan invite...`
     m.reply(teks, null, {
       contextInfo: {
         mentionedJid: conn.parseMention(teks)

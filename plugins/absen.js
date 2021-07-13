@@ -14,15 +14,14 @@ let handler = async (m, { usedPrefix }) => {
         month: 'long',
         year: 'numeric'
     })
-    let list = absen.map((v, i) => `│ ${i + 1}. @${v.split`@`[0]}`).join('\n')
-    conn.reply(m.chat, `*「 ABSEN 」*
-
+    let list = absen.map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join('\n')
+    conn.reply(m.chat, `
 Tanggal: ${date}
 ${conn.absen[id][2]}
 
-┌ *Yang sudah absen:*
+┌〔 Yang sudah absen 〕
 │ 
-│ Total: ${absen.length}
+├ Total: ${absen.length}
 ${list}
 │ 
 └────

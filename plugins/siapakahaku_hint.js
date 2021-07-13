@@ -3,7 +3,7 @@ let handler = async (m, { conn }) => {
     let id = m.chat
     if (!(id in conn.siapakahaku)) throw false
     let json = conn.siapakahaku[id][1]
-    let clue = json.result.jawaban.replace(/[AIUEOaiueo]/g, '_')
+    let clue = json.data.jawaban.replace(/[AIUEOaiueo]/g, '_')
     conn.reply(m.chat, '```' + clue + '```\nBalas soalnya, bukan pesan ini', conn.siapakahaku[id][0])
 }
 handler.command = /^who$/i

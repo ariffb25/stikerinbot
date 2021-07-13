@@ -10,18 +10,20 @@ global.APIs = { // API Prefix
   zeks: 'https://api.zeks.xyz',
   pencarikode: 'https://pencarikode.xyz',
   hardianto: 'https://hardianto-chan.herokuapp.com',
+  neoxr: 'https://neoxr-api.herokuapp.com',
 }
 global.APIKeys = { // APIKey nya disini
   // 'https://website': 'apikey'
-  'https://api.xteam.xyz': 'MIMINETBOT',
+  'https://api.xteam.xyz': 'apikeymu',
   'https://zahirr-web.herokuapp.com': 'zahirgans',
   'https://api.zeks.xyz': 'apivinz',
   'https://pencarikode.xyz': 'APIKEY',
   'https://hardianto-chan.herokuapp.com': 'hardianto',
+  'https://neoxr-api.herokuapp.com': 'yntkts',
 }
 
 // Sticker WM
-global.packname = 'ily'
+global.packname = '❤️'
 global.author = 'ariffb'
 
 global.multiplier = 69 // Semakin tinggi, semakin sulit naik level

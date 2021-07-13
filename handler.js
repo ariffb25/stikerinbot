@@ -42,7 +42,7 @@ module.exports = {
           if (!('banned' in user)) user.banned = false
           if (!isNumber(user.level)) user.level = 0
           if (!isNumber(user.call)) user.call = 0
-          if (!user.role) user.role = 'Beginner'
+          if (!user.role) user.role = 'Pemula'
           if (!('autolevelup' in user)) user.autolevelup = false
         } else global.db.data.users[m.sender] = {
           exp: 0,
