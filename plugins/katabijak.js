@@ -1,4 +1,4 @@
-const quotes = require('../lib/jagokata')
+const { quotes } = require('../lib/scrape')
 let handler = async (m, { command, args, usedPrefix }) => {
     let er = `contoh:\n\n${usedPrefix + command} cinta
 

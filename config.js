@@ -8,14 +8,16 @@ global.APIs = { // API Prefix
   xteam: 'https://api.xteam.xyz',
   zahir: 'https://zahirr-web.herokuapp.com',
   zeks: 'https://api.zeks.xyz',
-  pencarikode: 'https://pencarikode.xyz'
+  pencarikode: 'https://pencarikode.xyz',
+  hardianto: 'https://hardianto-chan.herokuapp.com',
 }
 global.APIKeys = { // APIKey nya disini
   // 'https://website': 'apikey'
   'https://api.xteam.xyz': 'd90a9e986e18778b',
   'https://zahirr-web.herokuapp.com': 'zahirgans',
   'https://api.zeks.xyz': 'apivinz',
-  'https://pencarikode.xyz': 'pais'
+  'https://pencarikode.xyz': 'APIKEY',
+  'https://hardianto-chan.herokuapp.com': 'hardianto',
 }
 
 // Sticker WM

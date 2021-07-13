@@ -1,13 +1,13 @@
 // Magernulis By MFarelS:V
 // Code by DrawlNag
 // Recode by Nurutomo :V
-let handler  = async (m, { command, conn, text }) => {
+let handler = async (m, { command, conn, text }) => {
   let id = (command.match(/[1-6]$/) || [])[0] || ''
   await conn.sendFile(m.chat, global.API('xteam', '/magernulis' + id, {
     text,
     nama: conn.getName(m.sender),
     kelas: ' '
-  }, 'APIKEY'), 'nulis.jpg', 'Nahhh sudah jadi...', m)
+  }, 'APIKEY'), 'nulis.jpg', 'Nahhh sudah jadi...', m, false, { thumbnail: Buffer.alloc(0) })
 }
 handler.help = new Array(6).fill('magernulis').map((v, i) => v + (i + 1) + ' <teks>')
 handler.tags = ['nulis']
