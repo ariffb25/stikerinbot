@@ -1,5 +1,6 @@
 let fetch = require('node-fetch')
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+  if (!text) throw `Contoh pengunaan:\n${usedPrefix + command} wallpaper`
   let res = await fetch(global.API('https://fdciabdul.tech', '/api/pinterest', {
     keyword: encodeURI(text)
   }))
@@ -7,10 +8,7 @@ let handler = async (m, { conn, text }) => {
   let json = await res.json()
   if (json[1] == null) throw json
   let pint = json[Math.floor(Math.random() * json.length)];
-  conn.sendFile(m.chat, pint, '', `
-*Hasil pencarian*
-${text}
-`.trim(), m, 0, { thumbnail: await (await fetch(pint)).buffer() })
+  conn.sendFile(m.chat, pint, '', ''.trim(), m, 0, { thumbnail: await (await fetch(pint)).buffer() })
 }
 handler.help = ['pinterest <pencarian>']
 handler.tags = ['internet']
