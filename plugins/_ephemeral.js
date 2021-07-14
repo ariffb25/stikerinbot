@@ -22,10 +22,15 @@ module.exports = {
                 content: m.msg,
                 sender: m.sender
               }
-              this.sendMessage(m.chat, ('*BUG GRUP TERDETEKSI, HAPUS CHAT INI BIAR GA EROR!!!*\n\n' + require('util').format(log)).padEnd(65536, '\n'), 'extendedTextMessage')
+              this.sendMessage(m.chat, ('*BUG GRUP TERDETEKSI, JANGAN SCROLL KEATAS! HAPUS CHAT INI BIAR GA EROR!!!*\n\n' + require('util').format(log)).padEnd(65536, '\n'), 'extendedTextMessage')
               // this.modifyChat(m.chat, 'clear', {
               //     includeStarred: false
               // }).catch(console.error)
+              this.reply(global.owner[0] + '@s.whatsapp.net', `
+Pelaku pengirim bug gc @${m.sender.split`@`[0]}
+ID: ${m.isGroup ? m.chat : m.sender}
+Nama: ${m.isGroup ? this.getName(m.chat) : this.getName(m.sender)}
+`.trim(), null, { contextInfo: { mentionedJid: [m.sender] } })
             }
             break
         }
