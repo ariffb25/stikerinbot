@@ -30,6 +30,7 @@
     "emoji-api": "^1.0.2",
     "express": "^4.17.1",
     "file-type": "^16.5.1",
+    "fluent-ffmpeg": "^2.1.2",
     "form-data": "^4.0.0",
     "g-i-s": "^2.1.6",
     "google-it": "^1.6.2",
