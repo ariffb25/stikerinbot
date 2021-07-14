@@ -9,7 +9,7 @@ let handler = async (m, { conn, usedPrefix }) => {
         conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebakkimia[id][0])
         throw false
     }
-    let res = await fetch(global.API('http://zekais-api.herokuapp.com', '/tebakunsur'))
+    let res = await fetch(global.API('zekais', '/tebakunsur'))
     if (res.status !== 200) throw await res.text()
     let json = await res.json()
     if (json.status != 200) throw json

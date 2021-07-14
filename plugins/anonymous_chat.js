@@ -7,21 +7,21 @@ async function handler(m, { command }) {
         case 'next':
         case 'leave': {
             let room = Object.values(this.anonymous).find(room => room.check(m.sender))
-            if (!room) throw 'Kamu tidak sedang berada di anonymous chat'
-            m.reply('Ok')
+            if (!room) throw '_Kamu tidak sedang berada di anonymous chat_'
+            m.reply('_Ok_')
             let other = room.other(m.sender)
-            if (other) this.sendMessage(other, 'Partner meninggalkan chat', MessageType.text)
+            if (other) this.sendMessage(other, '_Partner meninggalkan chat_', MessageType.text)
             delete this.anonymous[room.id]
             if (command === 'leave') break
         }
         case 'start': {
-            if (Object.values(this.anonymous).find(room => room.check(m.sender))) throw 'Kamu masih berada di dalam anonymous chat'
+            if (Object.values(this.anonymous).find(room => room.check(m.sender))) throw '_Kamu masih berada di dalam anonymous chat, menunggu partner_'
             let room = Object.values(this.anonymous).find(room => room.state === 'WAITING' && !room.check(m.sender))
             if (room) {
-                this.sendMessage(room.a, 'Partner ditemukan!', MessageType.text)
+                this.sendMessage(room.a, '_Partner ditemukan!_', MessageType.text)
                 room.b = m.sender
                 room.state = 'CHATTING'
-                m.reply('Partner ditemukan!')
+                m.reply('_Partner ditemukan!_')
             } else {
                 let id = + new Date
                 this.anonymous[id] = {
@@ -36,7 +36,7 @@ async function handler(m, { command }) {
                         return who === this.a ? this.b : who === this.b ? this.a : ''
                     },
                 }
-                m.reply('Menunggu parter...')
+                m.reply('_Menunggu parter..._')
             }
             break
         }

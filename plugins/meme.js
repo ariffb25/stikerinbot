@@ -4,14 +4,13 @@ let handler = async (m, { conn }) => {
   if (!res.ok) throw await res.text()
   let json = await res.json()
   if (!json.image) throw 'Err!'
-  conn.sendFile(m.chat, json.image, 'meme.png', json.caption, m)
+  let thumbnail = await (await fetch(json.image)).buffer()
+  conn.sendFile(m.chat, json.image, 'meme.png', json.caption, m, 0, { thumbnail })
 }
 
 handler.help = ['meme']
 handler.tags = ['internet']
 
 handler.command = /^(meme)$/i
-
-handler.group = true
 
 module.exports = handler

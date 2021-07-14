@@ -1,6 +1,7 @@
 let fetch = require('node-fetch')
-let handler = async (m, { text }) => {
-    if (!text) throw 'Cari apa?'
+let handler = async (m, { text, command, usedPrefix
+}) => {
+    if (!text) throw `Contoh penggunaan:\n${usedPrefix + command} stikerinbot`
     let res = await fetch(global.API('https://api.github.com', '/search/repositories', {
         q: text
     }))
@@ -30,12 +31,12 @@ module.exports = handler
 function formatDate(n, locale = 'id') {
     let d = new Date(n)
     return d.toLocaleDateString(locale, {
-      weekday: 'long',
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric'
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
     })
-  }
+}

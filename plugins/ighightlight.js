@@ -9,7 +9,7 @@ let handler = async (m, { conn, args }) => {
   let { username, items } = json.result
   for (let { thumbnail, isVideo, url } of items) {
     thumbnail = await (await fetch(thumbnail)).buffer()
-    conn.sendFile(m.chat, url, 'ig' + (isVideo ? '.mp4' : '.jpg'), `@${username}`, m, false, {
+    conn.sendFile(m.chat, url, 'ig' + (isVideo ? '.mp4' : '.jpg'), '', m, 0, {
       thumbnail
     })
   }

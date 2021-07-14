@@ -1,4 +1,3 @@
-let { MessageType } = require('@adiwajshing/baileys')
 let pajak = 0.02
 let handler = async (m, { conn, text }) => {
     if (!text) throw 'Masukkan jumlah Limit yang akan diberi'
@@ -21,7 +20,7 @@ let handler = async (m, { conn, text }) => {
     m.reply(`(${-poin} Limit) + (${-pjk} Limit (Pajak 2%)) = ( ${-limit} Limit)`)
     conn.fakeReply(m.chat, `+${poin} Limit`, who, m.text)
 }
-handler.help = ['paylimit @user <amount>']
+handler.help = ['paylimit @user <jumlah>']
 handler.tags = ['xp']
 handler.command = /^paylimit$/
 handler.rowner = false

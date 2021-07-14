@@ -1,9 +1,9 @@
 let fetch = require('node-fetch')
 let googleIt = require('google-it')
-let handler = async (m, { conn, command, args }) => {
+let handler = async (m, { conn, command, args, usedPrefix }) => {
   let full = /f$/i.test(command)
   let text = args.join` `
-  if (!text) return conn.reply(m.chat, 'Cari apa?\n\nContoh:\n.google Bahasa pemrograman', m)
+  if (!text) throw `Cari apa?\n\nContoh penggunaan:\n${usedPrefix + command} Bahasa pemrograman`
   let url = 'https://google.com/search?q=' + encodeURIComponent(text)
   let search = await googleIt({ query: text })
   let msg = search.map(({ title, link, snippet }) => {

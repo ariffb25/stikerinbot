@@ -7,10 +7,10 @@ async function handler(m) {
         this.reply(m.chat, 'Masih ada kuis yang belum terjawab di chat ini, ketik *nyerah* untuk mengakhirinya', this.game[id].msg)
         throw false
     }
-    let res = await fetch(global.API('xteam', '/game/family100', {}, 'APIKEY'))
+    let res = await fetch(global.API('zekais', '/family100'))
     if (!res.ok) throw await res.text()
     let json = await res.json()
-    if (!json.status) throw json
+    if (json.status != 200) throw json
     let caption = `
 *Soal:* ${json.soal}
 

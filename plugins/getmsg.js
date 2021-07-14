@@ -1,8 +1,8 @@
 let handler = async (m, { conn, command, usedPrefix, text }) => {
     let which = command.replace(/get/i, '')
-    if (!text) throw `Gunakan *${usedPrefix}list${which}* untuk melihat list nya`
+    if (!text) throw `Gunakan *${usedPrefix}list${which}* untuk melihat daftar nya`
     let msgs = global.db.data.msgs
-    if (!(text in msgs)) throw `'${text}' tidak terdaftar di list pesan`
+    if (!(text in msgs)) throw `'${text}' tidak terdaftar di daftar pesan`
     let _m = conn.serializeM(JSON.parse(JSON.stringify(msgs[text]), (_, v) => {
         if (
             v !== null &&
