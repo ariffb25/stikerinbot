@@ -79,6 +79,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       chat.antiLink = isEnable
       break
     case 'autolevelup':
+    case 'levelup':
       isUser = true
       user.autolevelup = isEnable
       break
@@ -110,6 +111,14 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       setting.backup = isEnable
       break
+    case 'anticall':
+      isAll = true
+      if (!isOwner) {
+        global.dfail('owner', m, conn)
+        throw false
+      }
+      setting.anticall = isEnable
+      break
     case 'antitroli':
       isAll = true
       if (!isOwner) {
@@ -125,6 +134,14 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
         throw false
       }
       setting.antispam = isEnable
+      break
+    case 'anon':
+      isAll = true
+      if (!isOwner) {
+        global.dfail('owner', m, conn)
+        throw false
+      }
+      setting.anon = isEnable
       break
     case 'nsfw':
       isAll = true
@@ -142,6 +159,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 ├ delete
 ├ public
 ├ antilink
+├ anon
 ├ autolevelup
 ├ detect
 ├ document
@@ -154,8 +172,8 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 │ 
 └────
 Contoh:
-${usedPrefix}enable welcome
-${usedPrefix}disable welcome
+${usedPrefix}on welcome
+${usedPrefix}off welcome
 `.trim()
       throw false
   }
@@ -163,7 +181,7 @@ ${usedPrefix}disable welcome
 *${type}* berhasil di *${isEnable ? 'nyala' : 'mati'}kan* ${isAll ? 'untuk bot ini' : isUser ? '' : 'untuk chat ini'}
 `.trim())
 }
-handler.help = ['en', 'dis'].map(v => v + 'able <option>')
+handler.help = ['en', 'dis'].map(v => v + 'able <opsi>')
 handler.tags = ['group', 'owner']
 handler.command = /^((en|dis)able|(tru|fals)e|(turn)?o(n|ff)|[01])$/i
 

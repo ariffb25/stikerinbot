@@ -65,7 +65,7 @@ module.exports = {
         if (typeof chat !== 'object') global.db.data.chats[m.chat] = {}
         if (chat) {
           if (!('isBanned' in chat)) chat.isBanned = false
-          if (!('welcome' in chat)) chat.welcome = false
+          if (!('welcome' in chat)) chat.welcome = true
           if (!('detect' in chat)) chat.detect = false
           if (!('sWelcome' in chat)) chat.sWelcome = ''
           if (!('sBye' in chat)) chat.sBye = ''
@@ -76,7 +76,7 @@ module.exports = {
           if (!isNumber(chat.expired)) chat.expired = 0
         } else global.db.data.chats[m.chat] = {
           isBanned: false,
-          welcome: false,
+          welcome: true,
           detect: false,
           sWelcome: '',
           sBye: '',
@@ -90,6 +90,8 @@ module.exports = {
         let settings = global.db.data.settings
         if (typeof settings !== 'object') global.db.data.settings = {}
         if (settings) {
+          if (!'anon' in settings) settings.anon = true
+          if (!'anticall' in settings) settings.anticall = true
           if (!'antispam' in settings) settings.antispam = true
           if (!'antitroli' in settings) settings.antitroli = true
           if (!'backup' in settings) settings.backup = false
@@ -97,6 +99,8 @@ module.exports = {
           if (!'groupOnly' in settings) settings.groupOnly = false
           if (!'nsfw' in settings) settings.nsfw = true
         } else global.db.data.settings = {
+          anon: true,
+          anticall: true,
           antispam: true,
           antitroli: true,
           backup: false,
@@ -414,6 +418,7 @@ Untuk mematikan fitur ini, ketik
     let users = global.db.data.users
     let user = users[from] || {}
     if (user.whitelist) return
+    if (global.db.data.anticall) return
     switch (this.callWhitelistMode) {
       case 'mycontact':
         if (from in this.contacts && 'short' in this.contacts[from])

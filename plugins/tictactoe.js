@@ -59,7 +59,7 @@ ${usedPrefix}${command} ${text}` : ''))
     }
 }
 
-handler.help = ['tictactoe', 'ttt'].map(v => v + ' [custom room name]')
+handler.help = ['tictactoe', 'ttt'].map(v => v + ' [nama room]')
 handler.tags = ['game']
 handler.command = /^(tictactoe|t{3})$/
 

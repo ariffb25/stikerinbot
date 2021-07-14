@@ -11,7 +11,7 @@ module.exports = {
         if (!isSurrender) {
             let index = room.jawaban.indexOf(text)
             if (index < 0) {
-                if (Math.max(...room.jawaban.filter((_, index) => !room.terjawab[index]).map(jawaban => similarity(jawaban.toLowerCase(), text.toLowerCase()))) >= threshold) m.reply('Dikit lagi!')
+                if (Math.max(...room.jawaban.filter((_, index) => !room.terjawab[index]).map(jawaban => similarity(jawaban.toLowerCase().replace(/[^\w\s\-]+/, ''), text))) >= threshold) m.reply('Dikit lagi!')
                 return !0
             }
             if (room.terjawab[index]) return !0
