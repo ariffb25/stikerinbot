@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/ariffb25/stikerinbot/issues"
   },
-  "homepage": "https://github.com/ariffb25/stikerinbot#readme",
+  "homepage": "https://github.com/ariffb25/stikerinbot",
   "dependencies": {
     "@adiwajshing/baileys": "github:adiwajshing/baileys",
     "awesome-phonenumber": "^2.54.0",

@@ -7,16 +7,17 @@ const effects = ['greyscale', 'invert', 'brightness', 'threshold', 'sepia', 'red
 let handler = async (m, { conn, usedPrefix, text }) => {
   let effect = text.trim().toLowerCase()
   if (!effects.includes(effect)) throw `
-*Usage:* ${usedPrefix}stickfilter <effectname>
-*Example:* ${usedPrefix}stickfilter invert
+Contoh penggunaan: 
+${usedPrefix}stickfilter greyscale
 
-*List Effect:*
-${effects.map(effect => `_> ${effect}_`).join('\n')}
+┌─〔 Daftar Efek 〕
+${effects.map(effect => `├ ${effect}`).join('\n')}
+└────
 `.trim()
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
-  if (!mime) throw 'No Image Found'
-  if (!/image\/(jpe?g|png)/.test(mime)) throw `Mime ${mime} not supported`
+  if (!mime) throw 'Tag gambarnya!'
+  if (!/image\/(jpe?g|png)/.test(mime)) throw `Mime ${mime} tidak didukung`
   let img = await q.download()
   let url = await uploadImage(img)
   let apiUrl = global.API('https://some-random-api.ml/canvas/', encodeURIComponent(effect), {
@@ -28,15 +29,12 @@ ${effects.map(effect => `_> ${effect}_`).join('\n')}
       quoted: m
     })
   } catch (e) {
-    m.reply('Conversion to Sticker Failed, Sending as Image Instead')
-    await conn.sendFile(m.chat, apiUrl, 'image.png', null, m)
+    await conn.sendFile(m.chat, apiUrl, 'image.png', null, m, 0, { thumbnail: await (await fetch(apiUrl)).buffer() })
   }
 }
 
-handler.help = ['stickfilter (caption|reply media)']
+handler.help = ['stikerfilter']
 handler.tags = ['sticker']
-handler.command = /^(stickfilter)$/i
-handler.limit = true
-handler.group = false
-handler.register = true
+handler.command = /^(s(tic?ker)?filter)$/i
+
 module.exports = handler

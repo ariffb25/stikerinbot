@@ -8,9 +8,11 @@ let handler = async (m, { conn, text, participants }) => {
     m.chat,
     conn.prepareMessageFromContent(
       m.chat,
-      { [c.toJSON ? q.mtype : MessageType.extendedText]: c.toJSON ? c.toJSON() : {
-        text: c || ''
-      } },
+      {
+        [c.toJSON ? q.mtype : MessageType.extendedText]: c.toJSON ? c.toJSON() : {
+          text: c || ''
+        }
+      },
       {
         contextInfo: {
           mentionedJid: users
@@ -18,12 +20,12 @@ let handler = async (m, { conn, text, participants }) => {
         quoted: false
       }
     ),
-    text || q.text 
+    text || q.text
   )
   await conn.relayWAMessage(msg)
 }
-handler.help = ['pengumuman', 'announce', 'hidetag'].map(v => 'o' + v + ' [teks]')
-handler.tags = ['group']
+handler.help = ['hidetag'].map(v => 'o' + v + ' [teks]')
+handler.tags = ['owner']
 handler.command = /^o(pengumuman|announce|hiddentag|hidetag)$/i
 
 handler.owner = true

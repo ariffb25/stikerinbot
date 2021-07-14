@@ -23,10 +23,10 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       else return m.reply('URL tidak valid!')
     }
   } finally {
-    if (stiker) conn.sendMessage(m.chat, stiker, MessageType.sticker, {
+    if (stiker) await conn.sendMessage(m.chat, stiker, MessageType.sticker, {
       quoted: m
     })
-    else throw 'Conversion failed'
+    else throw `Gagal${m.isGroup ? ', bikin stiker chat pribadi aja!' : ''}`
   }
 }
 handler.help = ['stiker ', 'stiker <url>']

@@ -8,7 +8,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     let tiktok = JSON.stringify(res)
     let json = JSON.parse(tiktok)
     // m.reply(require('util').format(json))
-    await conn.sendVideo(m.chat, json.nowm, '*© stikerin*', m, { thumbnail: Buffer.alloc(0) })
+    await conn.sendVideo(m.chat, json.nowm, '*© stikerin*', m, { thumbnail: await (await fetch(json.nowm)).buffer() })
   })
 
 }

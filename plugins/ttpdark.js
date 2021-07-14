@@ -13,13 +13,11 @@ let handler = async (m, { conn, text }) => {
       quoted: m
     })
   } catch (e) {
-    m.reply('Conversion Failed')
-    throw false
+    throw e
   }
 }
 handler.help = ['ttpdark <teks>']
 handler.tags = ['sticker']
 handler.command = /^(ttpdark)$/i
-handler.limit = true
-//Made By Anshul
+
 module.exports = handler

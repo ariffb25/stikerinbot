@@ -17,8 +17,10 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 }
 handler.help = ['ig'].map(v => v + ' <url>')
 handler.tags = ['downloader']
-handler.command = /^ig|instagram$/i
+handler.command = /^(ig|instagram)$/i
+
 handler.limit = true
+
 module.exports = handler
 
 const delay = time => new Promise(res => setTimeout(res, time))

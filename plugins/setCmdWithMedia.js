@@ -15,7 +15,7 @@ module.exports = Object.assign(async function handler(m, { text }) {
     }
     m.reply(`Done!`)
 }, {
-    help: ['cmd'].map(v => 'set' + v + ' <text>'),
+    help: ['cmd'].map(v => 'set' + v + ' <teks>'),
     tags: ['database'],
     command: ['setcmd']
 })

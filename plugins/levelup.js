@@ -23,9 +23,10 @@ Kurang *${max - user.exp}* lagi!
 
   if (before !== user.level) {
     m.reply(`
-Selamat, anda telah naik level!
+Selamat, kamu telah naik level!
 *${before}* -> *${user.level}*
 gunakan *.profile* untuk mengecek
+gunakan *.on levelup* untuk naik level otomatis
 	`.trim())
     user.role = role
   }

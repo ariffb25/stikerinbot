@@ -1,19 +1,44 @@
-let handler = async (m, { conn, text }) => {
-  await conn.sendFile(m.chat, global.API('xteam', '/tahta', { text }, 'APIKEY'), 'file.png', '', m)
+let { spawn } = require('child_process')
+const { unlinkSync } = require('fs')
+let fs = require('fs')
+let handler = async (m, { text, usedPrefix, command }) => {
+  if (text) {
+    try {
+      const splitText = text.replace(/(\S+\s*){1,10}/g, '$&\n')
+      const fixHeight = 'HARTA\nTAHTA\n' + splitText.toUpperCase()
+      spawn('convert', [
+        '-gravity',
+        'Center',
+        '-size',
+        '1280x1280',
+        'xc:black',
+        '-font',
+        './src/font/hartatahta.ttf',
+        '-pointsize',
+        '200',
+        '-tile',
+        './src/Aesthetic/harta.jpg',
+        '-annotate',
+        '+20+80',
+        fixHeight,
+        '-wave',
+        '10x175',
+        './src/Aesthetic/tahta.jpg'
+      ])
+        .on('error', () => m.reply(`_*Error!*_`))
+        .on('exit', () => {
+          conn.sendFile(m.chat, './src/Aesthetic/tahta.jpg', 'harta5.jpg', '*© stikerin*', m)
+          fs.unlinkSync('./src/Aesthetic/tahta.jpg')
+        })
+    } catch (e) {
+      console.log(e)
+      throw '_*Error!*_'
+    }
+  } else throw `contoh:\n${usedPrefix + command} saya`
 }
-handler.help = ['tahta2'].map(v => v + '<teks>')
-handler.tags = ['nulis']
-handler.command = /^tahta2$/i
-handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = true
-handler.private = false
-
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
-handler.register = true
-
+handler.help = ['harta2'].map(v => v + ' <teks>')
+handler.tags = ['tools']
+handler.command = /^(harta|ht|tahta)2$/i
+handler.limit = true
 module.exports = handler
+

@@ -6,7 +6,7 @@ let handler = async (m, { command, usedPrefix, text }) => {
     delete msgs[text]
     m.reply(`Berhasil menghapus pesan di daftar pesan dengan nama '${text}'`)
 }
-handler.help = ['vn', 'msg', 'video', 'audio', 'img', 'sticker'].map(v => 'del' + v + ' <text>')
+handler.help = ['vn', 'msg', 'video', 'audio', 'img', 'sticker'].map(v => 'del' + v + ' <teks>')
 handler.tags = ['database']
 handler.command = /^del(vn|msg|video|audio|img|sticker)$/
 
