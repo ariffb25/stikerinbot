@@ -99,6 +99,7 @@ module.exports = {
           if (!'groupOnly' in settings) settings.groupOnly = false
           if (!'jadibot' in settings) settings.groupOnly = false
           if (!'nsfw' in settings) settings.nsfw = true
+          if (!isNumber(settings.status)) settings.status = 0
         } else global.db.data.settings = {
           anon: true,
           anticall: true,
@@ -108,7 +109,8 @@ module.exports = {
           backupDB: 0,
           groupOnly: false,
           jadibot: false,
-          nsfw: true
+          nsfw: true,
+          status: 0,
         }
       } catch (e) {
         console.error(e)

@@ -4,7 +4,7 @@ let handler = async (m, { conn, text, participants }) => {
     contextInfo: { mentionedJid: users }
   })
 }
-}
+
 handler.help = ['tagall']
 handler.tags = ['group']
 handler.command = ['tagall']
