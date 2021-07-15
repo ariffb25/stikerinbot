@@ -151,6 +151,14 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       setting.nsfw = isEnable
       break
+    case 'jadibot':
+      isAll = true
+      if (!isOwner) {
+        global.dfail('owner', m, conn)
+        throw false
+      }
+      setting.jadibot = isEnable
+      break
     default:
       if (!/[01]/.test(command)) throw `
 ┌〔 Daftar Opsi 〕
@@ -169,6 +177,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 ├ antitroli
 ├ antispam
 ├ nsfw
+├ jadibot
 │ 
 └────
 Contoh:
