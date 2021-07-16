@@ -1,6 +1,6 @@
 let handler = async m => m.reply(`
 ┌〔 Donasi • Pulsa 〕
-├ Axis [083128734012]
+├ Axis [083862083658]
 └────
 
 ┌〔 Donasi • Emoney 〕
