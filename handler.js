@@ -408,11 +408,7 @@ module.exports = {
     let chat = global.db.data.chats[m.key.remoteJid]
     if (chat.delete) return
     await this.reply(m.key.remoteJid, `
-Terdeteksi @${m.participant.split`@`[0]} telah menghapus pesan
-
-Untuk mematikan fitur ini, ketik
-*.on delete*
-`.trim(), m.message, {
+Terdeteksi @${m.participant.split`@`[0]} telah menghapus pesan`.trim(), m.message, {
       contextInfo: {
         mentionedJid: [m.participant]
       }
@@ -449,7 +445,7 @@ global.dfail = (type, m, conn) => {
     group: 'Perintah ini hanya dapat digunakan di grup',
     private: 'Perintah ini hanya dapat digunakan di Chat Pribadi',
     admin: 'Perintah ini hanya untuk *Admin* grup',
-    botAdmin: 'Jadikan bot sebagai *Admin* untuk menggunakan perintah ini',
+    botAdmin: 'Bot harus menjadi *ADMIN* untuk menggunakan perintah ini',
     unreg: 'Silahkan daftar untuk menggunakan fitur ini dengan cara mengetik:\n\n*#daftar nama.umur*\n\nContoh: *#daftar Arif.19*',
     nsfw: 'NSFW tidak aktif'
   }[type]
