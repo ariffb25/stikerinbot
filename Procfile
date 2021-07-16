@@ -1,1 +1,1 @@
-web: node . --server
+worker: node . --restrict --autoread --server
