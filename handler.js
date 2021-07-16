@@ -71,6 +71,7 @@ module.exports = {
           if (!('sBye' in chat)) chat.sBye = ''
           if (!('sPromote' in chat)) chat.sPromote = ''
           if (!('sDemote' in chat)) chat.sDemote = ''
+          if (!('stiker' in chat)) chat.stiker = false
           if (!('delete' in chat)) chat.delete = true
           if (!('antiLink' in chat)) chat.antiLink = false
           if (!isNumber(chat.expired)) chat.expired = 0
@@ -82,6 +83,7 @@ module.exports = {
           sBye: '',
           sPromote: '',
           sDemote: '',
+          stiker: false,
           delete: true,
           antiLink: false,
           expired: 0,
@@ -133,7 +135,7 @@ module.exports = {
       }
       if (m.isBaileys) return
       if (m.chat.endsWith('broadcast')) return // Supaya tidak merespon di status
-      if (!m.isGroup && global.DATABASE.data.settings.groupOnly) return m.reply('Saat ini bot sedang *mode grup* jadi hanya bisa digunakan digrup saja') // Ketika mode grup diaktifkan
+      if (!m.isGroup && global.db.data.settings.groupOnly) return m.reply(`Saat ini bot hanya bisa digunakan di grup`)
       let blockList = conn.blocklist.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').filter(v => v != conn.user.jid)
       if (blockList.includes(m.sender)) return // Pengguna yang diblokir tidak bisa menggunakan bot
       m.exp += Math.ceil(Math.random() * 10)

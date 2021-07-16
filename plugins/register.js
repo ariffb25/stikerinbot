@@ -18,11 +18,11 @@ let handler = async function (m, { text, usedPrefix }) {
   m.reply(`
 Daftar berhasil!
 
-╭─「 Info 」
-│ Nama: ${name}
-│ Umur: ${age} tahun
-│ SN: ${sn}
-╰────
+┌─〔 Info 〕
+├ Nama: ${name}
+├ Umur: ${age} tahun
+├ SN: ${sn}
+└────
 `.trim())
 }
 handler.help = ['daftar', 'reg', 'register'].map(v => v + ' <nama>.<umur>')

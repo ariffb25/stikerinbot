@@ -4,11 +4,11 @@ const { sticker } = require('../lib/sticker')
 const { MessageType } = require('@adiwajshing/baileys')
 const effects = ['jail', 'gay', 'glass', 'wasted', 'triggered']
 
-let handler = async (m, { conn, usedPrefix, text }) => {
+let handler = async (m, { conn, usedPrefix, text, command }) => {
   let effect = text.trim().toLowerCase()
   if (!effects.includes(effect)) throw `
-*Usage:* ${usedPrefix}stickmaker <effectname>
-*Example:* ${usedPrefix}stickmaker jail
+*Usage:* ${usedPrefix + command} <efek>
+*Example:* ${usedPrefix + command} jail
 
 ┌─〔 Daftar Efek 〕
 ${effects.map(effect => `├ ${effect}`).join('\n')}
@@ -16,7 +16,7 @@ ${effects.map(effect => `├ ${effect}`).join('\n')}
 `.trim()
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
-  if (!mime) throw 'Tag gambarnya!'
+  if (!mime) throw 'Balas gambarnya!'
   if (!/image\/(jpe?g|png)/.test(mime)) throw `Mime ${mime} tidak didukung`
   let img = await q.download()
   let url = await uploadImage(img)

@@ -13,7 +13,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
           global.dfail('group', m, conn)
           throw false
         }
-      } else if (!isAdmin) {
+      } else if (!(isAdmin || isOwner)) {
         global.dfail('admin', m, conn)
         throw false
       }
@@ -25,7 +25,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
           global.dfail('group', m, conn)
           throw false
         }
-      } else if (!isAdmin) {
+      } else if (!(isAdmin || isOwner)) {
         global.dfail('admin', m, conn)
         throw false
       }
@@ -70,13 +70,14 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       global.opts['self'] = !isEnable
       break
     case 'antilink':
+    case 'stiker':
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail('admin', m, conn)
           throw false
         }
       }
-      chat.antiLink = isEnable
+      chat.stiker = isEnable
       break
     case 'autolevelup':
     case 'levelup':
@@ -163,21 +164,22 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       if (!/[01]/.test(command)) throw `
 ┌〔 Daftar Opsi 〕
 │ 
-├ welcome
-├ delete
-├ public
-├ antilink
 ├ anon
+├ antilink
+├ antispam
+├ antitroli
 ├ autolevelup
+├ backup
+├ delete
 ├ detect
 ├ document
-├ whitelistmycontacts
 ├ grouponly
-├ backup
-├ antitroli
-├ antispam
-├ nsfw
 ├ jadibot
+├ nsfw
+├ public
+├ stiker
+├ whitelistmycontacts
+├ welcome
 │ 
 └────
 Contoh:

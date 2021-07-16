@@ -4,14 +4,15 @@ let handler = m => m
 handler.all = async function (m, { isBlocked }) {
 
     if (isBlocked) return // Yang diblock ga direspon
+    if (m.chat.endsWith('broadcast')) return
     let setting = global.db.data.settings
 
     // ketika ada yang invite/kirim link grup di chat pribadi
     if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('Buka tautan ini')) && !m.isBaileys && !m.isGroup) {
         this.reply(m.chat, `┌〔 Undang Bot ke Grup 〕
 │ 
-├ 7 Hari / Rp 5000
-├ 30 Hari / Rp 10000
+├ 7 Hari / Rp 0
+├ 30 Hari / Rp 0
 │ 
 ├ Hubungi @${global.owner[0]}
 └────

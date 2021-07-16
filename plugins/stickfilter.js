@@ -4,11 +4,11 @@ const { sticker } = require('../lib/sticker')
 const { MessageType } = require('@adiwajshing/baileys')
 const effects = ['greyscale', 'invert', 'brightness', 'threshold', 'sepia', 'red', 'green', 'blue', 'blurple', 'pixelate', 'blur']
 
-let handler = async (m, { conn, usedPrefix, text }) => {
+let handler = async (m, { conn, usedPrefix, text, command }) => {
   let effect = text.trim().toLowerCase()
   if (!effects.includes(effect)) throw `
 Contoh penggunaan: 
-${usedPrefix}stickfilter greyscale
+${usedPrefix + command} greyscale
 
 ┌─〔 Daftar Efek 〕
 ${effects.map(effect => `├ ${effect}`).join('\n')}
@@ -16,7 +16,7 @@ ${effects.map(effect => `├ ${effect}`).join('\n')}
 `.trim()
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
-  if (!mime) throw 'Tag gambarnya!'
+  if (!mime) throw 'Balas gambarnya!'
   if (!/image\/(jpe?g|png)/.test(mime)) throw `Mime ${mime} tidak didukung`
   let img = await q.download()
   let url = await uploadImage(img)

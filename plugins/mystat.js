@@ -1,5 +1,5 @@
 let handler = async (m, { conn }) => {
-    let { anon, anticall, antispam, antitroli, backup, backupDB, groupOnly, nsfw } = global.db.data.settings
+    let { anon, anticall, antispam, antitroli, backup, jadibot, groupOnly, nsfw } = global.db.data.settings
     const chats = conn.chats.all()
     const groups = chats.filter(v => v.jid.endsWith('g.us'))
     let jadibot = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])]
@@ -28,6 +28,7 @@ let handler = async (m, { conn }) => {
 ├ ${antitroli ? '✅' : '❌'} *Anti Troli*
 ├ ${backup ? '✅' : '❌'} *Auto Backup DB*
 ├ ${groupOnly ? '✅' : '❌'} *Mode Grup*
+├ ${jadibot ? '✅' : '❌'} *Jadi Bot*
 ├ ${nsfw ? '✅' : '❌'} *Mode Nsfw*
 └────
     `.trim())
