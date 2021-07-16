@@ -36,6 +36,7 @@
     "google-it": "^1.6.2",
     "got": "^11.8.2",
     "human-readable": "^0.2.1",
+    "img2braille": "^1.0.1",
     "jsbarcode": "^3.11.4",
     "jsdom": "^16.6.0",
     "lodash": "^4.17.21",

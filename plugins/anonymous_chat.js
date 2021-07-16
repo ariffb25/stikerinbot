@@ -1,7 +1,7 @@
 const { MessageType } = require("@adiwajshing/baileys")
 
 async function handler(m, { command }) {
-    if (!global.db.data.settings.anon) throw `Fitur Anonymous Chat tidak dinyalakan oleh _*Pemilik Bot*_`
+    if (!global.db.data.settings.anon) throw `Fitur ini tidak aktif`
     command = command.toLowerCase()
     this.anonymous = this.anonymous ? this.anonymous : {}
     switch (command) {

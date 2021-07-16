@@ -6,7 +6,7 @@ if (global.conns instanceof Array) console.log()// for (let i of global.conns) g
 else global.conns = []
 
 let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
-  if (!global.db.data.settings.jadibot) throw 'Fitur Jadi Bot tidak diaktifkan'
+  if (!global.db.data.settings.jadibot) throw 'Fitur ini tidak aktif'
   let parent = args[0] && args[0] == 'plz' ? conn : global.conn
   let auth = false
   if ((args[0] && args[0] == 'plz') || global.conn.user.jid == conn.user.jid) {

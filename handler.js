@@ -422,7 +422,7 @@ Untuk mematikan fitur ini, ketik
     let users = global.db.data.users
     let user = users[from] || {}
     if (user.whitelist) return
-    if (global.db.data.anticall) return
+    if (!global.db.data.anticall) return
     switch (this.callWhitelistMode) {
       case 'mycontact':
         if (from in this.contacts && 'short' in this.contacts[from])
@@ -449,7 +449,7 @@ global.dfail = (type, m, conn) => {
     admin: 'Perintah ini hanya untuk *Admin* grup',
     botAdmin: 'Jadikan bot sebagai *Admin* untuk menggunakan perintah ini',
     unreg: 'Silahkan daftar untuk menggunakan fitur ini dengan cara mengetik:\n\n*#daftar nama.umur*\n\nContoh: *#daftar Arif.19*',
-    nsfw: 'Mode NSFW tidak aktif. Hanya pemilik bot yang bisa mengaktifkannya'
+    nsfw: 'NSFW tidak aktif'
   }[type]
   if (msg) return m.reply(msg)
 }
