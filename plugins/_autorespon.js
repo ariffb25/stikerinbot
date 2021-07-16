@@ -16,8 +16,6 @@ handler.all = async function (m, { isBlocked }) {
 │ 
 ├ Hubungi @${global.owner[0]}
 └────
-
-https://github.com/ariffb25/stikerinbot
 `.trim(), m, { contextInfo: { mentionedJid: [global.owner[0] + '@s.whatsapp.net'] } })
     }
 
