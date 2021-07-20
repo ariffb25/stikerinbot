@@ -1,7 +1,7 @@
 {
-  "name": "stikerinbot",
+  "name": "kumo bot",
   "description": "Lightweight WhatsApp Bot",
-  "repository": "https://github.com/ariffb25/stikerinbot",
+  "repository": "https://github.com/Hidayatilman/stikerinbot",
   "logo": "https://node-js-sample.herokuapp.com/node.png",
   "keywords": [
     "bot",
