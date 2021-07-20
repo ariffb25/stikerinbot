@@ -149,7 +149,7 @@ global.reloadHandler = function () {
         } catch (e) {
           conn.logger.error(e)
         }
-      }, 5000)
+      }, 50000)
     })
   }
   isInit = false
