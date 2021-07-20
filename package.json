@@ -1,5 +1,5 @@
 {
-  "name": "stikerinbot",
+  "name": "kumo bot",
   "version": "1.0.0",
   "description": "WhatsApp Bot Ringan",
   "main": "index.js",
@@ -9,17 +9,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ariffb25/stikerinbot.git"
+    "url": "git+https://github.com/Hidayatilman/stikerinbot/stikerinbot.git"
   },
   "keywords": [
     "whatsapp-bot"
   ],
-  "author": "Ariffb",
+  "author": "ilman&ariel",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ariffb25/stikerinbot/issues"
+    "url": "https://github.com/Hidayatilman/stikerinbot/issues"
   },
-  "homepage": "https://github.com/ariffb25/stikerinbot",
+  "homepage": "https://github.com/Hidayatilman/stikerinbot",
   "dependencies": {
     "@adiwajshing/baileys": "github:adiwajshing/baileys",
     "awesome-phonenumber": "^2.54.0",
