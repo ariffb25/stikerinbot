@@ -24,8 +24,8 @@ global.APIKeys = { // APIKey nya disini
 }
 
 // Sticker WM
-global.packname = '❤️'
-global.author = 'ariffb'
+global.packname = '🐢'
+global.author = 'ilman&admin ariel'
 
 global.multiplier = 69 // Semakin tinggi, semakin sulit naik level
 
