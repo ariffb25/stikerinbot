@@ -8,7 +8,7 @@ handler.before = async function (m) {
     if (!(id in conn.susunkata)) return m.reply('Soal itu telah berakhir')
     if (m.quoted.id == conn.susunkata[id][0].id) {
         let json = JSON.parse(JSON.stringify(conn.susunkata[id][1]))
-        // m.reply(JSON.stringify(json, null, '\t'))
+        if (/^.*suka$/i.test(m.text)) return !0
         if (m.text.toLowerCase() == json.data.jawaban.toLowerCase().trim()) {
             global.db.data.users[m.sender].exp += conn.susunkata[id][2]
             m.reply(`*Benar!*\n+${conn.susunkata[id][2]} XP`)

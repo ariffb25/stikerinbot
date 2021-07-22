@@ -6,6 +6,7 @@ handler.before = async function (m) {
     if (!m.quoted || !m.quoted.fromMe || !m.quoted.isBaileys || !/Ketik.*calo/i.test(m.quoted.text)) return !0
     conn.caklontong = conn.caklontong ? conn.caklontong : {}
     if (!(id in conn.caklontong)) return m.reply('Soal itu telah berakhir')
+    if (/^.*calo$/i.test(m.text)) return !0
     if (m.quoted.id == conn.caklontong[id][0].id) {
         let json = JSON.parse(JSON.stringify(conn.caklontong[id][1]))
         if (m.text.toLowerCase() == json.result.jawaban.toLowerCase()) {

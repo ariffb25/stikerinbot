@@ -8,7 +8,7 @@ let handler = async function (m, { args }) {
   m.reply(`Unreg berhasil!`)
 }
 handler.help = ['', 'ister'].map(v => 'unreg' + v + ' <SN|SERIAL NUMBER>')
-handler.tags = ['exp']
+handler.tags = ['xp']
 
 handler.command = /^unreg(ister)?$/i
 handler.register = true

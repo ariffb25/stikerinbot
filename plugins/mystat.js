@@ -2,7 +2,7 @@ let handler = async (m, { conn }) => {
     let { anon, anticall, antispam, antitroli, backup, jadibot, groupOnly, nsfw } = global.db.data.settings
     const chats = conn.chats.all()
     const groups = chats.filter(v => v.jid.endsWith('g.us'))
-    let jadibot = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])]
+    let totaljadibot = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])]
 
     let _uptime = process.uptime() * 1000
     let uptime = clockString(_uptime)
@@ -12,13 +12,13 @@ let handler = async (m, { conn }) => {
 ┌─〔 Status 〕
 ├ Aktif selama ${uptime}
 ├ Baterai ${conn.battery != undefined ? `${conn.battery.value}% ${conn.battery.live ? '🔌 pengisian' : ''}` : 'tidak diketahui'}
-├ *${groups.length}* Total Grup
-├ *${chats.length - groups.length}* Total Chat Pribadi
-├ *${Object.keys(global.db.data.users).length}* Total Pengguna
-├ *${jadibot.length}* Total Jadibot
-├ *${conn.blocklist.length}* Total Terblock
-├ *${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}* Total Chat Terbanned
-├ *${Object.entries(global.db.data.users).filter(user => user[1].banned).length}* Total Pengguna Terbanned
+├ *${groups.length}* Grup
+├ *${chats.length - groups.length}* Chat Pribadi
+├ *${Object.keys(global.db.data.users).length}* Pengguna
+├ *${totaljadibot.length}* Jadibot
+├ *${conn.blocklist.length}* Terblock
+├ *${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}* Chat Terbanned
+├ *${Object.entries(global.db.data.users).filter(user => user[1].banned).length}* Pengguna Terbanned
 └────
 
 ┌─〔 Pengaturan 〕

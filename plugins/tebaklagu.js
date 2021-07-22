@@ -29,7 +29,7 @@ Bonus: ${poin} XP
             delete conn.tebaklagu[id]
         }, timeout)
     ]
-    await conn.sendFile(m.chat, json.preview, 'eror.mp3', '', m, true, { mimetype: 'audio/mp4' })
+    await conn.sendFile(m.chat, json.preview, 'eror.mp3', '', m, 1, { mimetype: 'audio/mp4' })
 }
 handler.help = ['tebaklagu']
 handler.tags = ['game']

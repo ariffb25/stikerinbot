@@ -26,7 +26,7 @@ Daftar berhasil!
 `.trim())
 }
 handler.help = ['daftar', 'reg', 'register'].map(v => v + ' <nama>.<umur>')
-handler.tags = ['exp']
+handler.tags = ['xp']
 
 handler.command = /^(daftar|reg(ister)?)$/i
 
