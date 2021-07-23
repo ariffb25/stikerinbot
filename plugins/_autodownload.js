@@ -9,12 +9,16 @@ handler.all = async function (m, { isPrems, isOwner }) {
     let buf = { thumbnail: Buffer.alloc(0) }
 
     if (/^.*tiktok/i.test(m.text)) {
-        tiktok(m.text).then(async res => {
-            let tiktok = JSON.stringify(res)
-            let json = JSON.parse(tiktok)
-            // m.reply(require('util').format(json))
-            await this.sendVideo(m.chat, json.nowm, '*© stikerin*', m, { thumbnail: buf })
-        }).catch(_ => _)
+        // tiktok(m.text).then(async res => {
+        //     let tiktok = JSON.stringify(res)
+        //     let json = JSON.parse(tiktok)
+        //     // m.reply(require('util').format(json))
+        //     await this.sendVideo(m.chat, json.nowm, '*© stikerin*', m, { thumbnail: buf })
+        // }).catch(_ => _)
+        let res = await fetch(global.API('hardianto', '/api/download/tiktok', { url: m.text }, 'apikey'))
+        if (!res.ok) throw await `${res.status} ${res.statusText}`
+        let json = await res.json()
+        await conn.sendVideo(m.chat, json.wm, '© stikerin', m, buf)
     }
 
     if (/^.*cocofun/i.test(m.text)) {
