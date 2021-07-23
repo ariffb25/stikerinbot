@@ -1,3 +1,4 @@
+let { asahotak } = require('../lib/game')
 let fetch = require('node-fetch')
 let timeout = 120000
 let poin = 500
@@ -8,22 +9,28 @@ let handler = async (m, { conn, usedPrefix }) => {
         conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.asahotak[id][0])
         throw false
     }
-    let res = await fetch(global.API('neoxr', '/api/games/asahotak', {}, 'apikey'))
-    if (!res.ok) throw await res.text()
-    let json = await res.json()
-    if (!json.status) throw json
+    let res = JSON.parse(JSON.stringify(await asahotak()))
+    let random = Math.floor(Math.random() * res.length)
+    let json = res[random]
     let caption = `
-${json.data.pertanyaan}
+    ${json.pertanyaan}
 
 Timeout *${(timeout / 1000).toFixed(2)} detik*
 Ketik ${usedPrefix}ao untuk bantuan
 Bonus: ${poin} XP
-`.trim()
+    `.trim()
     conn.asahotak[id] = [
-        await conn.reply(m.chat, caption, m),
+        await conn.sendMessage(m.chat, {
+            contentText: caption.trim(),
+            footerText: 'made with ❤️ by ariffb',
+            buttons: [
+                { buttonId: '.ao', buttonText: { displayText: 'BANTUAN' }, type: 1 }
+            ],
+            headerType: 1
+        }, 'buttonsMessage'),
         json, poin,
         setTimeout(() => {
-            if (conn.asahotak[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.data.jawaban}*`, conn.asahotak[id][0])
+            if (conn.asahotak[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.asahotak[id][0])
             delete conn.asahotak[id]
         }, timeout)
     ]
