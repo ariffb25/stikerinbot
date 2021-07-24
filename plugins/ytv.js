@@ -15,10 +15,10 @@ let handler = async (m, { conn, args, isPrems, isOwner }) => {
   let _thumb = {}
   try { _thumb = { thumbnail: await (await fetch(thumb)).buffer() } }
   catch (e) { }
-  if (!isLimit) conn.sendFile(m.chat, dl_link, title + '.mp4', `
+  if (!isLimit) conn.sendVideo(m.chat, dl_link, `
 *Judul:* ${title}
 *Ukuran File:* ${filesizeF}
-`.trim(), m, false, {
+`.trim(), m, {
     ..._thumb,
     asDocument: chat.useDocument
   })
