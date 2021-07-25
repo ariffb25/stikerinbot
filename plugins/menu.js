@@ -32,11 +32,11 @@ let tags = {
 const defaultMenu = {
   before: `
 ┌─〔 %me 〕
-│ Hai, %name!
+├ Hai, %name!
 │
 ├ Tersisa *%limit Limit*
 ├ Role *%role*
-├ Level *%level (%exp / %maxexp)* [%xp4levelup lagi untuk levelup]
+├ Level *%level (%exp / %maxexp)* [%xp4levelup]
 ├ %totalexp XP secara Total
 │ 
 ├ Tanggal: *%week %weton, %date*
@@ -46,7 +46,7 @@ const defaultMenu = {
 ├ Uptime: *%uptime (%muptime)*
 ├ Database: %rtotalreg dari %totalreg
 ├ Github:
-│ %github
+├ %github
 └────
 %readmore`.trimStart(),
   header: '┌─〔 %category 〕',
@@ -60,9 +60,9 @@ ${'```%npmdesc```'}
 let handler = async (m, { conn, usedPrefix: _p }) => {
   try {
     let package = JSON.parse(await fs.promises.readFile(path.join(__dirname, '../package.json')).catch(_ => '{}'))
-    let { exp, limit, level, role } = global.db.data.users[m.sender]
+    let { exp, limit, level, role, registered } = global.db.data.users[m.sender]
     let { min, xp, max } = levelling.xpRange(level, global.multiplier)
-    let name = conn.getName(m.sender)
+    let name = registered ? global.db.data.users[m.sender].name : conn.getName(m.sender)
     let d = new Date(new Date + 3600000)
     let locale = 'id'
     // d.getTimeZoneOffset()
@@ -147,7 +147,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
       exp: exp - min,
       maxexp: xp,
       totalexp: exp,
-      xp4levelup: max - exp,
+      xp4levelup: max - exp <= 0 ? `Siap untuk *${_p}levelup*` : `${max - exp} XP lagi untuk levelup`,
       github: package.homepage ? package.homepage.url || package.homepage : '[unknown github url]',
       level, limit, name, weton, week, date, dateIslamic, time, totalreg, rtotalreg, role,
       readmore: readMore
