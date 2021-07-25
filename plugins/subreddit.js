@@ -5,7 +5,8 @@ let handler = async (m, { conn, text }) => {
   if (!res.ok) throw await res.text()
   let json = await res.json()
   if (!json.url) throw 'Media tidak ditemukan!'
-  if (json.nsfw && !global.db.data.settings.nfsw) throw 'Mode NFSW tidak aktif'
+  if (json.nsfw && !global.db.data.settings.nsfw) throw 'Mode NSFW tidak aktif'
+
   await conn.sendFile(m.chat, json.url, text, json.title, m, false, { thumbnail: await (await fetch(json.url)).buffer() })
 }
 handler.help = ['subreddit <pencarian>']
