@@ -1,10 +1,14 @@
 # stikerinbot
 
+<p align="center">
+	<img src="https://i.ibb.co/jr9Nh6Q/Thumb.jpg" width="35%" style="margin-left: auto;margin-right: auto;display: block;">
+</p>
+
 Simple WhatsApp Bot
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ariffb25/stikerinbot)
 
-## UNTUK TERMUX/UBUNTU/SSH USER
+## UNTUK PENGGUNA TERMUX/UBUNTU/SSH
 
 ```bash
 apt update && apt upgrade
@@ -20,7 +24,7 @@ npm update
 
 ---------
 
-## UNTUK WINDOWS/VPS/RDP USER
+## UNTUK PENGGUNA WINDOWS/VPS/RDP
 
 * Unduh & Instal Git [`Klik Disini`](https://git-scm.com/downloads)
 * Unduh & Instal NodeJS [`Klik Disini`](https://nodejs.org/en/download)
@@ -36,6 +40,15 @@ npm update
 
 ---------
 
+## UNTUK PENGGUNA HEROKU
+
+### Instal Buildpack
+* heroku/nodejs
+* https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
+* https://github.com/DuckyTeam/heroku-buildpack-imagemagick.git
+
+---------
+
 ## Run
 
 ```bash
@@ -45,6 +58,8 @@ node .
 ---------
 
 ## Arguments `node . [--options] [<session name>]`
+
+#### Contoh: `node . --self --restrict --autoread`
 
 ### `--self`
 
