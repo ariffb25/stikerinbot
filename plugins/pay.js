@@ -1,5 +1,5 @@
 let pajak = 0.02
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) {
     conn.reply(m.chat, `perintah ini buat ngasih XP ke pengguna lain\n\ncontoh:\n${usedPrefix + command} @6285157336614 10\natau balas pesan doi dengan perintah: ${usedPrefix + command} 10`, m, { contextInfo: { mentionedJid: ['6285157336614@s.whatsapp.net'] } })
     throw false
