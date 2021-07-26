@@ -10,8 +10,9 @@ let handler = async (m, { conn, usedPrefix }) => {
         throw false
     }
     let res = await fetch(global.API('zahir', '/api/kuis/caklontong', {}, 'apikey'))
-    if (res.status !== 200) throw await res.text()
+    if (!res.ok) throw await `${res.status} ${res.statusText}`
     let json = await res.json()
+    if (!json.status) throw json
     let caption = `
 ${json.result.soal}
 
