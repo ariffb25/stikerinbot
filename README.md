@@ -17,7 +17,7 @@ apt install nodejs -y
 apt install ffmpeg -y
 apt install imagemagick -y
 git clone https://github.com/ariffb25/stikerinbot
-cd wabot-aq
+cd stikerinbot
 npm install
 npm update
 ```
@@ -33,7 +33,7 @@ npm update
 
 ```bash
 git clone https://github.com/ariffb25/stikerinbot
-cd wabot-aq
+cd stikerinbot
 npm install
 npm update
 ```
