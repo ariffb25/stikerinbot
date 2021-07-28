@@ -9,12 +9,12 @@ handler.before = async function (m) {
     if (m.quoted.id == conn.tekateki[id][0].id) {
         let json = JSON.parse(JSON.stringify(conn.tekateki[id][1]))
         if (/^.*tete$/i.test(m.text)) return !0
-        if (m.text.toLowerCase() == json.data.jawaban.toLowerCase().trim()) {
+        if (m.text.toLowerCase() == json.jawaban.toLowerCase().trim()) {
             global.db.data.users[m.sender].exp += conn.tekateki[id][2]
             m.reply(`*Benar!*\n+${conn.tekateki[id][2]} XP`)
             clearTimeout(conn.tekateki[id][3])
             delete conn.tekateki[id]
-        } else if (similarity(m.text.toLowerCase(), json.data.jawaban.toLowerCase().trim()) >= threshold) m.reply(`*Dikit Lagi!*`)
+        } else if (similarity(m.text.toLowerCase(), json.jawaban.toLowerCase().trim()) >= threshold) m.reply(`*Dikit Lagi!*`)
         else m.reply(`*Salah!*`)
     }
     return !0

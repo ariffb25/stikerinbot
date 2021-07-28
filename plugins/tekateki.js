@@ -1,5 +1,4 @@
-let fetch = require('node-fetch')
-
+let fs = require('fs')
 let timeout = 120000
 let poin = 500
 let handler = async (m, { conn, usedPrefix }) => {
@@ -9,12 +8,10 @@ let handler = async (m, { conn, usedPrefix }) => {
         conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tekateki[id][0])
         throw false
     }
-    let res = await fetch(global.API('neoxr', '/api/games/tekateki', {}, 'apikey'))
-    if (!res.ok) throw await res.text()
-    let json = await res.json()
-    if (!json.status) throw json
+    let tekateki = JSON.parse(fs.readFileSync(`./src/tekateki.json`))
+    let json = tekateki[Math.floor(Math.random() * tekateki.length)]
     let caption = `
-${json.data.pertanyaan}
+${json.pertanyaan}
 
 Timeout *${(timeout / 1000).toFixed(2)} detik*
 Ketik ${usedPrefix}tete untuk bantuan
@@ -24,7 +21,7 @@ Bonus: ${poin} XP
         await conn.reply(m.chat, caption, m),
         json, poin,
         setTimeout(() => {
-            if (conn.tekateki[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.data.jawaban}*`, conn.tekateki[id][0])
+            if (conn.tekateki[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.tekateki[id][0])
             delete conn.tekateki[id]
         }, timeout)
     ]
