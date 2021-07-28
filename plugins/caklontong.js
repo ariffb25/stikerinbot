@@ -9,22 +9,22 @@ let handler = async (m, { conn, usedPrefix }) => {
         conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.caklontong[id][0])
         throw false
     }
-    let res = await fetch(global.API('zahir', '/api/kuis/caklontong', {}, 'apikey'))
+    let res = await fetch(global.API('zekais', '/caklontong'))
     if (!res.ok) throw await `${res.status} ${res.statusText}`
     let json = await res.json()
-    if (!json.status) throw json
+    if (json.status != 200) throw json
     let caption = `
-${json.result.soal}
+${json.soal}
 
 Timeout *${(timeout / 1000).toFixed(2)} detik*
 Ketik ${usedPrefix}calo untuk bantuan
 Bonus: ${poin} XP
 `.trim()
     conn.caklontong[id] = [
-        await conn.reply(m.chat, caption, m),
+        await conn.send2Button(m.chat, caption.trim(), 'made with ❤️ by ariffb', 'BANTUAN', '.calo', 'NYERAH', 'nyerah'),
         json, poin,
         setTimeout(() => {
-            if (conn.caklontong[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.result.jawaban}*\n${json.result.deskripsi}`, conn.caklontong[id][0])
+            if (conn.caklontong[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*\n${json.detail}`, conn.caklontong[id][0])
             delete conn.caklontong[id]
         }, timeout)
     ]

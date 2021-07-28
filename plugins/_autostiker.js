@@ -25,7 +25,7 @@ handler.before = async function (m) {
             if (!img) return
             stiker = await sticker(0, link, global.packname, global.author)
         } else if (m.text) {
-            if (isUrl(m.text)) stiker = await sticker(false, m.text, global.packname, global.author)
+            if (isUrl(m.text)) stiker = await sticker(false, m.text.split` `[0], global.packname, global.author)
             else return
         }
         if (stiker) await this.sendMessage(m.chat, stiker, 'stickerMessage', {

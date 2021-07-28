@@ -9,9 +9,9 @@ handler.before = async (m) => {
         let res = await fetch('https://fdciabdul.tech/api/ayla/?pesan=' + encodeURIComponent(m.text))
         let json = await res.json()
         if (json.jawab == 'Aku tidak mengerti apa yang kamu katakan.Tolong ajari aku.') await m.reply('siminya blom diajarin jadi gatau t_t custom pesannya di https://simsimi.com/teach')
-        else await m.reply(`*Simi:* ${json.jawab}`)
+        else await m.reply(`*Simi:* ${json.jawab.replace(/ayla/i, 'stikerin')}`)
         return !0
     }
-    return true
+    return !0
 }
 module.exports = handler

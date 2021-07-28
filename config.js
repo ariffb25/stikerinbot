@@ -28,6 +28,8 @@ global.APIKeys = { // APIKey nya disini
 global.packname = '❤️'
 global.author = 'ariffb'
 
+global.wait = '_*tunggu..*_'
+
 global.multiplier = 69 // Semakin tinggi, semakin sulit naik level
 
 let chalk = require('chalk')

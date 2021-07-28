@@ -2,10 +2,12 @@ let handler = async (m, { usedPrefix, text }) => {
     conn.absen = conn.absen ? conn.absen : {}
     let id = m.chat
     if (id in conn.absen) {
-        throw `_*Masih ada absen di chat ini!*_\n\n*${usedPrefix}hapusabsen* - untuk menghapus absen`
+        await conn.sendButton(m.chat, `Masih ada absen di chat ini!\n\nketik *${usedPrefix}hapusabsen* untuk menghapus absen`.trim(), '', 'HAPUS', '.hapusabsen')
+        throw false
     }
     conn.absen[id] = [
-        m.reply(`Berhasil memulai absen!\n\n*${usedPrefix}absen* - untuk absen\n*${usedPrefix}cekabsen* - untuk mengecek absen\n*${usedPrefix}hapusabsen* - untuk menghapus absen`),
+        await conn.send2Button(m.chat, `Absen dimulai`.trim(), '', 'ABSEN', '.absen', 'CEK', '.cekabsen'),
+        m.reply(),
         [],
         text
     ]

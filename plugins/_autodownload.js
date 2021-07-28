@@ -19,6 +19,7 @@ handler.all = async function (m, { isPrems, isOwner }) {
         let res = await fetch(global.API('hardianto', '/api/download/tiktok', { url: m.text.split` `[0] }, 'apikey'))
         if (!res.ok) throw await `${res.status} ${res.statusText}`
         let json = await res.json()
+        await m.reply(global.wait)
         await conn.sendVideo(m.chat, json.wm, '© stikerin', m)
     }
 
@@ -26,7 +27,8 @@ handler.all = async function (m, { isPrems, isOwner }) {
         let res = await fetch(global.API('jojo', '/api/cocofun-no-wm', { url: m.text.split` `[0] }))
         if (!res.ok) throw await res.text()
         let json = await res.json()
-        await this.sendVideo(m.chat, json.download, `*© stikerin*`, m)
+        await m.reply(global.wait)
+        await this.sendVideo(m.chat, json.download, `© stikerin`, m)
     }
 
     if (/^.*(fb.watch|facebook.com)/i.test(m.text)) {
@@ -35,7 +37,8 @@ handler.all = async function (m, { isPrems, isOwner }) {
             let json = JSON.parse(fb)
             m.reply(require('util').format(json))
             if (!json.status) throw json
-            await this.sendVideo(m.chat, json.data[1].url, '*© stikerin*', m)
+            await m.reply(global.wait)
+            await this.sendVideo(m.chat, json.data[1].url, '© stikerin', m)
         }).catch(_ => _)
     }
 
@@ -43,8 +46,9 @@ handler.all = async function (m, { isPrems, isOwner }) {
         igdl(m.text.split` `[0]).then(async res => {
             let igdl = JSON.stringify(res)
             let json = JSON.parse(igdl)
+            await m.reply(global.wait)
             for (let { downloadUrl, type } of json) {
-                this.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), '*© stikerin*', m, 0, buf)
+                this.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), '© stikerin', m, 0, buf)
             }
         }).catch(_ => _)
     }
@@ -54,7 +58,8 @@ handler.all = async function (m, { isPrems, isOwner }) {
             let pin = JSON.stringify(res)
             let json = JSON.parse(pin)
             if (!json.status) throw `Tidak dapat diunduh`
-            await this.sendVideo(m.chat, json.data.url, `*© stikerin*`, m)
+            await m.reply(global.wait)
+            await this.sendVideo(m.chat, json.data.url, `© stikerin`, m)
         }).catch(_ => _)
     }
 
@@ -63,9 +68,9 @@ handler.all = async function (m, { isPrems, isOwner }) {
             let twit = JSON.stringify(res)
             let json = JSON.parse(twit)
             let pesan = json.data.map((v) => `Link: ${v.url}`).join('\n------------\n')
-            m.reply(pesan)
+            await m.reply(global.wait)
             for (let { url } of json.data) {
-                this.sendFile(m.chat, url, 'ig' + (/mp4/i.test(url) ? '.mp4' : '.jpg'), `*© stikerin*`, m, 0, buf)
+                this.sendFile(m.chat, url, 'ig' + (/mp4/i.test(url) ? '.mp4' : '.jpg'), `© stikerin`, m, 0, buf)
             }
         }).catch(_ => _)
     }
@@ -86,12 +91,13 @@ handler.all = async function (m, { isPrems, isOwner }) {
                 m.reply(`Server ${server} error!${servers.length >= i + 1 ? '' : '\nmencoba server lain...'}`)
             }
         }
-        if (yt === false) throw 'Semua server tidak bisa :/'
+        if (yt === false) throw 'Semua server tidak bisa t_t'
         let { dl_link, thumb, title, filesize, filesizeF } = yt
         let content = await (await fetch(thumb)).buffer()
         await conn.send2ButtonImg(m.chat, `
-        *Judul:* ${title}
-        *Ukuran File:* ${filesizeF}
+*Judul:* ${title}
+*Ukuran File Audio:* ${filesizeF}
+*Ukuran File Video:* ${filesize}
           `.trim(),
             thumb, '© stikerin', 'AUDIO', `.yta ${vid.url}`, 'VIDEO', `.yt ${vid.url}`)
     }
