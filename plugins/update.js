@@ -7,7 +7,7 @@ let handler = async (m, { conn, text, isROwner }) => {
   }
 }
 handler.help = ['update']
-handler.tags = ['host']
+handler.tags = ['owner']
 handler.command = /^update$/i
 handler.owner = true
 handler.mods = false
