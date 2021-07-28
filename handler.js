@@ -72,7 +72,7 @@ module.exports = {
           if (!('sPromote' in chat)) chat.sPromote = ''
           if (!('sDemote' in chat)) chat.sDemote = ''
           if (!('stiker' in chat)) chat.stiker = false
-          if (!('delete' in chat)) chat.delete = false
+          if (!('delete' in chat)) chat.delete = true
           if (!('antiLink' in chat)) chat.antiLink = false
           if (!isNumber(chat.expired)) chat.expired = 0
         } else global.db.data.chats[m.chat] = {
@@ -84,7 +84,7 @@ module.exports = {
           sPromote: '',
           sDemote: '',
           stiker: false,
-          delete: false,
+          delete: true,
           antiLink: false,
           expired: 0,
         }

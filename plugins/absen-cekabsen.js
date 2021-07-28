@@ -25,7 +25,7 @@ ${list}
 │ 
 └────
 
-_by Ariffb_`.trim()
+© stikerin`.trim()
     await conn.send2Button(m.chat, caption, '', 'ABSEN', '.absen', 'HAPUS', '.hapusabsen', { contextInfo: { mentionedJid: conn.parseMention(caption) } })
 }
 handler.help = ['cekabsen']

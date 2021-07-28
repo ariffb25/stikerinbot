@@ -7,7 +7,6 @@ let handler = async (m, { usedPrefix, text }) => {
     }
     conn.absen[id] = [
         await conn.send2Button(m.chat, `Absen dimulai`.trim(), '', 'ABSEN', '.absen', 'CEK', '.cekabsen'),
-        m.reply(),
         [],
         text
     ]

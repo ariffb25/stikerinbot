@@ -1,6 +1,7 @@
-const fetch = require('node-fetch')
-const { facebook, igdl, tiktok, twitter, pin } = require('../lib/scrape')
+const { igdl, tiktok, twitter, pin } = require('../lib/scrape')
+const { facebook } = require('../lib/facebook')
 const { servers, yta, ytv } = require('../lib/y2mate')
+const fetch = require('node-fetch')
 let yts = require('yt-search')
 let handler = m => m
 
@@ -38,7 +39,7 @@ handler.all = async function (m, { isPrems, isOwner }) {
             m.reply(require('util').format(json))
             if (!json.status) throw json
             await m.reply(global.wait)
-            await this.sendVideo(m.chat, json.data[1].url, '© stikerin', m)
+            await this.sendVideo(m.chat, json.data[1] != undefined ? json.data[1].url : json.data[0].url, '© stikerin', m)
         }).catch(_ => _)
     }
 
