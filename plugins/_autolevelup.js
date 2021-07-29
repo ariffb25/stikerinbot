@@ -1,6 +1,7 @@
 let handler = m => m
 
 let levelling = require('../lib/levelling')
+const canvacord = require("canvacord");
 handler.before = m => {
   let user = global.db.data.users[m.sender]
   let pp = './src/avatar_contact.png'
