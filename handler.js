@@ -432,7 +432,7 @@ Untuk mematikan fitur ini, ketik
         break
     }
     user.call += 1
-    await this.reply(from, `Jika kamu menelepon lebih dari 5, maka kamu akan dibokir.\n\n${user.call} / 5`, null)
+    await this.reply(from, `Jika kamu menelepon lebih dari 5, maka kamu akan diblokir.\n\n${user.call} / 5`, null)
     if (user.call == 5) {
       await this.blockUser(from, 'add')
       user.call = 0
