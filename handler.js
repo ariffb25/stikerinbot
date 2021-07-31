@@ -71,10 +71,12 @@ module.exports = {
           if (!('sBye' in chat)) chat.sBye = ''
           if (!('sPromote' in chat)) chat.sPromote = ''
           if (!('sDemote' in chat)) chat.sDemote = ''
+          if (!('descUpdate' in chat)) chat.descUpdate = true
           if (!('stiker' in chat)) chat.stiker = false
           if (!('delete' in chat)) chat.delete = true
           if (!('antiLink' in chat)) chat.antiLink = false
           if (!isNumber(chat.expired)) chat.expired = 0
+          if (!isNumber(chat.pc)) chat.pc = 0
         } else global.db.data.chats[m.chat] = {
           isBanned: false,
           welcome: false,
@@ -83,10 +85,12 @@ module.exports = {
           sBye: '',
           sPromote: '',
           sDemote: '',
+          descUpdate: true,
           stiker: false,
           delete: true,
           antiLink: false,
           expired: 0,
+          pc: 0,
         }
 
         let settings = global.db.data.settings
@@ -135,7 +139,6 @@ module.exports = {
       }
       if (m.isBaileys) return
       if (m.chat.endsWith('broadcast')) return // Supaya tidak merespon di status
-      if (!m.isGroup && global.db.data.settings.groupOnly) return m.reply(`Saat ini bot hanya bisa digunakan di grup`)
       let blockList = conn.blocklist.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').filter(v => v != conn.user.jid)
       if (blockList.includes(m.sender)) return // Pengguna yang diblokir tidak bisa menggunakan bot
       m.exp += Math.ceil(Math.random() * 10)
@@ -146,6 +149,7 @@ module.exports = {
       let isROwner = [global.conn.user.jid, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
       let isOwner = isROwner || m.fromMe
       let isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+      if (!isOwner && !m.isGroup && global.db.data.settings.groupOnly) return
       let isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
       let groupMetadata = m.isGroup ? this.chats.get(m.chat).metadata || await this.groupMetadata(m.chat) : {} || {}
       let participants = m.isGroup ? groupMetadata.participants : [] || []
@@ -432,11 +436,24 @@ Untuk mematikan fitur ini, ketik
         break
     }
     user.call += 1
-    await this.reply(from, `Jika kamu menelepon lebih dari 5, maka kamu akan dibokir.\n\n${user.call} / 5`, null)
+    await this.reply(from, `Jika kamu menelepon lebih dari 5, kamu akan diblokir.\n\n${user.call} / 5`, null)
     if (user.call == 5) {
       await this.blockUser(from, 'add')
       user.call = 0
     }
+
+
+  },
+  async GroupUpdate({ jid, desc, descId, descTime, descOwner }) {
+    if (!global.db.data.chats[jid].descUpdate) return
+    let caption = `
+Deskripsi diubah oleh @${descOwner.split`@`[0]}
+
+${desc}
+
+ketik *.off desc* untuk mematikan pesan ini
+    `.trim()
+    this.reply(jid, caption, null, { contextInfo: { mentionedJid: this.parseMention(caption) } })
   }
 }
 

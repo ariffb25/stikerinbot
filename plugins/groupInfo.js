@@ -15,7 +15,7 @@ let handler = async (m, { conn, participants, groupMetadata }) => {
     } finally {
         let { isBanned, welcome, detect, sWelcome, sBye, sPromote, sDemote, antiLink, expired } = global.db.data.chats[m.chat]
         const groupAdmins = getGroupAdmins(participants)
-        let listAdmin = groupAdmins.map((v, i) => `${i + 1}. @${v.split('@')[0]}`).join('\n')
+        let listAdmin = groupAdmins.map((v, i) => `${i + 1}. @${v.split`@`[0]}`).join('\n')
         let text = `*Informasi Grup*\n
 *ID:* 
 ${groupMetadata.id}
@@ -36,11 +36,13 @@ ${participants.length} Anggota
 ${listAdmin}
 
 *Pengaturan Bot:*
-${isBanned ? '✅' : '❌'} Banned
-${welcome ? '✅' : '❌'} Welcome
-${detect ? '✅' : '❌'} Detect
-${global.db.data.chats[m.chat].delete ? '❌' : '✅'} Anti Delete
 ${antiLink ? '✅' : '❌'} Anti Link
+${global.db.data.chats[m.chat].delete ? '❌' : '✅'} Anti Delete
+${isBanned ? '✅' : '❌'} Banned
+${descUpdate ? '✅' : '❌'} Deskprisi
+${detect ? '✅' : '❌'} Detect
+${stiker ? '✅' : '❌'} Stiker
+${welcome ? '✅' : '❌'} Welcome
 
 *Pengaturan Pesan Bot:*
 Welcome: ${sWelcome}

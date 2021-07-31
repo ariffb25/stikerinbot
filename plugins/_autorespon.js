@@ -3,9 +3,22 @@ let handler = m => m
 
 handler.all = async function (m, { isBlocked }) {
 
-    if (isBlocked) return // Yang diblock ga direspon
+    if (isBlocked) return
+    if (m.isBaileys) return
     if (m.chat.endsWith('broadcast')) return
     let setting = global.db.data.settings
+    let { isBanned } = global.db.data.chats[m.chat]
+
+    // ketika bot dipanggil
+    if ((m.text.toLowerCase()).startsWith('bot')) {
+        await this.send2Button(m.chat, `apa manggil² pasti mau nyuruh kan?
+        `.trim(), pickRandom(['cape, mau km', 'apa ay', 'iyaa ayang', 'iya by', 'uhm.. kenapa?', '><']), `${isBanned ? 'UNBAN' : 'MENU'}`, `${isBanned ? '.unban' : '.?'}`, `${!m.isGroup ? 'DONASI' : isBanned ? 'UNBAN' : 'BAN'}`, `${!m.isGroup ? '.donasi' : isBanned ? '.unban' : '.ban'}`)
+    }
+
+    // ketika ditag
+    if (m.mentionedJid.includes(this.user.jid)) {
+        m.reply(`uhm.. ada apa?`)
+    }
 
     // ketika ada yang invite/kirim link grup di chat pribadi
     if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('Buka tautan ini')) && !m.isBaileys && !m.isGroup) {
@@ -39,15 +52,16 @@ https://github.com/ariffb25/stikerinbot
             })
             await global.db.write()
             this.reply(global.owner[0] + '@s.whatsapp.net', `Database: ${date}`, null)
-            this.sendFile(global.owner[0] + '@s.whatsapp.net', fs.readFileSync('./database.json'), 'database.json', '', false, false, { mimetype: 'application/json' })
+            this.sendFile(global.owner[0] + '@s.whatsapp.net', fs.readFileSync('./database.json'), 'database.json', '', 0, 0, { mimetype: 'application/json' })
             setting.backupDB = new Date() * 1
         }
     }
 
+    // update status
     if (new Date() * 1 - setting.status > 1000) {
         let _uptime = process.uptime() * 1000
         let uptime = clockString(_uptime)
-        await this.setStatus(`Aktif selama ${uptime} | Mode: ${global.opts['self'] ? 'Private' : 'Publik'} | stikerinbot oleh ariffb`).catch(_ => _)
+        await this.setStatus(`Aktif selama ${uptime} | Mode: ${global.opts['self'] ? 'Private' : setting.groupOnly ? 'Hanya Grup' : 'Publik'} | stikerinbot oleh ariffb`).catch(_ => _)
         setting.status = new Date() * 1
     }
 
@@ -60,4 +74,8 @@ function clockString(ms) {
     let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
     let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
     return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
+}
+
+function pickRandom(list) {
+    return list[Math.floor(Math.random() * list.length)]
 }

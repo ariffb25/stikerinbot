@@ -32,7 +32,7 @@ global.timestamp = {
 const PORT = process.env.PORT || 3000
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 
-global.prefix = new RegExp('^[' + (opts['prefix'] || '‎xzXZ/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&.\\-').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
+global.prefix = new RegExp('^[' + (opts['prefix'] || '‎xzXZ/i!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&,.\\-').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
 
 global.db = new Low(
   /https?:\/\//.test(opts['db'] || '') ?
@@ -121,6 +121,7 @@ global.reloadHandler = function () {
     conn.off('chat-update', conn.handler)
     conn.off('message-delete', conn.onDelete)
     conn.off('group-participants-update', conn.onParticipantsUpdate)
+    conn.off('group-update', conn.onGroupUpdate)
     conn.off('CB:action,,call', conn.onCall)
   }
   conn.welcome = 'Hai, @user!\nSelamat datang di grup @subject\n\n@desc'
@@ -130,10 +131,12 @@ global.reloadHandler = function () {
   conn.handler = handler.handler
   conn.onDelete = handler.delete
   conn.onParticipantsUpdate = handler.participantsUpdate
+  conn.onGroupUpdate = handler.GroupUpdate
   conn.onCall = handler.onCall
   conn.on('chat-update', conn.handler)
   conn.on('message-delete', conn.onDelete)
   conn.on('group-participants-update', conn.onParticipantsUpdate)
+  conn.on('group-update', conn.onGroupUpdate)
   conn.on('CB:action,,call', conn.onCall)
   if (isInit) {
     conn.on('error', conn.logger.error)
