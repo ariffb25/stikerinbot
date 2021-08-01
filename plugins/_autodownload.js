@@ -86,6 +86,7 @@ handler.all = async function (m, { isPrems, isOwner }) {
             let server = servers[i]
             try {
                 yt = await (yta)(vid.url, server)
+                yt2 = await ytv(vid.url, server)
                 usedServer = server
                 break
             } catch (e) {
@@ -93,12 +94,13 @@ handler.all = async function (m, { isPrems, isOwner }) {
             }
         }
         if (yt === false) throw 'Semua server tidak bisa t_t'
+        if (yt2 === false) throw 'Semua server tidak bisa t_t'
         let { dl_link, thumb, title, filesize, filesizeF } = yt
-        let content = await (await fetch(thumb)).buffer()
         await conn.send2ButtonImg(m.chat, `
 *Judul:* ${title}
 *Ukuran File Audio:* ${filesizeF}
-*Ukuran File Video:* ${filesize}
+*Ukuran File Video:* ${yt2.filesizeF}
+*Server y2mate:* ${usedServer}
           `.trim(),
             thumb, '© stikerin', 'AUDIO', `.yta ${vid.url}`, 'VIDEO', `.yt ${vid.url}`)
     }

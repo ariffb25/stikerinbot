@@ -12,12 +12,12 @@ handler.all = async function (m, { isBlocked }) {
     // ketika bot dipanggil
     if ((m.text.toLowerCase()).startsWith('bot')) {
         await this.send2Button(m.chat, `apa manggil² pasti mau nyuruh kan?
-        `.trim(), pickRandom(['cape, mau km', 'apa ay', 'iyaa ayang', 'iya by', 'uhm.. kenapa?', '><']), `${isBanned ? 'UNBAN' : 'MENU'}`, `${isBanned ? '.unban' : '.?'}`, `${!m.isGroup ? 'DONASI' : isBanned ? 'UNBAN' : 'BAN'}`, `${!m.isGroup ? '.donasi' : isBanned ? '.unban' : '.ban'}`)
+        ${m.isGroup ? '' : m.msg.contextInfo.expiration != 0 ? '\n\nmatiin pesan sementaranya, biar tombolnya bisa dipake' : ''}`.trim(), pickRandom(['cape, mau km', 'apa ay', 'iyaa ayang', 'iya by', 'uhm.. kenapa?', '><']), `${isBanned ? 'UNBAN' : 'MENU'}`, `${isBanned ? '.unban' : '.?'}`, `${!m.isGroup ? 'DONASI' : isBanned ? 'UNBAN' : 'BAN'}`, `${!m.isGroup ? '.donasi' : isBanned ? '.unban' : '.ban'}`)
     }
 
     // ketika ditag
-    if (m.mentionedJid.includes(this.user.jid)) {
-        m.reply(`uhm.. ada apa?`)
+    if (m.mentionedJid.includes(this.user.jid) && m.isGroup) {
+        await this.send2Button(m.chat, `uhm.. iya ada apa?${m.isGroup ? '' : m.msg.contextInfo.expiration != 0 ? '\n\nmatiin pesan sementaranya, biar tombolnya bisa dipake' : ''}`.trim(), '© stikerin | pesan otomatis', `${isBanned ? 'UNBAN' : 'MENU'}`, `${isBanned ? '.unban' : '.?'}`, `${!m.isGroup ? 'DONASI' : isBanned ? 'UNBAN' : 'BAN'}`, `${!m.isGroup ? '.donasi' : isBanned ? '.unban' : '.ban'}`)
     }
 
     // ketika ada yang invite/kirim link grup di chat pribadi

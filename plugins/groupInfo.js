@@ -13,7 +13,7 @@ let handler = async (m, { conn, participants, groupMetadata }) => {
         pp = await conn.getProfilePicture(m.chat)
     } catch (e) {
     } finally {
-        let { isBanned, welcome, detect, sWelcome, sBye, sPromote, sDemote, antiLink, expired } = global.db.data.chats[m.chat]
+        let { isBanned, welcome, detect, sWelcome, sBye, sPromote, sDemote, antiLink, expired, descUpdate, stiker } = global.db.data.chats[m.chat]
         const groupAdmins = getGroupAdmins(participants)
         let listAdmin = groupAdmins.map((v, i) => `${i + 1}. @${v.split`@`[0]}`).join('\n')
         let text = `*Informasi Grup*\n
