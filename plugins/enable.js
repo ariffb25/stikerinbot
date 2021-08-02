@@ -186,24 +186,14 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     default:
       if (!/[01]/.test(command)) throw `
 ┌〔 Daftar Opsi 〕
-│ 
-├ anon
+│ ${isOwner ? '\n├ anon\n├ antispam\n├ antitroli\n├ backup\n├ clear\n├ grouponly\n├ jadibot\n├ nsfw\n├ public\n├ whitelistmycontacts' : ''}
 ├ antilink
-├ antispam
-├ antitroli
 ├ autolevelup
-├ backup
 ├ delete
-├ desc
 ├ detect
 ├ document
-├ grouponly
-├ jadibot
-├ nsfw
-├ public
-├ simi
 ├ stiker
-├ whitelistmycontacts
+├ simi
 ├ welcome
 │ 
 └────

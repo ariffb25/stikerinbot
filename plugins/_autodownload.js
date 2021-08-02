@@ -7,7 +7,7 @@ let handler = m => m
 
 handler.all = async function (m, { isPrems, isOwner }) {
 
-    if (m.isGroup) return
+    // if (m.isGroup) return
     let buf = { thumbnail: Buffer.alloc(0) }
 
     if (/^.*tiktok/i.test(m.text)) {
@@ -21,7 +21,7 @@ handler.all = async function (m, { isPrems, isOwner }) {
         if (!res.ok) throw await `${res.status} ${res.statusText}`
         let json = await res.json()
         await m.reply(global.wait)
-        await conn.sendVideo(m.chat, json.wm, '© stikerin', m)
+        await this.sendVideo(m.chat, json.wm, '© stikerin', m)
     }
 
     if (/^.*cocofun/i.test(m.text)) {
@@ -96,7 +96,7 @@ handler.all = async function (m, { isPrems, isOwner }) {
         if (yt === false) throw 'Semua server tidak bisa t_t'
         if (yt2 === false) throw 'Semua server tidak bisa t_t'
         let { dl_link, thumb, title, filesize, filesizeF } = yt
-        await conn.send2ButtonImg(m.chat, `
+        await this.send2ButtonImg(m.chat, `
 *Judul:* ${title}
 *Ukuran File Audio:* ${filesizeF}
 *Ukuran File Video:* ${yt2.filesizeF}

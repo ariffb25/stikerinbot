@@ -5,7 +5,7 @@ let handler = async (m, { conn, text }) => {
     if (!code) throw 'Link Salah'
     let res = await conn.acceptInvite(code)
     m.reply(`Berhasil join grup ${res.gid}`).then(() => {
-        var jumlahHari = 86400000 * 0.25
+        var jumlahHari = 86400000 * 0.5
         var now = new Date() * 1
         if (now < global.db.data.chats[m.chat].expired) global.db.data.chats[m.chat].expired += jumlahHari
         else global.db.data.chats[m.chat].expired = now + jumlahHari
