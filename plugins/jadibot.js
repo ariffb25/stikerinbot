@@ -32,10 +32,12 @@ let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
     conn.handler = global.conn.handler.bind(conn)
     conn.onDelete = global.conn.onDelete.bind(conn)
     conn.onParticipantsUpdate = global.conn.onParticipantsUpdate.bind(conn)
+    conn.onGroupUpdate = global.conn.onGroupUpdate.bind(conn)
     conn.onCall = global.conn.onCall.bind(conn)
     conn.on('chat-update', conn.handler)
     conn.on('message-delete', conn.onDelete)
     conn.on('group-participants-update', conn.onParticipantsUpdate)
+    conn.on('group-update', conn.onGroupUpdate)
     conn.on('CB:action,,call', conn.onCall)
     conn.regenerateQRIntervalMs = null
     conn.connect().then(async ({ user }) => {

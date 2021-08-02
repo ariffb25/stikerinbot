@@ -44,6 +44,7 @@ module.exports = {
           if (!isNumber(user.call)) user.call = 0
           if (!user.role) user.role = 'Bronze'
           if (!('autolevelup' in user)) user.autolevelup = false
+          if (!isNumber(user.pc)) user.pc = 0
         } else global.db.data.users[m.sender] = {
           exp: 0,
           limit: 10,
@@ -59,6 +60,7 @@ module.exports = {
           call: 0,
           role: 'Bronze',
           autolevelup: false,
+          pc: 0,
         }
 
         let chat = global.db.data.chats[m.chat]
@@ -76,7 +78,6 @@ module.exports = {
           if (!('delete' in chat)) chat.delete = true
           if (!('antiLink' in chat)) chat.antiLink = false
           if (!isNumber(chat.expired)) chat.expired = 0
-          if (!isNumber(chat.pc)) chat.pc = 0
         } else global.db.data.chats[m.chat] = {
           isBanned: false,
           welcome: false,
@@ -90,7 +91,6 @@ module.exports = {
           delete: true,
           antiLink: false,
           expired: 0,
-          pc: 0,
         }
 
         let settings = global.db.data.settings
@@ -218,7 +218,7 @@ module.exports = {
           if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
             let chat = global.db.data.chats[m.chat]
             let user = global.db.data.users[m.sender]
-            if (!['unbanchat.js', 'profile.js'].includes(name) && chat && chat.isBanned) return // Kecuali ini, bisa digunakan
+            if (!['unbanchat.js', 'profile.js'].includes(name) && chat && chat.isBanned && !isOwner) return // Kecuali ini, bisa digunakan
             if (!['unbanchat.js', 'profile.js'].includes(name) && user && user.banned) return
           }
           if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { // Keduanya Owner
