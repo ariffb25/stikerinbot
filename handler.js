@@ -149,8 +149,8 @@ module.exports = {
       let isROwner = [global.conn.user.jid, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
       let isOwner = isROwner || m.fromMe
       let isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
-      if (!isOwner && !m.isGroup && global.db.data.settings.groupOnly) return
       let isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+      if (!isPrems && !m.isGroup && global.db.data.settings.groupOnly) return
       let groupMetadata = m.isGroup ? this.chats.get(m.chat).metadata || await this.groupMetadata(m.chat) : {} || {}
       let participants = m.isGroup ? groupMetadata.participants : [] || []
       let user = m.isGroup ? participants.find(u => u.jid == m.sender) : {} // User Data
@@ -218,7 +218,7 @@ module.exports = {
           if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
             let chat = global.db.data.chats[m.chat]
             let user = global.db.data.users[m.sender]
-            if (!['unbanchat.js', 'profile.js'].includes(name) && chat && chat.isBanned && !isOwner) return // Kecuali ini, bisa digunakan
+            if (!['unbanchat.js', 'profile.js'].includes(name) && chat && chat.isBanned && !isPrems) return // Kecuali ini, bisa digunakan
             if (!['unbanchat.js', 'profile.js'].includes(name) && user && user.banned) return
           }
           if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { // Keduanya Owner
@@ -319,7 +319,7 @@ module.exports = {
                 console.error(e)
               }
             }
-            if (m.limit) m.reply(+ m.limit + ' Limit terpakai') // Jadikan sebagai komentar jika kamu risih dengan pesan ini
+            // if (m.limit) m.reply(+ m.limit + ' Limit terpakai') // Jadikan sebagai komentar jika kamu risih dengan pesan ini
           }
           break
         }

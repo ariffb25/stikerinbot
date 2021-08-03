@@ -6,6 +6,7 @@ handler.all = async function (m) {
     if (m.chat.endsWith('broadcast')) return
     if (m.fromMe) return
     if (m.isGroup) return
+    if (global.db.data.settings.groupOnly) return
     let users = global.db.data.users[m.sender]
     if (new Date - users.pc < 43200000) return // setiap 12 jam
     await this.send2Button(m.chat, `

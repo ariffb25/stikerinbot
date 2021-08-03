@@ -15,6 +15,8 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   let res = await fetch(global.API('hardianto', '/api/download/tiktok', { url: args[0] }, 'apikey'))
   if (!res.ok) throw await `${res.status} ${res.statusText}`
   let json = await res.json()
+  if (!json.status) throw json
+  await m.reply(global.wait)
   await conn.sendVideo(m.chat, json.wm, `${json.caption}\n\n\n\n\n© stikerin`, m, { thumbnail: Buffer.alloc(0) })
 
 }

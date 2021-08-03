@@ -6,6 +6,7 @@ handler.before = async (m) => {
     if (chat.simi && !chat.isBanned && !m.isGroup) {
         if (/^.*false|disnable|(turn)?off|0/i.test(m.text)) return
         if (!m.text) return
+        if (m.text == "") return
         let res = await fetch('https://fdciabdul.tech/api/ayla/?pesan=' + encodeURIComponent(m.text))
         let json = await res.json()
         if (json.jawab == 'Aku tidak mengerti apa yang kamu katakan.Tolong ajari aku.') await m.reply('siminya blom diajarin jadi gatau t_t custom pesannya di https://simsimi.com/teach')

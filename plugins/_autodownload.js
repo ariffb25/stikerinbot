@@ -7,7 +7,7 @@ let handler = m => m
 
 handler.all = async function (m, { isPrems, isOwner }) {
 
-    // if (m.isGroup) return
+    if (m.chat.endsWith('broadcast')) return
     let buf = { thumbnail: Buffer.alloc(0) }
 
     if (/^.*tiktok/i.test(m.text)) {
