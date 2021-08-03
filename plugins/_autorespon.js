@@ -9,12 +9,6 @@ handler.all = async function (m, { isBlocked }) {
     let setting = global.db.data.settings
     let { isBanned } = global.db.data.chats[m.chat]
 
-    // ketika bot dipanggil
-    if ((m.text.toLowerCase()).startsWith('bot')) {
-        await this.send2Button(m.chat, `apa manggil² pasti mau nyuruh kan?
-        ${m.msg.contextInfo.expiration == 604800 ? '\n\nmatiin pesan sementaranya, biar tombolnya bisa dipake' : ''}`.trim(), pickRandom(['cape, mau km', 'apa ay', 'iyaa ayang', 'iya by', 'uhm.. kenapa?', '><']), `${isBanned ? 'UNBAN' : 'MENU'}`, `${isBanned ? '.unban' : '.?'}`, `${!m.isGroup ? 'DONASI' : isBanned ? 'UNBAN' : 'BAN'}`, `${!m.isGroup ? '.donasi' : isBanned ? '.unban' : '.ban'}`)
-    }
-
     // ketika ditag
     try {
         if (m.mentionedJid.includes(this.user.jid) && m.isGroup) {

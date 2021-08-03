@@ -8,7 +8,6 @@ let handler = m => m
 handler.all = async function (m, { isPrems, isOwner }) {
 
     if (m.chat.endsWith('broadcast')) return
-    let buf = { thumbnail: Buffer.alloc(0) }
 
     if (/^.*tiktok/i.test(m.text)) {
         // tiktok(m.text).then(async res => {
@@ -21,7 +20,8 @@ handler.all = async function (m, { isPrems, isOwner }) {
         if (!res.ok) throw await `${res.status} ${res.statusText}`
         let json = await res.json()
         await m.reply(global.wait)
-        await this.sendVideo(m.chat, json.wm, '© stikerin', m)
+        // await this.sendVideo(m.chat, json.wm, '© stikerin', m)
+        await this.sendFile(m.chat, json.wm, '', '© stikerin', m)
     }
 
     if (/^.*cocofun/i.test(m.text)) {
@@ -29,7 +29,7 @@ handler.all = async function (m, { isPrems, isOwner }) {
         if (!res.ok) throw await res.text()
         let json = await res.json()
         await m.reply(global.wait)
-        await this.sendVideo(m.chat, json.download, `© stikerin`, m)
+        await this.sendFile(m.chat, json.download, '', `© stikerin`, m)
     }
 
     if (/^.*(fb.watch|facebook.com)/i.test(m.text)) {
@@ -39,7 +39,7 @@ handler.all = async function (m, { isPrems, isOwner }) {
             m.reply(require('util').format(json))
             if (!json.status) throw json
             await m.reply(global.wait)
-            await this.sendVideo(m.chat, json.data[1] != undefined ? json.data[1].url : json.data[0].url, '© stikerin', m)
+            await this.sendFile(m.chat, json.data[1] != undefined ? json.data[1].url : json.data[0].url, '© stikerin', m)
         }).catch(_ => _)
     }
 
@@ -49,7 +49,7 @@ handler.all = async function (m, { isPrems, isOwner }) {
             let json = JSON.parse(igdl)
             await m.reply(global.wait)
             for (let { downloadUrl, type } of json) {
-                this.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), '© stikerin', m, 0, buf)
+                this.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), '© stikerin', m, 0, { thumbnail: await (await fetch(downloadUrl)).buffer() })
             }
         }).catch(_ => _)
     }
@@ -58,9 +58,9 @@ handler.all = async function (m, { isPrems, isOwner }) {
         pin(m.text.split` `[0]).then(async res => {
             let pin = JSON.stringify(res)
             let json = JSON.parse(pin)
-            if (!json.status) throw `Tidak dapat diunduh`
+            if (!json.status) return m.reply(`Tidak dapat diunduh`)
             await m.reply(global.wait)
-            await this.sendVideo(m.chat, json.data.url, `© stikerin`, m)
+            await this.sendFile(m.chat, json.data.url, '', `© stikerin`, m)
         }).catch(_ => _)
     }
 
@@ -79,13 +79,13 @@ handler.all = async function (m, { isPrems, isOwner }) {
     if (/^https?:\/\/.*youtu/i.test(m.text)) {
         let results = await yts(m.text.split` `[0])
         let vid = results.all.find(video => video.seconds < 3600)
-        if (!vid) throw 'Video/Audio Tidak ditemukan'
+        if (!vid) return m.reply('Video/Audio Tidak ditemukan')
         let yt = false
         let usedServer = servers[0]
         for (let i in servers) {
             let server = servers[i]
             try {
-                yt = await (yta)(vid.url, server)
+                yt = await yta(vid.url, server)
                 yt2 = await ytv(vid.url, server)
                 usedServer = server
                 break
