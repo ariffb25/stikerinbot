@@ -1,11 +1,12 @@
 const free = 500
 const prem = 5000
 let handler = async (m, { isPrems }) => {
-  let time = global.db.data.users[m.sender].lastclaim + 86400000
-  if (new Date - global.db.data.users[m.sender].lastclaim < 86400000) throw `Kamu sudah mengklaim klaim harian hari ini\ntunggu selama ${msToTime(time - new Date())} lagi`
-  global.db.data.users[m.sender].exp += isPrems ? prem : free
-  m.reply(`+${isPrems ? prem : free} XP`)
-  global.db.data.users[m.sender].lastclaim = new Date * 1
+  let user = global.db.data.users[m.sender]
+  let time = user.lastclaim + 86400000
+  if (new Date - user.lastclaim < 86400000) throw `Kamu sudah mengklaim klaim harian hari ini\ntunggu selama ${msToTime(time - new Date())} lagi`
+  user.exp += isPrems ? prem * user.level : free * user.level
+  m.reply(`+${isPrems ? prem * user.level : free * user.level} XP\n\nsemakin tinggi level, semakin tinggi juga XP yang didapat`)
+  user.lastclaim = new Date * 1
 }
 handler.help = ['daily', 'claim']
 handler.tags = ['xp']

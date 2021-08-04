@@ -11,8 +11,8 @@ let handler = async (m, { command, usedPrefix, text }) => {
     
 Akses dengan ${usedPrefix}get${which} ${text}`)
 }
-handler.help = ['vn', 'msg', 'video', 'audio', 'img', 'sticker'].map(v => 'add' + v + ' <teks>')
+handler.help = ['vn', 'msg', 'video', 'audio', 'img', 'sticker', 'gif'].map(v => 'add' + v + ' <teks>')
 handler.tags = ['database']
-handler.command = /^add(vn|msg|video|audio|img|sticker)$/
+handler.command = /^add(vn|msg|video|audio|img|stic?ker|gif)$/
 
 module.exports = handler
