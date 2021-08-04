@@ -1,5 +1,5 @@
 let handler = m => m
-handler.before = async (m) => {
+handler.before = async function (m) {
 
     if (m.isGroup && global.db.data.chats[m.chat].expired != 0) {
         if (new Date() * 1 >= global.db.data.chats[m.chat].expired) {

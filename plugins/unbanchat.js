@@ -5,8 +5,7 @@ let handler = async (m, { isOwner, text, isAdmin }) => {
       global.dfail('admin', m, conn)
       throw false
     }
-    if (isOwner) who = m.mentionedJid[0] ? m.mentionedJid[0] : text ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : m.chat
-    else who = m.chat
+    who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : m.chat
   } else {
     if (!isOwner) {
       global.dfail('owner', m, conn)

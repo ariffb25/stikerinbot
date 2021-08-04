@@ -307,7 +307,7 @@ module.exports = {
             if (e) {
               let text = util.format(e)
               for (let key of Object.values(global.APIKeys))
-                text = text.replace(new RegExp(key, 'g'), '#HIDDEN#')
+                text = text.replace(new RegExp(key, 'g'), 'apikey')
               m.reply(text)
             }
           } finally {
