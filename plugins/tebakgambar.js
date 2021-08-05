@@ -1,5 +1,6 @@
 const axios = require("axios")
 const cheerio = require("cheerio")
+const fetch = require('node-fetch')
 
 let timeout = 120000
 let poin = 500
@@ -33,7 +34,7 @@ Bonus: ${poin} XP
     `.trim()
   conn.tebakgambar[id] = [
     // await conn.sendFile(m.chat, json.result.images, 'tebakgambar.jpg', caption, m, false, { thumbnail: await (await fetch(json.result.images)).buffer() })
-    await conn.sendButtonImg(m.chat, caption, json.img, 'ariffb ganteng', 'BANTUAN', '.hint')
+    await conn.sendButtonImg(m.chat, caption, await (await fetch(json.img)).buffer(), '© stikerin', 'BANTUAN', '.hint')
     ,
     json, poin,
     setTimeout(() => {

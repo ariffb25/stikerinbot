@@ -8,22 +8,6 @@ Simple WhatsApp Bot
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ariffb25/stikerinbot)
 
-## UNTUK PENGGUNA TERMUX/UBUNTU/SSH (MUNGKIN TIDAK BISA)
-
-```bash
-apt update && apt upgrade
-apt install git -y
-apt install nodejs -y
-apt install ffmpeg -y
-apt install imagemagick -y
-git clone https://github.com/ariffb25/stikerinbot
-cd stikerinbot
-npm install
-npm update
-```
-
----------
-
 ## UNTUK PENGGUNA WINDOWS/VPS/RDP
 
 * Unduh & Instal Git [`Klik Disini`](https://git-scm.com/downloads)
@@ -110,7 +94,7 @@ Jika qr unicode kecil tidak mendukung
 
 Mengaktifkan plugin terbatas (yang dapat menyebabkan nomor Anda **diblokir** jika digunakan terlalu sering)
 
-* Administrasi Grup `add, kick`
+* Administrasi Grup `add, kick, promote, demote`
 
 ### `--img`
 

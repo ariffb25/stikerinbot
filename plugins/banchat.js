@@ -5,7 +5,7 @@ let handler = async (m, { isOwner, text, isAdmin }) => {
       global.dfail('admin', m, conn)
       throw false
     }
-    if (isOwner) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.chat
+    if (isOwner) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : m.chat
     else who = m.chat
   } else {
     if (!isOwner) {

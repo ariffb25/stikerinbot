@@ -28,7 +28,7 @@ let handler = async (m, { conn, usedPrefix }) => {
         pc: 0,
       }
     }
-    let { name, limit, exp, lastclaim, registered, regTime, age, level, role } = global.db.data.users[who]
+    let { name, limit, exp, lastclaim, registered, regTime, age, level, role, banned } = global.db.data.users[who]
     let { min, xp, max } = levelling.xpRange(level, global.multiplier)
     let username = conn.getName(who)
     let math = max - xp
@@ -43,7 +43,7 @@ Limit: ${limit}
 Terdaftar: ${registered ? 'Ya (' + new Date(regTime).toLocaleString() + ')' : 'Tidak'}${lastclaim > 0 ? '\nTerakhir Klaim: ' + new Date(lastclaim).toLocaleString() : ''}
 `.trim()
     let mentionedJid = [who]
-    conn.sendFile(m.chat, pp, 'pp.jpg', str, m, false, { contextInfo: { mentionedJid } })
+    conn.sendFile(m.chat, pp, 'pp.jpg', banned ? str : 'banned', m, false, { contextInfo: { mentionedJid } })
   }
 }
 handler.help = ['profile [@user]']
