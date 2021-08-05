@@ -10,9 +10,15 @@ let handler = async m => {
   } catch (e) {
   } finally {
     let user = global.db.data.users[m.sender]
+    let users = Object.entries(global.db.data.users).map(([key, value]) => {
+      return { ...value, jid: key }
+    })
+    let sortedLevel = users.map(toNumber('level')).sort(sort('level'))
+    let usersLevel = sortedLevel.map(enumGetKey)
     if (!levelling.canLevelUp(user.level, user.exp, global.multiplier)) {
       let { min, xp, max } = levelling.xpRange(user.level, global.multiplier)
       let rank = await new canvacord.Rank()
+        .setRank(usersLevel.indexOf(m.sender) + 1)
         .setAvatar(pp)
         .setLevel(user.level)
         .setCurrentXP(user.exp - min)
@@ -29,6 +35,7 @@ let handler = async m => {
     while (levelling.canLevelUp(user.level, user.exp, global.multiplier)) user.level++
     if (before !== user.level) {
       let rank = await new canvacord.Rank()
+        .setRank(usersLevel.indexOf(m.sender) + 1)
         .setAvatar(pp)
         .setLevel(user.level)
         .setCurrentXP(user.exp - min)
@@ -50,3 +57,19 @@ handler.tags = ['xp']
 handler.command = /^levelup$/i
 
 module.exports = handler
+
+function sort(property, ascending = true) {
+  if (property) return (...args) => args[ascending & 1][property] - args[!ascending & 1][property]
+  else return (...args) => args[ascending & 1] - args[!ascending & 1]
+}
+
+function toNumber(property, _default = 0) {
+  if (property) return (a, i, b) => {
+    return { ...b[i], [property]: a[property] === undefined ? _default : a[property] }
+  }
+  else return a => a === undefined ? _default : a
+}
+
+function enumGetKey(a) {
+  return a.jid
+}

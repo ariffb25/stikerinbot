@@ -18,6 +18,7 @@ handler.before = async function (m) {
 
                 if (before !== user.level) {
                         let rank = await new canvacord.Rank()
+                                .setRank(usersLevel.indexOf(m.sender) + 1)
                                 .setAvatar(pp)
                                 .setLevel(user.level)
                                 .setCurrentXP(user.exp - min)
