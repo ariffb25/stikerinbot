@@ -1,27 +1,27 @@
-const { default: fetch } = require('node-fetch')
-const { joox } = require('../lib/scrape')
+const fetch = require('node-fetch')
+
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-    if (!text) throw `*Perintah ini untuk mencari lagu joox berdasarkan pencarian*\n\ncontoh:\n${usedPrefix + command} akad`
-    if (isUrl(text)) throw `*Perintah ini untuk mencari lagu joox berdasarkan pencarian bukan link*\n\ncontoh:\n${usedPrefix + command} akad`
+    if (!text) throw `uhm.. judul nya apa?\n\ncontoh:\n${usedPrefix + command} akad`
+    if (isUrl(text)) throw `uhm.. judul kak bukan pake url\n\ncontoh:\n${usedPrefix + command} akad`
 
-    joox(text).then(res => {
-        let joox = JSON.stringify(res)
-        let jjson = JSON.parse(joox)
-        let random = Math.floor(Math.random() * jjson.data.length)
-        let hasil = jjson.data[random]
-        let json = hasil
-        m.reply(require('util').format(json))
-        let pesan = `
-*Penyanyi:* ${json.penyanyi}
-*Judul:* ${json.lagu}
-*Album:* ${json.album}
-*Diterbitkan:* ${json.publish}
-*Link:* ${json.mp3}
+    let res = await fetch(global.API('pencarikode', '/download/joox', { search: text }, 'apikey'))
+    if (!res.ok) throw await `${res.status} ${res.statusText}`
+    let json = await res.json()
+    if (!json.status) throw json
+    let { judul, artist, album, img_url, mp3_url, filesize, duration } = json.result
+    let pesan = `
+Judul: ${judul}
+Artis: ${artist}
+Album: ${album}
+Ukuran File: ${filesize}
+Durasi: ${duration}
 
-*© stikerin*`.trim()
-        conn.sendFile(m.chat, json.img, 'error.jpg', pesan, m, false, { thumbnail: await(await fetch(json.img)).buffer() })
-        conn.sendFile(m.chat, json.mp3, 'error.mp3', '', m, false, { mimetype: 'audio/mp4' })
-    })
+© stikerin
+    `.trim()
+
+    conn.sendFile(m.chat, img_url, 'eror.jpg', pesan, m, 0, { thumbnail: await (await fetch(img_url)).buffer() })
+    conn.sendFile(m.chat, mp3_url, 'error.mp3', '', m, 0, { asDocument: global.db.data.chats[m.chat].useDocument, mimetype: 'audio/mp4' })
+
 }
 handler.help = ['joox'].map(v => v + ' <judul>')
 handler.tags = ['downloader']
