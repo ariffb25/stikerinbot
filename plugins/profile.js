@@ -9,6 +9,25 @@ let handler = async (m, { conn, usedPrefix }) => {
 
   } finally {
     let about = (await conn.getStatus(who).catch(console.error) || {}).status || ''
+    if (typeof global.db.data.users[who] == "undefined") {
+      global.db.data.users[who] = {
+        exp: 0,
+        limit: 10,
+        lastclaim: 0,
+        registered: false,
+        name: conn.getName(m.sender),
+        age: -1,
+        regTime: -1,
+        afk: -1,
+        afkReason: '',
+        banned: false,
+        level: 0,
+        call: 0,
+        role: 'Bronze',
+        autolevelup: false,
+        pc: 0,
+      }
+    }
     let { name, limit, exp, lastclaim, registered, regTime, age, level, role } = global.db.data.users[who]
     let { min, xp, max } = levelling.xpRange(level, global.multiplier)
     let username = conn.getName(who)

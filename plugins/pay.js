@@ -24,6 +24,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
       call: 0,
       role: 'Bronze',
       autolevelup: false,
+      pc: 0,
     }
   }
   let txt = text.replace('@' + who.split`@`[0], '').trim()
