@@ -8,7 +8,7 @@ Simple WhatsApp Bot
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ariffb25/stikerinbot)
 
-## UNTUK PENGGUNA TERMUX/UBUNTU/SSH
+## UNTUK PENGGUNA TERMUX/UBUNTU/SSH (MUNGKIN TIDAK BISA)
 
 ```bash
 apt update && apt upgrade
@@ -145,5 +145,5 @@ conn.logger.level = 'debug'
  [![Nurutomo](https://github.com/Nurutomo.png?size=100)](https://github.com/Nurutomo) | [![Ariffb](https://github.com/ariffb25.png?size=100)](https://github.com/ariffb25)
 ----|----
 [Nurutomo](https://github.com/Nurutomo) | [Ariffb](https://github.com/ariffb25)
- Penulis / Pencipta | Recode
+ Penulis / Pencipta | Penulis ulang
 

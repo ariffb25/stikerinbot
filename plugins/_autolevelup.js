@@ -1,19 +1,35 @@
 let handler = m => m
 
 let levelling = require('../lib/levelling')
-handler.before = function (m) {
+const canvacord = require('canvacord')
+handler.before = async function (m) {
         let user = global.db.data.users[m.sender]
-        if (!user.autolevelup) return !0
-        let before = user.level * 1
-        while (levelling.canLevelUp(user.level, user.exp, global.multiplier)) user.level++
+        let pp = './src/avatar_contact.png'
+        let who = m.sender
+        let discriminator = who.substring(9, 13)
+        try {
+                pp = await this.getProfilePicture(who)
+        } catch (e) {
 
-        if (before !== user.level) {
-                this.sendButton(m.chat, `
-Selamat, kamu telah naik level!
-*${before}* -> *${user.level}*
-gunakan *.my* untuk mengecek
-	`.trim(), '', 'MY', '.my')
+        } finally {
+                if (!user.autolevelup) return !0
+                let before = user.level * 1
+                while (levelling.canLevelUp(user.level, user.exp, global.multiplier)) user.level++
+
+                if (before !== user.level) {
+                        let rank = await new canvacord.Rank()
+                                .setAvatar(pp)
+                                .setLevel(user.level)
+                                .setCurrentXP(user.exp - min)
+                                .setRequiredXP(xp)
+                                .setProgressBar("#f2aa4c", "COLOR")
+                                .setUsername(this.getName(who))
+                                .setDiscriminator(discriminator);
+                        rank.build()
+                                .then(async data => {
+                                        await this.sendButtonImg(m.chat, `_*Level Up!*_\n_${before}_ -> _${user.level}_`.trim(), data, '© stikerin', 'CLAIM', ',claim')
+                                })
+                }
         }
 }
-
 module.exports = handler

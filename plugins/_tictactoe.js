@@ -4,7 +4,7 @@ let debugMode = !1
 let winScore = 500
 let playScore = 50
 
-handler.before = function (m) {
+handler.before = async function (m) {
     let ok
     let isWin = !1
     let isTie = !1
@@ -67,12 +67,12 @@ Room ID: ${room.id}
         let users = global.db.data.users
         if ((room.game._currentTurn ^ isSurrender ? room.x : room.o) !== m.chat)
             room[room.game._currentTurn ^ isSurrender ? 'x' : 'o'] = m.chat
-        if (room.x !== room.o) m.reply(str, room.x, {
+        if (room.x !== room.o) await conn.sendButton(room.x, str, '© stikerin', 'NYERAH', 'nyerah', {
             contextInfo: {
                 mentionedJid: this.parseMention(str)
             }
         })
-        m.reply(str, room.o, {
+        await conn.sendButton(room.o, str, '© stikerin', 'NYERAH', 'nyerah', {
             contextInfo: {
                 mentionedJid: this.parseMention(str)
             }

@@ -34,12 +34,12 @@ ${arr.slice(6).join('')}
 Menunggu @${room.game.currentTurn.split('@')[0]}
 Ketik *nyerah* untuk nyerah
 `.trim()
-        if (room.x !== room.o) m.reply(str, room.x, {
+        if (room.x !== room.o) await conn.sendButton(room.x, str, '© stikerin', 'NYERAH', 'nyerah', {
             contextInfo: {
                 mentionedJid: conn.parseMention(str)
             }
         })
-        m.reply(str, room.o, {
+        await conn.sendButton(room.o, str, '© stikerin', 'NYERAH', 'nyerah', {
             contextInfo: {
                 mentionedJid: conn.parseMention(str)
             }
@@ -53,7 +53,7 @@ Ketik *nyerah* untuk nyerah
             state: 'WAITING'
         }
         if (text) room.name = text
-        m.reply('_Menunggu partner_' + (text ? `_mengetik command dibawah ini_
+        m.reply('_Menunggu partner_' + (text ? ` _mengetik command dibawah ini_
 ${usedPrefix}${command} ${text}` : ''))
         conn.game[room.id] = room
     }
