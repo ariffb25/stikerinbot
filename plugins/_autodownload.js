@@ -16,35 +16,34 @@ handler.all = async function (m, { isPrems, isOwner }) {
         //     // m.reply(require('util').format(json))
         //     await this.sendVideo(m.chat, json.nowm, '*© stikerin*', m, { thumbnail: buf })
         // }).catch(_ => _)
-        let res = await fetch(global.API('hardianto', '/api/download/tiktok', { url: m.text.split` `[0] }, 'apikey'))
+        let res = await fetch(global.API('hardianto', '/api/download/tiktok', { url: m.text.split(/\n| /i)[0] }, 'apikey'))
         if (!res.ok) throw await `${res.status} ${res.statusText}`
         let json = await res.json()
         await m.reply(global.wait)
-        // await this.sendVideo(m.chat, json.wm, '© stikerin', m)
-        await this.sendFile(m.chat, json.wm, '', '© stikerin', m)
+        await this.sendVideo(m.chat, json.wm, '© stikerin', m)
     }
 
     if (/^.*cocofun/i.test(m.text)) {
-        let res = await fetch(global.API('jojo', '/api/cocofun-no-wm', { url: m.text.split` `[0] }))
+        let res = await fetch(global.API('jojo', '/api/cocofun-no-wm', { url: m.text.split(/\n| /i)[0] }))
         if (!res.ok) throw await res.text()
         let json = await res.json()
         await m.reply(global.wait)
-        await this.sendFile(m.chat, json.download, '', `© stikerin`, m)
+        await this.sendVideo(m.chat, json.download, '© stikerin', m)
     }
 
     if (/^.*(fb.watch|facebook.com)/i.test(m.text)) {
-        facebook(m.text.split` `[0]).then(async res => {
+        facebook(m.text.split(/\n| /i)[0]).then(async res => {
             let fb = JSON.stringify(res)
             let json = JSON.parse(fb)
             m.reply(require('util').format(json))
             if (!json.status) throw json
             await m.reply(global.wait)
-            await this.sendFile(m.chat, json.data[1] != undefined ? json.data[1].url : json.data[0].url, '© stikerin', m)
+            await this.sendVideo(m.chat, isPrems ? json.data[1].url : json.data[0].url, '© stikerin', m)
         }).catch(_ => _)
     }
 
     if (/^.*instagram.com\/(p|reel|tv)/i.test(m.text)) {
-        igdl(m.text.split` `[0]).then(async res => {
+        igdl(m.text.split(/\n| /i)[0]).then(async res => {
             let igdl = JSON.stringify(res)
             let json = JSON.parse(igdl)
             await m.reply(global.wait)
@@ -55,29 +54,29 @@ handler.all = async function (m, { isPrems, isOwner }) {
     }
 
     if (/^.*(pinterest.com\/pin|pin.it)/i.test(m.text)) {
-        pin(m.text.split` `[0]).then(async res => {
+        pin(m.text.split(/\n| /i)[0]).then(async res => {
             let pin = JSON.stringify(res)
             let json = JSON.parse(pin)
             if (!json.status) return m.reply(`Tidak dapat diunduh`)
             await m.reply(global.wait)
-            await this.sendFile(m.chat, json.data.url, '', `© stikerin`, m)
+            await this.sendVideo(m.chat, json.data.url, '© stikerin', m)
         }).catch(_ => _)
     }
 
     if (/^.*twitter.com\//i.test(m.text)) {
-        twitter(m.text.split` `[0]).then(async res => {
+        twitter(m.text.split(/\n| /i)[0]).then(async res => {
             let twit = JSON.stringify(res)
             let json = JSON.parse(twit)
             let pesan = json.data.map((v) => `Link: ${v.url}`).join('\n------------\n')
             await m.reply(global.wait)
             for (let { url } of json.data) {
-                this.sendFile(m.chat, url, 'ig' + (/mp4/i.test(url) ? '.mp4' : '.jpg'), `© stikerin`, m, 0, buf)
+                this.sendFile(m.chat, url, 'ig' + (/mp4/i.test(url) ? '.mp4' : '.jpg'), '© stikerin', m)
             }
         }).catch(_ => _)
     }
 
     if (/^https?:\/\/.*youtu/i.test(m.text)) {
-        let results = await yts(m.text.split` `[0])
+        let results = await yts(m.text.split(/\n| /i)[0])
         let vid = results.all.find(video => video.seconds < 3600)
         if (!vid) return m.reply('Video/Audio Tidak ditemukan')
         let yt = false
@@ -93,8 +92,8 @@ handler.all = async function (m, { isPrems, isOwner }) {
                 m.reply(`Server ${server} error!${servers.length >= i + 1 ? '' : '\nmencoba server lain...'}`)
             }
         }
-        if (yt === false) throw 'Semua server tidak bisa t_t'
-        if (yt2 === false) throw 'Semua server tidak bisa t_t'
+        if (yt === false) throw 'semua server gagal'
+        if (yt2 === false) throw 'semua server gagal'
         let { dl_link, thumb, title, filesize, filesizeF } = yt
         await this.send2ButtonImg(m.chat, `
 *Judul:* ${title}
@@ -102,7 +101,7 @@ handler.all = async function (m, { isPrems, isOwner }) {
 *Ukuran File Video:* ${yt2.filesizeF}
 *Server y2mate:* ${usedServer}
           `.trim(),
-            thumb, '© stikerin', 'AUDIO', `.yta ${vid.url}`, 'VIDEO', `.yt ${vid.url}`)
+            await (await fetch(thumb)).buffer(), '© stikerin', 'AUDIO', `.yta ${vid.url}`, 'VIDEO', `.yt ${vid.url}`)
     }
 
 }
