@@ -1,7 +1,7 @@
 let levelling = require('../lib/levelling')
 const canvacord = require('canvacord')
 
-let handler = async m => {
+let handler = async (m, { conn }) => {
   let pp = './src/avatar_contact.png'
   let who = m.sender
   let discriminator = who.substring(9, 13)
@@ -15,8 +15,8 @@ let handler = async m => {
     })
     let sortedLevel = users.map(toNumber('level')).sort(sort('level'))
     let usersLevel = sortedLevel.map(enumGetKey)
+    let { min, xp, max } = levelling.xpRange(user.level, global.multiplier)
     if (!levelling.canLevelUp(user.level, user.exp, global.multiplier)) {
-      let { min, xp, max } = levelling.xpRange(user.level, global.multiplier)
       let rank = await new canvacord.Rank()
         .setRank(usersLevel.indexOf(m.sender) + 1)
         .setAvatar(pp)
