@@ -11,7 +11,7 @@ handler.before = async function (m) {
   if (/^.*hint$/i.test(m.text)) return !0
   if (m.text.toLowerCase() == json.jawaban.toLowerCase()) {
     global.db.data.users[m.sender].exp += this.tebakgambar[id][2]
-    m.reply(`*Benar!*\n+${this.tebakgambar[id][2]} XP`)
+    m.reply(`*Benar!* +${this.tebakgambar[id][2]} XP`)
     clearTimeout(this.tebakgambar[id][3])
     delete this.tebakgambar[id]
   } else if (similarity(m.text.toLowerCase(), json.jawaban.toLowerCase().trim()) >= threshold) m.reply(`*Dikit Lagi!*`)

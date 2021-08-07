@@ -447,13 +447,13 @@ Untuk mematikan fitur ini, ketik
   async GroupUpdate({ jid, desc, descId, descTime, descOwner }) {
     if (!global.db.data.chats[jid].descUpdate) return
     let caption = `
-Deskripsi diubah oleh @${descOwner.split`@`[0]}
+@${descOwner.split`@`[0]} telah mengubah deskripsi grup.
 
 ${desc}
 
 ketik *.off desc* untuk mematikan pesan ini
     `.trim()
-    this.reply(jid, caption, null, { contextInfo: { mentionedJid: this.parseMention(caption) } })
+    this.sendButton(jid, caption, '', 'MATIKAN DESKPRISI', '.off desc', { contextInfo: { mentionedJid: this.parseMention(caption) } })
   }
 }
 

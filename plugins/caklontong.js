@@ -1,4 +1,4 @@
-let fetch = require('node-fetch')
+let fs = require('fs')
 
 let timeout = 120000
 let poin = 500
@@ -9,10 +9,9 @@ let handler = async (m, { conn, usedPrefix }) => {
         conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.caklontong[id][0])
         throw false
     }
-    let res = await fetch(global.API('zekais', '/caklontong'))
-    if (!res.ok) throw await `${res.status} ${res.statusText}`
-    let json = await res.json()
-    if (json.status != 200) throw json
+    let res = JSON.parse(fs.readFileSync('./src/caklontong.json'))
+    let random = Math.floor(Math.random() * res.length)
+    let json = res[random]
     let caption = `
 ${json.soal}
 
@@ -24,7 +23,7 @@ Bonus: ${poin} XP
         await conn.send2Button(m.chat, caption.trim(), 'made with ❤️ by ariffb', 'BANTUAN', '.calo', 'NYERAH', 'nyerah'),
         json, poin,
         setTimeout(() => {
-            if (conn.caklontong[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*\n${json.detail}`, conn.caklontong[id][0])
+            if (conn.caklontong[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*\n${json.keterangan}`, conn.caklontong[id][0])
             delete conn.caklontong[id]
         }, timeout)
     ]

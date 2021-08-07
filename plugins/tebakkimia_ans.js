@@ -11,7 +11,7 @@ handler.before = async function (m) {
         if (/^.*teki$/i.test(m.text)) return !0
         if (m.text.toLowerCase() == json.name.toLowerCase().trim()) {
             global.db.data.users[m.sender].exp += this.tebakkimia[id][2]
-            m.reply(`*Benar!*\n+${this.tebakkimia[id][2]} XP`)
+            m.reply(`*Benar!* +${this.tebakkimia[id][2]} XP`)
             clearTimeout(this.tebakkimia[id][3])
             delete this.tebakkimia[id]
         } else if (similarity(m.text.toLowerCase(), json.name.toLowerCase().trim()) >= threshold) m.reply(`*Dikit Lagi!*`)
