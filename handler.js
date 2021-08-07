@@ -453,7 +453,7 @@ ${desc}
 
 ketik *.off desc* untuk mematikan pesan ini
     `.trim()
-    this.sendButton(jid, caption, '', 'MATIKAN DESKPRISI', '.off desc', { contextInfo: { mentionedJid: this.parseMention(caption) } })
+    this.sendButton(jid, caption, '', 'MATIKAN DESKRIPSI', ',off desc', { contextInfo: { mentionedJid: this.parseMention(caption) } })
   }
 }
 

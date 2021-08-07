@@ -14,7 +14,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     if (res.status !== 200) throw await res.text()
     let result = await res.json()
     let json = result.result
-    // if (!json.status) throw json
+    if (!json.status) throw json
     let caption = `
 TEBAK JUDUL LAGU
 Timeout *${(timeout / 1000).toFixed(2)} detik*
