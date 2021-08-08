@@ -7,6 +7,7 @@ handler.all = async function (m, { isBanned }) {
     if (m.fromMe) return
     if (isBanned) return
     if (!m.isCommand) return
+    if (global.db.data.users[m.sender].banned) return
     this.spam = this.spam ? this.spam : {}
     if (m.sender in this.spam) {
         this.spam[m.sender].count++

@@ -11,10 +11,10 @@ let handler = async (m, { conn, usedPrefix }) => {
     }
     // ubah isi 'id' kalo mau ganti playlist spotifynya
     let res = await fetch(global.API('xteam', '/game/tebaklagu/', { id: '3AaKHE9ZMMEdyRadsg8rcy' }, 'APIKEY'))
-    if (res.status !== 200) throw await res.text()
+    if (!res.ok) throw await `${res.status} ${res.statusText}`
     let result = await res.json()
     let json = result.result
-    if (!json.status) throw json
+    if (!result.status) throw json
     let caption = `
 TEBAK JUDUL LAGU
 Timeout *${(timeout / 1000).toFixed(2)} detik*

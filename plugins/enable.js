@@ -7,6 +7,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
   let isAll = false
   let isUser = false
   switch (type) {
+    case 'w':
     case 'welcome':
       if (!m.isGroup) {
         if (!isOwner) {
@@ -43,6 +44,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       chat.descUpdate = isEnable
       break
+    case 'del':
     case 'delete':
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
@@ -73,6 +75,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     case 'document':
       chat.useDocument = isEnable
       break
+    case 'publik':
     case 'public':
       isAll = true
       if (!isROwner) {
@@ -82,6 +85,18 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       global.opts['self'] = !isEnable
       break
     case 'antilink':
+    case 'antiurl':
+      if (!m.isGroup) {
+        if (!isOwner) {
+          global.dfail('group', m, conn)
+          throw false
+        }
+      } else if (!(isAdmin || isOwner)) {
+        global.dfail('admin', m, conn)
+        throw false
+      }
+      chat.antilink = isEnable
+    case 's':
     case 'stiker':
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
@@ -108,6 +123,8 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       conn.callWhitelistMode = isEnable
       break
+    case 'grup':
+    case 'gruponly':
     case 'grouponly':
       isAll = true
       if (!isOwner) {
@@ -186,7 +203,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     default:
       if (!/[01]/.test(command)) throw `
 ┌〔 Daftar Opsi 〕
-│ ${isOwner ? '\n├ anon\n├ antispam\n├ antitroli\n├ backup\n├ clear\n├ grouponly\n├ jadibot\n├ nsfw\n├ public\n├ whitelistmycontacts' : ''}
+│ ${isOwner ? '\n├ anon\n├ antispam\n├ antitroli\n├ backup\n├ clear\n├ grouponly\n├ jadibot\n├ nsfw\n├ public\n├ mycontact' : ''}
 ├ antilink
 ├ autolevelup
 ├ delete

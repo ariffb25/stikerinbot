@@ -1,13 +1,12 @@
-// Magernulis By MFarelS:V
-// Code by DrawlNag
-// Recode by Nurutomo :V
+let fetch = require('node-fetch')
 let handler = async (m, { command, conn, text }) => {
   let id = (command.match(/[1-6]$/) || [])[0] || ''
-  await conn.sendFile(m.chat, global.API('xteam', '/magernulis' + id, {
+  let url = global.API('xteam', '/magernulis' + id, {
     text,
     nama: conn.getName(m.sender),
     kelas: ' '
-  }, 'APIKEY'), 'nulis.jpg', '', m, false, { thumbnail: Buffer.alloc(0) })
+  }, 'APIKEY')
+  await conn.sendFile(m.chat, url, 'nulis.jpg', '', m, false, { thumbnail: await (await fetch(url)).buffer() })
 }
 handler.help = new Array(6).fill('magernulis').map((v, i) => v + (i + 1) + ' <teks>')
 handler.tags = ['nulis']

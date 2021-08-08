@@ -9,7 +9,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         let pin = JSON.stringify(res)
         let json = JSON.parse(pin)
         if (!json.status) throw `Tidak dapat diunduh`
-        await conn.sendVideo(m.chat, json.data.url, `*© stikerin*`, m, { thumbnail: Buffer.alloc(0) })
+        await conn.sendVideo(m.chat, json.data.url, `*© stikerin*`, m)
     })
 
 }

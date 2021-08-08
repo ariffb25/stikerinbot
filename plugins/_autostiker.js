@@ -1,32 +1,46 @@
 const { MessageType } = require('@adiwajshing/baileys')
 const { sticker } = require('../lib/sticker')
-const uploadFile = require('../lib/uploadFile')
-const uploadImage = require('../lib/uploadImage')
-let { webp2png } = require('../lib/webp2mp4')
+const WSF = require('wa-sticker-formatter')
 let handler = m => m
 
 handler.before = async function (m) {
     let chat = global.db.data.chats[m.chat]
-    if (chat.stiker && !chat.isBanned && !m.fromMe && !m.isBaileys) {
+    let user = global.db.data.users[m.sender]
+    if (chat.stiker && !user.banned && !chat.isBanned && !m.fromMe && !m.isBaileys) {
         // try {
         let q = m
         let stiker = false
+        let wsf = false
         let mime = (q.msg || q).mimetype || ''
         if (/webp/.test(mime)) return
         if (/image/.test(mime)) {
             let img = await q.download()
-            let link = await uploadImage(img)
             if (!img) return
-            stiker = await sticker(0, link, global.packname, global.author)
+            wsf = new WSF.Sticker(img, {
+                pack: global.packname,
+                author: global.author,
+                crop: false,
+            })
         } else if (/video/.test(mime)) {
             if ((q.msg || q).seconds > 11) return m.reply('Maksimal 10 detik!')
             let img = await q.download()
-            let link = await uploadFile(img)
             if (!img) return
-            stiker = await sticker(0, link, global.packname, global.author)
-        } else if (m.text) {
-            if (isUrl(m.text)) stiker = await sticker(false, m.text.split` `[0], global.packname, global.author)
+            wsf = new WSF.Sticker(img, {
+                pack: global.packname,
+                author: global.author,
+                crop: false,
+            })
+        } else if (m.text.split` `[0]) {
+            if (isUrl(m.text.split` `[0])) stiker = await sticker(false, m.text.split` `[0], global.packname, global.author)
             else return
+        }
+        if (wsf) {
+            await wsf.build()
+            const sticBuffer = await wsf.get()
+            if (sticBuffer) await this.sendMessage(m.chat, sticBuffer, MessageType.sticker, {
+                quoted: m,
+                mimetype: 'image/webp'
+            })
         }
         if (stiker) await this.sendMessage(m.chat, stiker, 'stickerMessage', {
             quoted: m

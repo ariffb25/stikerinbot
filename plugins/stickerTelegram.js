@@ -6,7 +6,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (!args[0].match(/(https:\/\/t.me\/addstickers\/)/gi)) throw `*Link salah! Perintah ini untuk mengambil stiker dari Telegram*\n\ncontoh:\n${usedPrefix + command} https://t.me/addstickers/menggokil`
 
     let res = await fetch(global.API('zeks', '/api/telegram-sticker', { url: args[0] }, 'apikey'))
-    if (res.status != 200) throw await `${res.status} ${res.statusText}`
+    if (!res.ok) throw await `${res.status} ${res.statusText}`
     let json = await res.json()
     if (!json.status) throw json
     let mes = json.result.map((v, i) => `${i + 1}. ${v}`).join('\n')

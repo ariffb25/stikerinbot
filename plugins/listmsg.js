@@ -25,7 +25,7 @@ let handler = async (m, { usedPrefix, command }) => {
 ┌〔 LIST PESAN 〕
 ${fltr}
 └────
-Akses/ambil dengan nengetik:
+Akses/ambil dengan mengetik:
 *${usedPrefix}get${which}* <nama>
 `.trim())
 }

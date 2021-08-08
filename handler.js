@@ -386,6 +386,7 @@ module.exports = {
               let lea = `https://hardianto-chan.herokuapp.com/api/tools/leave2?name=${encodeURIComponent(this.getName(user))}&descriminator=${user.split(`@`)[0].substr(-5)}&totalmem=${encodeURIComponent(groupMetadata.participants.length)}&namegb= ${encodeURIComponent(this.getName(jid))}&ppuser=${pp}&background=https://i.ibb.co/KhtRxwZ/dark.png&apikey=hardianto`
 
               this.sendFile(jid, action === 'add' ? wel : lea, 'pp.jpg', text, null, false, {
+                thumbnail: await (await fetch(action === 'add' ? wel : lea)).buffer(),
                 contextInfo: {
                   mentionedJid: [user]
                 }

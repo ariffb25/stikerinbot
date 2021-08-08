@@ -17,7 +17,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   let json = await res.json()
   // if (!json.status) throw json
   await m.reply(global.wait)
-  await conn.sendVideo(m.chat, json.wm, `${json.caption}\n\n\n\n\n© stikerin`, m, { thumbnail: Buffer.alloc(0) })
+  await conn.sendVideo(m.chat, json.wm, `${json.caption}\n\n© stikerin`, m)
 
 }
 handler.help = ['tiktok'].map(v => v + ' <url>')

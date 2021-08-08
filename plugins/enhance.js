@@ -5,7 +5,7 @@ let handler = async (m, { usedPrefix }) => {
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
   if (!mime) throw `Kirim/balas gambar dengan caption ${usedPrefix}hd`
-  if (!/image\/(jpe?g|png)/.test(mime)) throw `Mime ${mime} tidak support`
+  if (!/image\/(jpe?g|png)/.test(mime)) throw `Mime ${mime} tidak didukung`
   let img = await q.download()
   let body = new FormData
   body.append('image', img, 'image')
@@ -13,8 +13,8 @@ let handler = async (m, { usedPrefix }) => {
     method: 'POST',
     body
   })
-  if (res.status !== 200) throw await res.json()
-  await conn.sendFile(m.chat, await res.buffer(), 'hd.jpg', '', m, false, { thumbnail: Buffer.alloc(0) })
+  if (!res.ok) throw await `${res.status} ${res.statusText}`
+  await conn.sendFile(m.chat, await res.buffer(), 'hd.jpg', '', m, false, { thumbnail: await res.buffer() })
 }
 handler.help = ['hd', 'enhance']
 handler.tags = ['tools']

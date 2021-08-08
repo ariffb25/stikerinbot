@@ -6,7 +6,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   }))
   if (!res.ok) throw await res.text()
   let json = await res.json()
-  if (json[1] == null) throw `Gambar tidak ditemukan atau kamu cari yang aneh2 :/`
+  if (json[1] == null) throw `404 Not Found`
   let pint = json[Math.floor(Math.random() * json.length)];
   conn.sendFile(m.chat, pint, '', ''.trim(), m, 0, { thumbnail: await (await fetch(pint)).buffer() })
 }
