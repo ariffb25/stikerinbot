@@ -5,7 +5,7 @@ let handler = async (m, { conn }) => {
     if (!res.ok) throw await res.text()
     let img = await res.buffer()
     if (!img) throw img
-    conn.sendFile(m.chat, img, '', '*© stikerin*', m, 0, { thumbnail: Buffer.alloc(0) })
+    conn.sendFile(m.chat, img, '', '© stikerin', m, 0, { thumbnail: await (await fetch(img)).buffer() })
 }
 handler.help = ['wallpaperanime']
 handler.tags = ['internet']

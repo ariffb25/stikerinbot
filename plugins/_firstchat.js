@@ -13,7 +13,7 @@ handler.all = async function (m) {
 Hai, ${ucapan()}
 
 Ada yang bisa saya bantu?${m.msg.contextInfo.expiration == 604800 ? '\n\nmatiin pesan sementaranya, biar tombolnya bisa dipake' : ''}
-`.trim(), '© stikerin | pesan otomatis', 'MENU', '.?', 'DONASI', '.donate')
+`.trim(), '© stikerin', 'MENU', ',?', users.banned ? 'UNBAN' : 'DONASI', users.banned ? ', unban' : ', donate')
     users.pc = new Date * 1
 }
 
