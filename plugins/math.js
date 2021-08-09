@@ -17,8 +17,8 @@ Contoh penggunaan: ${usedPrefix}math hard
   conn.math[id] = [
     await conn.reply(m.chat, `Berapa hasil dari *${math.str}*?\n\nTimeout: ${(math.time / 1000).toFixed(2)} detik\nBonus Jawaban Benar: ${math.bonus} XP`, m),
     math, 4,
-    setTimeout(() => {
-      if (conn.math[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah ${math.result}`, conn.math[id][0])
+    setTimeout(async () => {
+      if (conn.math[id]) await this.sendButton(m.chat, `Waktu habis!\nJawabannya adalah ${math.result}`, '', `${math.mode.toUpperCase()}`, `.math ${math.mode}`, { quoted: conn.math[id][0] })
       delete conn.math[id]
     }, math.time)
   ]
