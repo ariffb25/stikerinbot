@@ -6,12 +6,12 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
   if (!mime) throw `Unknown Mimetype`
-  if (!/image\/(jpe?g|png)/.test(mime)) throw `Mime ${mime} tidak support`
+  if (!/image\/(jpe?g|png)/.test(mime)) throw `Mime ${mime} tidak didukung`
   let img = await q.download()
   let link = await uploadImage(img).catch(e => uploadFile(img))
   conn.sendFile(m.chat, global.API('https://api.memegen.link', `/images/custom/${encodeURIComponent(t1 ? t1 : '')}/${encodeURIComponent(t2 ? t2 : '')}.png`, {
     background: link
-  }), 'meme.png', global.wm, m)
+  }), 'meme.png', '© stikerin', m)
 }
 handler.help = ['mememaker'].map(v => v + ' <teks atas>|<teks bawah>')
 handler.tags = ['tools']

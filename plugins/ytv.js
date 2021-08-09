@@ -8,11 +8,7 @@ let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, command }) =
   try {
     let { dl_link, thumb, title, filesize, filesizeF } = await ytv(args[0], servers.includes(server) ? server : servers[0])
     let isLimit = (isPrems || isOwner ? 99 : limit) * 1024 < filesize
-    conn.sendFile(m.chat, thumb, 'thumbnail.jpg', `
-  *Judul:* ${title}
-  *Ukuran File:* ${filesizeF}${isLimit ? `\n*Ukuran file diatas ${limit} MB, download aja sendiri:* ${dl_link}
-  ` : ''}
-  `.trim(), m)
+    m.reply(isLimit ? `Ukuran File: ${filesizeF}\nUkuran file diatas ${limit} MB, download sendiri: ${dl_link}` : global.wait)
     let _thumb = {}
     try { _thumb = { thumbnail: await (await fetch(thumb)).buffer() } }
     catch (e) { }

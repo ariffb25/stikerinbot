@@ -3,6 +3,7 @@ const { facebook } = require('../lib/facebook')
 const { servers, yta, ytv } = require('../lib/y2mate')
 const fetch = require('node-fetch')
 let yts = require('yt-search')
+let util = require('util')
 let handler = m => m
 
 handler.all = async function (m, { isPrems, isOwner }) {
@@ -20,6 +21,7 @@ handler.all = async function (m, { isPrems, isOwner }) {
         if (!res.ok) throw await `${res.status} ${res.statusText}`
         let json = await res.json()
         await m.reply(global.wait)
+        m.reply(util.format(json))
         await this.sendVideo(m.chat, json.wm, '© stikerin', m)
     }
 
@@ -28,6 +30,7 @@ handler.all = async function (m, { isPrems, isOwner }) {
         if (!res.ok) throw await res.text()
         let json = await res.json()
         await m.reply(global.wait)
+        m.reply(util.format(json))
         await this.sendVideo(m.chat, json.download, '© stikerin', m)
     }
 
@@ -38,6 +41,7 @@ handler.all = async function (m, { isPrems, isOwner }) {
             m.reply(require('util').format(json))
             if (!json.status) throw json
             await m.reply(global.wait)
+            m.reply(util.format(json))
             await this.sendVideo(m.chat, isPrems ? json.data[1].url : json.data[0].url, '© stikerin', m)
         }).catch(_ => _)
     }
@@ -59,6 +63,7 @@ handler.all = async function (m, { isPrems, isOwner }) {
             let json = JSON.parse(pin)
             if (!json.status) return m.reply(`Tidak dapat diunduh`)
             await m.reply(global.wait)
+            m.reply(util.format(json))
             await this.sendVideo(m.chat, json.data.url, '© stikerin', m)
         }).catch(_ => _)
     }

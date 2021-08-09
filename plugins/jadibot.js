@@ -1,12 +1,15 @@
 let { MessageType } = require('@adiwajshing/baileys')
 const { is } = require('cheerio/lib/api/traversing')
 let qrcode = require('qrcode')
+let fs = require('fs')
+let path = require('path')
 
 if (global.conns instanceof Array) console.log()// for (let i of global.conns) global.conns[i] && global.conns[i].user ? global.conns[i].close().then(() => delete global.conns[id] && global.conns.splice(i, 1)).catch(global.conn.logger.error) : delete global.conns[i] && global.conns.splice(i, 1)
 else global.conns = []
 
 let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
-  if (!global.db.data.settings.jadibot) throw 'Fitur ini tidak aktif'
+  let package = JSON.parse(await fs.promises.readFile(path.join(__dirname, '../package.json')).catch(_ => '{}'))
+  if (!global.db.data.settings.jadibot) throw `Fitur ini tidak aktif\n${package.homepage ? package.homepage.url || package.homepage : '[unknown github url]'}`
   let parent = args[0] && args[0] == 'plz' ? conn : global.conn
   let auth = false
   if ((args[0] && args[0] == 'plz') || global.conn.user.jid == conn.user.jid) {
