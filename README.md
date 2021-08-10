@@ -1,12 +1,12 @@
-# stikerinbot
-
 <p align="center">
 	<img src="https://i.ibb.co/jr9Nh6Q/Thumb.jpg" width="35%" style="margin-left: auto;margin-right: auto;display: block;">
 </p>
+<h1 align="center">stikerinbot</h1>
 
-Simple WhatsApp Bot
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ariffb25/stikerinbot)
+
+[![Grup WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/GVwpKf83s42D1CnIfDW19G)
 
 ## UNTUK PENGGUNA WINDOWS/VPS/RDP
 
@@ -20,6 +20,7 @@ git clone https://github.com/ariffb25/stikerinbot
 cd stikerinbot
 npm install
 npm update
+npm index
 ```
 
 ---------
@@ -30,14 +31,6 @@ npm update
 * heroku/nodejs
 * https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
 * https://github.com/DuckyTeam/heroku-buildpack-imagemagick.git
-
----------
-
-## Run
-
-```bash
-node .
-```
 
 ---------
 
@@ -130,4 +123,3 @@ conn.logger.level = 'debug'
 ----|----
 [Nurutomo](https://github.com/Nurutomo) | [Ariffb](https://github.com/ariffb25)
  Penulis / Pencipta | Penulis ulang
-
