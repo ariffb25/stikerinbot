@@ -6,6 +6,8 @@ let handler = async (m, { conn, text, command }) => {
   let teks = text ? text : m.quoted && m.quoted.text ? m.quoted.text : m.text
 
   if (/^attp1?$/i.test(command)) {
+    let res = await fetch(global.API('xteam', '/attp', { file: '', text: teks }))
+    if (!res.ok) throw await `${res.status} ${res.statusText}`
     conn.sendFile(m.chat, global.API('xteam', '/attp', { file: '', text: teks }), 'attp.webp', '', m, false, { asSticker: true })
   }
 

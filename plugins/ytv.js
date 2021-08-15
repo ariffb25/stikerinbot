@@ -12,15 +12,15 @@ let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, command }) =
     let _thumb = {}
     try { _thumb = { thumbnail: await (await fetch(thumb)).buffer() } }
     catch (e) { }
-    if (!isLimit) conn.sendVideo(m.chat, dl_link, `
-  *Judul:* ${title}
-  *Ukuran File:* ${filesizeF}
-  `.trim(), m, {
+    if (!isLimit) conn.sendFile(m.chat, dl_link, '', `
+*Judul:* ${title}
+*Ukuran File:* ${filesizeF}
+  `.trim(), m, 0, {
       ..._thumb,
       asDocument: chat.useDocument
     })
   } catch (e) {
-    await conn.sendButton(m.chat, 'gagal mendapatkan url, coba lagi?', '', 'YA', `${usedPrefix + command} ${args[0]}`)
+    return await conn.sendButton(m.chat, 'Server Error', '', 'COBA LAGI', `${usedPrefix + command} ${args[0]}`)
   }
 }
 handler.help = ['mp4', 'v', ''].map(v => 'yt' + v + ` <url> [server: ${servers.join(', ')}]`)

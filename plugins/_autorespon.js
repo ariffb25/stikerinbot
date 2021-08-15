@@ -6,13 +6,20 @@ handler.all = async function (m, { isBlocked }) {
     if (isBlocked) return
     if (m.isBaileys) return
     if (m.chat.endsWith('broadcast')) return
-    let setting = global.db.data.settings
-    let { isBanned } = global.db.data.chats[m.chat]
+    let setting = db.data.settings
+    let { isBanned } = db.data.chats[m.chat]
+    let { banned } = db.data.users[m.sender]
 
     // ketika ditag
     try {
         if (m.mentionedJid.includes(this.user.jid) && m.isGroup) {
-            await this.send2Button(m.chat, m.msg.contextInfo.expiration == 604800 ? '\n\nketik *.ephe* untuk matiin pesan sementaranya, biar tombolnya bisa dipake' : 'uhm.. iya ada apa?', '© stikerin', `${isBanned ? 'UNBAN' : 'MENU'}`, `${isBanned ? '.unban' : '.?'}`, `${!m.isGroup ? 'DONASI' : isBanned ? 'UNBAN' : 'BAN'}`, `${!m.isGroup ? '.donasi' : isBanned ? '.unban' : '.ban'}`)
+            await this.send2Button(m.chat,
+                isBanned ? 'stikerin tidak aktif' : banned ? 'kamu dibanned' : 'stikerin disini',
+                '© stikerin',
+                isBanned ? 'UNBAN' : banned ? 'PEMILIK BOT' : 'MENU',
+                isBanned ? '.unban' : banned ? '.owner' : '.?',
+                m.isGroup ? 'BAN' : isBanned ? 'UNBAN' : 'DONASI',
+                m.isGroup ? '.ban' : isBanned ? '.unban' : '.donasi')
         }
     } catch (e) {
         return
@@ -21,11 +28,8 @@ handler.all = async function (m, { isBlocked }) {
     // ketika ada yang invite/kirim link grup di chat pribadi
     if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('Buka tautan ini')) && !m.isBaileys && !m.isGroup) {
         this.sendButton(m.chat, `┌〔 Undang Bot ke Grup 〕
-│ 
 ├ 7 Hari / Rp 5,000
 ├ 30 Hari / Rp 10,000
-│ 
-├ Hubungi @${global.owner[0]}
 └────
 
 https://github.com/ariffb25/stikerinbot

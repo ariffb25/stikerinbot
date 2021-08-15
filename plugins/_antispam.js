@@ -1,20 +1,19 @@
 let handler = m => m
 
-handler.all = async function (m, { isBanned }) {
-    if (!global.db.data.settings.antispam) return
+handler.all = async function (m) {
+    if (!db.data.settings.antispam) return // antispam aktif?
+    if (m.isBaileys && m.fromMe) return
     if (!m.message) return
-    if (m.isBaileys) return
-    if (m.fromMe) return
-    if (isBanned) return
     if (!m.isCommand) return
-    if (global.db.data.users[m.sender].banned) return
+    if (db.data.users[m.sender].banned) return
+    if (db.data.chats[m.chat].isBanned) return
     this.spam = this.spam ? this.spam : {}
     if (m.sender in this.spam) {
         this.spam[m.sender].count++
         if (m.messageTimestamp.toNumber() - this.spam[m.sender].lastspam > 10) {
             if (this.spam[m.sender].count > 10) {
-                global.db.data.users[m.sender].banned = true
-                m.reply('*km dibanned, minta sama admin grup/owner kalo mau pake bot lg*')
+                db.data.users[m.sender].banned = true
+                await this.sendButton(m.chat, 'kamu dibanned!', '© stikerin', 'PEMILIK BOT', ',owner')
             }
             this.spam[m.sender].count = 0
             this.spam[m.sender].lastspam = m.messageTimestamp.toNumber()

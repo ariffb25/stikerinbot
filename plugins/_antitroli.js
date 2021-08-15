@@ -2,7 +2,7 @@ let handler = m => m
 
 handler.all = async function (m) {
     if (m.message && m.isBaileys && m.quoted && m.quoted.mtype === 'orderMessage' && !(m.quoted.token && m.quoted.orderId)) {
-        m.reply('Troli Terdeteksi\n\n' + require('util').format(m.key))
+        m.reply('Troli Terdeteksi\n\n' + require('util').format(m.key), null)
         await this.modifyChat(m.chat, 'clear', {
             includeStarred: false
         }).catch(console.log)

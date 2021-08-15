@@ -1,7 +1,8 @@
 const free = 500
 const prem = 5000
-let handler = async (m, { isPrems }) => {
-  let user = global.db.data.users[m.sender]
+let handler = async (m, { conn, usedPrefix, isPrems }) => {
+  let user = db.data.users[m.sender]
+  if (user.level < 1) return await conn.sendButton(m.chat, 'naikan level kamu', '', 'LEVEL UP', `${usedPrefix}levelup`)
   let time = user.lastclaim + 86400000
   if (new Date - user.lastclaim < 86400000) throw `Kamu sudah mengklaim klaim harian hari ini\ntunggu selama ${msToTime(time - new Date())} lagi`
   user.exp += isPrems ? prem * user.level : free * user.level

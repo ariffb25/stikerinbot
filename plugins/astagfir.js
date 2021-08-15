@@ -1,4 +1,4 @@
-let handler = async (m, { isPrems, usedPrefix, command }) => {
+let handler = async (m) => {
     let user = global.db.data.users[m.sender]
     if (user.warning == 0) throw 'Kamu tidak memiliki warning!'
 

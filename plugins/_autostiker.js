@@ -8,6 +8,7 @@ handler.before = async function (m) {
     let user = global.db.data.users[m.sender]
     if (chat.stiker && !user.banned && !chat.isBanned && !m.fromMe && !m.isBaileys) {
         // try {
+        if (/^.*s(tic?ker)?(gif)?$/i.test(m.text)) return
         let q = m
         let stiker = false
         let wsf = false

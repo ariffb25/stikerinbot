@@ -1,15 +1,6 @@
 let fetch = require('node-fetch')
 
 const artinama_api = [
-  ['xteam', '/primbon/artinama', 'q', 'APIKEY', json => {
-    if (!json.status) throw json
-    return `
-*Nama:* ${json.result.nama}
-*Arti:* ${json.result.arti}
-
-*Makna:* ${json.result.maksud}
-`.trim()
-  }],
   ['http://nzcha-apii.herokuapp.com', '/artinama', 'nama', null, json => {
     if (!json.status) throw json
     return `
@@ -25,12 +16,12 @@ const artinama_api = [
 ]
 
 let handler = async (m, { text, usedPrefix, command }) => {
-  if (!text) throw `Contoh:\n${usedPrefix + command} ariffb`
+  if (!text) throw `uhm.. namanya?\n\ncontoh:\n${usedPrefix + command} ariffb`
   let result = ''
   for (let [origin, pathname, query, apikey, fn] of artinama_api) {
     try {
       let res = await fetch(global.API(origin, pathname, { [query]: text }, apikey))
-      if (!res.ok) throw res.text()
+      if (!res.ok) throw await `${res.status} ${res.statusText}`
       let json = await res.json()
       result = await fn(json)
       break

@@ -9,20 +9,16 @@ let handler = m => m
 handler.all = async function (m, { isPrems, isOwner }) {
 
     if (m.chat.endsWith('broadcast')) return
+    if (db.data.users[m.sender].banned) return
+    if (db.data.chats[m.chat].isBanned) return
 
     if (/^.*tiktok/i.test(m.text)) {
-        // tiktok(m.text).then(async res => {
-        //     let tiktok = JSON.stringify(res)
-        //     let json = JSON.parse(tiktok)
-        //     // m.reply(require('util').format(json))
-        //     await this.sendVideo(m.chat, json.nowm, '*© stikerin*', m, { thumbnail: buf })
-        // }).catch(_ => _)
         let res = await fetch(global.API('hardianto', '/api/download/tiktok', { url: m.text.split(/\n| /i)[0] }, 'apikey'))
         if (!res.ok) throw await `${res.status} ${res.statusText}`
         let json = await res.json()
         await m.reply(global.wait)
-        m.reply(util.format(json))
-        await this.sendVideo(m.chat, json.wm, '© stikerin', m)
+        // m.reply(util.format(json))
+        await this.sendFile(m.chat, json.nowm, '', '© stikerin', m)
     }
 
     if (/^.*cocofun/i.test(m.text)) {
@@ -31,7 +27,7 @@ handler.all = async function (m, { isPrems, isOwner }) {
         let json = await res.json()
         await m.reply(global.wait)
         m.reply(util.format(json))
-        await this.sendVideo(m.chat, json.download, '© stikerin', m)
+        await this.sendFile(m.chat, json.download, '', '© stikerin', m)
     }
 
     if (/^.*(fb.watch|facebook.com)/i.test(m.text)) {
@@ -42,7 +38,7 @@ handler.all = async function (m, { isPrems, isOwner }) {
             if (!json.status) throw json
             await m.reply(global.wait)
             m.reply(util.format(json))
-            await this.sendVideo(m.chat, isPrems ? json.data[1].url : json.data[0].url, '© stikerin', m)
+            await this.sendFile(m.chat, isPrems ? json.data[1].url : json.data[0].url, '', '© stikerin', m)
         }).catch(_ => _)
     }
 
@@ -64,7 +60,7 @@ handler.all = async function (m, { isPrems, isOwner }) {
             if (!json.status) return m.reply(`Tidak dapat diunduh`)
             await m.reply(global.wait)
             m.reply(util.format(json))
-            await this.sendVideo(m.chat, json.data.url, '© stikerin', m)
+            await this.sendFile(m.chat, json.data.url, '', '© stikerin', m)
         }).catch(_ => _)
     }
 
