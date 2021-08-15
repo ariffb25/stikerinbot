@@ -10,7 +10,7 @@ let handler = async (m, { conn, usedPrefix }) => {
         throw false
     }
     let res = await fetch(global.API('neoxr', '/api/games/whoami', {}, 'apikey'))
-    if (!res.ok) throw await res.text()
+    if (!res.ok) throw await `${res.status} ${res.statusText}`
     let json = await res.json()
     if (!json.status) throw json
     let caption = `
@@ -21,10 +21,10 @@ Ketik ${usedPrefix}who untuk bantuan
 Bonus: ${poin} XP
 `.trim()
     conn.siapakahaku[id] = [
-        await conn.reply(m.chat, caption, m),
+        await conn.send2Button(m.chat, caption, '© stikerin', 'BANTUAN', '.who', 'NYERAH', 'nyerah'),
         json, poin,
-        setTimeout(() => {
-            if (conn.siapakahaku[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.data.jawaban}*`, conn.siapakahaku[id][0])
+        setTimeout(async () => {
+            if (conn.siapakahaku[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.data.jawaban}*`, '© stikerin', 'SIAPAKAH AKU', '.siapaaku')
             delete conn.siapakahaku[id]
         }, timeout)
     ]

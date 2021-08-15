@@ -1,9 +1,9 @@
 const { createHash } = require('crypto')
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
-let handler = async function (m, { text, usedPrefix }) {
+let handler = async function (m, { text, usedPrefix, command }) {
   let user = global.db.data.users[m.sender]
-  if (user.registered === true) throw `Kamu sudah terdaftar\nMau daftar ulang? ${usedPrefix}unreg <SN|SERIAL NUMBER>`
-  if (!Reg.test(text)) throw `Format salah\n*${usedPrefix}daftar nama.umur*`
+  if (user.registered === true) throw `Kamu sudah terdaftar\nMau daftar ulang? ${usedPrefix}unreg <SERIAL NUMBER>`
+  if (!Reg.test(text)) throw `contoh:\n*${usedPrefix + command} nama.umur*`
   let [_, name, splitter, age] = text.match(Reg)
   if (!name) throw 'Nama tidak boleh kosong (Alphanumeric)'
   if (!age) throw 'Umur tidak boleh kosong (Angka)'
@@ -23,6 +23,8 @@ Daftar berhasil!
 ├ Umur: ${age} tahun
 ├ SN: ${sn}
 └────
+
+SN digunakan untuk unreg, jadi simpan/bintangi pesan ini
 `.trim())
 }
 handler.help = ['daftar', 'reg', 'register'].map(v => v + ' <nama>.<umur>')

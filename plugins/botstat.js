@@ -33,9 +33,9 @@ let handler = async (m, { conn }) => {
 └────
     `.trim())
 }
-handler.help = ['mystat']
+handler.help = ['botstatus']
 handler.tags = ['info']
-handler.command = /^mystat$/i
+handler.command = /^botstat(us)?$/i
 
 module.exports = handler
 

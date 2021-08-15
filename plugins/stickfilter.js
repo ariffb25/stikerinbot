@@ -7,7 +7,7 @@ const effects = ['greyscale', 'invert', 'brightness', 'threshold', 'sepia', 'red
 let handler = async (m, { conn, usedPrefix, text, command }) => {
   let effect = text.trim().toLowerCase()
   if (!effects.includes(effect)) throw `
-Contoh penggunaan: 
+contoh: 
 ${usedPrefix + command} greyscale
 
 ┌─〔 Daftar Efek 〕
@@ -16,7 +16,7 @@ ${effects.map(effect => `├ ${effect}`).join('\n')}
 `.trim()
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
-  if (!mime) throw 'Balas gambarnya!'
+  if (!mime) throw 'balas gambarnya!'
   if (!/image\/(jpe?g|png)/.test(mime)) throw `Mime ${mime} tidak didukung`
   let img = await q.download()
   let url = await uploadImage(img)

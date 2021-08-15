@@ -23,7 +23,7 @@ let handler = async (m, { conn, usedPrefix }) => {
         banned: false,
         level: 0,
         call: 0,
-        role: 'Bronze',
+        role: 'Warrior V',
         autolevelup: false,
         pc: 0,
       }
@@ -43,7 +43,7 @@ Limit: ${limit}
 Terdaftar: ${registered ? 'Ya (' + new Date(regTime).toLocaleString() + ')' : 'Tidak'}${lastclaim > 0 ? '\nTerakhir Klaim: ' + new Date(lastclaim).toLocaleString() : ''}
 `.trim()
     let mentionedJid = [who]
-    conn.sendFile(m.chat, pp, 'pp.jpg', banned ? 'banned' : str, m, false, { contextInfo: { mentionedJid } })
+    conn.sendFile(m.chat, pp, 'pp.jpg', banned ? 'jiakh ke banned' : str, m, false, { contextInfo: { mentionedJid } })
   }
 }
 handler.help = ['profile [@user]']

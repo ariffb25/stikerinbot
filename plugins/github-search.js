@@ -1,10 +1,10 @@
 let fetch = require('node-fetch')
-let handler = async (m, { text, command, usedPrefix
-}) => {
-    if (!text) throw `Contoh penggunaan:\n${usedPrefix + command} stikerinbot`
+let handler = async (m, { text, command, usedPrefix }) => {
+    if (!text) throw `contoh:\n${usedPrefix + command} stikerinbot`
     let res = await fetch(global.API('https://api.github.com', '/search/repositories', {
         q: text
     }))
+    if (!res.ok) throw await `${res.status} ${res.statusText}`
     let json = await res.json()
     if (res.status !== 200) throw json
     let str = json.items.map((repo, index) => {

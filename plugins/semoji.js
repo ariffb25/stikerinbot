@@ -4,28 +4,28 @@ const { EmojiAPI } = require("emoji-api")
 const emoji = new EmojiAPI()
 
 let handler = async (m, { conn, args, usedPrefix, command, isPrems }) => {
-  let er = `Contoh penggunaan:
-
+  let er = `contoh:
 *${usedPrefix}emo(spasi)ap(spasi)❤️*
 *${usedPrefix}emo ap ❤️*
 
-Opsi yang tersedia:
-• ap = apple
-• fa = facebook
-• go = google
-• ht = htc
-• lg
-• mi = microsoft
-• mo = mozilla
-• op = openmoji
-• pi = pixel
-• sa = samsung
-• tw = twitter
-• wh = whatsapp
+┌〔 Opsi 〕
+├ ap = apple
+├ fa = facebook
+├ go = google
+├ ht = htc
+├ lg
+├ mi = microsoft
+├ mo = mozilla
+├ op = openmoji
+├ pi = pixel
+├ sa = samsung
+├ tw = twitter
+├ wh = whatsapp
+└────
 
 Hanya bisa 1 emoji, perhatikan spasi, jangan spam!
 
-Mau bikin stiker tapi 2/3 emoji? klik http://wa.me/62851577296390?text=%23stikeremoji`
+Mau bikin stiker bisa 2/3 emoji? klik http://wa.me/62851577296390?text=%23stikeremoji`
   if (!args[0]) throw er
 
   let template = (args[0] || '').toLowerCase()

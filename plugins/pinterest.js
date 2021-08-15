@@ -13,5 +13,5 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 handler.help = ['pinterest <pencarian>']
 handler.tags = ['internet']
 handler.command = /^(pint(erest)?)$/i
-//MADE IN ERPAN 1140 BERKOLABORASI DENGAN BTS dan Ftwrr
+
 module.exports = handler

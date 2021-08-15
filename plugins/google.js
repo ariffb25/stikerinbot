@@ -12,7 +12,7 @@ let handler = async (m, { conn, command, args, usedPrefix }) => {
   try {
     let ss = await (await fetch(global.API('nrtm', '/api/ssweb', { delay: 1000, url, full }))).buffer()
     if (ss.includes('html')) throw ''
-    await conn.sendFile(m.chat, ss, 'screenshot.png', url + '\n\n' + msg, m, 0, { thumbnail: Buffer.alloc(0) })
+    await conn.sendFile(m.chat, ss, 'screenshot.png', url + '\n\n' + msg, m, 0, { thumbnail: await (await fetch(ss)).buffer() })
   } catch (e) {
     m.reply(msg)
   }

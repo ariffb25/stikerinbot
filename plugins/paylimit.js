@@ -22,7 +22,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             banned: false,
             level: 0,
             call: 0,
-            role: 'Bronze',
+            role: 'Warrior V',
             autolevelup: false,
             pc: 0,
         }

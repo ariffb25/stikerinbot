@@ -21,9 +21,10 @@ malik
 1 - 1594
 muslim
 1 - 5362`
-    if (!args[1]) throw `hadist yang ke berapa?\ncontoh: ${usedPrefix + command} ${args[0]} 1`
+    if (!args[1]) throw `hadis yang ke berapa?\n\ncontoh:\n${usedPrefix + command} muslim 1`
     try {
         let res = await fetch(`https://islamic-api-indonesia.herokuapp.com/api/data/json/hadith/${args[0]}`)
+        if (!res.ok) throw await `${res.status} ${res.statusText}`
         let json = await res.json()
         let { number, arab, id } = json.find(v => v.number == args[1])
         m.reply(`No. ${number}
@@ -32,7 +33,7 @@ ${arab}
 
 ${id}`)
     } catch (e) {
-        throw `_*Error!*_`
+        throw `Tidak ditemukan!`
     }
 }
 handler.help = ['hadis']

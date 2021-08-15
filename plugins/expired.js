@@ -1,11 +1,15 @@
-let handler = async (m, { conn, text, usedPrefix, command }) => {
-    if (!text || isNaN(text)) throw `Masukkan angka mewakili jumlah hari !\n*Misal : ${usedPrefix + command} 30*`
+let handler = async (m, { conn, args, usedPrefix, command }) => {
+    if (!args[0] || isNaN(args[0])) throw `Masukkan angka mewakili jumlah hari !\n*Misal : ${usedPrefix + command} 30*`
 
-    var jumlahHari = 86400000 * text
+    let who
+    if (m.isGroup) who = args[1] ? args[1] : m.chat
+    else who = args[1]
+
+    var jumlahHari = 86400000 * args[0]
     var now = new Date() * 1
-    if (now < global.db.data.chats[m.chat].expired) global.db.data.chats[m.chat].expired += jumlahHari
-    else global.db.data.chats[m.chat].expired = now + jumlahHari
-    m.reply(`Berhasil menetapkan hari kadaluarsa untuk ${conn.getName(m.chat)} selama ${text} hari.\n\nHitung Mundur : ${msToDate(global.db.data.chats[m.chat].expired - now)}`)
+    if (now < global.db.data.chats[who].expired) global.db.data.chats[who].expired += jumlahHari
+    else global.db.data.chats[who].expired = now + jumlahHari
+    m.reply(`Berhasil menetapkan hari kadaluarsa untuk ${conn.getName(who)} selama ${args[0]} hari.\n\nHitung Mundur : ${msToDate(global.db.data.chats[who].expired - now)}`)
 }
 handler.help = ['expired <hari>']
 handler.tags = ['owner']

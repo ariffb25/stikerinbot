@@ -5,7 +5,7 @@ module.exports = Object.assign(async function handler(m, { text }) {
     if (!text) throw `uhm.. teksnya mana?`
     let sticker = global.db.data.sticker
     let hash = m.quoted.fileSha256.toString('hex')
-    if (sticker[hash] && sticker[hash].locked) throw 'You have no permission to change this sticker command'
+    if (sticker[hash] && sticker[hash].locked) throw 'kamu tidak memiliki izin untuk mengubah perintah stiker ini'
     sticker[hash] = {
         text,
         mentionedJid: m.mentionedJid,
@@ -13,7 +13,7 @@ module.exports = Object.assign(async function handler(m, { text }) {
         at: + new Date,
         locked: false,
     }
-    m.reply(`Done!`)
+    m.reply(`Berhasil!`)
 }, {
     help: ['cmd'].map(v => 'set' + v + ' <teks>'),
     tags: ['database'],

@@ -1,33 +1,25 @@
 const fetch = require('node-fetch')
-const { MessageType } = require('@adiwajshing/baileys')
-const { sticker } = require('../lib/sticker')
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `contoh:\n${usedPrefix + command} ariffb|${conn.getName(m.sender)}`
     let [nama1, nama2] = text.split(/[&|.]/i)
     if (!nama1 || !nama2) throw `contoh:\n${usedPrefix + command} ariffb|${conn.getName(m.sender)}`
 
     let res = await fetch(global.API('zeks', '/api/primbonjodoh', { nama1, nama2 }, 'apikey'))
-    if (res.status != 200) throw await `${res.status} ${res.statusText}`
+    if (!res.ok) throw await `${res.status} ${res.statusText}`
     let json = await res.json()
-    if (json.status) {
-        let { nama1, nama2, thumb, positif, negatif } = json.result
-        stiker = await sticker(false, thumb, nama1, nama2)
-        await conn.sendMessage(m.chat, stiker, MessageType.sticker, { quoted: m })
-        m.reply(`
-*Nama kamu:* ${nama1}
-*Nama doi:* ${nama2}
+    if (!json.status) throw json
+    let { thumb, positif, negatif } = json.result
+    let caption = `
+*Nama kamu:* ${json.result.nama1}
+*Nama doi:* ${json.result.nama2}
 
 *Positif:*
 ${positif}
 
 *Negatif:*
 ${negatif}
-
-*© stikerin*
-`.trim())
-    }
-    else throw json
-
+`.trim()
+    conn.sendFile(m.chat, thumb, 'file.png', caption, m, 0, { thumbnail: await (await fetch(thumb)).buffer() })
 }
 handler.help = ['jodoh'].map(v => v + ' <nama>|<nama doi>')
 handler.tags = ['fun']

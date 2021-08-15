@@ -9,22 +9,22 @@ let handler = async (m, { conn, usedPrefix }) => {
         conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebakkata[id][0])
         throw false
     }
-    let res = await fetch(global.API('neoxr', '/api/games/whathis', {}, 'apikey'))
-    if (!res.ok) throw await res.text()
-    let json = await res.json()
-    if (!json.status) throw json
+    let res = await fetch('https://raw.githubusercontent.com/BochilTeam/database/master/games/tebakkata.json')
+    if (!res.ok) throw await `${res.status} ${res.statusText}`
+    let data = await res.json()
+    let json = data[Math.floor(Math.random() * data.length)]
     let caption = `
-${json.data.pertanyaan}
+${json.soal}
 
 Timeout *${(timeout / 1000).toFixed(2)} detik*
 Ketik ${usedPrefix}teka untuk bantuan
 Bonus: ${poin} XP
 `.trim()
     conn.tebakkata[id] = [
-        await conn.reply(m.chat, caption, m),
+        await conn.send2Button(m.chat, caption, '© stikerin', 'BANTUAN', '.teka', 'NYERAH', 'nyerah'),
         json, poin,
-        setTimeout(() => {
-            if (conn.tebakkata[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.data.jawaban}*`, conn.tebakkata[id][0])
+        setTimeout(async () => {
+            if (conn.tebakkata[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, '© stikerin', 'TEBAK KATA', '.tebakkata')
             delete conn.tebakkata[id]
         }, timeout)
     ]

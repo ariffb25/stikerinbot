@@ -1,5 +1,4 @@
-const axios = require("axios")
-const cheerio = require("cheerio")
+const fs = require('fs')
 const fetch = require('node-fetch')
 
 let timeout = 120000
@@ -11,34 +10,20 @@ let handler = async (m, { conn, usedPrefix }) => {
     conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebakgambar[id][0])
     throw false
   }
-  let random_level = Math.floor(Math.random() * 136)
-  let random_eq = Math.floor(Math.random() * 20)
-  let json = await axios.get(`https://jawabantebakgambar.net/level-${random_level}/`).then((val) => {
-    let url = "https://jawabantebakgambar.net"
-    const $ = cheerio.load(val.data)
-    let href = $("ul > * > a").eq(random_eq)
-    let jwbn = href.find("span").text()
-    let img = href.find("img").attr("data-src")
-    let src = url + img
-    let petunjuk = jwbn.replace(/[AIUEO|aiueo]/g, "_").toLowerCase()
-    return {
-      img: src,
-      jawaban: jwbn.trim().toLowerCase(),
-      petunjuk,
-    }
-  })
+  let tebakgambar = JSON.parse(fs.readFileSync(`./src/tebakgambar.json`))
+  let json = tebakgambar[Math.floor(Math.random() * tebakgambar.length)]
   let caption = `
+  ${json.deskripsi}
 Timeout *${(timeout / 1000).toFixed(2)} detik*
 Ketik ${usedPrefix}hint untuk bantuan
 Bonus: ${poin} XP
     `.trim()
   conn.tebakgambar[id] = [
-    // await conn.sendFile(m.chat, json.result.images, 'tebakgambar.jpg', caption, m, false, { thumbnail: await (await fetch(json.result.images)).buffer() })
     await conn.sendButtonImg(m.chat, caption, await (await fetch(json.img)).buffer(), '© stikerin', 'BANTUAN', '.hint')
     ,
     json, poin,
-    setTimeout(() => {
-      if (conn.tebakgambar[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, conn.tebakgambar[id][0])
+    setTimeout(async () => {
+      if (conn.tebakgambar[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, '© stikerin', 'TEBAK GAMBAR', '.tebakgambar')
       delete conn.tebakgambar[id]
     }, timeout)
   ]

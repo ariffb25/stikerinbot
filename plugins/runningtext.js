@@ -1,7 +1,7 @@
 let handler = async (m, { conn, text }) => {
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
-  if (!/image/.test(mime)) throw `Balas gambarnya`
+  if (!/image/.test(mime)) throw `balas gambarnya!`
   try { q = m.quoted.download() }
   catch (e) { q = m.download() }
   m.reply('_Sedang membuat..._\n*Mohon tunggu sekitar 1 menit*')

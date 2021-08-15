@@ -447,16 +447,18 @@ ketik *.on delete* untuk mematikan pesan ini
       user.call = 0
     }
   },
-  async GroupUpdate({ jid, desc, descId, descTime, descOwner }) {
+  async GroupUpdate({ jid, desc, descId, descTime, descOwner, announce }) {
     if (!global.db.data.chats[jid].descUpdate) return
-    let caption = `
-@${descOwner.split`@`[0]} telah mengubah deskripsi grup.
+    else {
+      let caption = `
+    @${descOwner.split`@`[0]} telah mengubah deskripsi grup.
 
-${desc}
+    ${desc}
 
-ketik *.off desc* untuk mematikan pesan ini
-    `.trim()
-    this.sendButton(jid, caption, '', 'MATIKAN DESKRIPSI', ',off desc', { contextInfo: { mentionedJid: this.parseMention(caption) } })
+    ketik *.off desc* untuk mematikan pesan ini
+        `.trim()
+      this.sendButton(jid, caption, '', 'MATIKAN DESKRIPSI', ',off desc', { contextInfo: { mentionedJid: this.parseMention(caption) } })
+    }
   }
 }
 
