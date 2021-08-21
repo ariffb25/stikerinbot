@@ -70,7 +70,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
           throw false
         }
       }
-      chat.antiBadword = !isEnable
+      chat.antiBadword = isEnable
       break
     case 'autodelvn':
       if (m.isGroup) {
