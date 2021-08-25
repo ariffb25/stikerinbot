@@ -1,1 +1,1 @@
-web: node . --server
+web: node . --db https://json-server.someonebot.repl.co
