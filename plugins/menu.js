@@ -138,99 +138,99 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
           {
             "rows": [
               {
-                "title": `Semua Perintah`,
+                "title": "Semua Perintah",
                 "description": "",
-                "rowId": ".? all"
+                "rowId": `${_p}? all`
               }, {
                 "title": "Game",
                 "description": "",
-                "rowId": ".? game"
+                "rowId": `${_p}? game`
 
               }, {
                 "title": "XP",
                 "description": "",
-                "rowId": ".? xp"
+                "rowId": `${_p}? xp`
 
               }, {
                 "title": "Stiker",
                 "description": "",
-                "rowId": ".? stiker"
+                "rowId": `${_p}? stiker`
               }, {
                 "title": "Kerang Ajaib",
                 "description": "",
-                "rowId": ".? kerang"
+                "rowId": `${_p}? kerang`
               }, {
                 "title": "Quotes",
                 "description": "",
-                "rowId": ".? quotes"
+                "rowId": `${_p}? quotes`
               }, {
                 "title": "Admin",
                 "description": "",
-                "rowId": ".? admin"
+                "rowId": `${_p}? admin`
               }, {
                 "title": "Grup",
                 "description": "",
-                "rowId": ".? grup"
+                "rowId": `${_p}? grup`
               }, {
                 "title": "Premium",
                 "description": "",
-                "rowId": ".? premium"
+                "rowId": `${_p}? premium`
               }, {
                 "title": "Internet",
                 "description": "",
-                "rowId": ".? internet"
+                "rowId": `${_p}? internet`
               }, {
                 "title": "Anonymous",
                 "description": "",
-                "rowId": ".? anonymous"
+                "rowId": `${_p}? anonymous`
               }, {
                 "title": "Nulis & Logo",
                 "description": "",
-                "rowId": ".? nulis"
+                "rowId": `${_p}? nulis`
               }, {
                 "title": "Downloader",
                 "description": "",
-                "rowId": ".? downloader"
+                "rowId": `${_p}? downloader`
               }, {
                 "title": "Tools",
                 "description": "",
-                "rowId": ".? tools"
+                "rowId": `${_p}? tools`
               }, {
                 "title": "Fun",
                 "description": "",
-                "rowId": ".? fun"
+                "rowId": `${_p}? fun`
               }, {
                 "title": "Database",
                 "description": "",
-                "rowId": ".? database"
+                "rowId": `${_p}? database`
               }, {
                 "title": "Vote & Absen",
                 "description": "",
-                "rowId": ".? vote"
+                "rowId": `${_p}? vote`
               }, {
                 "title": "Al-Qur\'an",
                 "description": "",
-                "rowId": ".? quran"
+                "rowId": `${_p}? quran`
               }, {
                 "title": "Pengubah Suara",
                 "description": "",
-                "rowId": ".? audio"
+                "rowId": `${_p}? audio`
               }, {
                 "title": "Jadi Bot",
                 "description": "",
-                "rowId": ".? jadibot"
+                "rowId": `${_p}? jadibot`
               }, {
                 "title": "Info",
                 "description": "",
-                "rowId": ".? info"
+                "rowId": `${_p}? info`
               }, {
                 "title": "Tanpa Kategori",
                 "description": "",
-                "rowId": ".? tanpakategori"
+                "rowId": `${_p}? tanpakategori`
               }, {
                 "title": "Owner",
                 "description": "",
-                "rowId": ".? owner"
+                "rowId": `${_p}? owner`
               }
             ]
           }
@@ -371,7 +371,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    await conn.send2Button(m.chat, text.trim(), 'made with ❤️ by ariffb', 'PEMILIK BOT', '.owner', 'DONASI', '.donasi', { quoted: m })
+    await conn.send2Button(m.chat, text.trim(), 'made with ❤️ by ariffb', 'PEMILIK BOT', `${_p}owner`, 'DONASI', '.donasi', { quoted: m })
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
