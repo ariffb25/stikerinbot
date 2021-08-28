@@ -8,7 +8,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (!args[0].match(/(https:\/\/store.line.me\/stickershop\/product\/.*)/gi)) throw `url salah`
 
     let res = await fetch(global.API('zeks', '/api/linesticker', { link: args[0] }, 'apikey'))
-    if (!res.ok) throw await `${res.status} ${res.statusText}`
+    if (!res.ok) throw eror
     let json = await res.json()
     if (!json.status) throw json
     let hasil = json.sticker.map((v, i) => `${i + 1}. ${v}`).join('\n')

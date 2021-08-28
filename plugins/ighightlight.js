@@ -4,7 +4,7 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
   let res = await fetch(global.API('xteam', '/dl/ighighlight', {
     nama: args[0]
   }, 'APIKEY'))
-  if (!res.ok) throw await `${res.status} ${res.statusText}`
+  if (!res.ok) throw eror
   let json = await res.json()
   if (json.result.error) throw json.result.message
   let { username, items } = json.result

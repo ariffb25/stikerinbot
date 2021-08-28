@@ -13,8 +13,8 @@ let handler = async (m, { usedPrefix }) => {
     method: 'POST',
     body
   })
-  if (!res.ok) throw await `${res.status} ${res.statusText}`
-  await conn.sendFile(m.chat, await res.buffer(), 'hd.jpg', '', m, false, { thumbnail: await res.buffer() })
+  if (!res.ok) throw eror
+  await conn.sendFile(m.chat, await res.buffer(), 'hd.jpg', '', m, false, { thumbnail: Buffer.alloc(0) })
 }
 handler.help = ['hd', 'enhance']
 handler.tags = ['tools']

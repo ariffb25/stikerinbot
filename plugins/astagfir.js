@@ -1,5 +1,5 @@
 let handler = async (m) => {
-    let user = global.db.data.users[m.sender]
+    let user = db.data.users[m.sender]
     if (user.warning == 0) throw 'Kamu tidak memiliki warning!'
 
     let waktu = user.lastIstigfar + 180000
@@ -8,7 +8,7 @@ let handler = async (m) => {
     m.reply(`Warning: ${user.warning} / 5`)
     user.lastIstigfar = new Date * 1
 }
-handler.command = /^astagh?fir(ullah)?|maaf$/i
+handler.command = /^(astagh?fir(ullah)?|maaf)$/i
 
 handler.limit = true
 

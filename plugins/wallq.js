@@ -7,7 +7,7 @@ let handler = async (m, { conn, text }) => {
     method: 'search',
     term: text
   }))
-  if (!res.ok) throw await res.text()
+  if (!res.ok) throw eror
   let json = await res.json()
   let img = json.wallpapers[Math.floor(Math.random() * json.wallpapers.length)]
   await conn.sendFile(m.chat, img.url_image, 'wallpaper', '', m, 0, { thumbnail: Buffer.alloc(0) })

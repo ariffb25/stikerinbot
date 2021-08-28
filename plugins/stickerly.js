@@ -7,7 +7,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `*Perintah ini untuk mengambil stiker dari Stickerly berdasarkan pencarian*\n\nContoh penggunaan:\n${usedPrefix + command} spongebob`
 
     let res = await fetch(global.API('zeks', '/api/searchsticker', { q: text }, 'apikey'))
-    if (!res.ok) throw await `${res.status} ${res.statusText}`
+    if (!res.ok) throw eror
     let json = await res.json()
     if (!json.status) throw json
     let hasil = json.sticker.map((v, i) => `${i + 1}. ${v}`).join('\n')

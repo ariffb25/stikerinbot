@@ -4,9 +4,8 @@ let handler = async (m, { text, command, usedPrefix }) => {
     let res = await fetch(global.API('https://api.github.com', '/search/repositories', {
         q: text
     }))
-    if (!res.ok) throw await `${res.status} ${res.statusText}`
+    if (!res.ok) throw eror
     let json = await res.json()
-    if (res.status !== 200) throw json
     let str = json.items.map((repo, index) => {
         return `
 ${1 + index}. *${repo.full_name}*${repo.fork ? ' (fork)' : ''}

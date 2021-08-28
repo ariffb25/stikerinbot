@@ -1,4 +1,4 @@
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn }) => {
     if (!m.quoted) throw `balas pesan yang hanya bisa dilihat sekali`
     try {
         await conn.copyNForward(m.chat, await conn.loadMessage(m.chat, m.quoted.id), false, { readViewOnce: true })
