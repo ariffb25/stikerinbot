@@ -1,14 +1,10 @@
-let handler = async m => m.reply(`
-┌〔 Donasi • Pulsa 〕
-├ Axis [083128734012]
-├ BYU [085157336614]
-└────
-
+let fetch = require('node-fetch')
+let handler = async (m, { conn }) => conn.sendButtonLoc(m.chat, await (await fetch(fla + 'donasi')).buffer(), `
 ┌〔 Donasi • Emoney 〕
-├ OVO, Dana [083128734012]
 ├ https://saweria.co/ariffb
+├ https://trakteer.id/ariffb/tip
 └────
-`.trim())
+`.trim(), '© stikerin', 'Donasi', '.donasi')
 handler.help = ['donasi']
 handler.tags = ['info']
 handler.command = /^dona(te|si)$/i

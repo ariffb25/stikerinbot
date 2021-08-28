@@ -2,7 +2,7 @@ let fetch = require("node-fetch")
 
 let handler = async (m, { conn, text }) => {
   let res = await fetch(API('https://meme-api.herokuapp.com', '/gimme/' + encodeURI(text || ''), {}))
-  if (!res.ok) throw await `${res.status} ${res.statusText}`
+  if (!res.ok) throw eror
   let json = await res.json()
   if (!json.url) throw 'Media tidak ditemukan!'
   if (json.nsfw && !db.data.settings.nsfw) throw 'Mode NSFW tidak aktif'

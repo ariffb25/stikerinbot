@@ -1,7 +1,7 @@
 let handler = m => m
 
 handler.all = async function (m) {
-    if (!db.data.settings.antispam) return // antispam aktif?
+    if (!db.data.settings[this.user.jid].antispam) return // antispam aktif?
     if (m.isBaileys && m.fromMe) return
     if (!m.message) return
     if (!m.isCommand) return
@@ -13,7 +13,7 @@ handler.all = async function (m) {
         if (m.messageTimestamp.toNumber() - this.spam[m.sender].lastspam > 10) {
             if (this.spam[m.sender].count > 10) {
                 db.data.users[m.sender].banned = true
-                await this.sendButton(m.chat, 'kamu dibanned!', '© stikerin', 'PEMILIK BOT', ',owner')
+                await this.sendButton(m.chat, 'kamu dibanned!', '© stikerin', 'Pemilik Bot', ',owner')
             }
             this.spam[m.sender].count = 0
             this.spam[m.sender].lastspam = m.messageTimestamp.toNumber()

@@ -4,7 +4,7 @@ const { MessageType } = require('@adiwajshing/baileys')
 
 let handler = async (m, { conn }) => {
   let res = await fetch(global.API('https://some-random-api.ml', '/img/pikachu'))
-  if (!res.ok) throw await `${res.status} ${res.statusText}`
+  if (!res.ok) throw eror
   let json = await res.json()
   let stiker = await sticker(null, json.link, global.packname, global.author)
   if (stiker) return conn.sendMessage(m.chat, stiker, MessageType.sticker, {

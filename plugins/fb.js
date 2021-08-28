@@ -7,7 +7,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     let json = JSON.parse(fb)
     // m.reply(require('util').format(json))
     if (!json.status) throw json
-    await m.reply(global.wait)
+    await m.reply(wait)
     await conn.sendFile(m.chat, json.data[0].url, '', '© stikerin', m)
   }).catch(_ => _)
 }

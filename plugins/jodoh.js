@@ -5,7 +5,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!nama1 || !nama2) throw `contoh:\n${usedPrefix + command} ariffb|${conn.getName(m.sender)}`
 
     let res = await fetch(global.API('zeks', '/api/primbonjodoh', { nama1, nama2 }, 'apikey'))
-    if (!res.ok) throw await `${res.status} ${res.statusText}`
+    if (!res.ok) throw eror
     let json = await res.json()
     if (!json.status) throw json
     let { thumb, positif, negatif } = json.result

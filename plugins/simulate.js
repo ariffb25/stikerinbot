@@ -37,7 +37,7 @@ let handler = async (m, { conn, args: [event], text }) => {
     return conn.onDelete(m)
 }
 handler.help = ['simulate <event> [@mention]']
-handler.tags = ['owner', 'group']
+handler.tags = ['owner']
 
 handler.command = /^simulate$/i
 module.exports = handler

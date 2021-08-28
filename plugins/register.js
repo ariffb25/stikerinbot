@@ -24,7 +24,7 @@ Daftar berhasil!
 ├ SN: ${sn}
 └────
 
-SN digunakan untuk unreg, jadi simpan/bintangi pesan ini
+simpan/bintangi pesan ini karena SN (Serial Number) digunaan untuk daftar ulang
 `.trim())
 }
 handler.help = ['daftar', 'reg', 'register'].map(v => v + ' <nama>.<umur>')

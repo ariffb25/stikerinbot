@@ -10,7 +10,7 @@ let handler = async (m, { usedPrefix, command }) => {
     let img = await q.download()
     let url = await uploadImage(img)
     let res = await fetch(global.API('jonaz', '/ocr', { url }, ''))
-    if (!res.ok) throw await `${res.status} ${res.statusText}`
+    if (!res.ok) throw eror
     let json = await res.json()
     if (!json.resultadoOCR) throw json
     m.reply(json.resultadoOCR)

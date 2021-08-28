@@ -7,7 +7,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     let packName = args[0].replace("https://t.me/addstickers/", "")
 
     let gas = await fetch(`https://api.telegram.org/bot891038791:AAHWB1dQd-vi0IbH2NjKYUk-hqQ8rQuzPD4/getStickerSet?name=${encodeURIComponent(packName)}`, { method: "GET", headers: { "User-Agent": "GoogleBot" } })
-    if (!gas.ok) throw await `${gas.status} ${gas.statusText}`
+    if (!gas.ok) throw eror
 
     let json = await gas.json()
     m.reply(`*Total stiker:* ${json.result.stickers.length}

@@ -6,7 +6,7 @@ let handler = async (m, { conn }) => {
   if (!global.support.convert &&
     !global.support.magick &&
     !global.support.gm) return handler.disabled = true // Disable if doesnt support
-  if (!m.quoted) return conn.reply(m.chat, 'Tag stikernya!', m)
+  if (!m.quoted) return conn.reply(m.chat, 'tag stikernya!', m)
   let q = { message: { [m.quoted.mtype]: m.quoted } }
   if (/sticker/.test(m.quoted.mtype)) {
     let sticker = await conn.downloadM(q)
@@ -20,7 +20,8 @@ let handler = async (m, { conn }) => {
     im.stdin.end()
     im.on('exit', () => {
       conn.sendMessage(m.chat, Buffer.concat(bufs), MessageType.image, {
-        quoted: m
+        quoted: m,
+        caption: '© stikerin'
       })
     })
   }

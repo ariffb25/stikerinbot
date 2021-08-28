@@ -1,7 +1,7 @@
 let fetch = require("node-fetch")
 let handler = async (m, { conn }) => {
   let res = await fetch(global.API('https://some-random-api.ml', '/meme'))
-  if (!res.ok) throw await `${res.status} ${res.statusText}`
+  if (!res.ok) throw eror
   let json = await res.json()
   if (!json.image) throw 'Err!'
   let thumbnail = await (await fetch(json.image)).buffer()

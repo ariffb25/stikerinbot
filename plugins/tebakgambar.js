@@ -1,6 +1,4 @@
-const fs = require('fs')
 const fetch = require('node-fetch')
-
 let timeout = 120000
 let poin = 500
 let handler = async (m, { conn, usedPrefix }) => {
@@ -10,8 +8,8 @@ let handler = async (m, { conn, usedPrefix }) => {
     conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebakgambar[id][0])
     throw false
   }
-  let tebakgambar = JSON.parse(fs.readFileSync(`./src/tebakgambar.json`))
-  let json = tebakgambar[Math.floor(Math.random() * tebakgambar.length)]
+  let src = await (await fetch('https://raw.githubusercontent.com/BochilTeam/database/master/games/tebakgambar.json')).json()
+  let json = src[Math.floor(Math.random() * src.length)]
   let caption = `
   ${json.deskripsi}
 Timeout *${(timeout / 1000).toFixed(2)} detik*
@@ -19,11 +17,11 @@ Ketik ${usedPrefix}hint untuk bantuan
 Bonus: ${poin} XP
     `.trim()
   conn.tebakgambar[id] = [
-    await conn.sendButtonImg(m.chat, caption, await (await fetch(json.img)).buffer(), '© stikerin', 'BANTUAN', '.hint')
+    await conn.sendButtonImg(m.chat, await (await fetch(json.img)).buffer(), caption, '© stikerin', 'Bantuan', '.hint', m)
     ,
     json, poin,
     setTimeout(async () => {
-      if (conn.tebakgambar[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, '© stikerin', 'TEBAK GAMBAR', '.tebakgambar')
+      if (conn.tebakgambar[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, '© stikerin', 'Tebak Gambar', '.tebakgambar', conn.tebakgambar[id][0])
       delete conn.tebakgambar[id]
     }, timeout)
   ]

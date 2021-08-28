@@ -10,7 +10,7 @@ let handler = async (m, { conn, usedPrefix }) => {
   let url = await (uploadImage)(img)
   let anime = `data:${mime};base64,${img.toString('base64')}`
   let res = await fetch(`https://api.trace.moe/search?cutBorders&url=${encodeURIComponent(url)}`)
-  if (!res.ok) throw 'Gambar tidak ditemukan!'
+  if (!res.ok) throw eror
   let json = await res.json()
   // m.reply(`${require('util').format(result)}`)
   let { anilist, filename, episode, from, to, similarity, video, image } = json.result[0]

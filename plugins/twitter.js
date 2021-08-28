@@ -9,7 +9,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     let pesan = json.data.map((v) => `Link: ${v.url}`).join('\n------------\n')
     m.reply(pesan)
     for (let { url } of json.data)
-      conn.sendFile(m.chat, url, 'ig' + (/mp4/i.test(url) ? '.mp4' : '.jpg'), `*© stikerin*`, m, false, { thumbnail: Buffer.alloc(0) })
+      conn.sendFile(m.chat, url, 'ig' + (/mp4/i.test(url) ? '.mp4' : '.jpg'), `© stikerin`, m, false, { thumbnail: Buffer.alloc(0) })
   })
 
 }

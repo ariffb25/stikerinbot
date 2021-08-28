@@ -13,6 +13,7 @@ let handler = async (m, { conn, text, command }) => {
   }
   if (/2$/i.test(command)) {
     let url = await fetch(global.API('https://salism3api.pythonanywhere.com', '/text2img/', { text: teks }))
+    if (!url.ok) throw eror
     res = await url.json()
     stick = res.image
     let stiker = await sticker(null, stick, global.packname, global.author)
@@ -29,6 +30,7 @@ let handler = async (m, { conn, text, command }) => {
   }
   if (/4$/i.test(command)) {
     let url = await fetch(global.API('https://salism3api.pythonanywhere.com', '/text2img/', { text: teks, outlineColor: '255,0,0,255', textColor: '0,0,0,255' }))
+    if (!url.ok) throw eror
     res = await url.json()
     stick = res.image
     let stiker = await sticker(null, stick, global.packname, global.author)
