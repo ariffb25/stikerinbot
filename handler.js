@@ -391,23 +391,29 @@ module.exports = {
             } finally {
               text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Selamat datang, @user!').replace('@subject', this.getName(jid)).replace('@desc', groupMetadata.desc ? String.fromCharCode(8206).repeat(4001) + groupMetadata.desc : '') :
                 (chat.sBye || this.bye || conn.bye || 'Sampai jumpa, @user!')).replace(/@user/g, '@' + user.split`@`[0])
-              let wel = await new knights.Welcome()
-                .setUsername(this.getName(user))
-                .setGuildName(this.getName(jid))
-                .setGuildIcon(ppgc)
-                .setMemberCount(groupMetadata.participants.length)
-                .setAvatar(pp)
-                .setBackground("https://i.ibb.co/KhtRxwZ/dark.png")
-                .toAttachment()
+              let wel, lea;
+              if(!global.UsingCanvasAPI){
+                wel = await new knights.Welcome()
+                  .setUsername(this.getName(user))
+                  .setGuildName(this.getName(jid))
+                  .setGuildIcon(ppgc)
+                  .setMemberCount(groupMetadata.participants.length)
+                  .setAvatar(pp)
+                  .setBackground("https://i.ibb.co/KhtRxwZ/dark.png")
+                  .toAttachment()
 
-              let lea = await new knights.Goodbye()
-                .setUsername(this.getName(user))
-                .setGuildName(this.getName(jid))
-                .setGuildIcon(ppgc)
-                .setMemberCount(groupMetadata.participants.length)
-                .setAvatar(pp)
-                .setBackground("https://i.ibb.co/KhtRxwZ/dark.png")
-                .toAttachment()
+                lea = await new knights.Goodbye()
+                  .setUsername(this.getName(user))
+                  .setGuildName(this.getName(jid))
+                  .setGuildIcon(ppgc)
+                  .setMemberCount(groupMetadata.participants.length)
+                  .setAvatar(pp)
+                  .setBackground("https://i.ibb.co/KhtRxwZ/dark.png")
+                  .toAttachment()
+              } else {
+                wel = `${global.CanvasAPI != '' ? global.canvasAPI : 'https://canvas-heroku-stikerin.herokuapp.com'}/generatwelcome?username=${this.getName(user)}&groupname=${this.getName(jid)}&grouplength=${groupMetadata.participants.length}`
+                lea = `${global.CanvasAPI != ''? global.canvasAPI : 'https://canvas-heroku-stikerin.herokuapp.com'}/generatwelcome?username=${this.getName(user)}&groupname=${this.getName(jid)}&grouplength=${groupMetadata.participants.length}`
+              }
 
               this.sendFile(jid, action === 'add' ? wel.toBuffer() : lea.toBuffer(), 'pp.jpg', text, null, false, {
                 contextInfo: {
