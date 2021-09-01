@@ -417,8 +417,8 @@ module.exports = {
                   }
                 })
               } else {
-                wel = `${global.CanvasAPI != '' ? global.canvasAPI : 'https://canvas-heroku-stikerin.herokuapp.com'}/generatwelcome?username=${this.getName(user)}&groupname=${this.getName(jid)}&grouplength=${groupMetadata.participants.length}`
-                lea = `${global.CanvasAPI != ''? global.canvasAPI : 'https://canvas-heroku-stikerin.herokuapp.com'}/generatwelcome?username=${this.getName(user)}&groupname=${this.getName(jid)}&grouplength=${groupMetadata.participants.length}`
+                wel = `${global.CanvasAPI != '' ? global.canvasAPI : 'https://canvas-heroku-stikerinbot.herokuapp.com'}/generatwelcome?username=${this.getName(user)}&groupname=${this.getName(jid)}&grouplength=${groupMetadata.participants.length}`
+                lea = `${global.CanvasAPI != ''? global.canvasAPI : 'https://canvas-heroku-stikerinbot.herokuapp.com'}/generatwelcome?username=${this.getName(user)}&groupname=${this.getName(jid)}&grouplength=${groupMetadata.participants.length}`
                 this.sendFile(jid, action === 'add' ? wel : lea, 'pp.jpg', text, null, false, {
                   contextInfo: {
                     mentionedJid: [user]

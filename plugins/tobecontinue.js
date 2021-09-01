@@ -17,7 +17,7 @@ let handler = async (m, { conn }) => {
     ctx.drawImage(base, 0, canvas.height - height, width, height);
     attachment = canvas.toBuffer();
   } else {
-    attachment = `${global.CanvasAPI != '' ? global.canvasAPI : 'https://canvas-heroku-stikerin.herokuapp.com'}/generatetbc?avatarurl=${await conn.getProfilePicture(who).catch(_ => 'https://telegra.ph/file/24fa902ead26340f3df2c.png')}`;
+    attachment = `${global.CanvasAPI != '' ? global.canvasAPI : 'https://canvas-heroku-stikerinbot.herokuapp.com'}/generatetbc?avatarurl=${await conn.getProfilePicture(who).catch(_ => 'https://telegra.ph/file/24fa902ead26340f3df2c.png')}`;
   }
   conn.sendFile(m.chat, attachment, 'to-be-continue.png', '© stickerinbot', m, 0, { thumbnail: global.UsingCanvasAPI == false ? attachment : await(await(fetch(attachment).toBuffer())) })
 }
