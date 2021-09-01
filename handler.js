@@ -2,7 +2,6 @@ let util = require('util')
 let fetch = require('node-fetch')
 let simple = require('./lib/simple')
 const uploadImage = require('./lib/uploadImage')
-const knights = require('knights-canvas')
 let { MessageType } = require('@adiwajshing/baileys')
 
 const isNumber = x => typeof x === 'number' && !isNaN(x)
@@ -393,6 +392,7 @@ module.exports = {
                 (chat.sBye || this.bye || conn.bye || 'Sampai jumpa, @user!')).replace(/@user/g, '@' + user.split`@`[0])
               let wel, lea;
               if(!global.UsingCanvasAPI){
+                const knights = require('knights-canvas')
                 wel = await new knights.Welcome()
                   .setUsername(this.getName(user))
                   .setGuildName(this.getName(jid))
