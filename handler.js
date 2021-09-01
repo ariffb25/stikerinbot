@@ -409,17 +409,22 @@ module.exports = {
                   .setMemberCount(groupMetadata.participants.length)
                   .setAvatar(pp)
                   .setBackground("https://i.ibb.co/KhtRxwZ/dark.png")
-                  .toAttachment()
+                  .toAttachment();
+
+                this.sendFile(jid, action === 'add' ? wel.toBuffer() : lea.toBuffer(), 'pp.jpg', text, null, false, {
+                  contextInfo: {
+                    mentionedJid: [user]
+                  }
+                })
               } else {
                 wel = `${global.CanvasAPI != '' ? global.canvasAPI : 'https://canvas-heroku-stikerin.herokuapp.com'}/generatwelcome?username=${this.getName(user)}&groupname=${this.getName(jid)}&grouplength=${groupMetadata.participants.length}`
                 lea = `${global.CanvasAPI != ''? global.canvasAPI : 'https://canvas-heroku-stikerin.herokuapp.com'}/generatwelcome?username=${this.getName(user)}&groupname=${this.getName(jid)}&grouplength=${groupMetadata.participants.length}`
+                this.sendFile(jid, action === 'add' ? wel : lea, 'pp.jpg', text, null, false, {
+                  contextInfo: {
+                    mentionedJid: [user]
+                  }
+                })
               }
-
-              this.sendFile(jid, action === 'add' ? wel.toBuffer() : lea.toBuffer(), 'pp.jpg', text, null, false, {
-                contextInfo: {
-                  mentionedJid: [user]
-                }
-              })
             }
           }
         }

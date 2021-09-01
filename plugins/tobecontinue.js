@@ -1,11 +1,10 @@
 let handler = async (m, { conn }) => {
   let attachment;
+  let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
   if(!global.UsingCanvasAPI)
   {
     const { createCanvas, loadImage } = require('canvas');
     const { drawImageWithTint } = require('./../lib/Canvas');
-
-    let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
     const base = await loadImage("https://raw.githubusercontent.com/bot-clones/xiao/master/assets/images/to-be-continued.png");
     console.log(base);
     const data = await loadImage(await conn.getProfilePicture(who).catch(_ => 'https://telegra.ph/file/24fa902ead26340f3df2c.png'));
