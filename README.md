@@ -18,9 +18,9 @@
 ```bash
 git clone https://github.com/ariffb25/stikerinbot
 cd stikerinbot
-npm install
+npm i
 npm update
-npm index
+node .
 ```
 
 ---------
