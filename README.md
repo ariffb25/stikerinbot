@@ -25,6 +25,17 @@ node .
 
 ---------
 
+## UNTUK PENGGUNA TERMUX
+```bash
+git clone https://github.com/ariffb25/stikerinbot --branch termux
+cd stikerinbot
+npm i
+npm update
+node .
+```
+
+---------
+
 ## UNTUK PENGGUNA HEROKU
 
 ### Instal Buildpack
