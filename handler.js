@@ -374,6 +374,7 @@ module.exports = {
   async participantsUpdate({ jid, participants, action }) {
     let chat = global.db.data.chats[jid] || {}
     let text = ''
+    console.log(action);
     switch (action) {
       case 'add':
       case 'remove':
@@ -417,8 +418,8 @@ module.exports = {
                   }
                 })
               } else {
-                wel = `${global.CanvasAPI != '' ? global.canvasAPI : 'https://canvas-heroku-stikerinbot.herokuapp.com'}/generatwelcome?username=${this.getName(user)}&groupname=${this.getName(jid)}&grouplength=${groupMetadata.participants.length}`
-                lea = `${global.CanvasAPI != ''? global.canvasAPI : 'https://canvas-heroku-stikerinbot.herokuapp.com'}/generatwelcome?username=${this.getName(user)}&groupname=${this.getName(jid)}&grouplength=${groupMetadata.participants.length}`
+                wel = `${global.CanvasAPI != '' ? global.canvasAPI : 'https://canvas-heroku-stikerinbot.herokuapp.com'}/generatewelcome?username=${this.getName(user)}&groupname=${this.getName(jid)}&grouplength=${groupMetadata.participants.length}&avatarurl=${pp}&groupavatar=${ppgc}` // If You Want Custom Background Add &bg=URL
+                lea = `${global.CanvasAPI != ''? global.canvasAPI : 'https://canvas-heroku-stikerinbot.herokuapp.com'}/generatebye?username=${this.getName(user)}&groupname=${this.getName(jid)}&grouplength=${groupMetadata.participants.length}&avatarurl=${pp}&groupavatar=${ppgc}` // If You Want Custom Background Add &bg=URL
                 this.sendFile(jid, action === 'add' ? wel : lea, 'pp.jpg', text, null, false, {
                   contextInfo: {
                     mentionedJid: [user]
