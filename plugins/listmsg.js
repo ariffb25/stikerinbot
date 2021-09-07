@@ -27,6 +27,7 @@ ${fltr}
 └────
 Akses/ambil dengan mengetik:
 *${usedPrefix}get${which}* <nama>
+atau langsung tanpa perintah
 `.trim())
 }
 handler.help = ['vn', 'msg', 'video', 'gif', 'audio', 'img', 'sticker'].map(v => 'list' + v)

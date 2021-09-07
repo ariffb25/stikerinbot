@@ -1,4 +1,13 @@
-let handler = async (m, { conn, text, participants }) => {
+let handler = async (m, { conn, text, participants, isAdmin, isOwner }) => {
+  if (m.isGroup) {
+    if (!(isAdmin || isOwner)) {
+      global.dfail('admin', m, conn)
+      throw false
+    }
+  } else {
+    global.dfail('group', m, conn)
+    throw false
+  }
   let users = participants.map(u => u.jid)
   m.reply(`${text ? `${text}\n` : ''}┌─〔 Tag All 〕\n` + users.map(v => '├ @' + v.replace(/@.+/, '')).join`\n` + '\n└────', null, {
     contextInfo: { mentionedJid: users }
@@ -6,10 +15,7 @@ let handler = async (m, { conn, text, participants }) => {
 }
 
 handler.help = ['tagall']
-handler.tags = ['group']
+handler.tags = ['group', 'owner']
 handler.command = ['tagall']
-
-handler.admin = true
-handler.group = true
 
 module.exports = handler

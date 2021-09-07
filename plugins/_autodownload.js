@@ -12,8 +12,10 @@ handler.all = async function (m, { isPrems }) {
     if (db.data.users[m.sender].banned) return
     if (db.data.chats[m.chat].isBanned) return
 
+    let url = m.text.split(/\n| /i)[0]
+
     if (/^.*tiktok/i.test(m.text)) {
-        let res = await fetch(API('hardianto', '/api/download/tiktok', { url: m.text.split(/\n| /i)[0] }, 'apikey'))
+        let res = await fetch(API('hardianto', '/api/download/tiktok', { url }, 'apikey'))
         if (!res.ok) return m.reply(eror)
         let json = await res.json()
         await m.reply(wait)
@@ -22,7 +24,7 @@ handler.all = async function (m, { isPrems }) {
     }
 
     if (/^.*cocofun/i.test(m.text)) {
-        let res = await fetch(API('jojo', '/api/cocofun-no-wm', { url: m.text.split(/\n| /i)[0] }))
+        let res = await fetch(API('jojo', '/api/cocofun-no-wm', { url }))
         if (!res.ok) return m.reply(eror)
         let json = await res.json()
         await m.reply(wait)
@@ -31,7 +33,7 @@ handler.all = async function (m, { isPrems }) {
     }
 
     if (/^.*(fb.watch|facebook.com)/i.test(m.text)) {
-        facebook(m.text.split(/\n| /i)[0]).then(async res => {
+        facebook(url).then(async res => {
             let fb = JSON.stringify(res)
             let json = JSON.parse(fb)
             if (!json.status) throw json
@@ -42,7 +44,7 @@ handler.all = async function (m, { isPrems }) {
     }
 
     if (/^.*instagram.com\/(p|reel|tv)/i.test(m.text)) {
-        igdl(m.text.split(/\n| /i)[0]).then(async res => {
+        igdl(url).then(async res => {
             let igdl = JSON.stringify(res)
             let json = JSON.parse(igdl)
             await m.reply(wait)
@@ -53,7 +55,7 @@ handler.all = async function (m, { isPrems }) {
     }
 
     if (/^.*(pinterest.com\/pin|pin.it)/i.test(m.text)) {
-        pin(m.text.split(/\n| /i)[0]).then(async res => {
+        pin(url).then(async res => {
             let pin = JSON.stringify(res)
             let json = JSON.parse(pin)
             if (!json.status) return m.reply(eror)
@@ -64,7 +66,7 @@ handler.all = async function (m, { isPrems }) {
     }
 
     if (/^.*twitter.com\//i.test(m.text)) {
-        twitter(m.text.split(/\n| /i)[0]).then(async res => {
+        twitter(url).then(async res => {
             let twit = JSON.stringify(res)
             let json = JSON.parse(twit)
             let pesan = json.data.map((v) => `Link: ${v.url}`).join('\n------------\n')
@@ -76,7 +78,7 @@ handler.all = async function (m, { isPrems }) {
     }
 
     if (/^https?:\/\/.*youtu/i.test(m.text)) {
-        let results = await yts(m.text.split(/\n| /i)[0])
+        let results = await yts(url)
         let vid = results.all.find(video => video.seconds < 3600)
         if (!vid) return m.reply('Video/Audio Tidak ditemukan')
         let yt = false

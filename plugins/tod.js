@@ -1,22 +1,20 @@
 let fetch = require('node-fetch')
-let handler = async (m, { conn, command }) => {
+let handler = async (m, { conn, command, usedPrefix }) => {
   if (/^tod$/i.test(command)) {
-    conn.send3Button(m.chat, 'Truth or Dare', '© stikerin', 'Truth', ',truth', 'Dare', ',dare', 'RANDOM', `${pickRandom([',dare', ',truth'])}`, m)
+    await conn.send3Button(m.chat, 'Truth or Dare', '© stikerin', 'Truth', `${usedPrefix}truth`, 'Dare', `${usedPrefix}dare`, 'Acak', `${pickRandom([`${usedPrefix}dare`, `${usedPrefix}truth`])}`, m)
   }
   if (/^truth$/i.test(command)) {
-    let res = await fetch(global.API('pencarikode', '/api/truthid', {}, 'apikey'))
+    let res = await fetch(API('pencarikode', '/api/truthid', {}, 'apikey'))
     if (!res.ok) throw eror
     let json = await res.json()
-    if (json.message == "") throw json
-    conn.send2Button(m.chat, json.message, '© stikerin', 'Truth', ',truth', 'Dare', ',dare', m)
+    await conn.send2Button(m.chat, json.message, '© stikerin', 'Truth', `${usedPrefix}truth`, 'Dare', `${usedPrefix}dare`, m)
 
   }
   if (/^dare$/i.test(command)) {
-    let res = await fetch(global.API('pencarikode', '/api/dareid', {}, 'apikey'))
+    let res = await fetch(API('pencarikode', '/api/dareid', {}, 'apikey'))
     if (!res.ok) throw eror
     let json = await res.json()
-    if (json.message == "") throw json
-    conn.send2Button(m.chat, json.message, '© stikerin', 'Truth', ',truth', 'Dare', ',dare', m)
+    await conn.send2Button(m.chat, json.message, '© stikerin', 'Truth', `${usedPrefix}truth`, 'Dare', `${usedPrefix}dare`, m)
 
   }
 }
