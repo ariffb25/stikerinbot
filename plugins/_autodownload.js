@@ -33,14 +33,12 @@ handler.all = async function (m, { isPrems }) {
     }
 
     if (/^.*(fb.watch|facebook.com)/i.test(m.text)) {
-        facebook(url).then(async res => {
-            let fb = JSON.stringify(res)
-            let json = JSON.parse(fb)
-            if (!json.status) throw json
-            await m.reply(wait)
-            // m.reply(util.format(json))
-            await this.sendFile(m.chat, json.data[1].url ? json.data[1].url : json.data[0].url, '', '© stikerin', m)
-        }).catch(_ => _)
+        let res = await fetch(API('neoxr', '/api/download/fb', { url }, 'apikey'))
+        if (!res.ok) return m.reply(eror)
+        let json = await res.json()
+        if (!json.status) return m.reply(util.format(json))
+        await m.reply(wait)
+        await conn.sendFile(m.chat, json.data.sd.url, '', `HD: ${json.data.hd.url}\nUkuran: ${json.data.hd.size}\n\n© stikerin`, m)
     }
 
     if (/^.*instagram.com\/(p|reel|tv)/i.test(m.text)) {

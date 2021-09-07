@@ -1,4 +1,4 @@
-let handler = async (m, { conn, participants, command }) => {
+let handler = async (m, { conn, participants, command, usedPrefix, command }) => {
     let member = participants.map(u => u.jid)
     let orang
     if (/ku/i.test(command)) orang = m.sender
