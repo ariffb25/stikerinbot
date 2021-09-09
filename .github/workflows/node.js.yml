@@ -6,12 +6,12 @@ name: Node.js CI
 on:
   push:
     branches: 
-      main
-      termux
+      - main
+      - termux
   pull_request:
     branches: 
-      main
-      termux
+      - main
+      - termux
 
 jobs:
   build:
