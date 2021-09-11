@@ -1,4 +1,4 @@
-let handler = async (m, { args }) => {
+let handler = async (m, { args, usedPrefix }) => {
     let json = JSON.parse(JSON.stringify(global.asmaulhusna))
     let data = json.map((v, i) => `${i + 1}. ${v.latin}\n${v.arabic}\n${v.translation_id}`).join('\n\n')
     if (isNaN(args[0])) throw `contoh:\n${usedPrefix + command} 1`
