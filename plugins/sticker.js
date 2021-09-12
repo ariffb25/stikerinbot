@@ -14,6 +14,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         pack: global.packname,
         author: global.author,
         crop: false,
+        categories: ['😭']
       })
     } else if (/image/.test(mime)) {
       let img = await q.download()
@@ -22,6 +23,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         pack: global.packname,
         author: global.author,
         crop: false,
+        categories: ['😳']
       })
     } else if (/video/.test(mime)) {
       if ((q.msg || q).seconds > 11) throw 'Maksimal 10 detik!'
@@ -31,6 +33,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         pack: global.packname,
         author: global.author,
         crop: true,
+        categories: ['🥵']
       })
     } else if (args[0]) {
       if (isUrl(args[0])) stiker = await sticker(false, args[0], global.packname, global.author)
