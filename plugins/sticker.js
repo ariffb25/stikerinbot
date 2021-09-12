@@ -43,10 +43,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (wsf) {
       await wsf.build()
       const sticBuffer = await wsf.get()
-      if (sticBuffer) await conn.sendMessage(m.chat, sticBuffer, MessageType.sticker, {
-        quoted: m,
-        mimetype: 'image/webp'
-      })
+      if (sticBuffer) await conn.sendFile(m.chat, sticBuffer, 'wsf.webp', '', m, false, { asSticker: true })
     }
     if (stiker) await conn.sendMessage(m.chat, stiker, MessageType.sticker, {
       quoted: m
