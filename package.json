@@ -14,17 +14,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ROMIMUHAROM/stikerinbot.git"
+    "url": "git+https://github.com/ariffb25/stikerinbot.git"
   },
   "keywords": [
     "whatsapp-bot"
   ],
-  "author": "Rominaru",
+  "author": "Ariffb",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ROMIMUHAROM/stikerinbot/issues"
+    "url": "https://github.com/ariffb25/stikerinbot/issues"
   },
-  "homepage": "https://github.com/ROMIMUHAROM/stikerinbot",
+  "homepage": "https://github.com/ariffb25/stikerinbot",
   "dependencies": {
     "@adiwajshing/baileys": "^3.5.2",
     "awesome-phonenumber": "^2.54.0",
