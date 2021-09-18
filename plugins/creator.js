@@ -18,7 +18,7 @@ conn.sendMessage(m.chat, {
 "displayName": `${conarray.length} kontak`,
 "contacts": conarray 
 }, 'contactsArrayMessage', { quoted: m })
-conn.sendMessage(m.chat, 'ini contact owner dan team',MessageType.text, { quoted: m} )
+conn.sendMessage(m.chat, 'This Contact Owner',MessageType.text, { quoted: m} )
 }
 handler.help = ['owner', 'creator']
 handler.tags = ['info']
