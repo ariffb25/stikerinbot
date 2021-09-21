@@ -8,7 +8,7 @@ const defaultMenu = {
   before: `
   `.trimStart(),
   header: '*🌹%category🌹*',
-  body: '🔖 %cmd %islimit %isPremium',
+  body: '🔖 _%cmd_ %islimit %isPremium',
   footer: '🥀\n',
   after: `
 `,
