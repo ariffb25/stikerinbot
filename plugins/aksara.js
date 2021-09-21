@@ -32,9 +32,9 @@ ${usedPrefix + command} latinkesunda selamat pagi
             throw er
     }
 }
-handler.help = ['aksara'].map(v => v + ' <opsi> <teks>')
+handler.help = ['aksara', 'ak'].map(v => v + ' <opsi> <teks>')
 handler.tags = ['tools']
-handler.command = /^aksara|ak$/i
+handler.command = /^ak(sara)?$/i
 
 handler.limit = true
 
