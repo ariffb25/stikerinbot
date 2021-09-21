@@ -25,7 +25,7 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
   if (yt === false) throw 'semua server gagal'
   if (yt2 === false) throw 'semua server gagal'
   let { dl_link, thumb, title, filesize, filesizeF } = yt
-  await conn.send2ButtonLoc(m.chat, await (await fetch(thumbnail)).buffer(), `
+  await conn.send2ButtonImg(m.chat, await (await fetch(thumb)).buffer(), `
     *🌹YouTube🌹*
     
 🔖 *Judul:* ${title}
