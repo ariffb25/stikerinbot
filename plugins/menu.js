@@ -35,7 +35,7 @@ ${'```%npmdesc```'}
 let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   let tags
   let teks = `${args[0]}`.toLowerCase()
-  let arrayMenu = ['all', 'game', 'xp', 'stiker', 'kerangajaib', 'quotes', 'admin', 'grup', 'premium', 'internet', 'anonymous', 'nulis', 'downloader', 'tools', 'fun', 'database', 'quran', 'audio', 'jadibot', 'info', 'tanpakategori', 'owner']
+  let arrayMenu = ['all', 'game', 'xp', 'stiker', 'kerangajaib', 'quotes', 'admin', 'grup', 'premium', 'internet', 'anonymous', 'nulis', 'downloader', 'tools', 'fun', 'database', 'quran', 'audio', 'jadibot', 'info', '18+', 'tanpakategori', 'owner']
   if (!arrayMenu.includes(teks)) teks = '404'
   if (teks == 'all') tags = {
     'main': 'Utama',
@@ -60,6 +60,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     'audio': 'Pengubah Suara',
     'jadibot': 'Jadi Bot',
     'info': 'Info',
+    '18+': 'Khusus 18+',
     '': 'Tanpa Kategori',
   }
   if (teks == 'game') tags = {
@@ -122,6 +123,9 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   }
   if (teks == 'info') tags = {
     'info': 'Info'
+  }
+  if (teks == '18') tags = {
+    '18+': 'Khusus 18+'
   }
   if (teks == 'tanpakategori') tags = {
     '': 'Tanpa Kategori'
@@ -188,9 +192,9 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     if (teks == '404') {
       return conn.relayWAMessage(conn.prepareMessageFromContent(m.chat, {
         "listMessage": {
-          "title": `${ucapan()}, ${name}`.trim(),
-          "description": "© stikerin",
-          "buttonText": "Klik Disini",
+          "title": `Hai ${name}, ${ucapan()}`.trim(),
+          "description": "Silahkan pilih list menu di bawah",
+          "buttonText": "List Menu",
           "listType": "SINGLE_SELECT",
           "sections": [
             {
@@ -282,6 +286,10 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "description": "",
                   "rowId": ".? info"
                 }, {
+                  "title": "Khusus 18+",
+                  "description": "",
+                  "rowId": ".? 18+"
+                }, {
                   "title": "Tanpa Kategori",
                   "description": "",
                   "rowId": ".? tanpakategori"
@@ -324,6 +332,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     // ├ ${_p + command} audio
     // ├ ${_p + command} jadibot
     // ├ ${_p + command} info
+    // ├ ${_p + command} 18+
     // ├ ${_p + command} tanpa kategori
     // ├ ${_p + command} owner
     // └────  
@@ -377,9 +386,9 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    await conn.send2ButtonLoc(m.chat, await (await fetch(global.fla)).buffer(), text.trim(), 'made with ❤️ by rasel', 'Pemilik Bot', '.owner', 'Donasi', '.donasi', m)
+    await conn.sendButtonLocImg(m.chat, await (await fetch(global.fla)).buffer(), text.trim(), 'Join grup officiall bot\nketik #g ramein ya👻', 'List Menu', '.menu', m)
   } catch (e) {
-    conn.reply(m.chat, 'Maaf, menu sedang error', m)
+    conn.reply(m.chat, 'Maaf, menu sedang error v_v', m)
     throw e
   }
 }
