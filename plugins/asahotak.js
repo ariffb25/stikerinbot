@@ -26,8 +26,8 @@ Bonus: ${poin} XP
         }, timeout)
     ]
 }
-handler.help = ['asahotak']
+handler.help = ['asahotak', 'asaho']
 handler.tags = ['game']
-handler.command = /^asahotak$/i
+handler.command = /^asaho(tak)?$/i
 
 module.exports = handler
