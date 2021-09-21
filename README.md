@@ -1,16 +1,16 @@
 <p align="center">
 	<img src="https://telegra.ph/file/4f4a5a3cde6a98a96da79.jpg" width="35%" style="margin-left: auto;margin-right: auto;display: block;">
 </p>
-<h1 align="center">lucubot</h1>
+<h1 align="center">stikerin X lucubot</h1>
 
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/raselcomel/stikerinbot)
 
-
+------------
 ## NOTE INI SC GUA CUMA RECODE DIKIT
 ## TIDAK BERMAKSUD MENGAKUI HAK CIPTA
 ## DON'T BULLY SAYA BWANG~_~
-
+------------
 
 ## GRUP PENGEMBANG BOT
 [![Grup WhatsApp Pengembangan Bot](https://img.shields.io/badge/WhatsApp%20Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/GVwpKf83s42D1CnIfDW19G)
@@ -143,7 +143,7 @@ conn.logger.level = 'debug'
 
  [![Nurutomo](https://github.com/Nurutomo.png?size=100)](https://github.com/Nurutomo) | [![Ariffb](https://github.com/ariffb25.png?size=100)](https://github.com/ariffb25) | [![Rasel](https://github.com/raselcomel.png?size=100)](https://github.com/raselcomel)
 
-----|----
+----|----|----
 
 [Nurutomo](https://github.com/Nurutomo) | [Ariffb](https://github.com/ariffb25) | [Rasel](https://github.com/raselcomel)
  Penulis / Pencipta | Penulis ulang | Penulis ulang
