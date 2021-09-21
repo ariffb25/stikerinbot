@@ -1,7 +1,7 @@
 <p align="center">
 	<img src="https://telegra.ph/file/4f4a5a3cde6a98a96da79.jpg" width="35%" style="margin-left: auto;margin-right: auto;display: block;">
 </p>
-<h1 align="center">stikerin X lucubot</h1>
+<h1 align="center">STIKERINBOT X LUCUBOT</h1>
 
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/raselcomel/stikerinbot)
