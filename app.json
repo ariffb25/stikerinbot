@@ -1,0 +1,11 @@
+{
+  "name": "lucubot",
+  "description": "Lightweight WhatsApp Bot",
+  "repository": "https://github.com/raselcomel/stikerinbot",
+  "logo": "https://telegra.ph/file/4f4a5a3cde6a98a96da79.jpg",
+  "keywords": [
+    "bot",
+    "whatsapp",
+    "whatsapp-bot"
+  ]
+}

@@ -1,0 +1,30 @@
+# Node.js Modules
+node_modules
+
+# important session
+*.data.json
+
+# vim state
+.*.swp
+
+# Databases
+database.json
+*_database.json
+
+# Okay
+# config.js
+tmp/*
+
+# Google Drive Credentials?
+credentials.json
+token.json
+
+
+# source code inspecting purposes
+waweb
+# planned
+web-client
+package-lock.json
+
+# Vscode Settings
+.vscode
