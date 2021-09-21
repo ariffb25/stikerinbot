@@ -124,7 +124,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   if (teks == 'info') tags = {
     'info': 'Info'
   }
-  if (teks == '18') tags = {
+  if (teks == '18+') tags = {
     '18+': 'Khusus 18+'
   }
   if (teks == 'tanpakategori') tags = {
@@ -386,7 +386,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    await conn.sendButtonLocImg(m.chat, await (await fetch(global.fla)).buffer(), text.trim(), 'Join grup officiall bot\nketik #g ramein ya👻', 'List Menu', '.menu', m)
+    await conn.sendButtonLoc(m.chat, await (await fetch(global.fla)).buffer(), text.trim(), 'Join grup officiall bot\nketik #g ramein ya👻', 'List Menu', '.menu', m)
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error v_v', m)
     throw e
