@@ -24,7 +24,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         crop: false,
       })
     } else if (/video/.test(mime)) {
-      if ((q.msg || q).seconds > 31) throw 'Maksimal 30 detik!'
+      if ((q.msg || q).seconds > 11) throw 'Maksimal 10 detik!'
       let img = await q.download()
       if (!img) throw `balas video dengan perintah ${usedPrefix + command}`
       wsf = new WSF.Sticker(img, {
