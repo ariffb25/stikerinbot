@@ -1,11 +1,12 @@
 let fs = require('fs')
-global.owner = ['6283128734012', '6288709645535'] // Letakan nomor kamu disini
+global.owner = ['62895622729068'] // Letakan nomor kamu disini
 global.mods = [] // Moderator?
 global.prems = JSON.parse(fs.readFileSync('./src/premium.json')) // Pengguna premium tidak memerlukan limit
 global.APIs = { // API Prefix
   // nama: 'https://website'
   bx: 'https://bx-hunter.herokuapp.com',
   dhnjing: 'https://dhnjing.xyz',
+  aria: 'https://ariarestapii.herokuapp.com',
   hardianto: 'https://hardianto-chan.herokuapp.com',
   jonaz: 'https://jonaz-api-v2.herokuapp.com',
   neoxr: 'https://neoxr-api.herokuapp.com',
@@ -18,6 +19,7 @@ global.APIs = { // API Prefix
 }
 global.APIKeys = { // APIKey nya disini
   // 'https://website': 'apikey'
+  'https://ariarestapii.herokuapp.com': 'aria',
   'https://bx-hunter.herokuapp.com': 'Ikyy69',
   'https://hardianto-chan.herokuapp.com': 'hardianto',
   'https://neoxr-api.herokuapp.com': 'yntkts',
@@ -28,12 +30,12 @@ global.APIKeys = { // APIKey nya disini
 }
 
 // Sticker WM
-global.packname = '❤️'
-global.author = 'ariffb'
+global.packname = 'Aria'
+global.author = 'Botz'
 
 global.wait = '_*tunggu..*_'
 global.eror = '_*Server Error*_'
-global.fla = 'https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&fillTextType=1&fillTextPattern=Warning!&text='
+global.fla = 'https://ariarestapii.herokuapp.com/api/oxy/banner?apikey=aria&text='
 
 global.multiplier = 69 // Semakin tinggi, semakin sulit naik level
 
