@@ -24,6 +24,7 @@ async function handler(m, { conn,text }) {
 ❒ INFO USER
 ├ Sn : ${sn}
 ├ Status : Terverifikasi ✓
+├ NOTE : GUNAKAN BOT DENGAN BAIK, DON'T SPAM BOT!
 ╰───`.trim())
       global.db.data.users[m.sender].registered = true
       delete conn.verify[m.sender]
