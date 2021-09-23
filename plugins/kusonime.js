@@ -10,7 +10,7 @@ let handler = async(m, { conn, text }) => {
     if (res.status !== 200) throw await res.text()
     if (!json.status) throw json
     let thumb = await (await fetch(json.result.thumb)).buffer()
-    let hasil = `*── 「 KUSONIME SEARCHING 」 ──*\n\n➸ *Judul*: ${json.result.title}\n➸ *Sinopsis*: ${json.result.sinopsis}\n➸ *Info*: ${json.result.info}\n➸ *Download*: ${json.result.link_dl}`
+    let hasil = `*「 KUSONIME SEARCHING 」*\n\n➸ *Judul*: ${json.result.title}\n➸ *Sinopsis*: ${json.result.sinopsis}\n➸ *Info*: ${json.result.info}\n➸ *Download*: ${json.result.link_dl}`
 
     conn.sendFile(m.chat, thumb, 'kusonime.jpg', hasil, m)
 }
