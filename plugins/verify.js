@@ -12,7 +12,7 @@ async function handler(m, { conn,text }) {
   handler.all = async m => {
        if (!conn.verify) return
        if (!m.quoted) return
-      if ((m.sender in conn.verify) == false) return
+      if ((m.sender in conn.verify) == true) return
       let sn = createHash('md5').update(m.sender).digest('hex')
       if (m.text == conn.verify[m.sender].code && m.quoted.id == conn.verify[m.sender].key) {
       m.reply(`
