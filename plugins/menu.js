@@ -187,7 +187,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                 }, {
                   "title": "Grup Bot",
                   "description": "",
-                  "rowId: ".groupbot"
+                  "rowId: "?groupbot"
                 }, {
                   "title": "Game",
                   "description": "",
