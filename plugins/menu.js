@@ -7,9 +7,9 @@ let moment = require('moment-timezone')
 const defaultMenu = {
   before: `
   `.trimStart(),
-  header: '*🌹%category🌹*',
+  header: '*🌹%category🌹*\n',
   body: '🔖 _%cmd_ %islimit %isPremium',
-  footer: '🥀\n',
+  footer: '\n🎀\n',
   after: `
 `,
 }
@@ -174,7 +174,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       return conn.relayWAMessage(conn.prepareMessageFromContent(m.chat, {
         "listMessage": {
           "title": `Hai, ${name}, ${ucapan()}`.trim(),
-          "description": "Silahkan pilih list menu di bawah",
+          "description": "```Pilih list menu di bawah ya kak^_^```",
           "buttonText": "List Menu",
           "listType": "SINGLE_SELECT",
           "sections": [
@@ -184,10 +184,6 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "title": `Semua Perintah`,
                   "description": "",
                   "rowId": ".? all"
-                }, {
-                  "title": "Grup Bot",
-                  "description": "",
-                  "rowId: "?groupbot"
                 }, {
                   "title": "Game",
                   "description": "",
