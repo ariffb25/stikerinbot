@@ -185,15 +185,17 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "description": "",
                   "rowId": ".? all"
                 }, {
+                  "title": "Grup Bot",
+                  "description": "",
+                  "rowId: ".groupbot"
+                }, {
                   "title": "Game",
                   "description": "",
                   "rowId": ".? game"
-
                 }, {
                   "title": "XP",
                   "description": "",
                   "rowId": ".? xp"
-
                 }, {
                   "title": "Stiker",
                   "description": "",
@@ -367,7 +369,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    await conn.sendButtonLoc(m.chat, await (await fetch(global.fla)).buffer(), text.trim(), 'Join grup officiall bot\nketik #grupbot ramein ya👻', 'List Menu', '.menu', m)
+    await conn.sendButtonLoc(m.chat, await (await fetch(global.fla)).buffer(), text.trim(), 'Mau pilih menu lainnya?\nKlik di bawah!', 'List Menu', '.menu', m)
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error v_v', m)
     throw e
