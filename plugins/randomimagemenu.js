@@ -1,5 +1,5 @@
 let { MessageType } = require('@adiwajshing/baileys')
-let cuk = require('node-fetch')
+let fetch = require('node-fetch')
 let handler = async (m, { conn }) => {
 
 function kintil(list) {
