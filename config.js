@@ -36,6 +36,7 @@ global.author = 'Botz'
 global.wait = '_*tunggu..*_'
 global.eror = '_*Server Error*_'
 global.fla = 'https://ariarestapii.herokuapp.com/api/oxy/banner?apikey=aria&text='
+global.donate = 'https://ariarestapii.herokuapp.com/api/oxy/fur?apikey=aria&text='
 
 global.multiplier = 69 // Semakin tinggi, semakin sulit naik level
 
