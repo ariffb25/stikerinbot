@@ -7,7 +7,7 @@ handler.before = async function (m) {
         let users = Object.entries(global.db.data.users).map(([key, value]) => {
                 return { ...value, jid: key }
         })
-        let pp = './src/avatar_contact.png'
+        let pp = 'https://telegra.ph/file/9da57ee9a94820b6b436c.jpg'
         let who = m.sender
         let discriminator = who.substring(9, 13)
         let sortedLevel = users.map(toNumber('level')).sort(sort('level'))
