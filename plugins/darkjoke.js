@@ -1,15 +1,24 @@
 let fetch = require('node-fetch')
-let arr = []
-fetch('https://raw.githubusercontent.com/Caliph71/txt/main/darkjokes.txt')
-    .then(res => res.text())
-    .then(txt => arr = txt.split('\n'))
-let handler = async (m, { conn }) => {
-    let img = arr[Math.floor(Math.random() * arr.length)]
-    if (!img) throw img
-    await conn.sendFile(m.chat, img, '', '© stikerin', m, 0, { thumbnail: await (await fetch(img)).buffer() })
+let handler = async (m, { conn, args }) => {
+   response = args.join(' ')
+  if (!args) throw 'Masukkan Parameter'
+  m.reply('Bentar Kak...')
+  let res = `https://ariarestapii.herokuapp.com/api/darkjokes?apikey=aria`
+  conn.sendFile(m.chat, res, 'darkjokes.jpg', `Pemuda Tersesat Dasar`, m, false)
 }
-handler.help = ['darkjoke']
-handler.tags = ['internet']
-handler.command = /^((drag|dark)joke)$/i
+handler.help = ['darkjokes'].map(v => v + ' ')
+handler.tags = ['image']
+handler.command = /^(darkjokes)$/i
+handler.owner = false
+handler.mods = false
+handler.premium = false
+handler.group = false
+handler.private = false
+handler.register = true
+handler.admin = false
+handler.botAdmin = false
+
+handler.fail = null
+handler.limit = true
 
 module.exports = handler

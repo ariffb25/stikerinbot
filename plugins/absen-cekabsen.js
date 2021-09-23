@@ -24,7 +24,7 @@ ${conn.absen[id][2]}
 ${list}
 │ 
 └────`.trim()
-    await conn.send2Button(m.chat, caption, '© stikerin', 'Absen', `${usedPrefix}absen`, 'Hapus', `${usedPrefix}hapusabsen`, m, { contextInfo: { mentionedJid: conn.parseMention(caption) } })
+    await conn.send2Button(m.chat, caption, '© 𝐚𝐫𝐢𝐚𝐛𝐨𝐭𝐳', 'Absen', `${usedPrefix}absen`, 'Hapus', `${usedPrefix}hapusabsen`, m, { contextInfo: { mentionedJid: conn.parseMention(caption) } })
 }
 handler.help = ['cekabsen']
 handler.tags = ['absen']

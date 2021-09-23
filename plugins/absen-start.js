@@ -6,7 +6,7 @@ let handler = async (m, { conn, usedPrefix, text }) => {
         throw false
     }
     conn.absen[id] = [
-        await conn.sendButton(m.chat, `Absen dimulai`.trim(), '© stikerin', 'Absen', `${usedPrefix}absen`, m),
+        await conn.sendButton(m.chat, `Absen dimulai`.trim(), '© 𝐚𝐫𝐢𝐚𝐛𝐨𝐭𝐳', 'Absen', `${usedPrefix}absen`, m),
         [],
         text
     ]

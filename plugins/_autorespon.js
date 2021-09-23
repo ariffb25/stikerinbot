@@ -14,10 +14,10 @@ handler.all = async function (m, { isBlocked }) {
     try {
         if (m.mentionedJid.includes(this.user.jid) && m.isGroup) {
             await this.send2Button(m.chat,
-                isBanned ? 'stikerin tidak aktif' : banned ? 'kamu dibanned' : 'stikerin disini',
-                '© stikerin',
+                isBanned ? 'ariabotz tidak aktif' : banned ? 'kamu dibanned' : 'ariabotz disini',
+                '© ariabotz',
                 isBanned ? 'Unban' : banned ? 'Pemilik Bot' : 'Menu',
-                isBanned ? '.unban' : banned ? '.owner' : '.?',
+                isBanned ? '.unban' : banned ? '.owner' : '.menu',
                 m.isGroup ? 'Ban' : isBanned ? 'Unban' : 'Donasi',
                 m.isGroup ? '.ban' : isBanned ? '.unban' : '.donasi', m)
         }
@@ -31,9 +31,7 @@ handler.all = async function (m, { isBlocked }) {
 ├ 7 Hari / Rp 5,000
 ├ 30 Hari / Rp 10,000
 └────
-
-https://github.com/ariffb25/stikerinbot
-`.trim(), '© stikerin', 'Pemilik Bot', ',owner', m)
+`.trim(), '© ariabotz', 'Pemilik Bot', ',owner', m)
     }
 
     // salam
@@ -63,7 +61,7 @@ https://github.com/ariffb25/stikerinbot
     if (new Date() * 1 - setting.status > 1000) {
         let _uptime = process.uptime() * 1000
         let uptime = clockString(_uptime)
-        await this.setStatus(`Aktif selama ${uptime} | Mode: ${global.opts['self'] ? 'Private' : setting.groupOnly ? 'Hanya Grup' : 'Publik'} | stikerinbot oleh ariffb`).catch(_ => _)
+        await this.setStatus(`Aktif selama ${uptime} | Mode: ${global.opts['self'] ? 'Private' : setting.groupOnly ? 'Hanya Grup' : 'Publik'} | AriaBotz`).catch(_ => _)
         setting.status = new Date() * 1
     }
 
