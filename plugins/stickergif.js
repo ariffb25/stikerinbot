@@ -30,7 +30,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
             .toFormat('webp')
             .save(ran)
     } else if (/video/.test(mime)) {
-        if ((q.msg || q).seconds > 31) throw `_*Maksimal 10 detik! Ubah menjadi gif terlebih dahulu*_`
+        if ((q.msg || q).seconds > 11) throw `_*Maksimal 10 detik! Ubah menjadi gif terlebih dahulu*_`
         const encmedia = m.quoted ? m.quoted.fakeObj : m
         const media = await conn.downloadAndSaveMediaMessage(encmedia)
         const ran = getRandom('.webp')
