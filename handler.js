@@ -382,8 +382,8 @@ module.exports = {
           let groupMetadata = await this.groupMetadata(jid)
           for (let user of participants) {
             // let pp = './src/avatar_contact.png'
-            let pp = 'https://i.ibb.co/jr9Nh6Q/Thumb.jpg'
-            let ppgc = 'https://i.ibb.co/jr9Nh6Q/Thumb.jpg'
+            let pp = 'https://i.ibb.co/zN3QJYf/IMG-20210917-WA0002.jpg'
+            let ppgc = 'https://i.ibb.co/zN3QJYf/IMG-20210917-WA0002.jpg'
             try {
               pp = await uploadImage(await (await fetch(await this.getProfilePicture(user))).buffer())
               ppgc = await uploadImage(await (await fetch(await this.getProfilePicture(jid))).buffer())
@@ -397,7 +397,7 @@ module.exports = {
                 .setGuildIcon(ppgc)
                 .setMemberCount(groupMetadata.participants.length)
                 .setAvatar(pp)
-                .setBackground("https://i.ibb.co/KhtRxwZ/dark.png")
+                .setBackground("https://c4.wallpaperflare.com/wallpaper/654/555/787/geometry-cyberspace-digital-art-lines-wallpaper-preview.jpg")
                 .toAttachment()
 
               let lea = await new knights.Goodbye()
@@ -406,7 +406,7 @@ module.exports = {
                 .setGuildIcon(ppgc)
                 .setMemberCount(groupMetadata.participants.length)
                 .setAvatar(pp)
-                .setBackground("https://i.ibb.co/KhtRxwZ/dark.png")
+                .setBackground("https://c4.wallpaperflare.com/wallpaper/654/555/787/geometry-cyberspace-digital-art-lines-wallpaper-preview.jpg")
                 .toAttachment()
 
               this.sendFile(jid, action === 'add' ? wel.toBuffer() : lea.toBuffer(), 'pp.jpg', text, null, false, {
@@ -419,9 +419,9 @@ module.exports = {
         }
         break
       case 'promote':
-        text = (chat.sPromote || this.spromote || conn.spromote || '@user sekarang Admin')
+        text = (chat.sPromote || this.spromote || conn.spromote || '@user 𝐋𝐮 𝐒𝐞𝐤𝐚𝐫𝐚𝐧𝐠 𝐉𝐚𝐝𝐢 𝐀𝐝𝐦𝐢𝐧 𝐂𝐨𝐤 𝐆𝐆')
       case 'demote':
-        if (!text) text = (chat.sDemote || this.sdemote || conn.sdemote || '@user sekarang bukan Admin')
+        if (!text) text = (chat.sDemote || this.sdemote || conn.sdemote || '@user 𝐋𝐚𝐡, 𝐋𝐮 𝐔𝐝𝐚𝐡 𝐁𝐮𝐤𝐚𝐧 𝐀𝐝𝐦𝐢𝐧 𝐋𝐚𝐠𝐢 𝐀𝐣𝐚 𝐖𝐤𝐰𝐤𝐰𝐤')
         text = text.replace('@user', '@' + participants[0].split`@`[0])
         if (chat.detect) this.sendMessage(jid, text, MessageType.extendedText, {
           contextInfo: {
@@ -489,10 +489,67 @@ global.dfail = (type, m, conn) => {
     private: 'Perintah ini hanya dapat digunakan di Chat Pribadi',
     admin: 'Perintah ini hanya untuk *Admin* grup',
     botAdmin: 'Jadikan bot sebagai *Admin* untuk menggunakan perintah ini',
-    unreg: 'Silahkan daftar untuk menggunakan fitur ini dengan cara mengetik:\n\n*#daftar nama.umur*\n\nContoh: *#daftar Arif.19*',
+   //unreg: 'Silahkan daftar untuk menggunakan fitur ini dengan cara mengetik:\n\n*#daftar nama.umur*\n\nContoh: *#daftar Arif.19*',
     nsfw: 'NSFW tidak aktif'
   }[type]
   if (msg) return m.reply(msg)
+}
+
+global.dfail = (type, m, conn) => {
+const frama = {key:{ fromMe:false, participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: `status@broadcast` } : {}) }, message: {
+
+
+
+					"productMessage": {
+
+						"product": {
+
+							"productImage": {
+
+								"url": "https://mmg.whatsapp.net/d/f/Am1sSqpVypFpsQawFUFkm4HgkPRqEx8rt32niyBmL4Wa.enc",
+
+								"mimetype": "image/jpeg",
+
+								"fileSha256": "KbJC20DoVEdDw+8WF1EqwtPsdPUTF8/xQbhg+65P3q4=",
+
+								"fileLength": "43344",
+
+								"height": 1080,
+
+								"width": 1080,
+
+								"mediaKey": "cX+6c20dws6B++0slmMNXcCk7omK+zvheoN6087j9nl=",
+
+								"fileEncSha256": "BGO1C/OttoScb1UxDrGlwsI9eImocg1zwbLgYKmecXs=",
+
+								"directPath": "/v/t62.7118-24/20036572_1210576852672540_4032358369544328852_n.enc?oh=d0e477e1bf0a01bfcf328776ab50ccee&oe=6043238E",
+
+								"mediaKeyTimestamp": "1612168223",
+
+								"jpegThumbnail": fs.readFileSync('./src/logo.jpg')
+
+		},
+
+							"productId": "3872465552870232",
+
+							"title": `contact: ${conn.getName(m.sender)}`,
+
+							"description" : ``,
+
+	"productImageCount": 1
+
+						},
+
+						"businessOwnerJid": "62895622729068@s.whatsapp.net"}}}    
+//const fcrew = { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: "status@broadcast" } : {}) }, message: { "contactMessage": { "title":`${conn.getName(m.sender)}`,"h": `aloo`, 'jpegThumbnail': global.thumbnail ? global.thumbnail : Buffer.alloc(0)}}}
+
+let msg = {
+  unreg: '\n```*AriaBotz*```'
+}
+  conn.sendButton(m.chat, `
+Yah, Kamu Belum Terverifikasi Di AriaBotz Nih,
+Silahkan Verifikasi terlebih dahulu
+`.trim(), '```Verifikasi AriaBotz```', 'VERIFIKASI', '.verify', frama )
 }
 
 let fs = require('fs')
