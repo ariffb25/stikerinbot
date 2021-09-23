@@ -28,8 +28,8 @@ global.APIKeys = { // APIKey nya disini
 }
 
 // Sticker WM
-global.packname = '𝑰𝒕𝒔 𝑴𝒆 𝑹𝒂𝒔𝒆𝒍^_^'
-global.author = '© lucubot +6282256048971 follow ig:@rasel.ganz'
+global.packname = '𝑰𝒕𝒔 𝑴𝒆 𝑹𝒂𝒔𝒆𝒍'
+global.author = '© lucubot +6282256048971  follow ig:@rasel.ganz'
 
 global.wait = '```Tunggu sebentar ya...```'
 global.eror = '```Server Error```'
