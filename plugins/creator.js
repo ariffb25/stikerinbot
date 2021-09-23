@@ -19,18 +19,7 @@ X-WA-BIZ-DESCRIPTION:${((await this.getBusinessProfile(njid)).description || '')
 ` : ''}
 END:VCARD
 `.trim()
-    }, {
-      displayname: name2, vcard: `
-BEGIN:VCARD
-VERSION:3.0
-N:;${name2.replace(/\n/g, '\\n')};;;
-FN:${name2.replace(/\n/g, '\\n')}
-TEL;type=CELL;type=VOICE;waid=${number2}:${PhoneNumber('+' + number2).getNumber('international')}${onW2.isBusiness ? `
-X-WA-BIZ-NAME:${(this.contacts[njid2].vname || this.getName(njid2)).replace(/\n/, '\\n')}
-X-WA-BIZ-DESCRIPTION:${((await this.getBusinessProfile(njid2)).description || '').replace(/\n/g, '\\n')}
-` : ''}
-END:VCARD
-`.trim()
+    }
     }]
   }, MessageType.contactsArray, { quoted: m })
 }
