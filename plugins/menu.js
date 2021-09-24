@@ -39,6 +39,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   if (teks == 'all') tags = {
     'main': 'Utama',
     'game': 'Game',
+    'rpg': 'Rpg Menu',
     'xp': 'Exp & Limit',
     'sticker': 'Stiker',
     'kerang': 'Kerang Ajaib',
@@ -288,6 +289,10 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "title": "Owner",
                   "description": "",
                   "rowId": ".? owner"
+                }, {
+                  "title": "Rpg Menu",
+                  "description": "",
+                  "rowId": ".? rpg"
                 }
               ]
             }
