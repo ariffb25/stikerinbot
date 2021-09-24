@@ -8,7 +8,7 @@ let handler = async (m, { conn, usedPrefix, isPrems }) => {
   m.reply(`+${isPrems ? prem * db.data.users[m.sender].level : free * db.data.users[m.sender].level} XP\n\nsemakin tinggi level, semakin tinggi juga XP yang didapat`)
   db.data.users[m.sender].lastclaim = new Date * 1
 }
-handler.help = ['daily', 'claim']
+handler.help = ['claim']
 handler.tags = ['xp']
 handler.command = /^(daily|claim)$/i
 handler.owner = false
