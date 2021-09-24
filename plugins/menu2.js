@@ -32,7 +32,7 @@ conn.relayWAMessage(conn.prepareMessageFromContent(m.chat, {
                     {
                         "title": '► XP MENU',
                         "description": "\n𝗜 𝗪𝗮𝗻𝘁 𝗧𝗼 𝗨𝘀𝗲 𝐗𝐏 𝐌𝐄𝐍𝐔",
-                        "rowId": "rowId": ".? xp"
+                        "rowId": ".? xp"
                     }
                 ]
             },
