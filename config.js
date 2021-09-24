@@ -35,8 +35,8 @@ global.author = 'Botz'
 
 global.wait = '_*tunggu..*_'
 global.eror = '_*Server Error*_'
-global.fla = 'localhost:5000/api/oxy/banner?apikey=aria&text='
-global.donate = 'localhost:5000/api/oxy/fur?apikey=aria&text='
+global.fla = 'https://localhost:5000/api/oxy/banner?apikey=aria&text='
+global.donate = 'https://localhost:5000/api/oxy/fur?apikey=aria&text='
 
 global.multiplier = 69 // Semakin tinggi, semakin sulit naik level
 
