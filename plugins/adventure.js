@@ -38,7 +38,7 @@ Nyawa mu berkurang -${healt * 1} karena Kamu telah berpetualang sampai ${pickRan
 *sampah:* ${sampah}${potion == 0 ? '' : '\n*Potion:* ' + potion + ''}${diamond == 0 ? '' : '\n*diamond:* ' + diamond + ''}${common == 0 ? '' : '\n*common crate:* ' + common + ''}${uncommon == 0 ? '' : '\n*uncommon crate:* ' + uncommon + ''}
 `.trim()
             await conn.sendButton(m.chat, `${str}`, '© 𝐚𝐫𝐢𝐚𝐛𝐨𝐭𝐳', 'ADVENTURE', `.adventure`, m)
-}
+
             if (mythic > 0) {
                    global.db.data.users[m.sender].mythic += mythic * 1
                    conn.reply(m.chat, '*Selamat anda mendapatkan item Rare yaitu*\n' + mythic + ' Mythic Crate', m)
