@@ -3,7 +3,7 @@ let handler = async (m, { conn, usedPrefix, text }) => {
   let users = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user.jid)])]
   let cc = text ? m : m.quoted ? await m.getQuotedObj() : false || m
   let teks = text ? text : cc.text
-  let content = conn.cMod(m.chat, cc, /bc|broadcast/i.test(teks) ? teks : '*🌹Broadcast Bot🌹*\n\n' + teks)
+  let content = conn.cMod(m.chat, cc, /bc|broadcast/i.test(teks) ? teks : '*🌹BROADCAST🌹*\n\n' + teks)
   for (let id of users) {
     await delay(1000)
     await conn.copyNForward(id, content, true)
@@ -12,7 +12,7 @@ let handler = async (m, { conn, usedPrefix, text }) => {
 ${users.map(v => 'wa.me/' + v.replace(/[^0-9]/g, '') + `?text=${encodeURIComponent(usedPrefix)}menu`).join('\n')}
 \nestimasi selesai ${users.length * 1} detik`.trim(), m)
 }
-handler.help = ['broadcastjadibot', 'bcbot'].map(v => v + ' <teks>')
+handler.help = ['bcbot'].map(v => v + ' <teks>')
 handler.tags = ['host']
 handler.command = /^(broadcast|bc)(jadi)?bot$/i
 handler.owner = true
