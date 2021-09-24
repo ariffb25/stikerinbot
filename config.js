@@ -35,6 +35,9 @@ global.author = 'Botz'
 
 global.wait = '_*tunggu..*_'
 global.eror = '_*Server Error*_'
+function kintil(list) {
+  return list[Math.floor(list.length * Math.random())]
+}
 global.fla = kintil(['https://ariarestapii.herokuapp.com/api/oxy/banner?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/banner?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/flaming?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/smoke?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/wood?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/fur?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/paper?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/royal?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/candy?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/underwater?apikey=aria&text=', ])
 global.donate = kintil(['https://ariarestapii.herokuapp.com/api/oxy/banner?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/banner?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/flaming?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/smoke?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/wood?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/fur?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/paper?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/royal?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/candy?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/underwater?apikey=aria&text=', ])
 
@@ -48,7 +51,3 @@ fs.watchFile(file, () => {
   delete require.cache[file]
   require(file)
 })
-
-function kintil(list) {
-  return list[Math.floor(list.length * Math.random())]
-}
