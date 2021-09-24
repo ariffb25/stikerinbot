@@ -32,7 +32,7 @@ let zer = `
      conn.reply(m.chat, zer, m)
 } 
 handler.help = ['kolam']
-handle.tags = ['rpg']
+handler.tags = ['rpg']
 handler.customPrefix = ['kolam']
 handler.command = new RegExp
 handler.register = true
