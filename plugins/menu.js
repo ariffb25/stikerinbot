@@ -71,6 +71,9 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   if (teks == 'stiker') tags = {
     'sticker': 'Stiker'
   }
+  if (teks == 'rpg') tags = {
+    'rpg': 'Rpg Menu'
+  }
   if (teks == 'kerangajaib') tags = {
     'kerang': 'Kerang Ajaib'
   }
