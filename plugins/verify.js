@@ -4,8 +4,8 @@ async function handler(m, { conn,text }) {
      user = global.db.data.users
      kode = Math.floor(Math.random() * 9999)
      if (user[m.sender].registered) return m.reply('Kamu Sudah Terverifikasi!')
-   aww = await m.reply('Kode Verifikasi Telah Dikirim Ke Chat Pribadi, Reply Pesan Dan Balas Pesan Ini Untuk Verifikasi!')
-    m.reply(`Kode Verifikasi Anda Adalah *${kode}*\nJangan Berikan kepada Siapapun Maupun Owner, Cara Verifikasinya Cukup Reply Pesan Sebelumnya. JANGAN REPLY PESAN INI!`, m.sender)
+   aww = await m.reply('Kode Verifikasi Telah Dikirim Ke Chat Pribadi, *Silahkan Ambil Kode Dichat Pribadi Lalu Masukan Kodenya Di Pesan Ini*!')
+    m.reply(`Kode Verifikasi Anda Adalah *${kode}*\nJangan Berikan kepada Siapapun Maupun Owner, Cara Verifikasinya Cukup Reply Pesan Sebelumnya. *JANGAN REPLY PESAN INI!*`, m.sender)
      conn.verify[m.sender] = { code: kode, key: aww.key.id }
   }
   
@@ -24,7 +24,8 @@ async function handler(m, { conn,text }) {
 ❒ INFO USER
 ├ Sn : ${sn}
 ├ Status : Terverifikasi ✓
-├ NOTE : GUNAKAN BOT DENGAN BAIK, DON'T SPAM BOT!
+├ NOTE : GUNAKAN BOT DENGAN BAIK
+│ DON'T SPAM BOT
 ╰───`.trim())
       global.db.data.users[m.sender].registered = true
       delete conn.verify[m.sender]
