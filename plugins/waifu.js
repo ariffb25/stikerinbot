@@ -1,13 +1,24 @@
 let fetch = require('node-fetch')
-let handler = async (m, { conn }) => {
-  let res = await fetch('https://api.waifu.pics/sfw/waifu')
-  if (!res.ok) throw eror
-  let json = await res.json()
-  if (!json.url) throw 'Error!'
-  conn.sendFile(m.chat, json.url, '', 'Istri kartun', m, 0, { thumbnail: Buffer.alloc(0) })
+let handler = async (m, { conn, args }) => {
+   response = args.join(' ')
+  if (!args) throw 'Masukkan Parameter'
+  m.reply('Bentar Kak...')
+  let res = `https://ariarestapii.herokuapp.com/api/waifu?apikey=aria`
+  conn.sendFile(m.chat, res, 'waifu.png', `Ini Kak`, m, false)
 }
-handler.help = ['waifu']
-handler.tags = ['internet']
+handler.help = ['waifu'].map(v => v + ' ')
+handler.tags = ['image']
+
 handler.command = /^(waifu)$/i
+handler.owner = false
+handler.mods = false
+handler.premium = false
+handler.group = false
+handler.private = false
+handler.register = true
+handler.admin = false
+handler.botAdmin = false
+handler.fail = null
+handler.limit = true
 
 module.exports = handler
