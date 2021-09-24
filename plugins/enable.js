@@ -61,6 +61,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       chat.delete = isEnable
       break
     case 'antidelete':
+    case 'antidel':
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail('admin', m, conn)
@@ -70,6 +71,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       chat.delete = !isEnable
       break
     case 'antibadword':
+    case 'antibad':
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail('admin', m, conn)
@@ -93,6 +95,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     case 'publik':
     case 'p':
     case 'public':
+    case 'pub':
       isAll = true
       if (!isROwner) {
         global.dfail('rowner', m, conn)
@@ -115,6 +118,8 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     case 's':
     case 'sticker':
     case 'stiker':
+    case 'stick':
+    case 'stik':
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail('admin', m, conn)
@@ -128,6 +133,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       isUser = true
       user.autolevelup = isEnable
       break
+    case 'mykontak':
     case 'mycontact':
     case 'mycontacts':
     case 'whitelistcontact':
@@ -142,6 +148,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       break
     case 'grup':
     case 'gc':
+    case 'gconly':
     case 'gruponly':
     case 'grouponly':
       isAll = true
@@ -150,6 +157,17 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
         throw false
       }
       setting.groupOnly = isEnable
+      break
+    case 'private':
+    case 'privateonly':
+    case 'pc':
+    case 'pconly':
+      isAll = true
+      if (!isOwner) {
+        global.dfail('owner', m, conn) 
+        throw false 
+      }
+      setting.privateOnly = isEnable
       break
     case 'backup':
       isAll = true
@@ -237,7 +255,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       break
     default:
       if (!/[01]/.test(command)) throw `
-🌹Daftar Opsi🌹${isOwner ? '\n🔖 anon\n🔖 antispam\n🔖 antitroli\n🔖 autoread\n🔖 backup\n🔖 clear\n🔖 grouponly\n🔖 jadibot\n🔖 nsfw\n🔖 public\n🔖 mycontact' : ''}
+*🌹Daftar Opsi🌹* ${isOwner ? '\n🔖 anon\n🔖 antispam\n🔖 antitroli\n🔖 autoread\n🔖 backup\n🔖 clear\n🔖 grouponly\n🔖 jadibot\n🔖 nsfw\n🔖 public\n🔖 mycontact' : ''}
 🔖 antilink
 🔖 autolevelup
 🔖 delete
@@ -246,7 +264,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 🔖 stiker
 🔖 simi
 🔖 welcome
-🥀
+
 contoh:
 ${usedPrefix}on welcome
 ${usedPrefix}off welcome
