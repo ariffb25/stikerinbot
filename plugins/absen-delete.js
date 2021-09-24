@@ -10,7 +10,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 }
 handler.help = ['hapusabsen']
 handler.tags = ['absen']
-handler.command = /^(delete|hapus)absen$/i
+handler.command = /^(del(ete)?|hapus)absen$/i
 handler.group = true
 handler.admin = true
 module.exports = handler
