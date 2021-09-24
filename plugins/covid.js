@@ -10,7 +10,7 @@ Confirmed : ${json.confirmed.value}
 Recovered : ${json.recovered.value}
 Deaths : ${json.deaths.value}
 Last Update : ${json.lastUpdate}
-\n\n@Fatur`.trim())
+`.trim())
   else throw json
 }
 handler.help = ['covid'].map(v => v + ' <negara>')
