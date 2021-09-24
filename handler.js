@@ -29,8 +29,9 @@ module.exports = {
         let user = global.db.data.users[m.sender]
         if (typeof user !== 'object') global.db.data.users[m.sender] = {}
         if (user) {
-if (!isNumber(user.healt)) user.healt = 0
+            if (!isNumber(user.healt)) user.healt = 0
             if (!isNumber(user.level)) user.level = 0
+            if (!isNumber(user.pasangan)) user.pasangan = 0
             if (!isNumber(user.exp)) user.exp = 0
 	    if (!isNumber(user.coin)) user.coin = 0
             if (!isNumber(user.limit)) user.limit = 20
@@ -224,6 +225,7 @@ if (!isNumber(user.healt)) user.healt = 0
     kayu: 0,
     batu: 0,
     string: 0,
+    pasangan: 0,
     sword: 0,
     sworddurability: 0,
     pickaxe: 0,
