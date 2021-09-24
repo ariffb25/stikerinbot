@@ -35,8 +35,8 @@ global.author = 'Botz'
 
 global.wait = '_*tunggu..*_'
 global.eror = '_*Server Error*_'
-global.fla = 'https://ariarestapii.herokuapp.com/api/oxy/banner?apikey=aria&text='
-global.donate = 'https://ariarestapii.herokuapp.com/api/oxy/fur?apikey=aria&text='
+global.fla = kintil(['https://ariarestapii.herokuapp.com/api/oxy/banner?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/banner?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/flaming?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/smoke?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/wood?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/fur?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/paper?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/poly?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/candy?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/underwater?apikey=aria&text=', ])
+global.donate = 'https://ariarestapii.herokuapp.com/api/oxy/poly?apikey=aria&text='
 
 global.multiplier = 69 // Semakin tinggi, semakin sulit naik level
 
@@ -48,3 +48,7 @@ fs.watchFile(file, () => {
   delete require.cache[file]
   require(file)
 })
+
+function kintil(list) {
+  return list[Math.floor(list.length * Math.random())]
+}
