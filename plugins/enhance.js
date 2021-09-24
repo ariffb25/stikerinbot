@@ -16,7 +16,7 @@ let handler = async (m, { usedPrefix }) => {
   if (!res.ok) throw eror
   await conn.sendFile(m.chat, await res.buffer(), 'hd.jpg', '', m, false, { thumbnail: Buffer.alloc(0) })
 }
-handler.help = ['hd', 'enhance']
+handler.help = ['hd']
 handler.tags = ['tools']
 handler.command = /^(hd|enhance)$/i
 
