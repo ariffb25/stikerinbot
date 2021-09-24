@@ -23,7 +23,7 @@ ${conn.absen[id][2]}
 📌 Total: ${absen.length}
 ${list}
  
-🥀`.trim()
+`.trim()
     await conn.send2Button(m.chat, caption, 'Silahkan absen!', 'Absen', `${usedPrefix}absen`, 'Hapus', `${usedPrefix}hapusabsen`, m, { contextInfo: { mentionedJid: conn.parseMention(caption) } })
 }
 handler.help = ['cekabsen']
