@@ -13,9 +13,9 @@ handler.all = async function (m) {
 Hai, ${ucapan()}
 
 ${user.banned ? 'kamu dibanned' : 'Ada yang bisa saya bantu?'}
-ada yang bisa saya bantu? klik *List Menu* di bawah! 
+Klik *List Menu* di bawah! 
 
-`.trim(), 'Yuk join grup bot ketik #grupbot ramein ya^_^', user.banned ? 'Pemilik Bot' : 'Menu', user.banned ? ',owner' : ',?', m)
+`.trim(), 'Yuk join grup bot kirim #grupbot ramein ya^_^', user.banned ? 'Owner' : 'List Menu', user.banned ? ',owner' : ',?', m)
     user.pc = new Date * 1
 }
 
