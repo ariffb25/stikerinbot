@@ -12,7 +12,7 @@ Welcome To AriaBotz\nSilahkan Klik Menu Dibawah\nJika Anda Belum Terverifikasi S
 `.trim(), '© ariabotz', 'LIST MENU', '.menu', 'VERIFY', '.verify')
 }
 
-handler.command = /^(menu11)$/i
+handler.command = /^(menu19)$/i
 handler.owner = false
 handler.mods = false
 handler.premium = false
