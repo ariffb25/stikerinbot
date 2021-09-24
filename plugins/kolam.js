@@ -33,8 +33,7 @@ let zer = `
 } 
 handler.help = ['kolam']
 handler.tags = ['rpg']
-handler.customPrefix = ['kolam']
-handler.command = new RegExp
+handler.command = /^(kolam)$/i
 handler.register = true
 
 module.exports = handler
