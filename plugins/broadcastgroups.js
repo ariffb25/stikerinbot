@@ -5,11 +5,11 @@ let handler = async (m, { conn, text }) => {
   conn.reply(m.chat, `_Mengirim pesan broadcast ke ${groups.length} grup_\nestimasi selesai ${groups.length * 1} detik`, m)
   for (let id of groups) {
     await delay(1000)
-    await conn.copyNForward(id, conn.cMod(m.chat, cc, /bc|broadcast/i.test(teks) ? teks : '*🌹Broadcast Bot🌹*\n\n' + teks + '\n\n' + '© rasel'), true).catch(_ => _)
+    await conn.copyNForward(id, conn.cMod(m.chat, cc, /bc|broadcast/i.test(teks) ? teks : '*🌹BROADCAST🌹*\n\n' + teks + '\n\n' + '© rasel'), true).catch(_ => _)
   }
   m.reply('_*Broadcast Selesai*_')
 }
-handler.help = ['broadcastgroup', 'bcgc'].map(v => v + ' <teks>')
+handler.help = ['bcgc'].map(v => v + ' <teks>')
 handler.tags = ['owner']
 handler.command = /^(broadcast|bc)(group|grup|gc)$/i
 handler.owner = true
