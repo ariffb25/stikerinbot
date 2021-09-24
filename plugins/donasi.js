@@ -1,6 +1,6 @@
 //let name = registered ? global.db.data.users[m.sender].name : conn.getName(m.sender)
 let fetch = require('node-fetch')
-let handler = async (m, { conn }) => await conn.sendButtonLoc(m.chat, await (await fetch(donate + 'DONASI')).buffer(), `
+let handler = async (m, { conn }) => await conn.sendButtonImg(m.chat, await (await fetch(donate + 'DONASI')).buffer(), `
 ┌〔 Donasi • Pulsa 〕
 ├ THREE [0895622729068]
 └────
