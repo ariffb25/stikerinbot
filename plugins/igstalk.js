@@ -6,14 +6,14 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!res.ok) throw eror
   let json = await res.json()
   if (json.status != 200) throw json
-  conn.sendFile(m.chat, json.data.profilehd, 'eror.jpg', `
+  conn.sendLoc(m.chat, json.data.profilehd, 'eror.jpg', `
 *Nama:* ${json.data.fullname}
+*Bio:* \n${json.data.bio}
 *Followers:* ${json.data.follower}
 *Following:* ${json.data.following}
 *Posts:* ${json.data.timeline}
 *Private:* ${json.data.private ? 'Ya' : 'Tidak'}
-*Bio:* ${json.data.bio}
-*Link:* http://instagram.com/${json.data.username}
+*Link:* \nhttp://instagram.com/${json.data.username}
 `, m, 0, { thumbnail: await (await fetch(json.data.profilehd)).buffer() })
 }
 handler.help = ['igstalk <username>']
