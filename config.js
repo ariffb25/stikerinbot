@@ -38,8 +38,8 @@ global.eror = '_*Server Error*_'
 function kintil(list) {
   return list[Math.floor(list.length * Math.random())]
 }
-global.fla = kintil(['https://ariarestapii.herokuapp.com/api/oxy/banner?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/banner?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/flaming?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/smoke?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/wood?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/fur?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/paper?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/royal?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/candy?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/underwater?apikey=aria&text=', ])
-global.donate = kintil(['https://ariarestapii.herokuapp.com/api/oxy/banner?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/banner?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/flaming?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/smoke?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/wood?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/fur?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/paper?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/royal?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/candy?apikey=aria&text=', 'https://ariarestapii.herokuapp.com/api/oxy/underwater?apikey=aria&text=', ])
+global.fla = kintil(['https://telegra.ph/file/ed87bfeecd285253080be.jpg', 'https://telegra.ph/file/d03be530f4945bfeead24.jpg', 'https://telegra.ph/file/338d4b0b05bb3e0693925.jpg', 'https://telegra.ph/file/ad5b14b881bdb97215bb5.jpg'])
+global.donate = kintil(['https://telegra.ph/file/ed87bfeecd285253080be.jpg', 'https://telegra.ph/file/d03be530f4945bfeead24.jpg', 'https://telegra.ph/file/338d4b0b05bb3e0693925.jpg', 'https://telegra.ph/file/ad5b14b881bdb97215bb5.jpg'])
 
 global.multiplier = 69 // Semakin tinggi, semakin sulit naik level
 
