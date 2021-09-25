@@ -8,7 +8,7 @@ let handler = async (m, { conn, participants, groupMetadata, text }) => {
         return admins
     }
 
-    let pp = './src/avatar_contact.png'
+    let pp = 'https://telegra.ph/file/9da57ee9a94820b6b436c.jpg'
     try {
         pp = await conn.getProfilePicture(m.chat)
     } catch (e) {
@@ -19,7 +19,9 @@ let handler = async (m, { conn, participants, groupMetadata, text }) => {
 
         if (text) return m.reply(msToDate(expired - new Date() * 1))
 
-        let caption = `*Informasi Grup*\n
+        let caption = `
+*🌹Informasi Grup🌹*
+
 *ID:* 
 ${groupMetadata.id}
 
@@ -38,16 +40,19 @@ ${participants.length} Anggota
 *Admin Grup:*
 ${listAdmin}
 
-*Pengaturan Bot:*
-Anti Link: *${antiLink ? 'On' : 'Off'}*
-Anti Delete: *${global.db.data.chats[m.chat].delete ? 'Off' : 'On'}*
-Banned: *${isBanned ? 'On' : 'Off'}*
-Deskripsi: *${descUpdate ? 'On' : 'Off'}*
-Deteksi:*${detect ? 'On' : 'Off'}*
-Auto Stiker: *${stiker ? 'On' : 'Off'}*
-Welcome: *${welcome ? 'On' : 'Off'}*
 
-*Pengaturan Pesan Bot:*
+*🌹Pengaturan Bot🌹*
+
+Anti Link: ${antiLink ? '✅' : '❌'}
+Anti Delete: ${global.db.data.chats[m.chat].delete ? '❌' : '✅'}
+Banned: ${isBanned ? '✅' : '❌'}
+Deskripsi: ${descUpdate ? '✅' : '❌'}
+Deteksi:${detect ? '✅' : '❌'}
+Auto Stiker: ${stiker ? '✅' : '❌'}
+Welcome: ${welcome ? '✅' : '❌'}
+
+*🌹Pengaturan Pesan Bot🌹*
+
 Welcome: ${sWelcome}
 Bye: ${sBye}
 Promote: ${sPromote}
