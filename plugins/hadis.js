@@ -4,7 +4,8 @@ let handler = async (m, { usedPrefix, command, args }) => {
 ${usedPrefix + command} bukhari 1
 ${usedPrefix + command} abu-daud 1
 
-Pilihan tersedia:
+*🌹Pilihan Tersedia🌹*
+
 abu-daud
 1 - 4590
 ahmad
