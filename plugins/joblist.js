@@ -29,14 +29,15 @@ let handler = async (m, { conn, text, participants }) => {
 	if(total == 0) return conn.reply(m.chat, `*[ LIST JOB]*\n\nTidak ada yang menawarkan jasa apapun di grup ini`, m) 
 	conn.reply(m.chat, `*[ LIST JOB ]*\n\n${user.map(v => '  ○ @' + v.replace(/@.+/, '') + ' [ ' + global.db.data.users[v].job + ' - Rp. ' + format(global.db.data.users[v].exp)  +' ]').join('\n')}\n\nKetik .sewa @user untuk menyewa orang`, m,{ contextInfo: { mentionedJid: user } })
 }
-handler.help = ['listjob']
+handler.help = ['listjob', 'jasa']
 handler.tags = ['fun']
-handler.command = /^(listjob)$/i
+handler.command = /^(listjob|jasa)$/i
 handler.owner = false
 handler.mods = false
 handler.premium = false
 handler.group = true
 handler.private = false
+handler.register = true
 handler.admin = false
 handler.botAdmin = false
 handler.fail = null
