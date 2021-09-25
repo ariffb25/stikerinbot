@@ -9,6 +9,6 @@ let handler = async (m, { args, usedPrefix, command }) => {
 }
 handler.help = ['epep'].map(v => v + ' <id>')
 handler.tags = ['internet']
-handler.command = /^(freefire|epep)$/i
+handler.command = /^(f(ree)?f(ire)?|epep)$/i
 
 module.exports = handler
