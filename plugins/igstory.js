@@ -10,7 +10,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     let json = JSON.parse(igs)
     await m.reply(global.wait)
     for (let { downloadUrl, type } of json)
-      conn.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), '🌹Nih udah di Download^_^🌹', m)
+      conn.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), '*🌹Nih udah di Download^_^🌹*', m)
 
   })
 
