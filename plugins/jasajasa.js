@@ -13,7 +13,7 @@ let handler = async (m, { conn, args, usedPrefix }) => {
   if (typeof global.db.data.users[m.sender] == 'undefined') {
     global.db._data.users[m.sender] = {
       exp: 0,
-      limit: 10,
+      limit: 100,
       lastclaim: 0,
       lastnguli: 0,
       warning: 0,
@@ -85,9 +85,9 @@ let handler = async (m, { conn, args, usedPrefix }) => {
     }
   }
 }
-handler.help = ['job', 'jasa'].map(v => v + ' <service> <price>')
-handler.tags = ['job']
-handler.command = /^(job|jasa)$/i
+handler.help = ['jasa'].map(v => v + ' <service> <price>')
+handler.tags = ['fun']
+handler.command = /^(jasa)$/i
 handler.admin = false
 handler.group = true
 handler.botAdmin = false
