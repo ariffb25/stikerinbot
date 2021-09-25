@@ -24,7 +24,7 @@ handler.help = ['affect']
 handler.tags = ['sticker']
 handler.command = /^affect$/i
 handler.owner = false
-handler.register
+handler.register = true
 handler.mods = false
 handler.premium = false
 handler.group = false
