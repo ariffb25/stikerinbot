@@ -3,7 +3,7 @@ let handler = async m => m.reply(`
 
 https://chat.whatsapp.com/CUCsW6BWfmJLJwJgPQIaKM
 `.trim())
-handler.help = ['grupbot']
+handler.help = ['groupbot']
 handler.tags = ['info', 'main', 'grup']
 handler.command = /^g(c|ro?up)bot$/i
 
