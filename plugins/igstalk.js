@@ -18,6 +18,6 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 }
 handler.help = ['igstalk <username>']
 handler.tags = ['tools']
-handler.command = /^(igs(talk)?)$/i
+handler.command = /^(igsta?lk)$/i
 handler.limit = true
 module.exports = handler
