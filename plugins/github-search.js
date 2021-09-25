@@ -23,7 +23,7 @@ ${repo.open_issues} Issue${repo.description ? `
 handler.help = ['githubsearch'].map(v => v + ' <pencarian>')
 handler.tags = ['tools']
 
-handler.command = /^g(ithub|h)search$/i
+handler.command = /^g(ithub|h)?s(earch)?$/i
 
 module.exports = handler
 
