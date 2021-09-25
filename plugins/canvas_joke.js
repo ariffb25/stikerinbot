@@ -21,7 +21,7 @@ Canvacord.Canvas.jokeOverHead(image)
   }
 }
 handler.help = ['joke']
-handler.tags = ['sticker']
+handler.tags = ['image']
 handler.command = /^joke$/i
 handler.owner = false
 handler.mods = false
