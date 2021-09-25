@@ -12,7 +12,7 @@ let handler = async (m, { conn, args: [effect], text: txt }) => {
 }
 handler.help = ['enphoto'].map(v => v + ' <efek> <teks>|[teks2]|[teks3]')
 handler.tags = ['tools']
-handler.command = /^(en?photo(360)?)$/i
+handler.command = /^(en?photo(360)?|en?foto)$/i
 
 module.exports = handler
 
