@@ -9,7 +9,7 @@ let handler = async (m, { conn, args }) => {
     m.reply('')
   }
 }
-handler.help = ['here', 'online']
+handler.help = ['online']
 handler.tags = ['group']
 handler.command = /^(here|(list)?online)$/i
 handler.owner = false
