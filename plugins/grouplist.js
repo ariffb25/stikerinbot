@@ -4,7 +4,7 @@ let handler = async (m, { conn }) => {
   let txt = gc.map(v => `${conn.getName(v.jid)}\n${v.jid} [${v.read_only ? 'Keluar' : 'Masuk'}]\n${msToDate(db.data.chats[v.jid] === undefined ? '' : db.data.chats[v.jid].expired - now)}`).join`\n\n`
   conn.reply(m.chat, `Total ${gc.length} Grup\nDaftar Grup:\n${txt}`, m)
 }
-handler.help = ['groups', 'grouplist']
+handler.help = ['grouplist']
 handler.tags = ['info']
 handler.command = /^(gro?up(s|list))$/i
 handler.owner = false
