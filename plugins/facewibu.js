@@ -21,7 +21,7 @@ Canvacord.Canvas.facepalm(image)
   }
 }
 handler.help = ['facewibu']
-handler.tags = ['tools']
+handler.tags = ['tools', 'image']
 handler.command = /^facewibu$/i
 handler.owner = false
 handler.mods = false
