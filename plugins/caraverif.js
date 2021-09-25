@@ -8,7 +8,7 @@ function kintil(list) {
 let img = kintil(['https://telegra.ph/file/f332fd594679038d1c27e.jpg'])
 
 conn.sendButtonImg(m.chat, await (await fetch(img)).buffer(), `
-*Cara Verifikasi*\n\nKalian Tekan Verifikasi Yang Ada Dibot/Ketik .verify\nJika Sudah Maka Bot Akan Mengirimkan Kode Verifikasi Ke Chat Pribadi Kamu, Jika Sudah Mendapatkan Kode Verifikasi Maka Balas Pesan Sebelumnya Yang Dikirimkan Oleh Bot\n*BUKAN BALAS PESAN BOT YANG MENGIRIMKAN VERIFIKASI*
+*Cara Verifikasi*\n\nKalian Tekan Verifikasi Yang Ada Dibot/Ketik .verify\n\nJika Sudah Maka Bot Akan Mengirimkan Kode Verifikasi Ke Chat Pribadi Kamu, Jika Sudah Mendapatkan Kode Verifikasi Maka Balas Pesan Sebelumnya Yang Dikirimkan Oleh Bot\n\n*BUKAN BALAS PESAN BOT YANG MENGIRIMKAN VERIFIKASI*
 `.trim(), '© ariabotz', 'PAHAM', '.verify')
 }
 
