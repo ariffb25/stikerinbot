@@ -1,21 +1,19 @@
 let handler = async (m, { conn, args, usedPrefix }) => {
   conn.math = conn.math ? conn.math : {}
   if (args.length < 1) throw `
-🌹Mode🌹
+*🌹Mode🌹*
 
 🔖 ${Object.keys(modes).join('\n🔖 ')}
 
-🥀   
 contoh:
 ${usedPrefix}math hard
 `.trim()
   let mode = args[0].toLowerCase()
   if (!(mode in modes)) throw `
-🌹Mode🌹
+*🌹Mode🌹*
 
 🔖 ${Object.keys(modes).join('\n🔖 ')}
 
-🥀
 contoh:
 ${usedPrefix}math hard
 `.trim()
