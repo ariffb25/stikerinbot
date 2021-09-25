@@ -111,11 +111,10 @@ let handler = async (m, { conn, text, participants }) => {
 
 }
 handler.help = ['sewa *@user*']
-handler.tags = ['fun']
+handler.tags = ['job']
 handler.command = /^sewa$/i
 handler.admin = false
 handler.group = true
-handler.register = true
 handler.botAdmin = false
 handler.limit = true
 module.exports = handler
