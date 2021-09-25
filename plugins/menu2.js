@@ -236,6 +236,26 @@ conn.relayWAMessage(conn.prepareMessageFromContent(m.chat, {
                     }
                 ]
             },
+           {
+                "title": "◉ Menu ke - 24",
+                "rows": [
+                    {
+                        "title": '► RPG MENU',
+                        "description": "\n𝙄 𝙒𝙖𝙣𝙩 𝙏𝙤 𝙐𝙨𝙚 𝐫𝐩𝐠 𝙈𝙀𝙉𝙐",
+                        "rowId": ".? rpg"
+                    }
+                ]
+            },
+            {
+                "title": "◉ Menu ke - 23",
+                "rows": [
+                    {
+                        "title": '► PHOTOOXY / TEXTPRO MENU',
+                        "description": "\n𝙄 𝙒𝙖𝙣𝙩 𝙏𝙤 𝙐𝙨𝙚 𝐏𝐇𝐎𝐓𝐎𝐎𝐗𝐘/𝐓𝐄𝐗𝐓𝐏𝐑𝐎 𝙈𝙀𝙉𝙐",
+                        "rowId": ".? image"
+                    }
+                ]
+            },
         ]
     }
   }, {}), {waitForAck: true})
