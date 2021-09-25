@@ -115,6 +115,7 @@ handler.tags = ['fun']
 handler.command = /^sewa$/i
 handler.admin = false
 handler.group = true
+handler.register = true
 handler.botAdmin = false
 handler.limit = true
 module.exports = handler
