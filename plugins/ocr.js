@@ -15,7 +15,7 @@ let handler = async (m, { usedPrefix, command }) => {
     if (!json.resultadoOCR) throw json
     m.reply(json.resultadoOCR)
 }
-handler.help = ['ocr']
+handler.help = ['']
 handler.tags = ['convert']
 handler.command = /^ocr$/i
 
