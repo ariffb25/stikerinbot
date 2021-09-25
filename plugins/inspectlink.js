@@ -9,7 +9,8 @@ let handler = async (m, { conn, text }) => {
   })
   if (!res) throw res
   let caption = `
--- [Group Link Inspector] --
+*🌹Group Link Inspector🌹*
+
 ${res.id}
 *Judul:* ${res.subject}
 *Dibuat* oleh @${res.id.split('-')[0]} pada *${formatDate(res.creation * 1000)}*${res.subjectOwner ? `
@@ -34,7 +35,7 @@ ${res.desc}` : '*Tidak ada Deskripsi*'}
 handler.help = ['inspect <chat.whatsapp.com>']
 handler.tags = ['tools']
 
-handler.command = /^inspect$/i
+handler.command = /^inspect?$/i
 
 module.exports = handler
 
