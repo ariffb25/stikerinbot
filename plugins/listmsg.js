@@ -23,8 +23,9 @@ let handler = async (m, { usedPrefix, command }) => {
     if (/img/i.test(command)) fltr = split.filter(v => v.message.imageMessage).map(v => '🔖 ' + v.nama).join('\n')
     m.reply(`
 🌹LIST PESAN🌹
+
 ${fltr}
-🥀
+
 Akses/ambil dengan mengetik:
 *${usedPrefix}get${which}* <nama>
 atau langsung tanpa perintah
