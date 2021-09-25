@@ -19,7 +19,7 @@ let handler = async (m, { conn, text, participants }) => {
   if(typeof global.db.data.users[m.sender] == 'undefined') {
   global.db.data.users[m.sender] = {
       exp: 0,
-      limit: 10,
+      limit: 100,
       lastclaim: 0,
       lastnguli: 0,
       warning: 0,
@@ -111,7 +111,7 @@ let handler = async (m, { conn, text, participants }) => {
 
 }
 handler.help = ['sewa *@user*']
-handler.tags = ['job']
+handler.tags = ['fun']
 handler.command = /^sewa$/i
 handler.admin = false
 handler.group = true
