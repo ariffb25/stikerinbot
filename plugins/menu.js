@@ -9,7 +9,7 @@ const defaultMenu = {
   `.trimStart(),
   header: '*🌹%category🌹*\n',
   body: '🔖 _%cmd_ %islimit %isPremium',
-  footer: '\n🎀\n',
+  footer: '\n🎀\n\n',
   after: `
 `,
 }
@@ -173,7 +173,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     if (teks == '404') {
       return conn.relayWAMessage(conn.prepareMessageFromContent(m.chat, {
         "listMessage": {
-          "title": `Hai, ${name}, ${ucapan()}`.trim(),
+          "title": `*🌹${me}🌹*\n\nHai ${name}, ${ucapan()}`.trim(),
           "description": "```Pilih list menu di bawah ya kak^_^```",
           "buttonText": "List Menu",
           "listType": "SINGLE_SELECT",
