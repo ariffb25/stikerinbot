@@ -30,16 +30,7 @@ handler.all = async function (m, { isPrems }) {
         await m.reply(wait)
         // m.reply(util.format(json))
         await this.sendFile(m.chat, json.download, '', '© ariabotz', m)
-    }
-
-    if (/^.*(fb.watch|facebook.com)/i.test(m.text)) {
-        let res = await fetch(API('neoxr', '/api/download/fb', { url }, 'apikey'))
-        if (!res.ok) return m.reply(eror)
-        let json = await res.json()
-        if (!json.status) return m.reply(util.format(json))
-        await m.reply(wait)
-        await conn.sendFile(m.chat, json.data.sd.url, '', `HD: ${json.data.hd.url}\nUkuran: ${json.data.hd.size}\n\n© ariabotz`, m)
-    }
+    }   
 
     if (/^.*instagram.com\/(p|reel|tv)/i.test(m.text)) {
         igdl(url).then(async res => {
