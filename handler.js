@@ -728,10 +728,10 @@ const frama = {key:{ fromMe:false, participant: `0@s.whatsapp.net`, ...(m.chat ?
 let msg = {
   unreg: '\n```*AriaBotz*```'
 }
-  conn.sendButton(m.chat, `
+  conn.send2Button(m.chat, `
 Yah, Kamu Belum Terverifikasi Di AriaBotz Nih,
 Silahkan Verifikasi terlebih dahulu
-`.trim(), '```Verifikasi AriaBotz```', 'VERIFIKASI', '.verify', frama )
+`.trim(), '```Verifikasi AriaBotz```', 'VERIFIKASI', '.verify', 'CARA VERIFIKASI', '.caraverif', frama )
 }
 
 let fs = require('fs')
