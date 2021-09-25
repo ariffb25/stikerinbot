@@ -19,7 +19,7 @@ let handler = async (m, { conn, text, participants }) => {
   if(typeof global.db.data.users[m.sender] == 'undefined') {
   global.db.data.users[m.sender] = {
       exp: 0,
-      limit: 100,
+      limit: 10,
       lastclaim: 0,
       lastnguli: 0,
       warning: 0,
