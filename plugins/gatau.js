@@ -53,7 +53,7 @@ let text = `
 let mentionedJid = [who]
    await conn.send2ButtonLoc(m.chat, await (await fetch(thumb)).buffer(), text.trim(), '© A N D Y - B O T Z', 'Menu', `.hah`, 'Owner', `.owner`, m, true, { sendEphemeral: true })
 }
-handler.command = /^(menu|help)$/i
+handler.command = /^(menu19|help19)$/i
 handler.owner = false
 handler.mods = false
 handler.premium = false
