@@ -11,7 +11,7 @@ let ohh
   } catch (e) {
   } finally {
     let str = `
-Imni pp nya @${who.replace(/@.+/, '')}
+Ni pp nya @${who.replace(/@.+/, '')}
 `.trim()
 let mentionedJid = [who]
     conn.sendFile(m.chat, pp, 'pp.jpg', str, m, false, { quoted: m, sendEphemeral: true, contextInfo: { mentionedJid, forwardingScore: 135, isForwarded: true }})
@@ -19,5 +19,6 @@ let mentionedJid = [who]
 }
 handler.help = ['getpp @user']
 handler.tags = ['tools']
+handler.register = true
 handler.command = /^getpp$/i
 module.exports = handler
