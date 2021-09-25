@@ -10,7 +10,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!json.status) throw json
     let { judul, artist, album, img_url, mp3_url, filesize, duration } = json.result
     let pesan = `
-🌹JOOX🌹
+*🌹JOOX🌹*
     
 🔖 Judul: ${judul}
 🔖 Artis: ${artist}
@@ -18,7 +18,6 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 🔖 Ukuran File: ${filesize}
 🔖 Durasi: ${duration}
 
-🥀
     `.trim()
 
     conn.sendFile(m.chat, img_url, 'eror.jpg', pesan, m, 0, { thumbnail: await (await fetch(img_url)).buffer() })
