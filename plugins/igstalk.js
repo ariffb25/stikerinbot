@@ -6,7 +6,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!res.ok) throw eror
   let json = await res.json()
   if (json.status != 200) throw json
-  conn.sendLoc(m.chat, json.data.profilehd, 'eror.jpg', `
+  conn.sendFile(m.chat, json.data.profilehd, 'eror.jpg', `
 *Nama:* ${json.data.fullname}
 *Bio:* \n${json.data.bio}
 *Followers:* ${json.data.follower}
