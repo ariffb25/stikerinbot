@@ -85,11 +85,12 @@ let handler = async (m, { conn, args, usedPrefix }) => {
     }
   }
 }
-handler.help = ['jasa'].map(v => v + ' <service> <price>')
+handler.help = ['jasa', 'job'].map(v => v + ' <service> <price>')
 handler.tags = ['fun']
-handler.command = /^(jasa)$/i
+handler.command = /^(jasa|job)$/i
 handler.admin = false
 handler.group = true
+handler.register = true
 handler.botAdmin = false
 handler.limit = true
 module.exports = handler
