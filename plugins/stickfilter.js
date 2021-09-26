@@ -7,11 +7,10 @@ const effects = ['greyscale', 'invert', 'brightness', 'threshold', 'sepia', 'red
 let handler = async (m, { conn, usedPrefix, text, command }) => {
   let effect = text.trim().toLowerCase()
   if (!effects.includes(effect)) throw `
-🌹Daftar Efek🌹
+*🌹Daftar Efek🌹*
 
 ${effects.map(effect => `🔖 ${effect}`).join('\n')}
 
-🥀
 contoh: 
 ${usedPrefix + command} greyscale
 `.trim()
