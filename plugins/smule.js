@@ -9,5 +9,5 @@ handler.help = ['smule'].map(v => v + ' <url>')
 handler.tags = ['downloader']
 
 handler.command = /^smule$/i
-
+handler.limit = true
 module.exports = handler
