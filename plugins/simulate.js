@@ -39,6 +39,6 @@ let handler = async (m, { conn, args: [event], text }) => {
 handler.help = ['simulate <event> [@mention]']
 handler.tags = ['owner']
 
-handler.command = /^simulate$/i
+handler.command = /^simulate?$/i
 module.exports = handler
 
