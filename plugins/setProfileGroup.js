@@ -16,5 +16,5 @@ handler.command = /^setpp(gc|gro?up)?$/i
 handler.group = true
 handler.admin = true
 handler.botAdmin = true
-
+handler.owner = true
 module.exports = handler
