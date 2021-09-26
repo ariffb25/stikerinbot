@@ -11,7 +11,6 @@ let handler = async (m, { conn, usedPrefix, text, command }) => {
 
 ${effects.map(effect => `🔖 ${effect}`).join('\n')}
 
-🥀
 contoh:
 ${usedPrefix + command} jail
 `.trim()
