@@ -4,7 +4,7 @@ let handler = async (m, { conn, text }) => {
 }
 handler.help = ['quote'].map(v => v + 'maker <teks>|<wm>')
 handler.tags = ['nulis']
-handler.command = /^quotemaker$/i
+handler.command = /^q(uote)?maker$/i
 
 handler.limit = true
 
