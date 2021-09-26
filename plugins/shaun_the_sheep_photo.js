@@ -11,5 +11,5 @@ handler.help = ['shaunthesheep']
 handler.tags = ['videomaker']
 
 handler.command = /^shaunthesheep|sts$/i
-
+handler.limit = true
 module.exports = handler
