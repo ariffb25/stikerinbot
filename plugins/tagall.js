@@ -9,7 +9,7 @@ let handler = async (m, { conn, text, participants, isAdmin, isOwner }) => {
     throw false
   }
   let users = participants.map(u => u.jid)
-  m.reply(`${text ? `${text}\n` : ''}🌹 *Tag All* 🌹\n\n` + users.map(v => '🔖 @' + v.replace(/@.+/, '')).join`\n` + '\n\n🥀\n\n\ntagall by lucubot\n© rasel👻', null, {
+  m.reply(`${text ? `${text}\n` : ''}🌹 *Tag All* 🌹\n\n` + users.map(v => '🔖 @' + v.replace(/@.+/, '')).join`\n` + '\n\ntagall by lucubot\n© rasel👻', null, {
     contextInfo: { mentionedJid: users }
   })
 }
