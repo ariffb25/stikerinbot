@@ -7,7 +7,7 @@ let handler = async (m, { text, usedPrefix, command }) => {
   if (json.result == 'Aku tidak mengerti apa yang kamu katakan.Tolong ajari aku.') await m.reply('siminya blom diajarin jadi gatau t_t custom pesannya di https://simsimi.com/teach')
   await m.reply(`*Simi:* ${json.result}`)
 }
-handler.help = ['simi', 'simsimi', 'simih'].map(v => v + ' <teks>')
+handler.help = ['simi'].map(v => v + ' <teks>')
 handler.tags = ['fun']
 handler.command = /^((sim)?simi|simih)$/i
 
