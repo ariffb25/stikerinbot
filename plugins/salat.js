@@ -14,11 +14,10 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 contoh:
 ${usedPrefix + command} kubu raya 
 
-🌹Daftar Daerah🌹
+*🌹Daftar Daerah🌹*
  
 ${hasil}
 
-🥀
 `.trim())
         throw false
     }
