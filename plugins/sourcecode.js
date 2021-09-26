@@ -1,7 +1,9 @@
 let handler = async m => m.reply(`
 *Bot ini menggunakan script github:*
+
 https://github.com/raselcomel
-_*Fork*_
+
+\`\`\`Fork\`\`\`
 `.trim())
 handler.help = ['sourcecode']
 handler.tags = ['info']
