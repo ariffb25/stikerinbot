@@ -486,8 +486,8 @@ global.dfail = (type, m, conn) => {
     mods: '*Hanya untuk Moderator*',
     premium: '*Hanya untuk user Premium*',
     group: '*Hanya bisa di dalam Grup*',
-    private: '*Hanya bisa di Chat Pribadi',
-    admin: '*Hanya untuk Admin Grup',
+    private: '*Hanya bisa di Chat Pribadi*',
+    admin: '*Hanya untuk Admin Grup*',
     botAdmin: 'Jadikan bot sebagai *Admin* untuk menggunakan perintah ini',
     unreg: 'Silahkan daftar untuk menggunakan fitur ini dengan cara mengetik:\n\n*#daftar nama.umur*\n\nContoh: *#daftar Rasel.18*',
     nsfw: '*NSFW tidak aktif*'
