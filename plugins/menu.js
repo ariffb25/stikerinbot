@@ -169,7 +169,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     if (teks == '404') {
       return conn.relayWAMessage(conn.prepareMessageFromContent(m.chat, {
         "listMessage": {
-          "title": `${ucapan()}, ${name}🐤`.trim(),
+          "title": `${ucapan()}, kak ${name}🐤`.trim(),
           "description": "```Silahkan pilih list menu di bawah ya kak```",
           "buttonText": "List Menu",
           "listType": "SINGLE_SELECT",
@@ -269,7 +269,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                 }, {
                   "title": "Grup Official Bot",
                   "description": "",
-                  "rowId": "xgroupbot"
+                  "rowId": ".groupbot"
                 }, {
                   "title": "Owner",
                   "description": "",
