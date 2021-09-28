@@ -49,7 +49,7 @@ handler.all = async m => {
 
 handler.help = ['update2']
 handler.tags = ['host']
-handler.command = ['update2']
+handler.command = ['up(date)?2']
 
 handler.rowner = true
 
