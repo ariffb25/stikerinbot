@@ -6,30 +6,11 @@ let fetch = require('node-fetch')
 let moment = require('moment-timezone')
 const defaultMenu = {
   before: `
-┌─〔 %me 〕
-├ Hai, %name!
-│
-├ Tersisa *%limit Limit*
-├ Role *%role*
-├ Level *%level (%exp / %maxexp)* [%xp4levelup]
-├ %totalexp XP secara Total
-│ 
-├ Tanggal: *%week %weton, %date*
-├ Tanggal Islam: *%dateIslamic*
-├ Waktu: *%time*
-│
-├ Uptime: *%uptime (%muptime)*
-├ Database: %rtotalreg dari %totalreg
-├ Github:
-├ %github
-└────
-%readmore`.trimStart(),
-  header: '┌─〔 %category 〕',
-  body: '├ %cmd %islimit %isPremium',
-  footer: '└────\n',
+`.trimStart(),
+  header: '*🌹 %category 🌹*',
+  body: '🔖 _%cmd_ %islimit %isPremium',
+  footer: '🎀\n',
   after: `
-*%npmname@^%version*
-${'```%npmdesc```'}
 `,
 }
 let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
@@ -188,9 +169,9 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     if (teks == '404') {
       return conn.relayWAMessage(conn.prepareMessageFromContent(m.chat, {
         "listMessage": {
-          "title": `${ucapan()}, ${name}`.trim(),
-          "description": "© stikerin",
-          "buttonText": "Klik Disini",
+          "title": `${ucapan()}, ${name}🐤`.trim(),
+          "description": "```Silahkan pilih list menu di bawah ya kak```",
+          "buttonText": "List Menu",
           "listType": "SINGLE_SELECT",
           "sections": [
             {
@@ -377,9 +358,9 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    await conn.send2ButtonLoc(m.chat, await (await fetch(fla + teks)).buffer(), text.trim(), 'made with ❤️ by ariffb', 'Pemilik Bot', '.owner', 'Donasi', '.donasi', m)
+    await conn.sendButtonLoc(m.chat, await (await fetch(fla + teks)).buffer(), text.trim(), '', 'List Menu', '.menu', m)
   } catch (e) {
-    conn.reply(m.chat, 'Maaf, menu sedang error', m)
+    conn.reply(m.chat, 'Maaf, menu sedang error v_v', m)
     throw e
   }
 }
