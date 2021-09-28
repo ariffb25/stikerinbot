@@ -9,19 +9,17 @@ let handler = async (m, { conn, usedPrefix }) => {
     let [reason, upvote, devote] = conn.vote[id]
     let mentionedJid = [...upvote, ...devote]
     let caption = `
-    〔 VOTE 〕
+    *🌹VOTE🌹*
 
-*Alasan:* ${reason}
+*📌Alasan:* ${reason}
 
-*UPVOTE*
+*UPVOTE* 📍
 _Total: ${upvote.length}_
 ${upvote.map(u => '@' + u.split('@')[0]).join('\n')}
 
-*DEVOTE*
+*DEVOTE* 📍
 _Total: ${devote.length}_
 ${devote.map(u => '@' + u.split('@')[0]).join('\n')}
-
-_by ariffb_
     `.trim()
     await conn.send3Button(m.chat, caption, 'Silahkan klik di bawah!', 'Upvote', `${usedPrefix}upvote`, 'Devote', `${usedPrefix}devote`, 'HAPUS VOTE', `${usedPrefix}hapusvote`, m, { contextInfo: { mentionedJid } })
 }
