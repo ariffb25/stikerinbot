@@ -22,9 +22,9 @@ global.APIKeys = { // APIKey nya disini
   'https://hardianto-chan.herokuapp.com': 'hardianto',
   'https://neoxr-api.herokuapp.com': 'yntkts',
   'https://pencarikode.xyz': 'pais',
-  'https://api.xteam.xyz': '58e5eb70b6f8dd0f',
+  'https://api.xteam.xyz': 'APIKEYLU',
   'https://zahirr-web.herokuapp.com': 'zahirgans',
-  'https://api.zeks.xyz': 'chika-key',
+  'https://api.zeks.xyz': 'chika-key', //ini apikey rashid gua pake:v
 }
 
 // Sticker WM
