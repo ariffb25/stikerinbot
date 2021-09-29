@@ -21,7 +21,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 Tanggal: ${date}
 ${conn.absen[id][2]}
 
-🌹daftar absen🌹
+*🌹Daftar Absen🌹*
 
 📌 Total: ${absen.length}
 ${list}
