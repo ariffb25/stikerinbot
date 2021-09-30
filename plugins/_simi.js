@@ -10,7 +10,7 @@ handler.before = async (m) => {
         if (!res.ok) return m.reply(eror)
         let json = await res.json()
         if (json.result == 'Aku tidak mengerti apa yang kamu katakan.Tolong ajari aku.') await m.reply('siminya blom diajarin, ajarin di https://simsimi.com/teach')
-        else await m.reply(`*Simi:* ${json.result}`)
+        else await m.reply(`${json.result}`)
         return !0
     }
     return true
