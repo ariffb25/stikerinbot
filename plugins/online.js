@@ -2,7 +2,7 @@ let handler = async (m, { conn, args }) => {
   let id = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : m.chat
   try {
     let online = [...Object.keys(conn.chats.get(id).presences), conn.user.jid]
-    conn.reply(m.chat, '┌─〔 Daftar Online 〕\n' + online.map(v => '├ @' + v.replace(/@.+/, '')).join`\n` + '\n└────', m, {
+    conn.reply(m.chat, '*🌹Daftar Online🌹*\n' + online.map(v => '🔖 @' + v.replace(/@.+/, '')).join`\n` + '\n🎀\n', m, {
       contextInfo: { mentionedJid: online }
     })
   } catch (e) {
