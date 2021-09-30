@@ -13,9 +13,8 @@ handler.all = async function (m) {
 Hai, ${ucapan()}
 
 ${user.banned ? 'kamu dibanned' : 'Ada yang bisa saya bantu?'}
-Klik *List Menu* di bawah! 
 
-`.trim(), 'Yuk join grup bot kirim #grupbot ramein ya^_^', user.banned ? 'Owner' : 'List Menu', user.banned ? ',owner' : ',?', m)
+`.trim(), 'https://chat.whatsapp.com/CUCsW6BWfmJLJwJgPQIaKM', user.banned ? 'Owner' : 'List Menu', user.banned ? ',owner' : ',?', m)
     user.pc = new Date * 1
 }
 
