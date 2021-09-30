@@ -5,7 +5,7 @@ const { MessageType } = require('@adiwajshing/baileys')
 let handler = async (m, { conn }) => {
   if (!global.support.convert &&
     !global.support.magick &&
-    !global.support.gm) return handler.disabled = true // Disable if doesnt support
+    !global.support.gm) return handler.disabled = false // Disable if doesnt support
   if (!m.quoted) return conn.reply(m.chat, 'tag stikernya!', m)
   let q = { message: { [m.quoted.mtype]: m.quoted } }
   if (/sticker/.test(m.quoted.mtype)) {
