@@ -28,13 +28,11 @@ handler.all = async function (m, { isBlocked }) {
     // ketika ada yang invite/kirim link grup di chat pribadi
     if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('Buka tautan ini')) && !m.isBaileys && !m.isGroup) {
         this.send2Button(m.chat, `
-🌹Undang Bot ke Grup🌹
+*🌹Undang Bot ke Grup🌹*
 🔖 7 Hari / Rp 5,000
 🔖 30 Hari / Rp 10,000
 🔖 Permanen / ketentuan owner
 
-https://saweria.co/raselganz
-https://github.com/raselcomel/stikerinbot
 `.trim(), 'Jika berminat bisa hubungi Owner Bot!', 'Owner', ',owner', 'Grup Bot', ',groupbot', m)
     }
 
@@ -42,7 +40,7 @@ https://github.com/raselcomel/stikerinbot
     let reg = /(ass?alam|اَلسَّلاَمُ عَلَيْكُمْ|السلام عليکم)/i
     let isSalam = reg.exec(m.text)
     if (isSalam && !m.fromMe) {
-        m.reply(`وَعَلَيْكُمْ السَّلاَمُ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ\n\n*wa\'alaikumussalam wr.wb.*`)
+        m.reply(`\`\`\`wa\'alaikumussalam\`\`\``)
     }
 
     // backup db
