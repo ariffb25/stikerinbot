@@ -22,13 +22,13 @@ global.APIKeys = { // APIKey nya disini
   'https://hardianto-chan.herokuapp.com': 'hardianto',
   'https://neoxr-api.herokuapp.com': 'yntkts',
   'https://pencarikode.xyz': 'pais',
-  'https://api.xteam.xyz': 'APIKEYLU',
+  'https://api.xteam.xyz': '58e5eb70b6f8dd0f',
   'https://zahirr-web.herokuapp.com': 'zahirgans',
   'https://api.zeks.xyz': 'chika-key', //ini apikey rashid gua pake:v
 }
 
 // Sticker WM
-global.packname = '𝑰𝒕𝒔 𝑴𝒆 𝑹𝒂𝒔𝒆𝒍'
+global.packname = '𝑰𝒕\'𝒔 𝑴𝒆 𝑹𝒂𝒔𝒆𝒍'
 global.author = '© lucubot +6282256048971  follow ig:@rasel.ganz'
 
 global.wait = '```Tunggu sebentar ya...```'
