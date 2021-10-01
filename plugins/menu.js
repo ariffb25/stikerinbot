@@ -181,17 +181,17 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "description": "",
                   "rowId": ".? all"
                 }, {
-                  "title": "Game",
+                  "title": "Menu Game",
                   "description": "",
                   "rowId": ".? game"
 
                 }, {
-                  "title": "XP",
+                  "title": "Limit & XP",
                   "description": "",
                   "rowId": ".? xp"
 
                 }, {
-                  "title": "Stiker",
+                  "title": "Menu Stiker",
                   "description": "",
                   "rowId": ".? stiker"
                 }, {
@@ -203,11 +203,11 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "description": "",
                   "rowId": ".? quotes"
                 }, {
-                  "title": "Admin",
+                  "title": "Menu Admin",
                   "description": "",
                   "rowId": ".? admin"
                 }, {
-                  "title": "Grup",
+                  "title": "Menu Grup",
                   "description": "",
                   "rowId": ".? grup"
                 }, {
@@ -259,7 +259,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "description": "",
                   "rowId": ".? jadibot"
                 }, {
-                  "title": "Info",
+                  "title": "Info Bot",
                   "description": "",
                   "rowId": ".? info"
                 }, {
@@ -267,13 +267,17 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "description": "",
                   "rowId": ".? tanpakategori"
                 }, {
-                  "title": "Grup Official Forum Bot",
+                  "title": "Menu Owner",
+                  "description": "",
+                  "rowId": ".? owner"
+                }, {
+                  "title": "Grup Official Bot",
                   "description": "",
                   "rowId": ".groupbot"
                 }, {
-                  "title": "Owner",
+                  "title": "Pemilik Bot",
                   "description": "",
-                  "rowId": ".? owner"
+                  "rowId": ".owner"
                 }
               ]
             }
