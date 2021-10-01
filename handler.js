@@ -47,6 +47,7 @@ module.exports = {
           if (!('autolevelup' in user)) user.autolevelup = false
           if (!isNumber(user.pc)) user.pc = 0
           if (!isNumber(user.warning)) user.warning = 0
+          if (!('pasangan' in user)) user.pasangan = ''
         } else global.db.data.users[m.sender] = {
           exp: 0,
           limit: 10,
@@ -64,6 +65,7 @@ module.exports = {
           autolevelup: false,
           pc: 0,
           warning: 0,
+          pasangan: "",
         }
 
         let chat = global.db.data.chats[m.chat]
