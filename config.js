@@ -1,5 +1,5 @@
 let fs = require('fs')
-global.owner = ['6285346545126', '6282256048971'] // Letakan nomor kamu disini
+global.owner = ['6282256048971', '6285346545126'] // Letakan nomor kamu disini
 global.mods = [] // Moderator?
 global.prems = JSON.parse(fs.readFileSync('./src/premium.json')) // Pengguna premium tidak memerlukan limit
 global.APIs = { // API Prefix
@@ -31,7 +31,7 @@ global.APIKeys = { // APIKey nya disini
 global.packname = '𝑰𝒕\'𝒔 𝑴𝒆 𝑹𝒂𝒔𝒆𝒍'
 global.author = '© lucubot +6282256048971  follow ig:@rasel.ganz'
 
-global.wait = '```Tunggu sebentar ya...```'
+global.wait = 'Tunggu sebentar ya sayang*'
 global.eror = '```Server Error```'
 global.fla = 'https://telegra.ph/file/4f4a5a3cde6a98a96da79.jpg'
 global.multiplier = 69 // Semakin tinggi, semakin sulit naik level
