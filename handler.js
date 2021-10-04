@@ -79,7 +79,7 @@ module.exports = {
           if (!('sPromote' in chat)) chat.sPromote = ''
           if (!('sDemote' in chat)) chat.sDemote = ''
           if (!('descUpdate' in chat)) chat.descUpdate = true
-          if (!('stiker' in chat)) chat.stiker = false
+          if (!('stiker' in chat)) chat.stiker = true
           if (!('delete' in chat)) chat.delete = true
           if (!('antiLink' in chat)) chat.antiLink = false
           if (!isNumber(chat.expired)) chat.expired = 0
@@ -94,7 +94,7 @@ module.exports = {
           sPromote: '',
           sDemote: '',
           descUpdate: true,
-          stiker: false,
+          stiker: true,
           delete: true,
           antiLink: false,
           expired: 0,
@@ -108,22 +108,22 @@ module.exports = {
           if (!'anon' in settings) settings.anon = true
           if (!'anticall' in settings) settings.anticall = true
           if (!'antispam' in settings) settings.antispam = true
-          if (!'antitroli' in settings) settings.antitroli = true
+          if (!'antitroli' in settings) settings.antitroli = false
           if (!'backup' in settings) settings.backup = false
           if (!isNumber(settings.backupDB)) settings.backupDB = 0
           if (!'groupOnly' in settings) settings.groupOnly = false
-          if (!'jadibot' in settings) settings.groupOnly = false
+          if (!'jadibot' in settings) settings.groupOnly = true
           if (!'nsfw' in settings) settings.nsfw = true
           if (!isNumber(settings.status)) settings.status = 0
         } else global.db.data.settings[this.user.jid] = {
           anon: true,
           anticall: true,
           antispam: true,
-          antitroli: true,
+          antitroli: false,
           backup: false,
           backupDB: 0,
           groupOnly: false,
-          jadibot: false,
+          jadibot: true,
           nsfw: true,
           status: 0,
         }
@@ -278,7 +278,7 @@ module.exports = {
           if (xp > 200) m.reply('Ngecit -_-') // Hehehe
           else m.exp += xp
           if (!isPrems && plugin.limit && global.db.data.users[m.sender].limit < plugin.limit * 1) {
-            this.reply(m.chat, `Limit kamu habis, silahkan beli melalui *${usedPrefix}buy* \ncontoh: *${usedPrefix}buy 10*`, m)
+            this.reply(m.chat, `Limit kamu habis, silahkan beli melalui *${usedPrefix}buy*\n\ncontoh: *${usedPrefix}buy 5*`, m)
             continue // Limit habis
           }
           if (plugin.level > _user.level) {
@@ -328,7 +328,7 @@ module.exports = {
                 console.error(e)
               }
             }
-            // if (m.limit) m.reply(+ m.limit + ' Limit terpakai') // Jadikan sebagai komentar jika kamu risih dengan pesan ini
+            if (m.limit) m.reply(+ m.limit + ' Limit terpakai') // Jadikan sebagai komentar jika kamu risih dengan pesan ini
           }
           break
         }
@@ -384,8 +384,8 @@ module.exports = {
           let groupMetadata = await this.groupMetadata(jid)
           for (let user of participants) {
             // let pp = './src/avatar_contact.png'
-            let pp = 'https://i.ibb.co/jr9Nh6Q/Thumb.jpg'
-            let ppgc = 'https://i.ibb.co/jr9Nh6Q/Thumb.jpg'
+            let pp = 'https://telegra.ph/file/9da57ee9a94820b6b436c.jpg'
+            let ppgc = 'https://telegra.ph/file/9da57ee9a94820b6b436c.jpg'
             try {
               pp = await uploadImage(await (await fetch(await this.getProfilePicture(user))).buffer())
               ppgc = await uploadImage(await (await fetch(await this.getProfilePicture(jid))).buffer())
