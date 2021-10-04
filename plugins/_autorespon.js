@@ -6,7 +6,7 @@ handler.all = async function (m, { isBlocked }) {
     if (isBlocked) return
     if (m.isBaileys) return
     if (m.chat.endsWith('broadcast')) return
-    let setting = db.data.settings
+    let setting = db.data.settings[this.user.jid]
     let { isBanned } = db.data.chats[m.chat]
     let { banned } = db.data.users[m.sender]
 
@@ -16,10 +16,10 @@ handler.all = async function (m, { isBlocked }) {
             await this.send2Button(m.chat,
                 isBanned ? 'stikerin tidak aktif' : banned ? 'kamu dibanned' : 'stikerin disini',
                 '© stikerin',
-                isBanned ? 'UNBAN' : banned ? 'PEMILIK BOT' : 'MENU',
+                isBanned ? 'Unban' : banned ? 'Pemilik Bot' : 'Menu',
                 isBanned ? '.unban' : banned ? '.owner' : '.?',
-                m.isGroup ? 'BAN' : isBanned ? 'UNBAN' : 'DONASI',
-                m.isGroup ? '.ban' : isBanned ? '.unban' : '.donasi')
+                m.isGroup ? 'Ban' : isBanned ? 'Unban' : 'Donasi',
+                m.isGroup ? '.ban' : isBanned ? '.unban' : '.donasi', m)
         }
     } catch (e) {
         return
@@ -33,7 +33,7 @@ handler.all = async function (m, { isBlocked }) {
 └────
 
 https://github.com/ariffb25/stikerinbot
-`.trim(), '© stikerin', 'Pemilik Bot', ',owner', { contextInfo: { mentionedJid: [global.owner[0] + '@s.whatsapp.net'] } })
+`.trim(), '© stikerin', 'Pemilik Bot', ',owner', m)
     }
 
     // salam

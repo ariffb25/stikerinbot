@@ -18,9 +18,20 @@
 ```bash
 git clone https://github.com/ariffb25/stikerinbot
 cd stikerinbot
-npm install
+npm i
 npm update
-npm index
+node .
+```
+
+---------
+
+## UNTUK PENGGUNA TERMUX
+```bash
+git clone https://github.com/ariffb25/stikerinbot --branch termux
+cd stikerinbot
+npm i
+npm update
+node .
 ```
 
 ---------

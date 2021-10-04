@@ -61,7 +61,7 @@ handler.help = ['stiker2']
 handler.tags = ['sticker']
 handler.command = /^(s(t|k|tic?ker)?2)$/i
 
-handler.disable = true
+handler.disabled = true
 
 module.exports = handler
 

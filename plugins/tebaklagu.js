@@ -24,8 +24,8 @@ Bonus: ${poin} XP
     conn.tebaklagu[id] = [
         await m.reply(caption),
         json, poin,
-        setTimeout(() => {
-            if (conn.tebaklagu[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.judul}*`, conn.tebaklagu[id][0])
+        setTimeout(async () => {
+            if (conn.tebaklagu[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.judul}*`, '© stikerin', 'Tebak Lirik', `.tebaklirik`, conn.tebaklagu[id][0])
             delete conn.tebaklagu[id]
         }, timeout)
     ]
