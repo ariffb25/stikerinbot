@@ -59,7 +59,9 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     'quotes': 'Quotes'
   }
   if (teks == 'admin') tags = {
-    'admin': `Admin ${global.opts['restrict'] ? '' : '(Dinonaktifkan)'}`,
+    'admin': `Admin ${global.opts['restrict'] ? '' : '(Dinonaktifkan)'}`
+  }
+  if (teks == 'grup') tags = {
     'group': 'Grup'
   }
   if (teks == 'premium') tags = {
@@ -201,9 +203,13 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "description": "",
                   "rowId": ".? quotes"
                 }, {
-                  "title": "Admin & Grup",
+                  "title": "Admin",
                   "description": "",
                   "rowId": ".? admin'
+                }, {
+                  "title": "Grup",
+                  "description": "",
+                  "rowId": ".? group"
                 }, {
                   "title": "Premium",
                   "description": "",
