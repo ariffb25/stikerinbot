@@ -6,30 +6,11 @@ let fetch = require('node-fetch')
 let moment = require('moment-timezone')
 const defaultMenu = {
   before: `
-┌─〔 %me 〕
-├ Hai, %name!
-│
-├ Tersisa *%limit Limit*
-├ Role *%role*
-├ Level *%level (%exp / %maxexp)* [%xp4levelup]
-├ %totalexp XP secara Total
-│ 
-├ Tanggal: *%week %weton, %date*
-├ Tanggal Islam: *%dateIslamic*
-├ Waktu: *%time*
-│
-├ Uptime: *%uptime (%muptime)*
-├ Database: %rtotalreg dari %totalreg
-├ Github:
-├ %github
-└────
-%readmore`.trimStart(),
-  header: '┌─〔 %category 〕',
-  body: '├ %cmd %islimit %isPremium',
-  footer: '└────\n',
+  `.trimStart(),
+  header: '*🌹 %category 🌹*\n',
+  body: '🔖 _%cmd_ %islimit %isPremium',
+  footer: '\n🎀\n\n',
   after: `
-*%npmname@^%version*
-${'```%npmdesc```'}
 `,
 }
 let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
@@ -188,16 +169,16 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     if (teks == '404') {
       return conn.relayWAMessage(conn.prepareMessageFromContent(m.chat, {
         "listMessage": {
-          "title": `${ucapan()}, ${name}`.trim(),
-          "description": "© stikerin",
-          "buttonText": "Klik Disini",
+          "title": `${ucapan()}, kak ${name} 🐤`.trim(),
+          "description": "Pilih menu *LUCU BOT* di bawah ya kak!",
+          "buttonText": "Pilih Disini",
           "listType": "SINGLE_SELECT",
           "sections": [
             {
               "rows": [
                 {
                   "title": `Semua Perintah`,
-                  "description": "",
+                  "description": "\n\nMenampilkan semua menu",
                   "rowId": ".? all"
                 }, {
                   "title": "Game",
@@ -289,6 +270,14 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "title": "Owner",
                   "description": "",
                   "rowId": ".? owner"
+                },{
+                  "title": "Grup Official",
+                  "description": "",
+                  "rowId": ".groupbot"
+                },{
+                  "title": "Pemilik Bot",
+                  "description": "",
+                  "rowId": ".owner"
                 }
               ]
             }
