@@ -59,9 +59,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     'quotes': 'Quotes'
   }
   if (teks == 'admin') tags = {
-    'admin': `Admin ${global.opts['restrict'] ? '' : '(Dinonaktifkan)'}`
-  }
-  if (teks == 'grup') tags = {
+    'admin': `Admin ${global.opts['restrict'] ? '' : '(Dinonaktifkan)'}`,
     'group': 'Grup'
   }
   if (teks == 'premium') tags = {
@@ -171,7 +169,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
         "listMessage": {
           "title": `${ucapan()}, kak ${name}🐤`.trim(),
           "description": "```Silahkan pilih list menu di bawah ya kak```",
-          "buttonText": "List Menu",
+          "buttonText": "Pilih Disini",
           "listType": "SINGLE_SELECT",
           "sections": [
             {
@@ -181,7 +179,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "description": "",
                   "rowId": ".? all"
                 }, {
-                  "title": "Menu Game",
+                  "title": "Game",
                   "description": "",
                   "rowId": ".? game"
 
@@ -191,7 +189,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "rowId": ".? xp"
 
                 }, {
-                  "title": "Menu Stiker",
+                  "title": "Stiker",
                   "description": "",
                   "rowId": ".? stiker"
                 }, {
@@ -199,17 +197,13 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "description": "",
                   "rowId": ".? kerangajaib"
                 }, {
-                  "title": "Quotes",
+                  "title": "Menu Quotes",
                   "description": "",
                   "rowId": ".? quotes"
                 }, {
-                  "title": "Menu Admin",
+                  "title": "Admin & Grup",
                   "description": "",
-                  "rowId": ".? admin"
-                }, {
-                  "title": "Menu Grup",
-                  "description": "",
-                  "rowId": ".? grup"
+                  "rowId": ".? admin'
                 }, {
                   "title": "Premium",
                   "description": "",
@@ -267,7 +261,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "description": "",
                   "rowId": ".? tanpakategori"
                 }, {
-                  "title": "Menu Owner",
+                  "title": "Owner",
                   "description": "",
                   "rowId": ".? owner"
                 }, {
