@@ -178,105 +178,105 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
               "rows": [
                 {
                   "title": `Semua Perintah`,
-                  "description": "\n\nMenampilkan semua menu",
+                  "description": "\n\n*Menampilkan semua menu bot kak*",
                   "rowId": ".? all"
                 }, {
                   "title": "Game",
-                  "description": "",
+                  "description": "\n\n*Bermain game & dapatkan xp kak*",
                   "rowId": ".? game"
 
                 }, {
-                  "title": "XP",
-                  "description": "",
+                  "title": "XP & Limit",
+                  "description": "\n\n*Cara cek Level xp & Limit kak*",
                   "rowId": ".? xp"
 
                 }, {
                   "title": "Stiker",
-                  "description": "",
+                  "description": "\n\n*Membuat stiker dan lainnya kak*",
                   "rowId": ".? stiker"
                 }, {
                   "title": "Kerang Ajaib",
-                  "description": "",
+                  "description": "*Jawaban random dari bot kak,*\n*masak gak tau gak pernah nonton Spongebob ya?*",
                   "rowId": ".? kerangajaib"
                 }, {
                   "title": "Quotes",
-                  "description": "",
+                  "description": "\n\n*Quotes random kak,*\n*yang suka baca quotes",
                   "rowId": ".? quotes"
                 }, {
                   "title": "Admin",
-                  "description": "",
+                  "description": "\n\n*Fitur grup hanya untuk admin kak*",
                   "rowId": ".? admin"
                 }, {
                   "title": "Grup",
-                  "description": "",
+                  "description": "\n\n*Seting grup dan lainnya kak*",
                   "rowId": ".? grup"
                 }, {
                   "title": "Premium",
-                  "description": "",
+                  "description": "\n\n*Fitur khusus member premium ya kak*",
                   "rowId": ".? premium"
                 }, {
                   "title": "Internet",
-                  "description": "",
+                  "description": "\n\n*Searching di google dan lainnya kak*",
                   "rowId": ".? internet"
                 }, {
                   "title": "Anonymous",
-                  "description": "",
+                  "description": "\n\n*Fitur mencari teman chat kak*\n\n*Note*\n*Cuma bisa di private chat ya kak*",
                   "rowId": ".? anonymous"
                 }, {
                   "title": "Nulis & Logo",
-                  "description": "",
+                  "description": "\n\n*Nulis di buku dengan bot kak*",
                   "rowId": ".? nulis"
                 }, {
                   "title": "Downloader",
-                  "description": "",
+                  "description": "\n\n*Mau download sesuatu?*",
                   "rowId": ".? downloader"
                 }, {
                   "title": "Tools",
-                  "description": "",
+                  "description": "\n\n*Mengubah media ke bentuk lainnya kak*",
                   "rowId": ".? tools"
                 }, {
                   "title": "Fun",
-                  "description": "",
+                  "description": "\n\n*Fun fitur,\ningat ini cuma main² ya kak jangan baperan*",
                   "rowId": ".? fun"
                 }, {
                   "title": "Database",
-                  "description": "",
+                  "description": "\n\n*Database bot kak*",
                   "rowId": ".? database"
                 }, {
                   "title": "Vote & Absen",
-                  "description": "",
+                  "description": "\n\n*Absen dan Vote grup kak*",
                   "rowId": ".? vote"
                 }, {
                   "title": "Al-Qur\'an",
-                  "description": "",
+                  "description": "\n\n*Fitur keagamaan kak,*\n*tetap jaga toleransi beragama ya kak*",
                   "rowId": ".? quran"
                 }, {
                   "title": "Pengubah Suara",
-                  "description": "",
+                  "description": "\n\n*Mengubah audio\/vn ke suara lain kak*",
                   "rowId": ".? audio"
                 }, {
                   "title": "Jadi Bot",
-                  "description": "",
+                  "description": "\n\n*Ftur jadi bot sementara ya kak*",
                   "rowId": ".? jadibot"
                 }, {
                   "title": "Info",
-                  "description": "",
+                  "description": "\n\n*Info tentang bot dan lainnya kak*",
                   "rowId": ".? info"
                 }, {
                   "title": "Tanpa Kategori",
-                  "description": "",
+                  "description": "-",
                   "rowId": ".? tanpakategori"
                 }, {
                   "title": "Owner",
-                  "description": "",
+                  "description": "\n\n*Fitur ini khusus untuk pemilik bot ya kak*",
                   "rowId": ".? owner"
                 },{
                   "title": "Grup Official",
-                  "description": "",
+                  "description": "\n\n*Grup official forum bot*\n*jangan lupa join ya kak*",
                   "rowId": ".groupbot"
                 },{
                   "title": "Pemilik Bot",
-                  "description": "",
+                  "description": "Mau tau pemilik bot?",
                   "rowId": ".owner"
                 }
               ]
