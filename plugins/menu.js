@@ -196,7 +196,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "rowId": ".? stiker"
                 }, {
                   "title": "Kerang Ajaib",
-                  "description": "*Jawaban random dari bot kak,*\n*masak gak tau gak pernah nonton Spongebob ya?*",
+                  "description": "\n\n*Jawaban random dari bot kak,*\n*masak gak tau gak pernah nonton Spongebob ya?*",
                   "rowId": ".? kerangajaib"
                 }, {
                   "title": "Quotes",
@@ -264,7 +264,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "rowId": ".? info"
                 }, {
                   "title": "Tanpa Kategori",
-                  "description": "-",
+                  "description": "\n\n-",
                   "rowId": ".? tanpakategori"
                 }, {
                   "title": "Owner",
@@ -276,7 +276,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "rowId": ".groupbot"
                 },{
                   "title": "Pemilik Bot",
-                  "description": "Mau tau pemilik bot?",
+                  "description": "Mau tau pemilik bot? klik di sini",
                   "rowId": ".owner"
                 }
               ]
