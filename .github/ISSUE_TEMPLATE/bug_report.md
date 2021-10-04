@@ -28,10 +28,9 @@ Jika bisa tambahkan gambar agar mempermudah menjelaskan bug.
  - Version [e.g. 22]
 
 **Smartphone (please complete the following information):**
- - Whatsapp Version : [] if using Whatsapp Mod, Type 8.22.29.3
+ - Whatsapp Version : [e.g. 2.21.19.21] if using Whatsapp Mod, Type 8.22.29.3
  - Device: [e.g. iPhone6]
  - OS: [e.g. iOS8.1]
- - Version [e.g. 22]
 
 **Additional context**
 Tambahkan beberapa konteks tentang bug (Jika Perlu).
