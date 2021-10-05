@@ -1,8 +1,8 @@
 let fetch = require('node-fetch')
 let handler = async (m, { conn, args, usedPrefix, command }) => {
 
-  if (!args[0]) throw `uhm.. url nya mana?\n\ncontoh:\n${usedPrefix + command} https://vt.tiktok.com/yqyjPX/`
-  if (!args[0].match(/tiktok/gi)) throw `url salah`
+  if (!args[0]) throw `Linknya mana?`
+  if (!args[0].match(/tiktok/gi)) throw `ngasi link yang bener lah nyenthot`
 
   let res = await fetch(API('hardianto', '/api/download/tiktok', { url: args[0] }, 'apikey'))
   if (!res.ok) throw eror
