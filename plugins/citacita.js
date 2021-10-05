@@ -6,7 +6,7 @@ fetch('https://raw.githubusercontent.com/AlvioAdjiJanuar/citacita/main/citacita.
 let handler = async (m, { conn }) => {
   let cita = arr[Math.floor(Math.random() * arr.length)]
   if (!cita) throw false
-  await conn.sendFile(m.chat, cita, cita, null, m, 1, {quoted: m, mimetype: 'audio/mp4' })
+  await conn.sendFile(m.chat, cita, cita, null, m, 1, { mimetype: 'audio/mp4' quoted: m })
 }
 handler.customPrefix = /^cita ?cita$/i
 handler.command = new RegExp
