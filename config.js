@@ -28,7 +28,7 @@ global.APIKeys = { // APIKey nya disini
 }
 
 // Sticker WM
-global.packname = '𝑰𝒕\'𝒔 𝑴𝒆 𝑹𝒂𝒔𝒆𝒍\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n@rasel.ganz'
+global.packname = '𝑰𝒕\'𝒔 𝑴𝒆 𝑹𝒂𝒔𝒆𝒍\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n@rasel.ganz'
 global.author = '👻😍🥵😈🥵🤩😝🥵😳🤤🤩😎🥰🥵🥰😍😋☺🥵😈'
 
 global.wait = '*Tunggu sebentar ya sayang*'
