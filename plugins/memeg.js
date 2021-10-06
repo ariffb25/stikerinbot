@@ -9,7 +9,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!/image\/(jpe?g|png)/.test(mime)) throw `Mime ${mime} tidak didukung`
   let img = await q.download()
   let link = await uploadImage(img).catch(e => uploadFile(img))
-  conn.sendFile(m.chat, global.API('https://api.memegen.link', `/images/custom/${encodeURIComponent(t1 ? t1 : '')}/${encodeURIComponent(t2 ? t2 : '')}.png`, {
+  conn.sendFile(m.chat, global.API('https://api.memegen.link', `/images/custom/${encodeURIComponent(t1 ? t1 : '_')}/${encodeURIComponent(t2 ? t2 : '_')}.png`, {
     background: link
   }), 'meme.png', '© stikerin', m)
 }
