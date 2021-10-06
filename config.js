@@ -29,7 +29,7 @@ global.APIKeys = { // APIKey nya disini
 
 // Sticker WM
 global.packname = '𝑰𝒕\'𝒔  𝑴𝒆  𝑹𝒂𝒔𝒆𝒍 \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nfollback dm👻'
-global.author = '👻😍🥵😈🥵🤩😝🥵😳🤤🤩😎🥰🥵🥰😍😋☺🥵😈\n\n\n\n\n\n\n\n\n\n\n\n\n@rasel.ganz\n\n\n         ☺\n\n\n\n     😘😍🥰'
+global.author = '👻😍🥵😈🥵🤩😝🥵😳🤤🤩😎🥰🥵🥰😍😋☺🥵😈\n\n\n\n\n\n\n\n\n\n\n\n\n@rasel.ganz\n\n\n         ☺\n\n\n\n    😘😍🥰'
 
 global.wait = '*Tunggu sebentar ya sayang*'
 global.eror = '```Server Error```'
