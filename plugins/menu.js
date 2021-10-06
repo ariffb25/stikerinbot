@@ -200,7 +200,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "rowId": ".? kerangajaib"
                 }, {
                   "title": "Quotes",
-                  "description": "\n\n*Quotes random kak,*\n*yang suka baca quotes",
+                  "description": "\n\n*Quotes random kak,*\n*yang suka baca quotes*",
                   "rowId": ".? quotes"
                 }, {
                   "title": "Admin",
