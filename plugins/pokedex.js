@@ -1,9 +1,9 @@
 let fetch = require("node-fetch");
 
-let handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) throw `Pokemonnya mana?`;
+let handler = async (m, { conn, args, usedPrefix, command }) => {
+  if (!args[0]) throw `Pokemonnya mana?`;
   let res = await fetch(
-    API("https://some-random-api.ml", "/pokedex", { pokemon: text })
+    API("https://some-random-api.ml", "/pokedex", { pokemon: args[0] })
   );
   if (!res.ok) throw `${res.status} ${res.statusText}`;
   let json = await res.json();
