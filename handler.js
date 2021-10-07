@@ -111,7 +111,7 @@ module.exports = {
           if (!'antitroli' in settings) settings.antitroli = false
           if (!'backup' in settings) settings.backup = false
           if (!isNumber(settings.backupDB)) settings.backupDB = 0
-          if (!'groupOnly' in settings) settings.groupOnly = false
+          if (!'groupOnly' in settings) settings.groupOnly = true
           if (!'jadibot' in settings) settings.groupOnly = false
           if (!'nsfw' in settings) settings.nsfw = true
           if (!isNumber(settings.status)) settings.status = 0
@@ -122,7 +122,7 @@ module.exports = {
           antitroli: false,
           backup: false,
           backupDB: 0,
-          groupOnly: false,
+          groupOnly: true,
           jadibot: false,
           nsfw: true,
           status: 0,
