@@ -14,7 +14,7 @@ adalah @${who.replace(/@.+/, '')}
     conn.reply(m.chat, jawab, m, { contextInfo: { mentionedJid } })
 }
 handler.help = ['beban', 'anjing', 'babi', 'tolol', 'cantik', 'ganteng', 'gay', 'lesby', 'homo', 'sange']
-handler.tags = ['fun'] 
-handler.command = /^beban(ortu)?|bebangc|bebankeluarga|anjing|babi|tolol|begok|goblok|cantik|ganteng|gay|lesby|homo|sange|honry|tulul$/i
+handler.tags = ['fun'] //by https://github.com/raselcomel
+handler.command = /^beban(ortu)?(orangtua)?|bebangc?(ro?up)?|bebankeluarga|anjing|babi|tolol|begok|goblok|cantik|ganteng|gay|lesby|homo|sange|honry|telaso|tulul$/i
 
 module.exports = handler
