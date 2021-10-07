@@ -1,6 +1,6 @@
 const uploadImage = require("../lib/uploadImage");
 
-let handler = async (m, { conn, text, usedPrefix, command }) => {
+let handler = async (m, { conn, args, usedPrefix, command }) => {
   let filt = `
 balas foto dengan caption opsi di bawah ini:
 
@@ -18,7 +18,7 @@ balas foto dengan caption opsi di bawah ini:
 ├ blurple2
 └────
 `.trim();
-  if (!text) throw filt;
+  if (!args[0]) throw filt;
   let q = m.quoted ? m.quoted : m;
   let mime = (q.msg || q).mimetype || "";
   if (!mime) throw filt;
@@ -28,11 +28,11 @@ balas foto dengan caption opsi di bawah ini:
   );
   conn.sendFile(
     m.chat,
-    API("https://some-random-api.ml", "/canvas/" + text, {
+    API("https://some-random-api.ml", "/canvas/" + args[0], {
       avatar: link,
     }),
     "",
-    text,
+    args[0],
     m
   );
 };
