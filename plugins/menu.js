@@ -236,7 +236,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "rowId": ".? tools"
                 }, {
                   "title": "Fun",
-                  "description": "\n\n*Fun fitur,\ningat ini cuma main² ya kak jangan baperan*",
+                  "description": "\n\n*Fun fitur,*\n*ingat ini cuma main² ya kak jangan baperan:v*",
                   "rowId": ".? fun"
                 }, {
                   "title": "Database",
@@ -276,7 +276,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "rowId": ".groupbot"
                 },{
                   "title": "Pemilik Bot",
-                  "description": "Mau tau pemilik bot? klik di sini",
+                  "description": "Mau tau pemilik bot? bisa klik ini kok",
                   "rowId": ".owner"
                 }
               ]
