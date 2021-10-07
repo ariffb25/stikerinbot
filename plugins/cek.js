@@ -13,7 +13,7 @@ adalah @${who.replace(/@.+/, '')}
     let mentionedJid = saha.concat(m.mentionedJid)
     conn.reply(m.chat, jawab, m, { contextInfo: { mentionedJid } })
 }
-handler.help = ['beban', 'anjing', 'babi', 'tolol', 'cantik', 'ganteng', 'gay','lesby', 'homo', 'sange']
+handler.help = ['beban', 'anjing', 'babi', 'tolol', 'cantik', 'ganteng', 'gay', 'lesby', 'homo', 'sange']
 handler.tags = ['kerang']
 handler.command = /^beban(ortu)?|bebangc|bebankeluarga|anjing|babi|tolol|begok|goblok|cantik|ganteng|gay|lesby|homo|sange|honry|tulul$/i
 
