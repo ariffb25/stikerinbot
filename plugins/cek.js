@@ -14,7 +14,7 @@ adalah @${who.replace(/@.+/, '')}
     conn.reply(m.chat, jawab, m, { contextInfo: { mentionedJid } })
 }
 handler.help = ['beban', 'anjing', 'babi', 'tolol', 'cantik', 'ganteng', 'gay', 'lesby', 'homo', 'sange']
-handler.tags = ['kerang'] 
+handler.tags = ['fun'] 
 handler.command = /^beban(ortu)?|bebangc|bebankeluarga|anjing|babi|tolol|begok|goblok|cantik|ganteng|gay|lesby|homo|sange|honry|tulul$/i
 
 module.exports = handler
