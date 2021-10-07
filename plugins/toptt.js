@@ -6,7 +6,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
   if (!/video|audio/.test(mime)) throw `Balas audio yang ingin diubah ke voice note dengan perintah *${usedPrefix + command}*`
   let media = await q.download()
   let audio = await toPTT(media, 'mp4')
-  conn.sendFile(m.chat, audio, '', '', m, 1, { mimetype: 'audio/mp4' })
+  conn.sendFile(null.chat, audio, '', '', m, 1, { mimetype: 'audio/mp4' })
 }
 handler.help = ['tovn']
 handler.tags = ['audio']
