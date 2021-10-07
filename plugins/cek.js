@@ -15,6 +15,6 @@ adalah @${who.replace(/@.+/, '')}
 }
 handler.help = ['beban', 'anjing', 'babi', 'tolol', 'cantik', 'ganteng', 'gay','lesby', 'homo', 'sange']
 handler.tags = ['kerang']
-handler.command = /^beban|anjing|babi|tolol|begok|goblok|cantik|ganteng|gay|lesby|homo|sange|honry|tulul$/i
+handler.command = /^beban(ortu)?|bebangc|bebankeluarga|anjing|babi|tolol|begok|goblok|cantik|ganteng|gay|lesby|homo|sange|honry|tulul$/i
 
 module.exports = handler
