@@ -62,6 +62,8 @@
     "translate-google-api": "^1.0.4",
     "url-regex": "^5.0.0",
     "wa-sticker-formatter": "^3.6.0",
+    "pet-pet-gif": "^1.0.9",
+    "node-tesseract-ocr": "^2.2.1",
     "xmldom": "^0.6.0",
     "yargs": "^17.0.1",
     "yt-search": "^2.9.0"
