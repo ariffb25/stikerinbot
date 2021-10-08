@@ -170,7 +170,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       return conn.relayWAMessage(conn.prepareMessageFromContent(m.chat, {
         "listMessage": {
           "title": `${ucapan()}, kak ${name} 🐤`.trim(),
-          "description": "Pilih menu *${me}* di bawah ya kak!",
+          "description": "Pilih menu *MIKU-BOT* di bawah ya kak!",
           "buttonText": "Pilih Disini",
           "listType": "SINGLE_SELECT",
           "sections": [
@@ -366,7 +366,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    await conn.sendButtonLoc(m.chat, await (await fetch(global.fla)).buffer(), text.trim(), '© lucu bot', 'List Menu', '.menu', m)
+    await conn.sendButtonLoc(m.chat, await (await fetch(global.fla)).buffer(), text.trim(), '© adhit', 'List Menu', '.menu', m)
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
