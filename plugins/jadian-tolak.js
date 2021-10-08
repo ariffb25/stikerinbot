@@ -49,7 +49,7 @@ let handler = async (m, { conn, text }) => {
 	}	
 }
 handler.help = ['tolak @tag']
-handler.tags = ['jadian']
+handler.tags = ['fun']
 handler.command = /^(tolak)$/i
 handler.mods = false
 handler.premium = false
