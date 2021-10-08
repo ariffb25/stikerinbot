@@ -1,7 +1,7 @@
 let fetch = require("node-fetch");
 let handler = async (m, { conn }) => {
   if (!db.data.settings.nsfw) throw "Mode NSFW tidak aktif";
-  let res = await fetch(global.API("https://api.waifu.pics/", "/nsfw/waifu"));
+  let res = await fetch(global.API("https://api.waifu.pics/", "/nsfw/" + pickRandom(["waifu", "neko", "trap", "blowjob"])));
   if (!res.ok) throw await `${res.status} ${res.statusText}`;
   let json = await res.json();
   if (json.url)
@@ -22,3 +22,7 @@ handler.command = /^(nsfwwaifu|waifunsfw)$/i;
 handler.limit = true;
 
 module.exports = handler;
+
+function pickRandom(list) {
+  return list[Math.floor(Math.random() * list.length)];
+}
