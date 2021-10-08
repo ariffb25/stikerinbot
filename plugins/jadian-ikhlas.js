@@ -9,7 +9,7 @@ let handler = async (m, { conn, text }) => {
   global.db.data.users[m.sender].pasangan = ""
 }
 handler.help = ['ikhlasin']
-handler.tags = ['jadian']
+handler.tags = ['fun']
 handler.command = /^(ikhlasin|ikhlas)$/i
 handler.mods = false
 handler.premium = false
