@@ -33,7 +33,7 @@ global.author = '👻😍🥵😈🥵🤩😝🥵😳🤤🤩😎🥰🥵🥰�
 
 global.wait = '*Tunggu sebentar ya sayang*'
 global.eror = '```Server Error```'
-global.fla = 'https://telegra.ph/file/4f4a5a3cde6a98a96da79.jpg'
+global.fla = 'https://telegra.ph/file/5ea48f989976aa1e18424.jpg'
 global.multiplier = 69 // Semakin tinggi, semakin sulit naik level
 
 let chalk = require('chalk')
