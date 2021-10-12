@@ -9,19 +9,19 @@ const defaultMenu = {
 ┌─〔 %me 〕
 ├ Hai, %name!
 │
-├ Tersisa *%limit Limit*
+├ Limit left *%limit Limit*
 ├ Role *%role*
 ├ Level *%level (%exp / %maxexp)* [%xp4levelup]
 ├ %totalexp XP secara Total
 │ 
-├ Tanggal: *%week %weton, %date*
-├ Tanggal Islam: *%dateIslamic*
-├ Waktu: *%time*
+├ Date: *%week %weton, %date*
+├ Date Islam: *%dateIslamic*
+├ Time: *%time*
 │
 ├ Uptime: *%uptime (%muptime)*
 ├ Database: %rtotalreg dari %totalreg
 ├ Github:
-├ %github
+├ https://github.com/iamenpjordi
 └────
 %readmore`.trimStart(),
   header: '┌─〔 %category 〕',
@@ -38,11 +38,11 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   let arrayMenu = ['all', 'game', 'xp', 'stiker', 'kerangajaib', 'quotes', 'admin', 'grup', 'premium', 'internet', 'anonymous', 'nulis', 'downloader', 'tools', 'fun', 'database', 'quran', 'audio', 'jadibot', 'info', 'tanpakategori', 'owner']
   if (!arrayMenu.includes(teks)) teks = '404'
   if (teks == 'all') tags = {
-    'main': 'Utama',
+    'main': 'Main',
     'game': 'Game',
     'xp': 'Exp & Limit',
-    'sticker': 'Stiker',
-    'kerang': 'Kerang Ajaib',
+    'sticker': 'Sticker',
+    'kerang': 'Magic Shell',
     'quotes': 'Quotes',
     'admin': `Admin ${global.opts['restrict'] ? '' : '(Dinonaktifkan)'}`,
     'group': 'Grup',
@@ -57,7 +57,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     'vote': 'Voting',
     'absen': 'Absen',
     'quran': 'Al Qur\'an',
-    'audio': 'Pengubah Suara',
+    'audio': 'Voice Changer',
     'jadibot': 'Jadi Bot',
     'info': 'Info',
     '': 'Tanpa Kategori',
@@ -189,89 +189,89 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       return conn.relayWAMessage(conn.prepareMessageFromContent(m.chat, {
         "listMessage": {
           "title": `${ucapan()}, ${name}`.trim(),
-          "description": "© stikerin",
-          "buttonText": "Klik Disini",
+          "description": "© MilfBOT",
+          "buttonText": "Click here",
           "listType": "SINGLE_SELECT",
           "sections": [
             {
               "rows": [
                 {
-                  "title": `Semua Perintah`,
-                  "description": "",
+                  "title": `All Commands`,
+                  "description": "Gives The All Commands Of Bot",
                   "rowId": `${_p}? all`
                 }, {
                   "title": "Game",
-                  "description": "",
+                  "description": "Game Related Plugins",
                   "rowId": `${_p}? game`
 
                 }, {
                   "title": "XP",
-                  "description": "",
+                  "description": "XP related commands",
                   "rowId": `${_p}? xp`
 
                 }, {
-                  "title": "Stiker",
-                  "description": "",
+                  "title": "Sticker",
+                  "description": "Sticker Related",
                   "rowId": `${_p}? stiker`
                 }, {
-                  "title": "Kerang Ajaib",
+                  "title": "Magic Shell",
                   "description": "",
                   "rowId": `${_p}? kerangajaib`
                 }, {
                   "title": "Quotes",
-                  "description": "",
+                  "description": "Command for quotes",
                   "rowId": `${_p}? quotes`
                 }, {
                   "title": "Admin",
-                  "description": "",
+                  "description": "Group Admin Related Commands",
                   "rowId": `${_p}? admin`
                 }, {
-                  "title": "Grup",
-                  "description": "",
+                  "title": "Group",
+                  "description": "Group Related Commands",
                   "rowId": `${_p}? grup`
                 }, {
                   "title": "Premium",
-                  "description": "",
+                  "description": "Only for Premium users",
                   "rowId": `${_p}? premium`
                 }, {
                   "title": "Internet",
-                  "description": "",
+                  "description": "Commands related to internet",
                   "rowId": `${_p}? internet`
                 }, {
                   "title": "Anonymous",
-                  "description": "",
+                  "description": "Start anonymous chat",
                   "rowId": `${_p}? anonymous`
                 }, {
-                  "title": "Nulis & Logo",
-                  "description": "",
+                  "title": "Text & Logo",
+                  "description": "Text and Logo making commands",
                   "rowId": `${_p}? nulis`
                 }, {
                   "title": "Downloader",
-                  "description": "",
+                  "description": "Downloading Commands",
                   "rowId": `${_p}? downloader`
                 }, {
                   "title": "Tools",
-                  "description": "",
+                  "description": "Tools and convertors",
                   "rowId": `${_p}? tools`
                 }, {
                   "title": "Fun",
-                  "description": "",
+                  "description": "Mini games and fun commands",
                   "rowId": `${_p}? fun`
                 }, {
                   "title": "Database",
-                  "description": "",
+                  "description": "Shows Database",
                   "rowId": `${_p}? database`
                 }, {
                   "title": "Vote & Absen",
-                  "description": "",
+                  "description": "Voting relted commands",
                   "rowId": `${_p}? vote`
                 }, {
                   "title": "Al-Qur\'an",
                   "description": "",
                   "rowId": `${_p}? quran`
                 }, {
-                  "title": "Pengubah Suara",
-                  "description": "",
+                  "title": "Voice Changer",
+                  "description": "Voice Changer commands",
                   "rowId": `${_p}? audio`
                 }, {
                   "title": "Jadi Bot",
@@ -279,15 +279,15 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "rowId": `${_p}? jadibot`
                 }, {
                   "title": "Info",
-                  "description": "",
+                  "description": "Shows bot info",
                   "rowId": `${_p}? info`
                 }, {
-                  "title": "Tanpa Kategori",
+                  "title": "No Category",
                   "description": "",
                   "rowId": `${_p}? tanpakategori`
                 }, {
                   "title": "Owner",
-                  "description": "",
+                  "description": "Show Owner Info",
                   "rowId": `${_p}? owner`
                 }
               ]
@@ -342,7 +342,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     let header = conn.menu.header || defaultMenu.header
     let body = conn.menu.body || defaultMenu.body
     let footer = conn.menu.footer || defaultMenu.footer
-    let after = conn.menu.after || (conn.user.jid == global.conn.user.jid ? '' : `Dipersembahkan oleh https://wa.me/${global.conn.user.jid.split`@`[0]}`) + defaultMenu.after
+    let after = conn.menu.after || (conn.user.jid == global.conn.user.jid ? '' : `Powered by https://wa.me/${global.conn.user.jid.split`@`[0]}`) + defaultMenu.after
     let _text = [
       before,
       ...Object.keys(tags).map(tag => {
@@ -377,7 +377,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    await conn.send2ButtonLoc(m.chat, await (await fetch(fla + teks)).buffer(), text.trim(), 'made with ❤️ by ariffb', 'Pemilik Bot', `${_p}owner`, 'Donasi', `${_p}donasi`, m)
+    await conn.send2ButtonLoc(m.chat, await (await fetch(fla + teks)).buffer(), text.trim(), 'Made with ❤️ by JORDI', 'MiifBOT', `${_p}owner`, 'Donasi', `${_p}donasi`, m)
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
