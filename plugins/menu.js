@@ -7,7 +7,7 @@ let moment = require('moment-timezone')
 const defaultMenu = {
   before: `
 ┌─〔 %me 〕
-├ Hai, %name!
+├ Hi, %name!
 │
 ├ Limit left *%limit Limit*
 ├ Role *%role*
