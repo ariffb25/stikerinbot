@@ -2,7 +2,7 @@ let limit = 30
 let fetch = require('node-fetch')
 const { servers, ytv } = require('../lib/y2mate')
 let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, command }) => {
-  if (!args || !args[0]) throw 'uhm... urlnya mana?'
+  if (!args || !args[0]) throw 'uhm... wheres the url'
   let chat = global.db.data.chats[m.chat]
   let server = (args[1] || servers[0]).toLowerCase()
   try {
