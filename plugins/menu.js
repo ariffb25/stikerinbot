@@ -115,7 +115,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     'quran': 'Al Qur\'an'
   }
   if (teks == 'audio') tags = {
-    'audio': 'Pengubah Suara'
+    'audio': 'Voice Changer'
   }
   if (teks == 'jadibot') tags = {
     'jadibot': 'Jadi Bot'
@@ -371,7 +371,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       exp: exp - min,
       maxexp: xp,
       totalexp: exp,
-      xp4levelup: max - exp <= 0 ? `Siap untuk *${_p}levelup*` : `${max - exp} XP lagi untuk levelup`,
+      xp4levelup: max - exp <= 0 ? `Ready for *${_p}levelup*` : `${max - exp} more XP for levelup`,
       github: package.homepage ? package.homepage.url || package.homepage : '[unknown github url]',
       level, limit, name, weton, week, date, dateIslamic, time, totalreg, rtotalreg, role,
       readmore: readMore
@@ -411,18 +411,18 @@ function clockString(ms) {
 }
 function ucapan() {
   const time = moment.tz('Asia/Jakarta').format('HH')
-  res = "Selamat dinihari"
+  res = "Good Morning ❤️"
   if (time >= 4) {
-    res = "Selamat pagi"
+    res = "Good Morning ❤️"
   }
   if (time > 10) {
-    res = "Selamat siang"
+    res = "Good Afternoon ❤️"
   }
   if (time >= 15) {
-    res = "Selamat sore"
+    res = "Good Evening ❤️"
   }
   if (time >= 18) {
-    res = "Selamat malam"
+    res = "Good Night ❤️"
   }
   return res
 }
