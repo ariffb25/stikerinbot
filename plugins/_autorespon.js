@@ -26,14 +26,14 @@ handler.all = async function (m, { isBlocked }) {
     }
 
     // ketika ada yang invite/kirim link grup di chat pribadi
-    if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('Buka tautan ini')) && !m.isBaileys && !m.isGroup) {
-        this.sendButton(m.chat, `┌〔 Undang Bot ke Grup 〕
-├ 7 Hari / Rp 5,000
-├ 30 Hari / Rp 10,000
+    if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('Go to this link')) && !m.isBaileys && !m.isGroup) {
+        this.sendButton(m.chat, `┌〔 Invite Bot to Your Group 〕
+├ Add this number 
+├ Or contact bot owner
 └────
 
-https://github.com/ariffb25/stikerinbot
-`.trim(), '© stikerin', 'Pemilik Bot', ',owner', m)
+https://github.com/iamenpjordi
+`.trim(), '© MilfBOT', 'MilfBOT', ',owner', m)
     }
 
     // salam
@@ -63,7 +63,7 @@ https://github.com/ariffb25/stikerinbot
     if (new Date() * 1 - setting.status > 1000) {
         let _uptime = process.uptime() * 1000
         let uptime = clockString(_uptime)
-        await this.setStatus(`Aktif selama ${uptime} | Mode: ${global.opts['self'] ? 'Private' : setting.groupOnly ? 'Hanya Grup' : 'Publik'} | stikerinbot oleh ariffb`).catch(_ => _)
+        await this.setStatus(`Active diving ${uptime} | Mode: ${global.opts['self'] ? 'Private' : setting.groupOnly ? 'Hanya Grup' : 'Public'} | MilfBOT by JORDI`).catch(_ => _)
         setting.status = new Date() * 1
     }
 
