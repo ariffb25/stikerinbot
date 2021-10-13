@@ -9,7 +9,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     let mime = (q.msg || q).mimetype || ''
     if (/webp/.test(mime)) {
       let img = await q.download()
-      if (!img) throw `balas stiker dengan perintah ${usedPrefix + command}`
+      if (!img) throw `reply sticker with command ${usedPrefix + command}`
       wsf = new WSF.Sticker(img, {
         pack: global.packname,
         author: global.author,
@@ -17,16 +17,16 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       })
     } else if (/image/.test(mime)) {
       let img = await q.download()
-      if (!img) throw `balas gambar dengan perintah ${usedPrefix + command}`
+      if (!img) throw `reply image with command ${usedPrefix + command}`
       wsf = new WSF.Sticker(img, {
         pack: global.packname,
         author: global.author,
         crop: false,
       })
     } else if (/video/.test(mime)) {
-      if ((q.msg || q).seconds > 11) throw 'Maksimal 10 detik!'
+      if ((q.msg || q).seconds > 11) throw 'video should not be more than 10 seconds!'
       let img = await q.download()
-      if (!img) throw `balas video dengan perintah ${usedPrefix + command}`
+      if (!img) throw `reply video with command ${usedPrefix + command}`
       wsf = new WSF.Sticker(img, {
         pack: global.packname,
         author: global.author,
@@ -34,7 +34,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       })
     } else if (args[0]) {
       if (isUrl(args[0])) stiker = await sticker(false, args[0], global.packname, global.author)
-      else throw 'URL tidak valid!'
+      else throw 'Invalid URL!'
     }
   } catch (e) {
     throw e
@@ -54,7 +54,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     // else throw `Gagal${m.isGroup ? ', balas gambarnya!' : ''}`
   }
 }
-handler.help = ['stiker ', 'stiker <url>']
+handler.help = ['sticker ', 'sticker <url>']
 handler.tags = ['sticker']
 handler.command = /^s(tic?ker)?(gif)?(wm)?$/i
 
