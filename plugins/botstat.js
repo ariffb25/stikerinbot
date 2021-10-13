@@ -10,25 +10,25 @@ let handler = async (m, { conn }) => {
     m.reply(`
 ┌─〔 Status 〕
 ├ Aktif selama ${uptime}
-├ Baterai ${conn.battery != undefined ? `${conn.battery.value}% ${conn.battery.live ? '🔌 pengisian' : ''}` : 'tidak diketahui'}
-├ *${groups.length}* Grup
-├ *${chats.length - groups.length}* Chat Pribadi
-├ *${Object.keys(global.db.data.users).length}* Pengguna
+├ Baterai ${conn.battery != undefined ? `${conn.battery.value}% ${conn.battery.live ? '🔌 charging' : ''}` : 'not known'}
+├ *${groups.length}* Groups
+├ *${chats.length - groups.length}* Chat Personal
+├ *${Object.keys(global.db.data.users).length}* Users
 ├ *${totaljadibot.length}* Jadibot
-├ *${conn.blocklist.length}* Terblock
-├ *${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}* Chat Terbanned
-├ *${Object.entries(global.db.data.users).filter(user => user[1].banned).length}* Pengguna Terbanned
+├ *${conn.blocklist.length}* Blocked Users
+├ *${Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned).length}* Banned Chats
+├ *${Object.entries(global.db.data.users).filter(user => user[1].banned).length}* Banned Users
 └────
 
-┌─〔 Pengaturan 〕
+┌─〔 Arrangement 〕
 ├ ${anon ? '✅' : '❌'} *Anon Chat*
 ├ ${anticall ? '✅' : '❌'} *Anti Call*
 ├ ${antispam ? '✅' : '❌'} *Anti Spam*
 ├ ${antitroli ? '✅' : '❌'} *Anti Troli*
 ├ ${backup ? '✅' : '❌'} *Auto Backup DB*
-├ ${groupOnly ? '✅' : '❌'} *Mode Grup*
+├ ${groupOnly ? '✅' : '❌'} *Group Mode*
 ├ ${jadibot ? '✅' : '❌'} *Jadi Bot*
-├ ${nsfw ? '✅' : '❌'} *Mode Nsfw*
+├ ${nsfw ? '✅' : '❌'} *Nsfw Mode*
 └────
     `.trim())
 }
