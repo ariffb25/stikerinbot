@@ -6,7 +6,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 *${usedPrefix}${command} <nama hewan>*
 contoh:
 *${usedPrefix}${command} <dog>*\n
-┌〔 Opsi 〕
+┌〔 Option 〕
 ├ dog
 ├ cat
 ├ panda
@@ -26,7 +26,7 @@ contoh:
   if (json.image) await conn.sendFile(m.chat, json.image, "", `${json.fact}\n\n~fatur`, m);
   else throw json;
 };
-handler.help = ["animal"].map((v) => v + " <hewan>");
+handler.help = ["animal"].map((v) => v + " <animal>");
 handler.tags = ["internet"];
 handler.command = /^(animal|animalfact)$/i;
 
