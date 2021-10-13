@@ -68,8 +68,8 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   if (teks == 'xp') tags = {
     'xp': 'Exp & Limit'
   }
-  if (teks == 'stiker') tags = {
-    'sticker': 'Stiker'
+  if (teks == 'sticker') tags = {
+    'sticker': 'Sticker'
   }
   if (teks == 'kerangajaib') tags = {
     'kerang': 'Kerang Ajaib'
