@@ -1,7 +1,7 @@
 const fetch = require('node-fetch')
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-  if (!args[0]) throw `uhm.. url nya mana?\n\ncontoh:\n${usedPrefix + command} https://www.facebook.com/alanwalkermusic/videos/277641643524720`
-  if (/^https?:\/\/.*(fb.watch|facebook.com)/i.test(m.text)) throw `url salah`
+  if (!args[0]) throw `uhm.. where is the url?\n\nexample:\n${usedPrefix + command} https://www.facebook.com/alanwalkermusic/videos/277641643524720`
+  if (/^https?:\/\/.*(fb.watch|facebook.com)/i.test(m.text)) throw `invalid url`
 
   let res = await fetch(API('neoxr', '/api/download/fb', { url: args[0] }, 'apikey'))
   if (!res.ok) throw eror
