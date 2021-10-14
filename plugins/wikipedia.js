@@ -3,7 +3,7 @@ let fetch = require("node-fetch")
 let cheerio = require("cheerio")
 async function wikipedia(querry) {
   try {
-    const link = await axios.get(`https://id.wikipedia.org/wiki/${querry}`)
+    const link = await axios.get(`https://en.wikipedia.org/wiki/${querry}`)
     const $ = cheerio.load(link.data)
     let judul = $('#firstHeading').text().trim()
     let thumb = $('#mw-content-text').find('div.mw-parser-output > div:nth-child(1) > table > tbody > tr:nth-child(2) > td > a > img').attr('src') || `//i.ibb.co/nzqPBpC/http-error-404-not-found.png`
@@ -32,12 +32,12 @@ async function wikipedia(querry) {
   }
 }
 let handler = async (m, { conn, text }) => {
-  if (!text) throw `uhm.. cari apa?\n\ncontoh:\n.wiki nodejs`
+  if (!text) throw `uhm.. what are you looking for?\n\nexample:\n.wiki nodejs`
   wikipedia(`${text}`).then(res => {
     m.reply(res.result.isi)
-  }).catch(() => { m.reply('Tidak Ditemukan') })
+  }).catch(() => { m.reply('Not found') })
 }
-handler.help = ['wikipedia <pencarian>']
+handler.help = ['wikipedia <query>']
 handler.tags = ['internet']
 handler.command = /^(wiki(pedia)?)$/i
 
