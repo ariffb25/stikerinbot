@@ -19,7 +19,7 @@ const defaultMenu = {
 ├ Time: *%time*
 │
 ├ Uptime: *%uptime (%muptime)*
-├ Database: %rtotalreg dari %totalreg
+├ Database: %rtotalreg from %totalreg
 ├ Github:
 ├ https://github.com/iamenpjordi
 └────
