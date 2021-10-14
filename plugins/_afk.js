@@ -3,8 +3,8 @@ handler.before = m => {
   let user = global.db.data.users[m.sender]
   if (user.afk > -1) {
     m.reply(`
-You quit AFK${user.afkReason ? ' after ' + user.afkReason : ''}
-For ${clockString(new Date - user.afk)}
+You quit AFK${user.afkReason ? '\n*Reason*' + user.afkReason : ''}
+\n*Duration:* ${clockString(new Date - user.afk)}
 `.trim())
     user.afk = -1
     user.afkReason = ''
