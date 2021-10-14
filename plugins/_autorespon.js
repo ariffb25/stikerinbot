@@ -14,12 +14,12 @@ handler.all = async function (m, { isBlocked }) {
     try {
         if (m.mentionedJid.includes(this.user.jid) && m.isGroup) {
             await this.send2Button(m.chat,
-                isBanned ? 'stikerin tidak aktif' : banned ? 'kamu dibanned' : 'stikerin disini',
-                '© stikerin',
-                isBanned ? 'Unban' : banned ? 'Pemilik Bot' : 'Menu',
-                isBanned ? '.unban' : banned ? '.owner' : '.?',
-                m.isGroup ? 'Ban' : isBanned ? 'Unban' : 'Donasi',
-                m.isGroup ? '.ban' : isBanned ? '.unban' : '.donasi', m)
+                isBanned ? 'MilfBOT is not active' : banned ? 'You are banned from using this bot' : 'MilfBOT here',
+                '© MilfBOT',
+                isBanned ? 'Unban' : banned ? 'Bot Owner' : 'Menu',
+                isBanned ? '.unban' : banned ? '.owner' : '.owner?',
+                m.isGroup ? 'Ban' : isBanned ? 'Unban' : 'Donate',
+                m.isGroup ? '.ban' : isBanned ? '.unban' : '.donate', m)
         }
     } catch (e) {
         return
@@ -37,10 +37,10 @@ https://github.com/iamenpjordi
     }
 
     // salam
-    let reg = /(ass?alam|اَلسَّلاَمُ عَلَيْكُمْ|السلام عليکم)/i
+    let reg = /(hi?hello|Hi|Hello|hi)/i
     let isSalam = reg.exec(m.text)
     if (isSalam && !m.fromMe) {
-        m.reply(`وَعَلَيْكُمْ السَّلاَمُ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ\n_wa\'alaikumussalam wr.wb._`)
+        m.reply(`Hi, How are you\n_wa\'Have a Nice Day wr.wb._`)
     }
 
     // backup db
