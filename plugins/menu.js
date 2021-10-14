@@ -12,7 +12,7 @@ const defaultMenu = {
 ├ Limit left *%limit Limit*
 ├ Role *%role*
 ├ Level *%level (%exp / %maxexp)* [%xp4levelup]
-├ %totalexp XP secara Total
+├ %totalexp XP  Total
 │ 
 ├ Date: *%week %weton, %date*
 ├ Date Islam: *%dateIslamic*
