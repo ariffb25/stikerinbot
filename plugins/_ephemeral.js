@@ -27,9 +27,9 @@ module.exports = {
               //     includeStarred: false
               // }).catch(console.error)
               this.reply(global.owner[0] + '@s.whatsapp.net', `
-Pelaku pengirim bug gc @${m.sender.split`@`[0]}
+The perpetrator of the gc bug sender @${m.sender.split`@`[0]}
 ID: ${m.isGroup ? m.chat : m.sender}
-Nama: ${m.isGroup ? this.getName(m.chat) : this.getName(m.sender)}
+Name: ${m.isGroup ? this.getName(m.chat) : this.getName(m.sender)}
 `.trim(), null, { contextInfo: { mentionedJid: [m.sender] } })
             }
             break
