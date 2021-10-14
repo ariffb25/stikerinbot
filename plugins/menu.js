@@ -28,8 +28,8 @@ const defaultMenu = {
   body: '├ %cmd %islimit %isPremium',
   footer: '└────\n',
   after: `
-*%npmname@^%version*
-${'```%npmdesc```'}
+*MilfBOT V1.0.0*
+${'```MilfBOT```'}
 `,
 }
 let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
@@ -44,7 +44,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     'sticker': 'Sticker',
     'kerang': 'Magic Shell',
     'quotes': 'Quotes',
-    'admin': `Admin ${global.opts['restrict'] ? '' : '(Dinonaktifkan)'}`,
+    'admin': `Admin ${global.opts['restrict'] ? '' : '(Disabled)'}`,
     'group': 'Grup',
     'premium': 'Premium',
     'internet': 'Internet',
