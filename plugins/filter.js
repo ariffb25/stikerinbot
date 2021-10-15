@@ -2,9 +2,9 @@ const uploadImage = require("../lib/uploadImage");
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   let filt = `
-balas foto dengan caption opsi di bawah ini:
+Reply to a photo with option below:
 
-┌〔 Opsi 〕
+┌〔 Filters 〕
 ├ greyscale
 ├ invert
 ├ invertgreyscale
@@ -36,7 +36,7 @@ balas foto dengan caption opsi di bawah ini:
     m
   );
 };
-handler.help = ["filter"].map((v) => v + " <foto>");
+handler.help = ["filter"].map((v) => v + " <photo>");
 handler.tags = ["tools"];
 handler.command = /^(filter|filters)$/i;
 
