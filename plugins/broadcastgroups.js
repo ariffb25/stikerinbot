@@ -2,12 +2,12 @@ let handler = async (m, { conn, text }) => {
   let groups = conn.chats.all().filter(v => v.jid.endsWith('g.us')).map(v => v.jid)
   let cc = text ? m : m.quoted ? await m.getQuotedObj() : false || m
   let teks = text ? text : cc.text
-  conn.reply(m.chat, `_Mengirim pesan broadcast ke ${groups.length} grup_\nestimasi selesai ${groups.length * 1.5} detik`, m)
+  conn.reply(m.chat, `_Send a broadcast message to ${groups.length} grup_\nestimated time for completion ${groups.length * 1.5} seconds`, m)
   for (let id of groups) {
     await delay(1500)
-    await conn.copyNForward(id, conn.cMod(m.chat, cc, /bc|broadcast/i.test(teks) ? teks : '〔 Stikerin Broadcast 〕\n\n' + teks + '\n\n' + '© stikerin'), true).catch(_ => _)
+    await conn.copyNForward(id, conn.cMod(m.chat, cc, /bc|broadcast/i.test(teks) ? teks : '〔 MilfBOT Broadcast 〕\n\n' + teks + '\n\n' + '© MilfBOT'), true).catch(_ => _)
   }
-  m.reply('_*Broadcast Selesai*_')
+  m.reply('_*Broadcast Completed*_')
 }
 handler.help = ['broadcastgroup', 'bcgc'].map(v => v + ' <teks>')
 handler.tags = ['owner']
