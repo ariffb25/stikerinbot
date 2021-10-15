@@ -14,7 +14,7 @@ handler.all = async function (m, { isBlocked }) {
     try {
         if (m.mentionedJid.includes(this.user.jid) && m.isGroup) {
             await this.send2Button(m.chat,
-                isBanned ? 'MilfBOT is not active' : banned ? 'You are banned from using this bot' : 'MilfBOT here',
+                isBanned ? 'MilfBOT is not active' : banned ? 'You are banned from using this bot' : 'Hey, how may I help you?',
                 '© MilfBOT',
                 isBanned ? 'Unban' : banned ? 'Bot Owner' : 'Menu',
                 isBanned ? '.unban' : banned ? '.owner' : '.owner?',
