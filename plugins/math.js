@@ -4,7 +4,7 @@ let handler = async (m, { conn, args, usedPrefix }) => {
     ┌─〔 Mode 〕
 ├ ${Object.keys(modes).join('\n├ ')}
 └────    
-contoh:
+Example:
 ${usedPrefix}math hard
 `.trim()
   let mode = args[0].toLowerCase()
@@ -12,17 +12,17 @@ ${usedPrefix}math hard
     ┌─〔 Mode 〕
 ├ ${Object.keys(modes).join('\n├ ')}
 └────    
-contoh:
+Example:
 ${usedPrefix}math hard
 `.trim()
   let id = m.chat
-  if (id in conn.math) return conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.math[id][0])
+  if (id in conn.math) return conn.reply(m.chat, 'There are still unanswered questions in this chat', conn.math[id][0])
   let math = genMath(mode)
   conn.math[id] = [
-    await conn.reply(m.chat, `Berapa hasil dari *${math.str}*?\n\nTimeout: ${(math.time / 1000).toFixed(2)} detik\nBonus Jawaban Benar: ${math.bonus} XP`, m),
+    await conn.reply(m.chat, `What is the result of *${math.str}*?\n\nTimeout: ${(math.time / 1000).toFixed(2)} seconds\nRight Answer Bonus: ${math.bonus} XP`, m),
     math, 4,
     setTimeout(async () => {
-      if (conn.math[id]) await this.sendButton(m.chat, `Waktu habis!\nJawabannya adalah ${math.result}`, '', `${math.mode.toUpperCase()}`, `.math ${math.mode}`, conn.math[id][0])
+      if (conn.math[id]) await this.sendButton(m.chat, `Time is up!\nThe answer is ${math.result}`, '', `${math.mode.toUpperCase()}`, `.math ${math.mode}`, conn.math[id][0])
       delete conn.math[id]
     }, math.time)
   ]
