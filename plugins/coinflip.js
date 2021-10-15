@@ -27,7 +27,7 @@ let handler = async (m, { conn }) => {
 	});
 	await m.reply(res.data.coin);
 };
-handler.help = ["coin", "koin"];
+handler.help = ["coinflip", "koinflip"];
 handler.tags = ["fun"];
 
 handler.command = /^((coin|koin)?flip)$/i;
