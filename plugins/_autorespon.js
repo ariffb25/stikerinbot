@@ -37,10 +37,10 @@ https://github.com/iamenpjordi
     }
 
     // salam
-    let reg = /(hi?hello|Hi|Hello|hi)/i
+    let reg = /(hello)/i
     let isSalam = reg.exec(m.text)
     if (isSalam && !m.fromMe) {
-        m.reply(`Hi, How are you\n_wa\'Have a Nice Day wr.wb._`)
+        m.reply(`Hi, How are you\n_\n'Have a Nice Day_`)
     }
 
     // backup db
@@ -63,7 +63,7 @@ https://github.com/iamenpjordi
     if (new Date() * 1 - setting.status > 1000) {
         let _uptime = process.uptime() * 1000
         let uptime = clockString(_uptime)
-        await this.setStatus(`Active diving ${uptime} | Mode: ${global.opts['self'] ? 'Private' : setting.groupOnly ? 'Hanya Grup' : 'Public'} | MilfBOT by JORDI`).catch(_ => _)
+        await this.setStatus(`Active during ${uptime} | Mode: ${global.opts['self'] ? 'Private' : setting.groupOnly ? 'Group Only' : 'Public'} | MilfBOT by JORDI`).catch(_ => _)
         setting.status = new Date() * 1
     }
 
