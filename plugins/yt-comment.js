@@ -7,7 +7,7 @@ let handler = async (m, { conn, text }) => {
   }), 'file.png', '', m, 0, { thumbnail: Buffer.alloc(0) })
 }
 
-handler.help = ['ytcomment <komen>']
+handler.help = ['ytcomment <comment>']
 handler.tags = ['maker']
 
 handler.command = /^(ytcomment)$/i
