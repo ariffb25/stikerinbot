@@ -1,60 +1,35 @@
 const { MessageType } = require('@adiwajshing/baileys')
 const { sticker } = require('../lib/sticker')
-const WSF = require('wa-sticker-formatter')
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   let stiker = false
-  let wsf = false
   try {
     let q = m.quoted ? m.quoted : m
     let mime = (q.msg || q).mimetype || ''
-    if (/webp/.test(mime)) {
+    if (/image/.test(mime)) {
       let img = await q.download()
-      if (!img) throw `reply sticker with command ${usedPrefix + command}`
-      wsf = new WSF.Sticker(img, {
-        pack: global.packname,
-        author: global.author,
-        crop: false,
-      })
-    } else if (/image/.test(mime)) {
-      let img = await q.download()
-      if (!img) throw `reply image with command ${usedPrefix + command}`
-      wsf = new WSF.Sticker(img, {
-        pack: global.packname,
-        author: global.author,
-        crop: false,
-      })
+      if (!img) throw `reply to image with caption *${usedPrefix + command}*`
+      stiker = await sticker(img, false, global.packname, global.author)
     } else if (/video/.test(mime)) {
-      if ((q.msg || q).seconds > 11) throw 'video should not be more than 10 seconds!'
+      if ((q.msg || q).seconds > 11) return m.reply('10 seconds max!')
       let img = await q.download()
-      if (!img) throw `reply video with command ${usedPrefix + command}`
-      wsf = new WSF.Sticker(img, {
-        pack: global.packname,
-        author: global.author,
-        crop: true,
-      })
+      if (!img) throw `reply video/gif with caption *${usedPrefix + command}*`
+      stiker = await sticker(img, false, global.packname, global.author)
+    } else if (/webp/.test(mime)) {
+      let img = await q.download()
+      if (!img) throw `reply sticker with caption *${usedPrefix + command}*`
+      stiker = await sticker(img, false, global.packname, global.author)
     } else if (args[0]) {
       if (isUrl(args[0])) stiker = await sticker(false, args[0], global.packname, global.author)
-      else throw 'Invalid URL!'
+      else return m.reply('Invalid URL!')
     }
-  } catch (e) {
-    throw e
-  }
-  finally {
-    if (wsf) {
-      await wsf.build()
-      const sticBuffer = await wsf.get()
-      if (sticBuffer) await conn.sendMessage(m.chat, sticBuffer, MessageType.sticker, {
-        quoted: m,
-        mimetype: 'image/webp'
-      })
-    }
-    if (stiker) await conn.sendMessage(m.chat, stiker, MessageType.sticker, {
+  } finally {
+    if (stiker) conn.sendMessage(m.chat, stiker, MessageType.sticker, {
       quoted: m
     })
-    // else throw `Gagal${m.isGroup ? ', balas gambarnya!' : ''}`
+    else throw 'Error, try to reply to the photo/make sure the mime is correct'
   }
 }
-handler.help = ['sticker ', 'sticker <url>']
+handler.help = ['stiker (caption|reply media)', 'stiker <url>', 'stikergif (caption|reply media)', 'stikergif <url>']
 handler.tags = ['sticker']
 handler.command = /^s(tic?ker)?(gif)?(wm)?$/i
 
