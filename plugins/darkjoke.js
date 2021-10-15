@@ -6,7 +6,7 @@ fetch('https://raw.githubusercontent.com/Caliph71/txt/main/darkjokes.txt')
 let handler = async (m, { conn }) => {
     let img = arr[Math.floor(Math.random() * arr.length)]
     if (!img) throw img
-    await conn.sendFile(m.chat, img, '', '© stikerin', m, 0, { thumbnail: await (await fetch(img)).buffer() })
+    await conn.sendFile(m.chat, img, '', '© MilfBOT', m, 0, { thumbnail: await (await fetch(img)).buffer() })
 }
 handler.help = ['darkjoke']
 handler.tags = ['internet']
