@@ -11,9 +11,9 @@ let handler = async (m, { conn, text, usedPrefix }) => {
         else global.db.data.chats[res.gid].expired = now + jumlahHari
     })
     await conn.sendButton(res.gid, `
-*${conn.user.name}* adalah bot whatsapp yang dibangun dengan Nodejs, *${conn.user.name}* diundang oleh @${m.sender.split`@`[0]}
+*${conn.user.name}* Whatsapp bot built with Nodejs, *${conn.user.name}* invited by @${m.sender.split`@`[0]}
     
-ketik *${usedPrefix}menu* untuk melihat daftar perintah`.trim(), '© stikerin', 'Menu', `${usedPrefix}?`, { contextInfo: { mentionedJid: [m.sender] } })
+type *${usedPrefix}menu* to see a list of commands`.trim(), '© MilfBOT', 'Menu', `${usedPrefix}?`, { contextInfo: { mentionedJid: [m.sender] } })
 }
 handler.help = ['join <chat.whatsapp.com>']
 handler.tags = ['']
