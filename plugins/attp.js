@@ -6,9 +6,10 @@ let handler = async (m, { conn, text, command }) => {
   let teks = text ? text : m.quoted && m.quoted.text ? m.quoted.text : m.text
 
   if (/^attp1?$/i.test(command)) {
-    let res = await fetch(global.API('xteam', '/attp', { file: '', text: teks }))
+    let res = await fetch(global.API('xteam', '/attp', { text: teks }))
     if (!res.ok) throw eror
-    conn.sendFile(m.chat, global.API('xteam', '/attp', { file: '', text: teks }), 'attp.webp', '', m, false, { asSticker: true })
+    let json = await res.json()
+    conn.sendFile(m.chat, json.result, 'attp.webp', '', m, false, { asSticker: true })
   }
 
   if (/2$/i.test(command)) {
