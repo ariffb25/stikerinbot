@@ -33,18 +33,18 @@ let handler = async (m, { conn, usedPrefix }) => {
     let username = conn.getName(who)
     let math = max - xp
     let str = `
-Nama: ${username} ${registered ? '(' + name + ') ' : ''}(@${who.replace(/@.+/, '')})${about != 401 ? '\nInfo: ' + about : ''}
-Nomor: ${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}
-Link: https://wa.me/${who.split`@`[0]}${registered ? '\nUmur: ' + age : ''}
-XP: TOTAL ${exp} (${exp - min} / ${xp}) [${math <= 0 ? `Siap untuk *${usedPrefix}levelup*` : `${math} XP lagi untuk levelup`}]
-Level: ${level}
-Role: *${role}*
-Limit: ${limit}
-Premium: ${prems.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) ? 'Ya' : 'Tidak'}
-Terdaftar: ${registered ? 'Ya (' + new Date(regTime).toLocaleString() + ')' : 'Tidak'}${lastclaim > 0 ? '\nTerakhir Klaim: ' + new Date(lastclaim).toLocaleString() : ''}
+*Name:* ${username} ${registered ? '(' + name + ') ' : ''}(@${who.replace(/@.+/, '')})${about != 401 ? '\nInfo: ' + about : ''}
+*Number:* ${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}
+*Link:* https://wa.me/${who.split`@`[0]}${registered ? '\nUmur: ' + age : ''}
+*XP:* TOTAL ${exp} (${exp - min} / ${xp}) [${math <= 0 ? `Ready for *${usedPrefix}levelup*` : `${math} XP required for levelup`}]
+*Level:* ${level}
+*Role:* *${role}*
+*Limit:* ${limit}
+*Premium:* ${prems.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) ? 'Yes' : 'No'}
+*Registered:* ${registered ? 'Yes (' + new Date(regTime).toLocaleString() + ')' : 'No'}${lastclaim > 0 ? '\nLast Claim: ' + new Date(lastclaim).toLocaleString() : ''}
 `.trim()
     let mentionedJid = [who]
-    conn.sendFile(m.chat, pp, 'pp.jpg', banned ? 'jiakh ke banned' : str, m, false, { contextInfo: { mentionedJid } })
+    conn.sendFile(m.chat, pp, 'pp.jpg', banned ? 'This person is banned' : str, m, false, { contextInfo: { mentionedJid } })
   }
 }
 handler.help = ['profile [@user]']
