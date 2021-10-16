@@ -11,14 +11,14 @@ let handler = async (m, { conn, text }) => {
   let caption = `
 -- [Group Link Inspector] --
 ${res.id}
-*Judul:* ${res.subject}
-*Dibuat* oleh @${res.id.split('-')[0]} pada *${formatDate(res.creation * 1000)}*${res.subjectOwner ? `
-*Judul diubah* oleh @${res.subjectOwner.split`@`[0]} pada *${formatDate(res.subjectTime * 1000)}*`: ''}${res.descOwner ? `
-*Deskripsi diubah* oleh @${res.descOwner.split`@`[0]} pada *${formatDate(res.descTime * 1000)}*` : ''}
-*Jumlah Member:* ${res.size}
-*Member yang diketahui join*: ${res.participants ? '\n' + res.participants.map((user, i) => ++i + '. @' + user.id.split`@`[0]).join('\n').trim() : 'Tidak ada'}
-${res.desc ? `*Deskripsi:*
-${res.desc}` : '*Tidak ada Deskripsi*'}
+*Title:* ${res.subject}
+*Made by @${res.id.split('-')[0]} on *${formatDate(res.creation * 1000)}*${res.subjectOwner ? `
+*Title changed* by @${res.subjectOwner.split`@`[0]} on *${formatDate(res.subjectTime * 1000)}*`: ''}${res.descOwner ? `
+*Description modified* by@${res.descOwner.split`@`[0]} on *${formatDate(res.descTime * 1000)}*` : ''}
+*Number of Members:* ${res.size}
+*Members who are known to join*: ${res.participants ? '\n' + res.participants.map((user, i) => ++i + '. @' + user.id.split`@`[0]).join('\n').trim() : 'There is not any'}
+${res.desc ? `*description:*
+${res.desc}` : '*No Description*'}
 
 *JSON Version*
 \`\`\`${JSON.stringify(res, null, 1)}\`\`\`
