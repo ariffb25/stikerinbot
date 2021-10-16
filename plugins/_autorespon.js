@@ -40,7 +40,7 @@ https://github.com/iamenpjordi
     let reg = /(hello)/i
     let isSalam = reg.exec(m.text)
     if (isSalam && !m.fromMe) {
-        m.reply(`Hi, How are you\n_\n'Have a Nice Day_`)
+        m.reply(`Hi, How are you\n \n_Have a Nice Day_`)
     }
 
     // backup db
