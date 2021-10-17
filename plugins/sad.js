@@ -66,6 +66,7 @@ global.sad = [
     "I still remember you but my feelings don't hurt like before",
     "Have your own sentence & want to add it? chat *.owner*"
 ]
+;
 
 handler.help = ['sad']
 handler.tags = ['quotes']
