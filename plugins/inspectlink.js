@@ -38,7 +38,7 @@ handler.command = /^inspect$/i
 
 module.exports = handler
 
-function formatDate(n, locale = 'id') {
+function formatDate(n, locale = 'en-US') {
   let d = new Date(n)
   return d.toLocaleDateString(locale, {
     weekday: 'long',
