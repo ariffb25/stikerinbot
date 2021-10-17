@@ -1,9 +1,9 @@
 let handler = async (m, { conn, usedPrefix, command }) => {
-    await conn.sendButton(m.chat, `“${pickRandom(global.galau)}”`, '© stikerin', 'Galau', `${usedPrefix + command}`, m)
+    await conn.sendButton(m.chat, `“${pickRandom(global.galau)}”`, '© MilfBOT', 'Sad', `${usedPrefix + command}`, m)
 }
-handler.help = ['galau']
+handler.help = ['sad']
 handler.tags = ['quotes']
-handler.command = /^(galau)$/i
+handler.command = /^(sad)$/i
 module.exports = handler
 
 function pickRandom(list) {
@@ -11,84 +11,61 @@ function pickRandom(list) {
 }
 
 global.galau = [
-    "Gak salah kalo aku lebih berharap sama orang yang lebih pasti tanpa khianati janji-janji",
-    "Kalau aku memang tidak sayang sama kamu ngapain aku mikirin kamu. Tapi semuanya kamu yang ngganggap aku gak sayang sama kamu",
-    "Jangan iri dan sedih jika kamu tidak memiliki kemampuan seperti yang orang miliki. Yakinlah orang lain juga tidak memiliki kemampuan sepertimu",
-    "Hanya kamu yang bisa membuat langkahku terhenti, sambil berkata dalam hati mana bisa aku meninggalkanmu",
-    "Tetap tersenyum walaluku masih dibuat menunggu dan rindu olehmu, tapi itu demi kamu",
-    "Tak semudah itu melupakanmu",
-    "Secuek-cueknya kamu ke aku, aku tetap sayang sama kamu karena kamu telah menerima aku apa adanya",
-    "Aku sangat bahagia jika kamu bahagia didekatku, bukan didekatnya",
-    "Jadilah diri sendiri, jangan mengikuti orang lain, tetapi tidak sanggup untuk menjalaninya",
-    "Cobalah terdiam sejenak untuk memikirkan bagaimana caranya agar kita dapat menyelesaikan masalah ini bersama-sama",
-    "Bisakah kita tidak bermusuhan setelah berpisah, aku mau kita seperti dulu sebelum kita jadian yang seru-seruan bareng, bercanda dan yang lainnya",
-    "Aku ingin kamu bisa langgeng sama aku dan yang aku harapkan kamu bisa jadi jodohku",
-    "Cinta tak bisa dijelaskan dengan kata-kata saja, karena cinta hanya mampu dirasakan oleh hati",
-    "Masalah terbesar dalam diri seseorang adalah tak sanggup melawan rasa takutnya",
-    "Selamat pagi buat orang yang aku sayang dan orang yang membenciku, semoga hari ini hari yang lebih baik daripada hari kemarin buat aku dan kamu",
-    "Jangan menyerah dengan keadaanmu sekarang, optimis karena optimislah yang bikin kita kuat",
-    "Kepada pria yang selalu ada di doaku aku mencintaimu dengan tulus apa adanya",
-    "Tolong jangan pergi saat aku sudah sangat sayang padamu",
-    "Coba kamu yang berada diposisiku, lalu kamu ditinggalin gitu aja sama orang yang lo sayang banget",
-    "Aku takut kamu kenapa-napa, aku panik jika kamu sakit, itu karena aku cinta dan sayang padamu",
-    "Sakit itu ketika cinta yang aku beri tidak kamu hargai",
-    "Kamu tiba-tiba berubah tanpa sebab tapi jika memang ada sebabnya kamu berubah tolong katakan biar saya perbaiki kesalahan itu",
-    "Karenamu aku jadi tau cinta yang sesungguhnya",
-    "Senyum manismu sangatlah indah, jadi janganlah sampai kamu bersedih",
-    "Berawal dari kenalan, bercanda bareng, ejek-ejekan kemudian berubah menjadi suka, nyaman dan akhirnya saling sayang dan mencintai",
-    "Tersenyumlah pada orang yang telah menyakitimu agar sia tau arti kesabaran yang luar biasa",
-    "Aku akan ingat kenangan pahit itu dan aku akan jadikan pelajaran untuk masa depan yang manis",
-    "Kalau memang tak sanggup menepati janjimu itu setidaknya kamu ingat dan usahakan jagan membiarkan janjimu itu sampai kau lupa",
-    "Hanya bisa diam dan berfikir Kenapa orang yang setia dan baik ditinggalin yang nakal dikejar-kejar giliran ditinggalin bilangnya laki-laki itu semuanya sama",
-    "Walaupun hanya sesaat saja kau membahagiakanku tapi rasa bahagia yang dia tidak cepat dilupakan",
-    "Aku tak menyangka kamu pergi dan melupakan ku begitu cepat",
-    "Jomblo gak usah diam rumah mumpung malam minggu ya keluar jalan lah kan jomblo bebas bisa dekat sama siapapun pacar orang mantan sahabat bahkan sendiri atau bareng setan pun bisa",
-    "Kamu adalah teman yang selalu di sampingku dalam keadaan senang maupun susah Terimakasih kamu selalu ada di sampingku",
-    "Aku tak tahu sebenarnya di dalam hatimu itu ada aku atau dia",
-    "Tak mudah melupakanmu karena aku sangat mencintaimu meskipun engkau telah menyakiti aku berkali-kali",
-    "Hidup ini hanya sebentar jadi lepaskan saja mereka yang menyakitimu Sayangi Mereka yang peduli padamu dan perjuangan mereka yang berarti bagimu",
-    "Tolong jangan pergi meninggalkanku aku masih sangat mencintai dan menyayangimu",
-    "Saya mencintaimu dan menyayangimu jadi tolong jangan engkau pergi dan meninggalkan ku sendiri",
-    "Saya sudah cukup tahu bagaimana sifatmu itu kamu hanya dapat memberikan harapan palsu kepadaku",
-    "Aku berusaha mendapatkan cinta darimu tetapi Kamunya nggak peka",
-    "Aku bangkit dari jatuh ku setelah kau jatuhkan aku dan aku akan memulainya lagi dari awal Tanpamu",
-    "Mungkin sekarang jodohku masih jauh dan belum bisa aku dapat tapi aku yakin jodoh itu Takkan kemana-mana dan akan ku dapatkan",
-    "Datang aja dulu baru menghina orang lain kalau memang dirimu dan lebih baik dari yang kau hina",
-    "Membelakanginya mungkin lebih baik daripada melihatnya selingkuh didepan mata sendiri",
-    "Bisakah hatimu seperti angsa yang hanya setia pada satu orang saja",
-    "Aku berdiri disini sendiri menunggu kehadiran dirimu",
-    "Aku hanya tersenyum padamu setelah kau menyakitiku agar kamu tahu arti kesabaran",
-    "Maaf aku lupa ternyata aku bukan siapa-siapa",
-    "Untuk memegang janjimu itu harus ada buktinya jangan sampai hanya janji palsu",
-    "Aku tidak bisa selamanya menunggu dan kini aku menjadi ragu Apakah kamu masih mencintaiku",
-    "Jangan buat aku terlalu berharap jika kamu tidak menginginkanku",
-    "Lebih baik sendiri daripada berdua tapi tanpa kepastian",
-    "Pergi bukan berarti berhenti mencintai tapi kecewa dan lelah karena harus berjuang sendiri",
-    "Bukannya aku tidak ingin menjadi pacarmu Aku hanya ingin dipersatukan dengan cara yang benar",
-    "Akan ada saatnya kok aku akan benar-benar lupa dan tidak memikirkan mu lagi",
-    "Kenapa harus jatuh cinta kepada orang yang tak bisa dimiliki",
-    "Jujur aku juga memiliki perasaan terhadapmu dan tidak bisa menolakmu tapi aku juga takut untuk mencintaimu",
-    "Maafkan aku sayang tidak bisa menjadi seperti yang kamu mau",
-    "Jangan memberi perhatian lebih seperti itu cukup biasa saja tanpa perlu menimbulkan rasa",
-    "Aku bukan mencari yang sempurna tapi yang terbaik untukku",
-    "Sendiri itu tenang tidak ada pertengkaran kebohongan dan banyak aturan",
-    "Cewek strong itu adalah yang sabar dan tetap tersenyum meskipun dalam keadaan terluka",
-    "Terima kasih karena kamu aku menjadi lupa tentang masa laluku",
-    "Cerita cinta indah tanpa masalah itu hanya di dunia dongeng saja",
-    "Kamu tidak akan menemukan apa-apa di masa lalu Yang ada hanyalah penyesalan dan sakit hati",
-    "Mikirin orang yang gak pernah mikirin kita itu emang bikin gila",
-    "Dari sekian lama menunggu apa yang sudah didapat",
-    "Perasaan Bodo gue adalah bisa jatuh cinta sama orang yang sama meski udah disakiti berkali-kali",
-    "Yang sendiri adalah yang bersabar menunggu pasangan sejatinya",
-    "Aku terlahir sederhana dan ditinggal sudah biasa",
-    "Aku sayang kamu tapi aku masih takut untuk mencintaimu",
-    "Bisa berbagi suka dan duka bersamamu itu sudah membuatku bahagia",
-    "Aku tidak pernah berpikir kamu akan menjadi yang sementara",
-    "Jodoh itu bukan seberapa dekat kamu dengannya tapi seberapa yakin kamu dengan Allah",
-    "Jangan paksa aku menjadi cewek seperti seleramu",
-    "Hanya yang sabar yang mampu melewati semua kekecewaan",
-    "Balikan sama kamu itu sama saja bunuh diri dan melukai perasaan ku sendiri",
-    "Tak perlu membalas dengan menyakiti biar Karma yang akan urus semua itu",
-    "Aku masih ingat kamu tapi perasaanku sudah tidak sakit seperti dulu",
-    "Punya kalimat sendiri & mau ditambahin? chat *.owner*"
+    "It's not wrong if I expect more from someone who is more certain without breaking promises",
+    "If I really don't love you why do I think about you. But all of you think I don't love you",
+    "Don't be jealous and sad if you don't have the ability that other people have. Rest assured that other people don't have the ability like you",
+    "Only you can make my steps stop, while saying in my heart how can I leave you",
+    "Keep smiling even though I'm still made to wait and miss you, but it's for you",
+    "It's not that easy to forget you"
+    "You are indifferent to me, I still love you because you have accepted me as I am",
+    "I am very happy if you are happy near me, not near him",
+    "Be yourself, don't follow others, but can't live it"
+    "Try to pause for a moment to think about how we can solve this problem together",
+    "Can we not be enemies after parting, I want us to be like we used to be before we started having fun together, joking and others",
+    "I want you to be with me forever and I hope you can be my soul mate",
+    "Love can't be described in words, because love can only be felt by the heart."
+    "The biggest problem in a person is not being able to fight his fear"
+    "Good morning to people I love and people who hate me, I hope today is a better day than yesterday for me and you",
+    "Don't give up on your current situation, be optimistic because it is optimism that makes us strong",
+    "To the man who is always in my prayers I love you sincerely as it is",
+    "Please don't go when I really love you"
+    "Try to be in my position, then you just leave it like that with the person you really love",
+    "I'm afraid you're okay, I panic if you're sick, it's because I love and care for you",
+    "It hurts when the love I give you don't appreciate",
+    "You suddenly changed for no reason but if there is a reason you changed please tell me so I can fix the mistake",
+    "Because of you I know true love"
+    "Your sweet smile is very beautiful, so don't be sad"
+    "Starting from acquaintances, joking together, ridicule then turned into likes, comfort and finally love and love each other",
+    "Smile at the person who has hurt you so that you will know the meaning of extraordinary patience"
+    "I will remember that bitter memory and I will make it a lesson for a sweet future",
+    "If you really can't keep your promise, at least you remember and try not to let your promise until you forget it",
+    "You can only be silent and think, why are loyal and good people left behind, the naughty ones are being chased, they are left behind, they say that all men are the same",
+    "Even though it's only for a moment you make me happy, but the happiness that he doesn't forget quickly."
+    "I didn't expect you to go and forget me so quickly",
+    "Singles don't have to stay at home while on weekends, go out, right, singles can be free to be close to anyone, girlfriend, ex-friend, even alone or with the devil,"
+    "You are a friend who is always by my side in happy and difficult circumstances. Thank you for always being by my side",
+    "I don't really know in your heart it's me or him",
+    "It's not easy to forget you because I love you so much even though you have hurt me many times",
+    "Life is short so just let go of those who hurt you, Love those who care about you and their struggles that mean a lot to you"
+    "Please don't leave me I still love and care for you"
+    "I love you and love you so please don't you go and leave me alone",
+    "I already know enough about your nature you can only give me false hope",
+    "I tried to get love from you but you are insensitive",
+    "I rise from my fall after you drop me and I will start over again without you",
+    "Maybe now my soul mate is still far away and I can't get it but I'm sure that mate will not go anywhere and I will get it",
+    "Just come first and then insult others if you are and are better than the one you insulted",
+    "Turning your back on him might be better than seeing him cheating in front of your own eyes",
+    "Can your heart be like a swan who is only loyal to one person"
+    "I'm standing here alone waiting for you"
+    "I only smile at you after you hurt me so you know the meaning of patience",
+    "Sorry I forgot that I'm nothing"
+    "To keep your promise, there must be proof, don't let it be just a false promise",
+    "I never thought you would be a temporary one",
+    "The match is not how close you are to him but how sure you are with Allah",
+    "Don't force me to be a girl like your taste",
+    "Only the patient can get through all the disappointments"
+    "Getting back with you is the same as committing suicide and hurting my own feelings",
+    "There's no need to retaliate by hurting so that Karma will take care of all that",
+    "I still remember you but my feelings don't hurt like before",
+    "Have your own sentence & want to add it? chat *.owner*"
 ]
