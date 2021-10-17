@@ -17,7 +17,7 @@ ${res.id}
 *Description modified* by@${res.descOwner.split`@`[0]} on *${formatDate(res.descTime * 1000)}*` : ''}
 *Number of Members:* ${res.size}
 *Members who are known to join*: ${res.participants ? '\n' + res.participants.map((user, i) => ++i + '. @' + user.id.split`@`[0]).join('\n').trim() : 'There is not any'}
-${res.desc ? `*description:*
+${res.desc ? `\n*Description:*
 ${res.desc}` : '*No Description*'}
 
 *JSON Version*
