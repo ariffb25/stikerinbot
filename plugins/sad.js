@@ -4,7 +4,9 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 
 handler.help = ['sad']
 handler.tags = ['quotes']
-handler.command = /^(sad)$/i
+handler.command = /^(q(uotes?)?sad?)$/i
+
+
 
 handler.owner = false
 handler.mods = false
