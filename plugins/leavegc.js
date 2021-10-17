@@ -5,10 +5,10 @@ let handler = async (m, { conn, args, command }) => {
             await conn.groupLeave(chat[i].jid)
             await delay(i * 2000) // jeda 2 detik
         }
-        await m.reply('Berhasil!')
+        await m.reply('Succeed!')
     } else if (args[0] || args.length > 0) {
         let ada = chat.find(bot => bot.jid == args[0]) // Apakah botnya ada disitu
-        if (!ada) throw 'id salah/bot tidak ada digrup itu'
+        if (!ada) throw 'wrong id/bot doesnt exist in that group'
         await conn.modifyChat(args[0], 'delete').catch(console.log)
         await conn.groupLeave(args[0])
         await m.reply('Berhasil!')
