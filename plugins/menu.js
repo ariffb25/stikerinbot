@@ -140,9 +140,10 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     let { min, xp, max } = levelling.xpRange(level, global.multiplier)
     let name = registered ? global.db.data.users[m.sender].name : conn.getName(m.sender)
     let d = new Date(new Date + 3600000)
-    let locale = 'id'
-    // d.getTimeZoneOffset()
-    // Offset -420 is 18.00
+    let locale = 'en-US'
+     d.getTimeZoneOffset()
+     Offset=330;
+     TimeZoneOffset=330;
     // Offset    0 is  0.00
     // Offset  420 is  7.00
     let weton = ['Pahing', 'Pon', 'Wage', 'Kliwon', 'Legi'][Math.floor(d / 84600000) % 5]
@@ -152,7 +153,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       month: 'long',
       year: 'numeric'
     })
-    let dateIslamic = Intl.DateTimeFormat(locale + '-TN-u-ca-islamic', {
+    let dateIslamic = Intl.DateTimeFormat(locale + 'en-US', {
       day: 'numeric',
       month: 'long',
       year: 'numeric'
@@ -283,7 +284,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "rowId": `${_p}? info`
                 }, {
                   "title": "No Category",
-                  "description": "",
+                  "description": "Uncategorised Commands",
                   "rowId": `${_p}? tanpakategori`
                 }, {
                   "title": "Owner",
