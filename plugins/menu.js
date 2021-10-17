@@ -411,18 +411,18 @@ function clockString(ms) {
   return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
 }
 function ucapan() {
-  const time = moment.tz('Asia/Jakarta').format('HH')
+  const time = moment.tz('Asia/Kolkata').format('HH')
   res = "Good Morning ❤️"
   if (time >= 4) {
     res = "Good Morning ❤️"
   }
-  if (time > 10) {
+  if (time > 12) {
     res = "Good Afternoon ❤️"
   }
-  if (time >= 15) {
+  if (time >= 16) {
     res = "Good Evening ❤️"
   }
-  if (time >= 18) {
+  if (time >= 21) {
     res = "Good Night ❤️"
   }
   return res
