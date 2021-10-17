@@ -2,6 +2,21 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     await conn.sendButton(m.chat, `“${pickRandom(global.sad)}”`, '© MilfBOT', 'sad', `${usedPrefix + command}`, m)
 }
 
+handler.help = ['sad']
+handler.tags = ['quotes']
+handler.command = /^(sad)$/i
+
+handler.owner = false
+handler.mods = false
+handler.premium = false
+handler.group = false
+handler.private = false
+handler.admin = false
+handler.botAdmin = false
+
+handler.fail = null
+
+module.exports = handler
 
 function pickRandom(list) {
     return list[Math.floor(list.length * Math.random())]
@@ -66,20 +81,4 @@ global.sad = [
     "I still remember you but my feelings don't hurt like before",
     "Have your own sentence & want to add it? chat *.owner*"
 ]
-;
 
-handler.help = ['sad']
-handler.tags = ['quotes']
-handler.command = /^(sad)$/i
-
-handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
-
-module.exports = handler
