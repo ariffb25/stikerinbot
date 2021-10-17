@@ -5,7 +5,7 @@ let handler = async (m, { conn, args }) => {
   );
   if (!res.ok) throw await `${res.status} ${res.statusText}`;
   let json = await res.json();
-  if (json.file) conn.sendFile(m.chat, json.file, "kopi.png", "kopi", m);
+  if (json.file) conn.sendFile(m.chat, json.file, "kopi.png", "Coffee", m);
   else throw json;
 };
 handler.help = ["coffee", "kopi"];
