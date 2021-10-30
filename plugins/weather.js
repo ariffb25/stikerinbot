@@ -20,7 +20,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 🎐 Wind: ${res.data.wind.speed}km/h`.trim());
     else throw res.data
 };
-handler.help = ["weather", "cuaca"].map((v) => v + " <Country>");
+handler.help = ["weather", "cuaca"].map((v) => v + " <location>");
 handler.tags = ["internet"];
 handler.command = /^(weather|wthr|cuaca)$/i;
 
