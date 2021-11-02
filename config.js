@@ -9,7 +9,7 @@ global.APIs = { // API Prefix
   dhnjing: 'https://dhnjing.xyz',
   hardianto: 'https://hardianto-chan.herokuapp.com',
   jonaz: 'https://jonaz-api-v2.herokuapp.com',
-  neoxr: 'https://neoxr-api.herokuapp.com',
+  neoxr: 'https://api.neoxr.eu.org',
   nrtm: 'https://nurutomo.herokuapp.com',
   pencarikode: 'https://pencarikode.xyz',
   xteam: 'https://api.xteam.xyz',
