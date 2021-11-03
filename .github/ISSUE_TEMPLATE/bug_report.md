@@ -8,29 +8,29 @@ assignees: ''
 ---
 
 **Describe the bug**
-A clear and concise description of what the bug is.
+Deskripsi lengkap mengenai bug
 
 **To Reproduce**
-Steps to reproduce the behavior:
+Cara Mendapatkan Bug:
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
 
 **Expected behavior**
-A clear and concise description of what you expected to happen.
+Apa yang anda harapkan terjadi sebenarnya.
 
 **Screenshots**
-If applicable, add screenshots to help explain your problem.
+Jika bisa tambahkan gambar agar mempermudah menjelaskan bug.
 
 **Desktop (please complete the following information):**
  - Browser [e.g. chrome, safari]
  - Version [e.g. 22]
 
 **Smartphone (please complete the following information):**
+ - Whatsapp Version : [e.g. 2.21.19.21] if using Whatsapp Mod, Type 8.22.29.3
  - Device: [e.g. iPhone6]
  - OS: [e.g. iOS8.1]
- - Version [e.g. 22]
 
 **Additional context**
-Add any other context about the problem here.
+Tambahkan beberapa konteks tentang bug (Jika Perlu).
