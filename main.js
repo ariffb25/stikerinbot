@@ -43,6 +43,23 @@ global.db = new Low(
       new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`)
 )
 global.DATABASE = global.db // Backwards Compatibility
+global.loadDatabase = async function loadDatabase() {
+  if (global.db.READ) return new Promise((resolve) => setInterval(function () {(!global.db.READ ? (clearInterval(this), resolve(global.db.data == null ? global.loadDatabase() : global.db.data)) : null)}, 0.5 * 1000))
+  if (global.db.data !== null) return
+  global.db.READ = true
+  await global.db.read()
+  global.db.READ = false
+  global.db.data = {
+    users: {},
+    chats: {},
+    stats: {},
+    msgs: {},
+    sticker: {},
+    ...(global.db.data || {})
+  }
+  global.db.chain = _.chain(global.db.data)
+}
+loadDatabase()
 
 global.conn = new WAConnection()
 let authFile = `${opts._[0] || 'session'}.data.json`
@@ -55,6 +72,12 @@ if (!opts['test']) setInterval(async () => {
 }, 10 * 1000) // Save every minute
 if (opts['server']) require('./server')(global.conn, PORT)
 
+conn.user = {
+  jid: '',
+  name: '',
+  phone: {},
+  ...(conn.user || {})
+}
 if (opts['test']) {
   conn.user = {
     jid: '2219191@s.whatsapp.net',
@@ -100,17 +123,7 @@ if (opts['test']) {
     process.send(line.trim())
   })
   conn.connect().then(async () => {
-    await global.db.read()
-    global.db.data = {
-      users: {},
-      chats: {},
-      stats: {},
-      msgs: {},
-      sticker: {},
-      settings: {},
-      ...(global.db.data || {})
-    }
-    global.db.chain = _.chain(global.db.data)
+    if (global.db.data == null) await loadDatabase()
     fs.writeFileSync(authFile, JSON.stringify(conn.base64EncodedAuthInfo(), null, '\t'))
     global.timestamp.connect = new Date
   })

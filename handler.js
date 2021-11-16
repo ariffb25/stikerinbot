@@ -9,6 +9,7 @@ const isNumber = x => typeof x === 'number' && !isNaN(x)
 const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(resolve, ms))
 module.exports = {
   async handler(chatUpdate) {
+    if (global.db.data == null) await global.loadDatabase()
     // console.log(chatUpdate)
     if (!chatUpdate.hasNewMessage) return
     if (!chatUpdate.messages && !chatUpdate.count) return
