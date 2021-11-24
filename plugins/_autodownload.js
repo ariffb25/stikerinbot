@@ -14,12 +14,12 @@ handler.all = async function (m, { isPrems }) {
     let url = m.text.split(/\n| /i)[0]
 
     if (/^.*tiktok/i.test(m.text)) {
-        let res = await fetch(API('hardianto', '/api/download/tiktok', { url }, 'apikey'))
+        let res = await fetch(API('rey', '/api/download/tiktok', { url }, 'apikey'))
         if (!res.ok) return m.reply(eror)
         let json = await res.json()
         await m.reply(wait)
         // m.reply(util.format(json))
-        await this.sendFile(m.chat, json.nowm, '', '© stikerin', m)
+        await this.sendFile(m.chat, json.result.nowatermark, '', '© stikerin', m)
     }
 
     if (/^.*cocofun/i.test(m.text)) {
@@ -37,7 +37,7 @@ handler.all = async function (m, { isPrems }) {
         let json = await res.json()
         if (!json.status) return m.reply(util.format(json))
         await m.reply(wait)
-        await conn.sendFile(m.chat, json.data.sd.url, '', `HD: ${json.data.hd.url}\nUkuran: ${json.data.hd.size}\n\n© stikerin`, m)
+        await conn.sendFile(m.chat, json.data.sd.url, '', `HD: ${json.data.hd.url}\nUkuran: ${json.data.hd.size}\n\n❤ Erzaa`, m)
     }
 
     if (/^.*instagram.com\/(p|reel|tv)/i.test(m.text)) {
@@ -46,7 +46,7 @@ handler.all = async function (m, { isPrems }) {
             let json = JSON.parse(igdl)
             await m.reply(wait)
             for (let { downloadUrl, type } of json) {
-                this.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), '© stikerin', m, 0, { thumbnail: await (await fetch(downloadUrl)).buffer() })
+                this.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), '❤ Erzaa', m, 0, { thumbnail: await (await fetch(downloadUrl)).buffer() })
             }
         }).catch(_ => _)
     }
@@ -69,7 +69,7 @@ handler.all = async function (m, { isPrems }) {
             let pesan = json.data.map((v) => `Link: ${v.url}`).join('\n------------\n')
             await m.reply(wait)
             for (let { url } of json.data) {
-                this.sendFile(m.chat, url, 'ig' + (/mp4/i.test(url) ? '.mp4' : '.jpg'), '© stikerin', m)
+                this.sendFile(m.chat, url, 'ig' + (/mp4/i.test(url) ? '.mp4' : '.jpg'), '❤ Erzaa', m)
             }
         }).catch(_ => _)
     }
@@ -103,6 +103,3 @@ handler.all = async function (m, { isPrems }) {
     }
 
 }
-
-handler.limit = true
-module.exports = handler
