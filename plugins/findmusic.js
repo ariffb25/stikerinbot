@@ -1,3 +1,5 @@
+//Created By SudoAnirudh
+
 let FormData = require('form-data')
 let axios = require('axios')
 
@@ -8,8 +10,8 @@ let handler = async (m, { conn, usedPrefix, command }) => {
  m.reply('Wait,Looking For....')
 				const bodyForm = new FormData()
 			        bodyForm.append('audio', await q.download(), 'music.mp3')
-           			bodyForm.append('apikey', 'caliph_71')
-           			axios('https://api.zeks.xyz/api/searchmusic', {
+           			bodyForm.append('apikey', 'apivinz')
+           			axios('https://api.zeks.me/api/searchmusic?apikey=apivinz&audio=https://media1.vocaroo.com/mp3/1ePZvzWDKxIh', {
                 		method: 'POST',
                 		headers: {
 				"Content-Type": "multipart/form-data",
