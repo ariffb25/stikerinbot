@@ -4,7 +4,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!args[0]) throw `uhm.. url nya mana?\n\ncontoh:\n${usedPrefix + command} https://vt.tiktok.com/yqyjPX/`
   if (!args[0].match(/tiktok/gi)) throw `url salah`
 
-  let res = await fetch(API('amel', '/tiktok', { url: 'https://vt.tiktok.com/yqyjPX/' }, 'apikey'))
+  let res = await fetch(API('mel', '/tiktok', { url: 'https://vt.tiktok.com/yqyjPX/' }, 'apikey'))
   if (!res.ok) throw eror
   let json = await res.json()
   if (json.status != 200) throw json
