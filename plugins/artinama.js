@@ -31,7 +31,7 @@ let handler = async (m, { text, usedPrefix, command }) => {
   }
   m.reply(result)
 }
-handler.help = ['artinama'].map(v => v + ' [nama]')
+handler.help = ['artinama'].map(v => v + ' <nama>')
 handler.tags = ['kerang']
 handler.command = ['artinama']
 

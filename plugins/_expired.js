@@ -1,4 +1,5 @@
 let handler = m => m
+
 handler.before = async function (m) {
 
     if (m.isGroup && db.data.chats[m.chat].expired != 0) {

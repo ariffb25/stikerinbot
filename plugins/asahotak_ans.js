@@ -1,6 +1,8 @@
 const similarity = require('similarity')
 const threshold = 0.72
+
 let handler = m => m
+
 handler.before = async function (m) {
     let id = m.chat
     if (!m.quoted || !m.quoted.fromMe || !m.quoted.isBaileys || !/Ketik.*ao/i.test(m.quoted.contentText)) return !0
@@ -19,6 +21,5 @@ handler.before = async function (m) {
     }
     return !0
 }
-handler.exp = 0
 
 module.exports = handler

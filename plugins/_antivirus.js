@@ -1,13 +1,11 @@
 let handler = m => m
 
-handler.all = async function (m, { isBotAdmin }) {
-    // auto clear ketika terdapat pesan yang tidak dapat dilihat di wa desktop
+handler.all = async function (m) {
+    /* 
+    otomatis membersihkan percakapan ketika terdapat pesan OVERSIZED
+    https://github.com/adiwajshing/Baileys/blob/3507f8f/WAMessage/WAMessage.d.ts#L18605
+    */
     if (m.messageStubType === 68) {
-        let log = {
-            key: m.key,
-            content: m.msg,
-            sender: m.sender
-        }
         await this.modifyChat(m.chat, 'clear', {
             includeStarred: false
         }).catch(console.log)

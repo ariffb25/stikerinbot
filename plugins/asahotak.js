@@ -1,11 +1,12 @@
 const fetch = require('node-fetch')
 let timeout = 120000
 let poin = 500
+
 let handler = async (m, { conn, usedPrefix }) => {
     conn.asahotak = conn.asahotak ? conn.asahotak : {}
     let id = m.chat
     if (id in conn.asahotak) {
-        conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.asahotak[id][0])
+        conn.reply(m.chat, 'Masih ada Asah Otak belum terjawab di chat ini', conn.asahotak[id][0])
         throw false
     }
     let src = await (await fetch('https://raw.githubusercontent.com/BochilTeam/database/master/games/asahotak.json')).json()

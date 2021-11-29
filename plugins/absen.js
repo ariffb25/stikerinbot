@@ -2,7 +2,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     let id = m.chat
     conn.absen = conn.absen ? conn.absen : {}
     if (!(id in conn.absen)) {
-        await conn.sendButton(m.chat, `_*Tidak ada absen berlangsung digrup ini!*_\n\nketik *${usedPrefix}mulaiabsen* untuk memulai absen`, '© stikerin', 'Mulai', `${usedPrefix}mulaiabsen`, m)
+        await conn.sendButton(m.chat, `Tidak ada absen berlangsung!`, '© stikerin', 'Mulai', `${usedPrefix}mulaiabsen`, m)
         throw false
     }
 
@@ -21,7 +21,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 Tanggal: ${date}
 ${conn.absen[id][2]}
 
-┌〔 daftar absen 〕
+┌「 Absen 」
 │ 
 ├ Total: ${absen.length}
 ${list}
@@ -32,5 +32,5 @@ ${list}
 handler.help = ['absen']
 handler.tags = ['absen']
 handler.command = /^(absen|hadir)$/i
-handler.group = true
+
 module.exports = handler

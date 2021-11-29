@@ -1,6 +1,5 @@
 const fetch = require('node-fetch')
 const { sticker } = require('../lib/sticker')
-const { MessageType } = require('@adiwajshing/baileys')
 
 let handler = async (m, { conn, text, command }) => {
   let teks = text ? text : m.quoted && m.quoted.text ? m.quoted.text : m.text
@@ -16,7 +15,7 @@ let handler = async (m, { conn, text, command }) => {
     if (!url.ok) throw eror
     res = await url.json()
     let stiker = await sticker(null, res.image, global.packname, global.author)
-    if (stiker) return await conn.sendMessage(m.chat, stiker, MessageType.sticker, {
+    if (stiker) return await conn.sendMessage(m.chat, stiker, 'stickerMessage', {
       quoted: m
     })
     throw stiker.toString()

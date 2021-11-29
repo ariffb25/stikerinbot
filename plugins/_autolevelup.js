@@ -1,7 +1,8 @@
-let handler = m => m
-
 let levelling = require('../lib/levelling')
 const canvacord = require('canvacord')
+
+let handler = m => m
+
 handler.before = async function (m) {
         let user = global.db.data.users[m.sender]
         let users = Object.entries(global.db.data.users).map(([key, value]) => {

@@ -85,6 +85,7 @@ module.exports = {
           if (!('antiLink' in chat)) chat.antiLink = false
           if (!isNumber(chat.expired)) chat.expired = 0
           if (!('antiBadword' in chat)) chat.antiBadword = true
+          if (!('getmsg' in chat)) chat.getmsg = false
           if (!('viewonce' in chat)) chat.viewonce = true
         } else global.db.data.chats[m.chat] = {
           isBanned: false,
@@ -100,6 +101,7 @@ module.exports = {
           antiLink: false,
           expired: 0,
           antiBadword: true,
+          getmsg: false,
           viewonce: true,
         }
 
@@ -110,22 +112,28 @@ module.exports = {
           if (!'anticall' in settings) settings.anticall = true
           if (!'antispam' in settings) settings.antispam = true
           if (!'antitroli' in settings) settings.antitroli = true
+          if (!'autoupdatestatus' in settings) settings.autoupdatestatus = false
           if (!'backup' in settings) settings.backup = false
-          if (!isNumber(settings.backupDB)) settings.backupDB = 0
-          if (!'groupOnly' in settings) settings.groupOnly = false
-          if (!'jadibot' in settings) settings.groupOnly = false
+          if (!'buggc' in settings) settings.buggc = true
+          if (!isNumber(settings.backupTime)) settings.backupTime = 0
+          if (!'group' in settings) settings.group = false
+          if (!'jadibot' in settings) settings.jadibot = false
           if (!'nsfw' in settings) settings.nsfw = true
+          if (!'restrict' in settings) settings.restrict = false
           if (!isNumber(settings.status)) settings.status = 0
         } else global.db.data.settings[this.user.jid] = {
           anon: true,
           anticall: true,
           antispam: true,
           antitroli: true,
+          autoupdatestatus: false,
           backup: false,
-          backupDB: 0,
-          groupOnly: false,
+          buggc: true,
+          backupTime: 0,
+          group: false,
           jadibot: false,
           nsfw: true,
+          restrict: false,
           status: 0,
         }
       } catch (e) {
@@ -453,7 +461,7 @@ ketik *.on delete* untuk mematikan pesan ini
     let users = global.db.data.users
     let user = users[from] || {}
     if (user.whitelist) return
-    if (!db.data.settings.anticall) return
+    if (!db.data.settings[this.user.jid].anticall) return
     switch (this.callWhitelistMode) {
       case 'mycontact':
         if (from in this.contacts && 'short' in this.contacts[from])
@@ -461,8 +469,8 @@ ketik *.on delete* untuk mematikan pesan ini
         break
     }
     user.call += 1
-    await this.reply(from, `Jika kamu menelepon lebih dari 5, kamu akan diblokir.\n\n${user.call} / 5`, null)
-    if (user.call == 5) {
+    await this.reply(from, `Jika kamu menelepon lebih dari 3, kamu akan diblokir.\n\n${user.call} / 3`, null)
+    if (user.call > 3) {
       await this.blockUser(from, 'add')
       user.call = 0
     }

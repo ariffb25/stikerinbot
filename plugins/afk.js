@@ -1,9 +1,9 @@
-let handler = async (m, { text }) => {
+let handler = async (m, { conn, text }) => {
   let user = global.db.data.users[m.sender]
   user.afk = + new Date
   user.afkReason = text
   m.reply(`
-${conn.getName(m.sender)} sekarang AFK${text ? ': ' + text : ''}
+${user ? user.name : conn.getName(m.sender)} sekarang AFK${text ? ': ' + text : ''}
 `)
 }
 handler.help = ['afk [alasan]']
