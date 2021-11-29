@@ -7,7 +7,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   let res = await fetch(API('mel', '/tiktok', { url: 'https://vt.tiktok.com/yqyjPX/' }, 'apikey'))
   if (!res.ok) throw eror
   let json = await res.json()
-  if (json.status != 200) throw json
+  if (!json.status) throw json
   await m.reply(wait)
   await conn.sendFile(m.chat, json.result.link, '', `${json.result.caption}\n\n© stikerin`, m)
 
