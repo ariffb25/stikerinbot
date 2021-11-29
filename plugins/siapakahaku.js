@@ -9,10 +9,12 @@ let handler = async (m, { conn, usedPrefix }) => {
         conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.siapakahaku[id][0])
         throw false
     }
-    let src = await (await fetch('https://raw.githubusercontent.com/BochilTeam/database/master/games/siapakahaku.json')).json()
-    let json = src[Math.floor(Math.random() * src.length)]
+    let res = await fetch(global.API('mel', '/game/siapakahaku', {}, 'apikey'))
+    if (!res.ok) throw await `${res.status} ${res.statusText}`
+    let json = await res.json()
+    if (!json.status) throw json
     let caption = `
-${json.soal}
+${json.result.soal}
 
 Timeout *${(timeout / 1000).toFixed(2)} detik*
 Ketik ${usedPrefix}who untuk bantuan
@@ -22,7 +24,7 @@ Bonus: ${poin} XP
         await conn.sendButton(m.chat, caption, '© stikerin', 'Bantuan', '.who'),
         json, poin,
         setTimeout(async () => {
-            if (conn.siapakahaku[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, '© stikerin', 'Siapakah Aku', '.siapaaku')
+            if (conn.siapakahaku[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.result.jawaban}*`, '© stikerin', 'Siapakah Aku', '.siapaaku')
             delete conn.siapakahaku[id]
         }, timeout)
     ]

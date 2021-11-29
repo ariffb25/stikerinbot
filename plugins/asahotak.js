@@ -9,10 +9,12 @@ let handler = async (m, { conn, usedPrefix }) => {
         conn.reply(m.chat, 'Masih ada Asah Otak belum terjawab di chat ini', conn.asahotak[id][0])
         throw false
     }
-    let src = await (await fetch('https://raw.githubusercontent.com/BochilTeam/database/master/games/asahotak.json')).json()
-    let json = src[Math.floor(Math.random() * src.length)]
+    let res = await fetch(global.API('mel', '/game/caklontong', {}, 'apikey'))
+    if (!res.ok) throw await `${res.status} ${res.statusText}`
+    let json = await res.json()
+    if (!json.status) throw json
     let caption = `
-${json.soal}
+${json.result.soal}
 
 Timeout *${(timeout / 1000).toFixed(2)} detik*
 Ketik ${usedPrefix}ao untuk bantuan
@@ -22,7 +24,7 @@ Bonus: ${poin} XP
         await conn.sendButton(m.chat, caption, '© stikerin', 'Bantuan', '.ao', m),
         json, poin,
         setTimeout(async () => {
-            if (conn.asahotak[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, '© stikerin', 'Asah Otak', '.asahotak', conn.asahotak[id][0])
+            if (conn.asahotak[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.result.jawaban}*`, '© stikerin', 'Asah Otak', '.asahotak', conn.asahotak[id][0])
             delete conn.asahotak[id]
         }, timeout)
     ]
