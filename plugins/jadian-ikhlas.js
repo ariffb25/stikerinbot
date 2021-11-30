@@ -1,4 +1,11 @@
-let handler = async (m, { conn, text }) => {
+/*//////////////////////////////////
+
+Cretor : Hairul Lana
+https://github.com/hairullana 
+
+/*////////////////////////////////*/
+
+let handler = async (m, { conn }) => {
   if (global.db.data.users[m.sender].pasangan == "") return conn.reply(m.chat, `Kamu sedang tidak menembak siapapun!`, m)
   if (global.db.data.users[global.db.data.users[m.sender].pasangan].pasangan == m.sender) return conn.reply(m.chat, `Kamu telah berpacaran dengan @${global.db.data.users[m.sender].pasangan.split('@')[0]}`, m, {contextInfo: {
     mentionedJid: [global.db.data.users[m.sender].pasangan]
