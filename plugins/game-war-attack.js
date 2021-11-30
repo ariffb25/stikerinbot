@@ -1,3 +1,10 @@
+/*//////////////////////////////////
+
+Cretor : Hairul Lana
+https://github.com/hairullana 
+
+/*////////////////////////////////*/
+
 let handler = async (m, { conn, usedPrefix, args, command }) => {
   conn.war = conn.war ? conn.war : {}
   conn.war2 = conn.war2 ? conn.war2 : {}
