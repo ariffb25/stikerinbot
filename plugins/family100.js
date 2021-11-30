@@ -7,12 +7,14 @@ async function handler(m) {
         this.sendButton(m.chat, 'Masih ada kuis yang belum terjawab di chat ini', '© stikerin', 'Nyerah', 'nyerah', this.game[id].msg)
         throw false
     }
-    let src = await (await fetch('https://raw.githubusercontent.com/BochilTeam/database/master/games/family100.json')).json()
-    let json = src[Math.floor(Math.random() * src.length)]
+    let res = await fetch(global.API('mel', '/game/caklontong', {}, 'apikey'))
+    if (!res.ok) throw await `${res.status} ${res.statusText}`
+    let json = await res.json()
+    if (!json.status) throw json
     let caption = `
-*Soal:* ${json.soal}
+*Soal:* ${json.result.soal}
 
-Terdapat *${json.jawaban.length}* jawaban${json.jawaban.find(v => v.includes(' ')) ? `
+Terdapat *${json.result.jawaban.length}* jawaban${json.jawaban.find(v => v.includes(' ')) ? `
 (beberapa jawaban terdapat spasi)
 `: ''}
 
@@ -22,7 +24,7 @@ Terdapat *${json.jawaban.length}* jawaban${json.jawaban.find(v => v.includes(' '
         id,
         msg: await this.sendButton(m.chat, caption, '© stikerin', 'Nyerah', 'nyerah', m),
         ...json,
-        terjawab: Array.from(json.jawaban, () => false),
+        terjawab: Array.from(json.result.jawaban, () => false),
         winScore,
     }
 }
