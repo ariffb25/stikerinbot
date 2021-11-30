@@ -21,9 +21,9 @@ module.exports = {
         }
         let isWin = room.terjawab.length === room.terjawab.filter(v => v).length
         let caption = `
-*Soal:* ${room.soal}
+*Soal:* ${room.result.soal}
 
-Terdapat *${room.jawaban.length}* jawaban${room.jawaban.find(v => v.includes(' ')) ? `
+Terdapat *${room.result.jawaban.length}* jawaban${room.result.jawaban.find(v => v.includes(' ')) ? `
 (beberapa jawaban terdapat spasi)
 `: ''}
 ${isWin ? `*SEMUA JAWABAN TERJAWAB*` : isSurrender ? '*MENYERAH!*' : ''}
