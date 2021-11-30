@@ -1,3 +1,10 @@
+/*//////////////////////////////////
+
+Cretor : Hairul Lana
+https://github.com/hairullana 
+
+/*////////////////////////////////*/
+
 let handler = async (m, { conn }) => {
   ayg = global.db.data.users[m.sender]
 
