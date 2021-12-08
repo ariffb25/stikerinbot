@@ -21,7 +21,7 @@ let handler = async (m, { conn }) => {
     im.on('exit', () => {
       conn.sendMessage(m.chat, Buffer.concat(bufs), MessageType.image, {
         quoted: m,
-        caption: '© stikerin'
+        caption: 'whatsapp bot'
       })
     })
   }

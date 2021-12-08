@@ -8,9 +8,9 @@ let handler = async (m, { conn, usedPrefix, command }) => {
   if (/webp/.test(mime)) {
     out = await webp2png(media)
   }
-  await conn.sendFile(m.chat, out, 'out.png', 'whatsapp bot', m, false, { thumbnail: out })
+  await conn.sendFile(m.chat, out, 'out.webp', '© wabot', m, false, { thumbnail: out })
 }
-handler.help = ['toimg2']
+handler.help = ['towebp']
 handler.tags = ['sticker']
-handler.command = ['toimg2']
+handler.command = ['towebp']
 module.exports = handler
