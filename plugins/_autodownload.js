@@ -14,21 +14,21 @@ handler.all = async function (m, { isPrems }) {
     let url = m.text.split(/\n| /i)[0]
 
     if (/^.*tiktok/i.test(m.text)) {
-        let res = await fetch(API('hardianto', '/api/download/tiktok', { url }, 'apikey'))
-        if (!res.ok) return m.reply(eror)
+        let res = await fetch(API('amel', '/tiktok', { url }, 'apikey'))
+        if (!res.ok) throw eror
         let json = await res.json()
-        await m.reply(wait)
         // m.reply(util.format(json))
-        await this.sendFile(m.chat, json.nowm, '', '© stikerin', m)
+        await m.reply('*Downloading Video From Tiktok*')
+        await conn.sendFile(m.chat, json.result.link, 'tiktok.mp4', wm, m)
     }
 
     if (/^.*cocofun/i.test(m.text)) {
         let res = await fetch(API('jojo', '/api/cocofun-no-wm', { url }))
         if (!res.ok) return m.reply(eror)
         let json = await res.json()
-        await m.reply(wait)
+        await m.reply('*Downloading Video From Cocofun*')
         // m.reply(util.format(json))
-        await this.sendFile(m.chat, json.download, '', '© stikerin', m)
+        await this.sendFile(m.chat, json.download, '', 'Whatsapp bot', m)
     }
 
     if (/^.*(fb.watch|facebook.com)/i.test(m.text)) {
@@ -36,17 +36,17 @@ handler.all = async function (m, { isPrems }) {
         if (!res.ok) return m.reply(eror)
         let json = await res.json()
         if (!json.status) return m.reply(util.format(json))
-        await m.reply(wait)
-        await conn.sendFile(m.chat, json.data.sd.url, '', `HD: ${json.data.hd.url}\nUkuran: ${json.data.hd.size}\n\n© stikerin`, m)
+        await m.reply('*Downloading Video From Facebook*')
+        await conn.sendFile(m.chat, json.data.sd.url, '', `HD: ${json.data.hd.url}\nUkuran: ${json.data.hd.size}\n\nWhatsapp bot`, m)
     }
 
     if (/^.*instagram.com\/(p|reel|tv)/i.test(m.text)) {
         igdl(url).then(async res => {
             let igdl = JSON.stringify(res)
             let json = JSON.parse(igdl)
-            await m.reply(wait)
+            await m.reply('*Downloading From Instagram*')
             for (let { downloadUrl, type } of json) {
-                this.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), '© stikerin', m, 0, { thumbnail: await (await fetch(downloadUrl)).buffer() })
+                this.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), 'Whatsapp bot', m, 0, { thumbnail: await (await fetch(downloadUrl)).buffer() })
             }
         }).catch(_ => _)
     }
@@ -56,9 +56,9 @@ handler.all = async function (m, { isPrems }) {
             let pin = JSON.stringify(res)
             let json = JSON.parse(pin)
             if (!json.status) return m.reply(eror)
-            await m.reply(wait)
+            await m.reply('*Downloading Image From Pinterest*')
             m.reply(util.format(json))
-            await this.sendFile(m.chat, json.data.url, '', '© stikerin', m)
+            await this.sendFile(m.chat, json.data.url, '', 'Whatsapp bot', m)
         }).catch(_ => _)
     }
 
@@ -67,7 +67,7 @@ handler.all = async function (m, { isPrems }) {
             let twit = JSON.stringify(res)
             let json = JSON.parse(twit)
             let pesan = json.data.map((v) => `Link: ${v.url}`).join('\n------------\n')
-            await m.reply(wait)
+            await m.reply('*Downloading From Twitter*')
             for (let { url } of json.data) {
                 this.sendFile(m.chat, url, 'ig' + (/mp4/i.test(url) ? '.mp4' : '.jpg'), '© stikerin', m)
             }
@@ -78,6 +78,7 @@ handler.all = async function (m, { isPrems }) {
         let results = await yts(url)
         let vid = results.all.find(video => video.seconds < 3600)
         if (!vid) return m.reply('Video/Audio Tidak ditemukan')
+        await m.reply('*Downloading Video From Youtube*')
         let yt = false
         let usedServer = servers[0]
         for (let i in servers) {
@@ -99,7 +100,7 @@ handler.all = async function (m, { isPrems }) {
 *Ukuran File Audio:* ${filesizeF}
 *Ukuran File Video:* ${yt2.filesizeF}
 *Server y2mate:* ${usedServer}
-`.trim(), '© stikerin', 'Audio', `.yta ${vid.url}`, 'Video', `.yt ${vid.url}`)
+`.trim(), 'JANGAN LUPA JUGA SUB YT OWNER DENGAN KETIK /ytowner', 'Audio', `.yta ${vid.url}`, 'Video', `.yt ${vid.url}`)
     }
 
 }
