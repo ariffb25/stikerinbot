@@ -30,12 +30,6 @@ module.exports = {
         if (user) {
             if (!isNumber(user.healt)) user.healt = 0
             if (!isNumber(user.stamina)) user.stamina = 0
-            if (!isNumber(user.level)) user.level = 0
-            if (!isNumber(user.exp)) user.exp = 0
-            if (!isNumber(user.call)) user.call = 0
-            if (!isNumber(user.pc)) user.pc = 0
-            if (!isNumber(user.limit)) user.limit = 10
-            if (!isNumber(user.lastclaim)) user.lastclaim = 0
             if (!isNumber(user.money)) user.money = 0
             
             if (!isNumber(user.trofi)) user.trofi= 0
@@ -85,9 +79,6 @@ module.exports = {
             if (!'bannedReason' in user) user.bannedReason = ''
             if (!isNumber(user.warn)) user.warn = 0
 
-            if (!isNumber(user.afk)) user.afk = -1
-            if (!'afkReason' in user) user.afkReason = ''
-            
             if (!isNumber(user.pedagang)) user.pedagang = false
             if (!isNumber(user.polisi)) user.polisi = false
             if (!isNumber(user.dokter)) user.dokter = false
@@ -167,24 +158,29 @@ module.exports = {
             if (!isNumber(user.lastbansos)) user.lastbansos = 0
             if (!isNumber(user.lastrampok)) user.lastrampok = 0
             if (!('kingdom' in user)) user.kingdom = false
-            if (!('registered' in user)) user.registered = false
-            if (!user.registered) {
-                if (!('name' in user)) user.name = this.getName(m.sender)
-                if (!isNumber(user.age)) user.age = -1
-                if (!isNumber(user.regTime)) user.regTime = -1
-            }
-            if (!('autolevelup' in user)) user.autolevelup = true
-            if (!('ah' in user)) user.ah = []
             if (!('mission' in user)) user.mission = {}
-            if (!('pasangan' in user)) user.pasangan = ''
-            if (!user.role) user.role = 'Bronze'
-            if (!isNumber(user.warning)) user.warning = 0
+          if (!isNumber(user.exp)) user.exp = 0
+          if (!isNumber(user.limit)) user.limit = 10
+          if (!isNumber(user.lastclaim)) user.lastclaim = 0
+          if (!('registered' in user)) user.registered = false
+          if (!user.registered) {
+            if (!('name' in user)) user.name = this.getName(m.sender)
+            if (!isNumber(user.age)) user.age = -1
+            if (!isNumber(user.regTime)) user.regTime = -1
+          }
+          if (!isNumber(user.afk)) user.afk = -1
+          if (!('afkReason' in user)) user.afkReason = ''
+          if (!('banned' in user)) user.banned = false
+          if (!isNumber(user.level)) user.level = 0
+          if (!isNumber(user.call)) user.call = 0
+          if (!user.role) user.role = 'Bronze'
+          if (!('autolevelup' in user)) user.autolevelup = false
+          if (!isNumber(user.pc)) user.pc = 0
+          if (!isNumber(user.warning)) user.warning = 0
+          if (!('pasangan' in user)) user.pasangan = ''
         } else global.db.data.users[m.sender] = {
-            healt: 100,
+          healt: 100,
             stamina: 100,
-            level: 0,
-            call: 0,
-            pc: 0,
             trofi: 0,
             rtrofi: 'perunggu',
             rumahsakit: 0,
@@ -192,9 +188,6 @@ module.exports = {
             fortress: 0,
             makanan: 0,
             shield: false,
-            exp: 0,
-            limit: 10,
-            lastclaim: 0,
             money: 0,
             diamond: 0,
             iron: 0,
@@ -220,8 +213,6 @@ module.exports = {
             Banneduser: false,
             BannedReason: '',
             warn: 0,
-            afk: -1,
-            afkReason: '',
             polisi: 0,
           petani: 0,
           pedagang: 0,
@@ -295,17 +286,26 @@ module.exports = {
             lastmonthly: 0,
             lastbansos: 0,
             lastrampok: 0,
-            registered: false,
-            name: this.getName(m.sender),
-            age: -1,
-            regTime: -1,
-            autolevelup: true,
-            ah: [],
             mission: {},
-            pasangan:'',
-            role: 'Bronze',
-            warning: 0,
+          exp: 0,
+          limit: 10,
+          lastclaim: 0,
+          registered: false,
+          name: this.getName(m.sender),
+          age: -1,
+          regTime: -1,
+          afk: -1,
+          afkReason: '',
+          banned: false,
+          level: 0,
+          call: 0,
+          role: 'Bronze',
+          autolevelup: false,
+          pc: 0,
+          warning: 0,
+          pasangan: '',
         }
+
         let chat = global.db.data.chats[m.chat]
         if (typeof chat !== 'object') global.db.data.chats[m.chat] = {}
         if (chat) {
@@ -318,10 +318,12 @@ module.exports = {
           if (!('sDemote' in chat)) chat.sDemote = ''
           if (!('descUpdate' in chat)) chat.descUpdate = true
           if (!('stiker' in chat)) chat.stiker = false
+          if (!('clear' in chat)) chat.clear = false
+          if (!isNumber(chat.clearTime)) chat.clearTime = (new Date() * 1) + 3600000 * 1
           if (!('delete' in chat)) chat.delete = true
           if (!('antiLink' in chat)) chat.antiLink = false
           if (!isNumber(chat.expired)) chat.expired = 0
-          if (!('antiBadword' in chat)) chat.antiBadword = true
+          if (!('antiBadword' in chat)) chat.antiBadword = false
           if (!('viewonce' in chat)) chat.viewonce = true
         } else global.db.data.chats[m.chat] = {
           isBanned: false,
@@ -333,10 +335,12 @@ module.exports = {
           sDemote: '',
           descUpdate: true,
           stiker: false,
+          clear: false,
+          clearTime: (new Date() * 1) + 3600000 * 1,
           delete: true,
           antiLink: false,
           expired: 0,
-          antiBadword: true,
+          antiBadword: false,
           viewonce: true,
         }
 
@@ -346,22 +350,20 @@ module.exports = {
           if (!'anon' in settings) settings.anon = true
           if (!'anticall' in settings) settings.anticall = true
           if (!'antispam' in settings) settings.antispam = true
-          if (!'antitroli' in settings) settings.antitroli = true
           if (!'backup' in settings) settings.backup = false
           if (!isNumber(settings.backupDB)) settings.backupDB = 0
           if (!'groupOnly' in settings) settings.groupOnly = false
-          if (!'jadibot' in settings) settings.groupOnly = false
+          if (!'jadibot' in settings) settings.groupOnly = true
           if (!'nsfw' in settings) settings.nsfw = true
           if (!isNumber(settings.status)) settings.status = 0
         } else global.db.data.settings[this.user.jid] = {
           anon: true,
           anticall: true,
           antispam: true,
-          antitroli: true,
           backup: false,
           backupDB: 0,
           groupOnly: false,
-          jadibot: false,
+          jadibot: true,
           nsfw: true,
           status: 0,
         }
@@ -615,7 +617,6 @@ module.exports = {
   async participantsUpdate({ jid, participants, action }) {
     let chat = global.db.data.chats[jid] || {}
     let text = ''
-    console.log(action);
     switch (action) {
       case 'add':
       case 'remove':
@@ -623,50 +624,21 @@ module.exports = {
           let groupMetadata = await this.groupMetadata(jid)
           for (let user of participants) {
             // let pp = './src/avatar_contact.png'
-            let pp = 'https://i.ibb.co/jr9Nh6Q/Thumb.jpg'
-            let ppgc = 'https://i.ibb.co/jr9Nh6Q/Thumb.jpg'
             try {
               pp = await uploadImage(await (await fetch(await this.getProfilePicture(user))).buffer())
-              ppgc = await uploadImage(await (await fetch(await this.getProfilePicture(jid))).buffer())
             } catch (e) {
             } finally {
               text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Selamat datang, @user!').replace('@subject', this.getName(jid)).replace('@desc', groupMetadata.desc ? String.fromCharCode(8206).repeat(4001) + groupMetadata.desc : '') :
                 (chat.sBye || this.bye || conn.bye || 'Sampai jumpa, @user!')).replace(/@user/g, '@' + user.split`@`[0])
-              let wel, lea;
-              if(!global.UsingCanvasAPI){
-                const knights = require('knights-canvas')
-                wel = await new knights.Welcome()
-                  .setUsername(this.getName(user))
-                  .setGuildName(this.getName(jid))
-                  .setGuildIcon(ppgc)
-                  .setMemberCount(groupMetadata.participants.length)
-                  .setAvatar(pp)
-                  .setBackground("https://i.ibb.co/KhtRxwZ/dark.png")
-                  .toAttachment()
+              let wel = await (await fetch(fla + `WELCOME`)).buffer()
 
-                lea = await new knights.Goodbye()
-                  .setUsername(this.getName(user))
-                  .setGuildName(this.getName(jid))
-                  .setGuildIcon(ppgc)
-                  .setMemberCount(groupMetadata.participants.length)
-                  .setAvatar(pp)
-                  .setBackground("https://i.ibb.co/KhtRxwZ/dark.png")
-                  .toAttachment();
+              let lea = await (await fetch(fla + `GOOD BYE`)).buffer()
 
-                this.sendFile(jid, action === 'add' ? wel.toBuffer() : lea.toBuffer(), 'pp.jpg', text, null, false, {
-                  contextInfo: {
-                    mentionedJid: [user]
-                  }
-                })
-              } else {
-                wel = `${global.CanvasAPI != '' ? global.canvasAPI : 'https://canvas-heroku-stikerinbot.herokuapp.com'}/generatewelcome?username=${this.getName(user)}&groupname=${this.getName(jid)}&grouplength=${groupMetadata.participants.length}&avatarurl=${pp}&groupavatar=${ppgc}` // If You Want Custom Background Add &bg=URL
-                lea = `${global.CanvasAPI != ''? global.canvasAPI : 'https://canvas-heroku-stikerinbot.herokuapp.com'}/generatebye?username=${this.getName(user)}&groupname=${this.getName(jid)}&grouplength=${groupMetadata.participants.length}&avatarurl=${pp}&groupavatar=${ppgc}` // If You Want Custom Background Add &bg=URL
-                this.sendFile(jid, action === 'add' ? wel : lea, 'pp.jpg', text, null, false, {
-                  contextInfo: {
-                    mentionedJid: [user]
-                  }
-                })
-              }
+              conn.sendButtonLoc(jid, action === 'add' ? wel : lea, text, global.footer, 'LIST MENU', '#menu', false, {
+                contextInfo: {
+                  mentionedJid: [user]
+                }
+              })
             }
           }
         }
@@ -742,7 +714,7 @@ global.dfail = (type, m, conn) => {
     private: 'Perintah ini hanya dapat digunakan di Chat Pribadi',
     admin: 'Perintah ini hanya untuk *Admin* grup',
     botAdmin: 'Jadikan bot sebagai *Admin* untuk menggunakan perintah ini',
-    unreg: 'Silahkan daftar untuk menggunakan fitur ini dengan cara mengetik:\n\n*#daftar nama.umur*\n\nContoh: *#daftar Arif.19*',
+    unreg: `Silahkan daftar untuk menggunakan fitur ini dengan cara mengetik:\n\n*#daftar nama.umur*\n\nContoh: *#daftar ${conn.getName(m.sender)}.17*`,
     nsfw: 'NSFW tidak aktif'
   }[type]
   if (msg) return m.reply(msg)
