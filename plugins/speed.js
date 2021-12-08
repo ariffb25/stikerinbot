@@ -9,6 +9,9 @@ let format = sizeFormatter({
   render: (literal, symbol) => `${literal} ${symbol}B`,
 })
 let handler = async (m, { conn }) => {
+  const chats = conn.chats.all()
+  const groups = chats.filter(v => v.jid.endsWith('g.us'))
+  const groupsIn = groups.filter(v => !v.read_only)
   const used = process.memoryUsage()
   const cpus = os.cpus().map(cpu => {
     cpu.total = Object.keys(cpu.times).reduce((last, type) => last + cpu.times[type], 0)
@@ -35,28 +38,40 @@ let handler = async (m, { conn }) => {
     }
   })
   let old = performance.now()
-  await m.reply('_Testing speed..._')
   let neww = performance.now()
   let speed = neww - old
-  let txt = `
-Merespon dalam ${speed} millidetik
-
-💻 *Server Info* :
+  let { key } = await m.reply(`
+merespon dalam ${speed} milidetik
+${readMore}
+💬 status :
+- *${groups.length}* total grup
+- *${groupsIn.length}* grup masuk
+- *${groups.length - groupsIn.length}* grup keluar
+- *${chats.length - groups.length}* chat pribadi
+- *${chats.length}* keseluruhan
+📱 *info perangkat* :
+${'```' + `
+🔋 baterai : ${conn.battery ? `${conn.battery.value}% ${conn.battery.live ? '🔌 pengisian...' : ''}` : 'gk tau'}
+${util.format(conn.user.phone)}
+`.trim() + '```'}
+💻 *server info* :
 RAM: ${format(os.totalmem() - os.freemem())} / ${format(os.totalmem())}
-
 _NodeJS Memory Usage_
 ${'```' + Object.keys(used).map((key, _, arr) => `${key.padEnd(Math.max(...arr.map(v => v.length)), ' ')}: ${format(used[key])}`).join('\n') + '```'}
-
 ${cpus[0] ? `_Total CPU Usage_
 ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type => `- *${(type + '*').padEnd(6)}: ${(100 * cpu.times[type] / cpu.total).toFixed(2)}%`).join('\n')}
-
 _CPU Core(s) Usage (${cpus.length} Core CPU)_
 ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type => `- *${(type + '*').padEnd(6)}: ${(100 * cpu.times[type] / cpu.total).toFixed(2)}%`).join('\n')}`).join('\n\n')}` : ''}
-`.trim()
-  m.reply(txt)
+`.trim())
+  setTimeout(() => {
+    if (db.data.chats[m.chat].deletemedia) conn.deleteMessage(m.chat, key)
+  }, db.data.chats[m.chat].deletemediaTime)
 }
 handler.help = ['ping']
 handler.tags = ['info']
+handler.command = /^(ping)$/i
 
-handler.command = /^(ping|speed)$/i
 module.exports = handler
+
+const more = String.fromCharCode(8206)
+const readMore = more.repeat(4001)
