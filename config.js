@@ -1,6 +1,7 @@
 let fs = require('fs')
-global.owner = ['6283128734012', '6288709645535'] // Letakan nomor kamu disini
-global.mods = [] // Moderator?
+global.linkGC = ['https://chat.whatsapp.com/Lb4Emjih98rBiCZiZoS2eM', 'https://chat.whatsapp.com/CnQV9lNcHuIENb8SQ9CaYP']
+global.owner = ['62895336282144', '6281319944687', '6283143393763', '6288217277973', '6281334177340', '6283128734012', '6289504585790', '6287878505740', '6285157489446'] // Letakan nomor kamu disini
+global.mods = ['62895336282144', '6281319944687', '6287878505740', '6283128734012'] // Moderator?
 global.prems = JSON.parse(fs.readFileSync('./src/premium.json')) // Pengguna premium tidak memerlukan limit
 global.APIs = { // API Prefix
   // nama: 'https://website'
@@ -16,6 +17,15 @@ global.APIs = { // API Prefix
   zahir: 'https://zahirr-web.herokuapp.com',
   zekais: 'http://zekais-api.herokuapp.com',
   zeks: 'https://api.zeks.xyz',
+  nrtm: 'https://nurutomo.herokuapp.com',
+  nzcha: 'http://nzcha-apii.herokuapp.com',
+  lolhum: 'https://api.lolhuman.xyz',
+  bg: 'http://bochil.ddns.net',
+  fdci: 'https://api.fdci.se',
+  dzx: 'https://api.dhamzxploit.my.id',
+  LeysCoder: 'https://leyscoders-api.herokuapp.com',
+  amel: 'https://melcanz.com',
+  Dehan: 'https://dhnjing.xyz',
 }
 global.APIKeys = { // APIKey nya disini
   // 'https://website': 'apikey'
@@ -24,18 +34,24 @@ global.APIKeys = { // APIKey nya disini
   'https://hardianto-chan.herokuapp.com': 'hardianto',
   'https://neoxr-api.herokuapp.com': 'yntkts',
   'https://pencarikode.xyz': 'pais',
-  'https://api.xteam.xyz': 'apikeymu',
+  'https://api.xteam.xyz': 'kurrxd09',
   'https://zahirr-web.herokuapp.com': 'zahirgans',
   'https://api.zeks.xyz': 'apivinz',
+  'https://api.lolhuman.xyz': 'ed78c137a46873c5b8e5fe3b',
+  'https://leyscoders-api.herokuapp.com': 'DestaPrasApi',
+  'https://melcanz.com': 'amel',
+  'https://dhnjing.xyz': 'LitRHap',
 }
 
 // Sticker WM
-global.packname = '❤️'
-global.author = 'ariffb'
+global.packname = 'The.sad.boy01'
+global.author = 'https://bit.ly/3csRXrc'
+global.wm = '© ᵀᵒʰʳᵘ-ᴮᴼᵀᶻ' //UBAH JADI NAMAMU
 
 global.wait = '_*tunggu sedang di proses...*_'
 global.eror = '_*Server Error*_'
-global.fla = 'https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&fillTextType=1&fillTextPattern=Warning!&text='
+global.fla = 'https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&fillTextType=1&fillTextPattern=Warning!&fillColor1Color=%23f2aa4c&fillColor2Color=%23f2aa4c&fillColor3Color=%23f2aa4c&fillColor4Color=%23f2aa4c&fillColor5Color=%23f2aa4c&fillColor6Color=%23f2aa4c&fillColor7Color=%23f2aa4c&fillColor8Color=%23f2aa4c&fillColor9Color=%23f2aa4c&fillColor10Color=%23f2aa4c&fillOutlineColor=%23f2aa4c&fillOutline2Color=%23f2aa4c&backgroundColor=%23101820&text='
+global.CanvasAPI = '';
 
 global.multiplier = 69 // Semakin tinggi, semakin sulit naik level
 
