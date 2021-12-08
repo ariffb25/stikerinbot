@@ -11,7 +11,7 @@ handler.before = async function (m) {
         let json = JSON.parse(JSON.stringify(this.caklontong[id][1]))
         if (m.text.toLowerCase() == json.jawaban.toLowerCase().trim()) {
             db.data.users[m.sender].exp += this.caklontong[id][2]
-            await this.sendButton(m.chat, `*Benar!* +${this.caklontong[id][2]} XP\n${json.deskripsi}`, '© stikerin', 'Cak Lontong', '.caklontong', m)
+            await this.sendButton(m.chat, `*Benar!* +${this.caklontong[id][2]} XP\n${json.deskripsi}`, 'Whatsapp bot', 'Cak Lontong', '.caklontong', m)
             clearTimeout(this.caklontong[id][3])
             delete this.caklontong[id]
         } else if (similarity(m.text.toLowerCase(), json.jawaban.toLowerCase().trim()) >= threshold) m.reply(`*Dikit Lagi!*`)
