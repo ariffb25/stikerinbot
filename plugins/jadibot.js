@@ -9,12 +9,14 @@ else global.conns = []
 
 let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
   let package = JSON.parse(await fs.promises.readFile(path.join(__dirname, '../package.json')).catch(_ => '{}'))
-  if (!db.data.settings.jadibot) throw `Fitur ini tidak aktif\n${package.homepage ? package.homepage.url || package.homepage : '[unknown github url]'}`
+  if (!db.data.settings.jadibot) throw `Fitur ini tidak aktif\nwa.me/62895336282144?text=bwang+aktifkan+fitur+jadibotnya`
   let parent = args[0] && args[0] == 'plz' ? conn : global.conn
   let auth = false
   if ((args[0] && args[0] == 'plz') || global.conn.user.jid == conn.user.jid) {
     let id = global.conns.length
     let conn = new global.conn.constructor()
+    conn.version = global.conn.version
+    conn.browserDescription = ['Hosted by Tohru botz', 'Safari', '3.0']
     if (args[0] && args[0].length > 200) {
       let json = Buffer.from(args[0], 'base64').toString('utf-8')
       // global.conn.reply(m.isGroup ? m.sender : m.chat, json, m)
@@ -79,5 +81,6 @@ handler.tags = ['jadibot']
 handler.command = /^jadibot$/i
 
 handler.limit = true
+handler.private = true
 
 module.exports = handler
