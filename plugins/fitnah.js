@@ -5,7 +5,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   if (text.includes('@0')) who = '0@s.whatsapp.net'
   else if (m.isGroup) who = cm.participant = m.mentionedJid[0]
   else who = m.chat
-  if (!who) return conn.reply(m.chat, `Contoh penggunaan:\n${usedPrefix + command} aku siapa? @6283128734012 kamu ownerku ><`, m, { contextInfo: { mentionedJid: ['6283128734012@s.whatsapp.net'] } })
+  if (!who) return conn.reply(m.chat, `Contoh penggunaan:\n${usedPrefix + command} aku siapa? @62895336282144 kamu ownerku ><`, m, { contextInfo: { mentionedJid: ['6283128734012@s.whatsapp.net'] } })
   cm.key.fromMe = false
   cm.message[m.mtype] = copy(m.msg)
   let sp = '@' + who.split`@`[0]

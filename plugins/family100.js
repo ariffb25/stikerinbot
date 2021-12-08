@@ -20,7 +20,7 @@ Terdapat *${json.jawaban.length}* jawaban${json.jawaban.find(v => v.includes(' '
     `.trim()
     this.game[id] = {
         id,
-        msg: await this.sendButton(m.chat, caption, '© stikerin', 'Nyerah', 'nyerah', m),
+        msg: await this.sendButton(m.chat, caption, 'Whatspp bot', 'Nyerah', 'nyerah', m),
         ...json,
         terjawab: Array.from(json.jawaban, () => false),
         winScore,
