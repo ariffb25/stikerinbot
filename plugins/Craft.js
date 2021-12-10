@@ -24,7 +24,6 @@ let handler  = async (m, { conn, command, args, usedPrefix, DevMode }) => {
   global.db.data.users[m.sender].pickaxe = global.db.data.users[m.sender].pickaxe || 0
   global.db.data.users[m.sender].pedang = global.db.data.users[m.sender].pedang || 0
   global.db.data.users[m.sender].pancing = global.db.data.users[m.sender].pancing || 0
-  let botol = global.botwm
 
   let caption = `
 💠Crafting : 
@@ -79,7 +78,7 @@ Masih beta
             break
 
           default:
-            return conn.sendButton( m.chat, caption, `${botol}`, `Mining`, `.mining`, m)
+            return conn.sendButton( m.chat, caption, wm, `Mining`, `.mining`, m)
         }
     } else if (/enchant|enchan/i.test(command)) {
       const count = args[2] && args[2].length > 0 ? Math.min(99999999, Math.max(parseInt(args[2]), 1)) : !args[2] || args.length < 4 ? 1 :Math.min(1, count)
@@ -90,7 +89,7 @@ Masih beta
           break
 
         default:
-          return conn.sendButton( m.chat, caption, `${botol}`, `Mining`, `.mining`, m)
+          return conn.sendButton( m.chat, caption, wm, `Mining`, `.mining`, m)
       }
     }
   } catch (err) {
