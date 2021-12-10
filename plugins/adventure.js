@@ -62,7 +62,7 @@ let handler = async (m, { conn, usedPrefix, DevMode }) => {
             global.db.data.users[m.sender].sampah += sampah * 1
             global.db.data.users[m.sender].lastadventure = new Date * 1
             } else conn.reply(m.chat, `Anda sudah berpetualang dan kelelahan, silahkan coba *${timers}* lagi`, m)
-        } else conn.send2Button(m.chat, 'Minimal 80 health♥️ untuk bisa berpetualang, beli nyawa dulu dengan ketik *' + usedPrefix + 'shop buy potion <jumlah>*\ndan ketik *' + usedPrefix + 'use potion <jumlah>*\n\n_Untuk mendapat 💵money dan 💊potion gratis ketik_ *' + usedPrefix + 'claim*', `Games-bot`, `Tambah nyawa`, `.use potion all`, `Kembali`, `.menu`, m)
+        } else conn.send2Button(m.chat, 'Minimal 80 health♥️ untuk bisa berpetualang, beli nyawa dulu dengan ketik *' + usedPrefix + 'shop buy potion <jumlah>*\ndan ketik *' + usedPrefix + 'use potion <jumlah>*\n\n_Untuk mendapat 💵money dan 💊potion gratis ketik_ *' + usedPrefix + 'claim*', wm, `Tambah nyawa`, `.use potion all`, `Kembali`, `.menu`, m)
     } catch (e) {
         console.log(e)
         conn.reply(m.chat, 'Error', m)
