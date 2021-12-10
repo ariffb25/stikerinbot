@@ -25,10 +25,10 @@ let handler = async (m, { conn, args, usedPrefix, DevMode }) => {
         conn.sendFile( m.chat, mbansos, 'b.jpg', `Kamu berhasil  korupsi dana bansos🕴️💰,  Dan kamu mendapatkan 3 Juta rupiah💵`, m)
         global.db.data.users[m.sender].lastbansos = new Date * 1
       } else {
-        conn.sendButton( m.chat, `Sorry Gan Lu g Berhasil Korupsi bansos Dan Tidak masuk penjara karna kamu *melarikan diri🏃*`, `@ẉa.me/.~ᵀᵒᵒʳᵘ-ᴮᴼᵀᶻ~`, `Kembali`, `${usedPrefix}menu`, m)
+        conn.sendButton( m.chat, `Sorry Gan Lu g Berhasil Korupsi bansos Dan Tidak masuk penjara karna kamu *melarikan diri🏃*`, wm, `Kembali`, `${usedPrefix}menu`, m)
         global.db.data.users[m.sender].lastbansos = new Date * 1
       }
-    } else conn.sendButton(m.chat, `Kamu sudah Melakukan Korupsi Bansos, dan kamu harus menunggu selama ${timers} agar bisa korupsi bansos kembali`, `@ẉa.me/.~ᵀᵒᵒʳᵘ-ᴮᴼᵀᶻ~`, `Menu`, `${usedPrefix}menu`, m)
+    } else conn.sendButton(m.chat, `Kamu sudah Melakukan Korupsi Bansos, dan kamu harus menunggu selama ${timers} agar bisa korupsi bansos kembali`, wm, `Menu`, `${usedPrefix}menu`, m)
   } catch (e) {
     throw `${e}`
   }
