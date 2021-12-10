@@ -48,7 +48,7 @@ _Hewan yang kamu berhasil diburu:_
 🐪Keledai: ${keledai}
 `.trim()
 setTimeout(() => {
-conn.send2Button( m.chat, ber, `Games Rpg`, 'Again', '.berburu', 'inventory', '.inv', m)
+conn.send2Button( m.chat, ber, wm, 'Again', '.berburu', 'inventory', '.inv', m)
 }, 23000) 
 
                      setTimeout(() => {
@@ -75,8 +75,8 @@ conn.send2Button( m.chat, ber, `Games Rpg`, 'Again', '.berburu', 'inventory', '.
                         global.db.data.users[m.sender].babi += babi * 1
                         global.db.data.users[m.sender].lastberbru = new Date * 1
                          } else conn.sendButton(m.chat, `Anda sudah berburu untuk kelangsungan hidup dan kelelahan silahkan coba *${timers}* lagi`, `Games Rpg Bot`, 'Go back', '.gmenu')
-               } else conn.send2Button(m.chat, `Minimal 50 health♥️ dan 60 stamina untuk bisa berburu`, `Games Rpg`, 'Potion', '.use potion 1','Go back Menu','.menu')
-               } else conn.send2Button(m.chat, `Minimal 60 Stamina untuk bisa berburu`, `Games Rpg`, 'Makan', '.makam ayamb 2','Go back Menu','.menu')
+               } else conn.send2Button(m.chat, `Minimal 50 health♥️ dan 60 stamina untuk bisa berburu`, wm, 'Potion', '.use potion 1','Go back Menu','.menu')
+               } else conn.send2Button(m.chat, `Minimal 60 Stamina untuk bisa berburu`, wm, 'Makan', '.makam ayamb 2','Go back Menu','.menu')
                 } catch (e) {
         console.log(e)
         conn.reply(m.chat, 'Error', m)
