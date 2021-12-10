@@ -33,14 +33,14 @@ let handler = async ( m, { conn, args, command}) => {
      let mentionedJid = [m.sender]
 
        if (new Date - user.lastduel > 300000) {
-      conn.send2Button(m.chat, pler, `Games wabot`, `Ya`, `+dya`, `No`, `+dno`, m, false, { contextInfo: { mentionedJid }})
+      conn.send2Button(m.chat, pler, wm, `Ya`, `+dya`, `No`, `+dno`, m, false, { contextInfo: { mentionedJid }})
 
       } else conn.reply( m.chat, `Kamu Sudah Berduel Tunggu hingga *${timers}*`, m)
      }
 
      if (/dya/.test(command)) {
      let kenal = !who.includes(m.sender)
-     if(kenal) throw 'Lu siapa?\nkok ikut kut mau duel'
+     if(kenal) throw 'Lu siapa?\nkok ikut ikut mau duel'
      user.lastduel = new Date * 1
      if (Aku > Kamu) {
        user.money -= 900
