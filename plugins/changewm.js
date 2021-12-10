@@ -16,7 +16,7 @@ if (text) throw 'hmmm'
     m.reply(`Berhasil ubah menjadi ${text}`)
     }
     if (/setbotwm/.test(command)) {
-    global.botwm = text
+    global.wm = text
     m.reply(`Berhasil mengubah wm bot menjadi ${text}`)
     }
    } catch (e) {
