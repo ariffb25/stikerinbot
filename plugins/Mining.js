@@ -4,7 +4,6 @@ let handler = async (m, { conn }) => {
     let __timers = (new Date - user.lastmining)
     let _timers = (86400000 - __timers)
     let timers = clockString(_timers) 
-    let botol = global.botwm
     let minim = `${Math.floor(Math.random() * 248)}`.trim() 
     let minam = `${Math.floor(Math.random() * 374)}`.trim() 
     let minkm = `${Math.floor(Math.random() * 383)}`.trim() 
@@ -18,8 +17,8 @@ let handler = async (m, { conn }) => {
       user.lastmining = new Date * 1
             
     m.reply(`Kamu Menambang Di ${pickRandom(['⛰️Lembah', '⛰️Goa mletre', '🏞️Sungai Selandia', '⛰️Goa texas', '...'])}\n*⚒️Hasil Tambang:* 🪙Emas: *${minim}*\n⛓️Besi: *${minam}*\n🕸️String: *${minkm}*`)
-      } else conn.sendButton( m.chat, `Tunggu ${timers} lagi, untuk menambang`, `${botol}`, `Cek inv`, `.inv`, m)
-    } else conn.sendButton( m.chat, `Kamu Tidak Mempunyai *⛏️Pickaxe* untuk menambang\nBuat Lah Pickaxe menggunakan string kayu dan batu!`, `${botol}`, `Craft Pickaxe`, `.craft pickaxe`,m )
+      } else conn.sendButton( m.chat, `Tunggu ${timers} lagi, untuk menambang`, wm, `Cek inv`, `.inv`, m)
+    } else conn.sendButton( m.chat, `Kamu Tidak Mempunyai *⛏️Pickaxe* untuk menambang\nBuat Lah Pickaxe menggunakan string kayu dan batu!`, wm, `Craft Pickaxe`, `.craft pickaxe`,m )
   }
 
 handler.help = ['mining']
