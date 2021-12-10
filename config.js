@@ -1,5 +1,5 @@
 let fs = require('fs')
-global.linkGC = ['https://chat.whatsapp.com/Lb4Emjih98rBiCZiZoS2eM', 'https://chat.whatsapp.com/CnQV9lNcHuIENb8SQ9CaYP']
+global.linkGC = ['https://chat.whatsapp.com/Lb4Emjih98rBiCZiZoS2eM', 'https://chat.whatsapp.com/CnQV9lNcHuIENb8SQ9CaYP'] //Letakkan link group mu
 global.owner = ['62895336282144', '6281319944687', '6283143393763', '6288217277973', '6281334177340', '6283128734012', '6289504585790', '6287878505740', '6285157489446'] // Letakan nomor kamu disini
 global.mods = ['62895336282144', '6281319944687', '6287878505740', '6283128734012'] // Moderator?
 global.prems = JSON.parse(fs.readFileSync('./src/premium.json')) // Pengguna premium tidak memerlukan limit
@@ -34,19 +34,19 @@ global.APIKeys = { // APIKey nya disini
   'https://hardianto-chan.herokuapp.com': 'hardianto',
   'https://neoxr-api.herokuapp.com': 'yntkts',
   'https://pencarikode.xyz': 'pais',
-  'https://api.xteam.xyz': 'kurrxd09',
+  'https://api.xteam.xyz': 'APIKEYLU',
   'https://zahirr-web.herokuapp.com': 'zahirgans',
   'https://api.zeks.xyz': 'apivinz',
-  'https://api.lolhuman.xyz': 'ed78c137a46873c5b8e5fe3b',
+  'https://api.lolhuman.xyz': 'APIKEYLU',
   'https://leyscoders-api.herokuapp.com': 'DestaPrasApi',
-  'https://melcanz.com': 'amel',
+  'https://melcanz.com': 'APIKEYLU',
   'https://dhnjing.xyz': 'LitRHap',
 }
 
 // Sticker WM
-global.packname = 'The.sad.boy01'
-global.author = 'https://bit.ly/3csRXrc'
-global.wm = '© ᵀᵒʰʳᵘ-ᴮᴼᵀᶻ' //UBAH JADI NAMAMU
+global.packname = 'Stikerinbotnew'
+global.author = 'recode by : the.sad.boy01'
+global.wm = '© Stikerinbotnew' //UBAH JADI NAMAMU
 
 global.wait = '_*tunggu sedang di proses...*_'
 global.eror = '_*Server Error*_'
