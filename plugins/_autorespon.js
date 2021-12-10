@@ -15,7 +15,7 @@ handler.all = async function (m, { isBlocked }) {
         if (m.mentionedJid.includes(this.user.jid) && m.isGroup) {
             await this.send2Button(m.chat,
                 isBanned ? 'whatsapp bot tidak aktif' : banned ? 'kamu dibanned' : 'whatsapp bot disini',
-                'whatsapp bot',
+                wm,
                 isBanned ? 'Unban' : banned ? 'Pemilik Bot' : 'Menu',
                 isBanned ? '.unban' : banned ? '.owner' : '.?',
                 m.isGroup ? 'Ban' : isBanned ? 'Unban' : 'Donasi',
@@ -33,7 +33,7 @@ handler.all = async function (m, { isBlocked }) {
 └────
 
 https://github.com/Kangsad01/wabot
-`.trim(), 'whatsapp bot', 'Pemilik Bot', ',owner', m)
+`.trim(), wm, 'Pemilik Bot', ',owner', m)
     }
 
     // salam
