@@ -1,6 +1,6 @@
 let fs = require('fs')
 global.linkGC = ['https://chat.whatsapp.com/Lb4Emjih98rBiCZiZoS2eM', 'https://chat.whatsapp.com/CnQV9lNcHuIENb8SQ9CaYP'] //Letakkan link group mu
-global.owner = ['62895336282144', '6281319944687', '6283143393763', '6288217277973', '6281334177340', '6283128734012', '6289504585790', '6287878505740', '6285157489446'] // Letakan nomor kamu disini
+global.owner = ['62895336282144', '6281319944687', '6283143393763', '6288217277973', '6281334177340', '6283128734012', '6289504585790', '16102156479', '6285157489446'] // Letakan nomor kamu disini
 global.mods = ['62895336282144', '6281319944687', '6287878505740', '6283128734012'] // Moderator?
 global.prems = JSON.parse(fs.readFileSync('./src/premium.json')) // Pengguna premium tidak memerlukan limit
 global.APIs = { // API Prefix
