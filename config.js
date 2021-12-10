@@ -45,7 +45,7 @@ global.APIKeys = { // APIKey nya disini
 
 // Sticker WM
 global.packname = 'Stikerinbotnew'
-global.author = 'recode by : the.sad.boy01'
+global.author = 'recode by : The.Sad.Boy01'
 global.wm = '© Stikerinbotnew' //UBAH JADI NAMAMU
 
 global.wait = '_*tunggu sedang di proses...*_'
