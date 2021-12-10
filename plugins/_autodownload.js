@@ -19,7 +19,7 @@ handler.all = async function (m, { isPrems }) {
         let json = await res.json()
         // m.reply(util.format(json))
         await m.reply('*Downloading Video From Tiktok*')
-        await conn.sendFile(m.chat, json.result.link, 'tiktok.mp4', wm, m)
+        await conn.sendFile(m.chat, json.result.data.videoSD, 'tiktok.mp4', wm, m)
     }
 
     if (/^.*cocofun/i.test(m.text)) {
@@ -28,7 +28,7 @@ handler.all = async function (m, { isPrems }) {
         let json = await res.json()
         await m.reply('*Downloading Video From Cocofun*')
         // m.reply(util.format(json))
-        await this.sendFile(m.chat, json.download, '', 'Whatsapp bot', m)
+        await this.sendFile(m.chat, json.download, '', wm, m)
     }
 
     if (/^.*(fb.watch|facebook.com)/i.test(m.text)) {
@@ -37,7 +37,7 @@ handler.all = async function (m, { isPrems }) {
         let json = await res.json()
         if (!json.status) return m.reply(util.format(json))
         await m.reply('*Downloading Video From Facebook*')
-        await conn.sendFile(m.chat, json.data.sd.url, '', `HD: ${json.data.hd.url}\nUkuran: ${json.data.hd.size}\n\nWhatsapp bot`, m)
+        await conn.sendFile(m.chat, json.data.sd.url, '', `HD: ${json.data.hd.url}\nUkuran: ${json.data.hd.size}`, m)
     }
 
     if (/^.*instagram.com\/(p|reel|tv)/i.test(m.text)) {
@@ -46,7 +46,7 @@ handler.all = async function (m, { isPrems }) {
             let json = JSON.parse(igdl)
             await m.reply('*Downloading From Instagram*')
             for (let { downloadUrl, type } of json) {
-                this.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), 'Whatsapp bot', m, 0, { thumbnail: await (await fetch(downloadUrl)).buffer() })
+                this.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), wm, m, 0, { thumbnail: await (await fetch(downloadUrl)).buffer() })
             }
         }).catch(_ => _)
     }
@@ -58,7 +58,7 @@ handler.all = async function (m, { isPrems }) {
             if (!json.status) return m.reply(eror)
             await m.reply('*Downloading Image From Pinterest*')
             m.reply(util.format(json))
-            await this.sendFile(m.chat, json.data.url, '', 'Whatsapp bot', m)
+            await this.sendFile(m.chat, json.data.url, '', wm, m)
         }).catch(_ => _)
     }
 
@@ -69,7 +69,7 @@ handler.all = async function (m, { isPrems }) {
             let pesan = json.data.map((v) => `Link: ${v.url}`).join('\n------------\n')
             await m.reply('*Downloading From Twitter*')
             for (let { url } of json.data) {
-                this.sendFile(m.chat, url, 'ig' + (/mp4/i.test(url) ? '.mp4' : '.jpg'), '© stikerin', m)
+                this.sendFile(m.chat, url, 'ig' + (/mp4/i.test(url) ? '.mp4' : '.jpg'), wm, m)
             }
         }).catch(_ => _)
     }
