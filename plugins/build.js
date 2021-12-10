@@ -28,8 +28,6 @@ let caption = `
 ${usedPrefix}build <type>
 ⌨️Typing to upgrade:
 ${usedPrefix}upgrade <type> [ FITUR TIDAK TERSEDIA ]
-_🎮Created By:_
-_Whatsapp bot_
 `
 //
         try {
