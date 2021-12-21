@@ -4,7 +4,7 @@ async function handler(m) {
     this.game = this.game ? this.game : {}
     let id = 'family100_' + m.chat
     if (id in this.game) {
-        this.sendButton(m.chat, 'Masih ada kuis yang belum terjawab di chat ini', '© stikerin', 'Nyerah', 'nyerah', this.game[id].msg)
+        this.sendButton(m.chat, 'Masih ada kuis yang belum terjawab di chat ini', '© Maceng', 'Nyerah', 'nyerah', this.game[id].msg)
         throw false
     }
     let res = await fetch(global.API('mel', '/game/caklontong', {}, 'apikey'))
@@ -22,7 +22,7 @@ Terdapat *${json.result.jawaban.length}* jawaban${json.jawaban.find(v => v.inclu
     `.trim()
     this.game[id] = {
         id,
-        msg: await this.sendButton(m.chat, caption, '© stikerin', 'Nyerah', 'nyerah', m),
+        msg: await this.sendButton(m.chat, caption, '© Maceng', 'Nyerah', 'nyerah', m),
         ...json,
         terjawab: Array.from(json.result.jawaban, () => false),
         winScore,

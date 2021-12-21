@@ -1,7 +1,7 @@
 {
-  "name": "stikerinbot",
+  "name": "MacengBot",
   "version": "1.1.2",
-  "description": "WhatsApp Bot Ringan",
+  "description": "WhatsApp Bot",
   "main": "index.js",
   "directories": {
     "lib": "lib",
@@ -14,17 +14,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ariffb25/stikerinbot.git"
+    "url": "git+https://github.com/dawnlinch/stikerinbot.git"
   },
   "keywords": [
     "whatsapp-bot"
   ],
-  "author": "Ariffb",
+  "author": "Maceng",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ariffb25/stikerinbot/issues"
+    "url": "https://github.com/dawnlinch/stikerinbot/issues"
   },
-  "homepage": "https://github.com/ariffb25/stikerinbot",
+  "homepage": "https://github.com/dawnlinch/stikerinbot",
   "dependencies": {
     "@adiwajshing/baileys": "github:melcanz/baileys",
     "awesome-phonenumber": "^2.54.0",

@@ -8,7 +8,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     if (/webp/.test(mime)) {
         out = await webp2mp4(media)
     }
-    await conn.sendFile(m.chat, out, 'out.gif', '© stikerin', m, 0, { mimetype: 'video/gif', thumbnail: Buffer.alloc(0) })
+    await conn.sendFile(m.chat, out, 'out.gif', '© Maceng', m, 0, { mimetype: 'video/gif', thumbnail: Buffer.alloc(0) })
 }
 handler.help = ['togif']
 handler.tags = ['sticker']

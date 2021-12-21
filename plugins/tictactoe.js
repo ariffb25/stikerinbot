@@ -38,12 +38,12 @@ ${arr.slice(6).join('')}
 Menunggu @${room.game.currentTurn.split('@')[0]}
 Ketik *nyerah* untuk nyerah
 `.trim()
-            if (room.x !== room.o) await conn.sendButton(room.x, str, '© stikerin', 'Nyerah', 'nyerah', m, {
+            if (room.x !== room.o) await conn.sendButton(room.x, str, '© Maceng', 'Nyerah', 'nyerah', m, {
                 contextInfo: {
                     mentionedJid: conn.parseMention(str)
                 }
             })
-            await conn.sendButton(room.o, str, '© stikerin', 'Nyerah', 'nyerah', m, {
+            await conn.sendButton(room.o, str, '© Maceng', 'Nyerah', 'nyerah', m, {
                 contextInfo: {
                     mentionedJid: conn.parseMention(str)
                 }

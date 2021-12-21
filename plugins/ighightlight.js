@@ -1,6 +1,6 @@
 let fetch = require('node-fetch')
 let handler = async (m, { conn, args, command, usedPrefix }) => {
-  if (!args[0]) throw `uhm.. username nya mana?\n\ncontoh:\n${usedPrefix + command} stikerinbot`
+  if (!args[0]) throw `uhm.. username nya mana?\n\ncontoh:\n${usedPrefix + command} Maceng`
   let res = await fetch(global.API('xteam', '/dl/ighighlight', {
     nama: args[0]
   }, 'APIKEY'))

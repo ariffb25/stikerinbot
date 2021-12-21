@@ -19,10 +19,10 @@ Ketik ${usedPrefix}teki untuk bantuan
 Bonus: ${poin} XP
 `.trim()
     conn.tebakkimia[id] = [
-        await conn.sendButton(m.chat, caption, '© stikerin', 'Bantuan', '.teki', m),
+        await conn.sendButton(m.chat, caption, '© Maceng', 'Bantuan', '.teki', m),
         json, poin,
         setTimeout(async () => {
-            if (conn.tebakkimia[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.unsur}*`, '© stikerin', 'Tebak Kimia', '.tebakkimia', conn.tebakkimia[id][0])
+            if (conn.tebakkimia[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.unsur}*`, '© Maceng', 'Tebak Kimia', '.tebakkimia', conn.tebakkimia[id][0])
             delete conn.tebakkimia[id]
         }, timeout)
     ]

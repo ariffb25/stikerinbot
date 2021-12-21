@@ -10,7 +10,7 @@ let handler = async (m, { conn, command, usedPrefix, text }) => {
     msgs[text] = M.fromObject(await m.getQuotedObj()).toJSON()
     await conn.sendButton(m.chat, `berhasil menambahkan pesan '${text}'
     
-akses dengan ${usedPrefix}get${which} ${text}`, '© stikerin', 'Aktifkan Getmsg', '.on getmsg', m)
+akses dengan ${usedPrefix}get${which} ${text}`, '© Maceng', 'Aktifkan Getmsg', '.on getmsg', m)
 }
 handler.help = ['vn', 'msg', 'video', 'audio', 'img', 'stiker', 'gif'].map(v => 'add' + v + ' <teks>')
 handler.tags = ['database']

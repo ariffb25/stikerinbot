@@ -8,11 +8,11 @@ let handler = async (m, { conn, usedPrefix, text }) => {
     conn.absen = conn.absen ? conn.absen : {}
     let id = m.chat
     if (id in conn.absen) {
-        await conn.sendButton(m.chat, `Masih ada absen di chat ini!`, '© stikerin', 'Hapus', `${usedPrefix}hapusabsen`, conn.absen[id][0])
+        await conn.sendButton(m.chat, `Masih ada absen di chat ini!`, '© Maceng', 'Hapus', `${usedPrefix}hapusabsen`, conn.absen[id][0])
         throw false
     }
     conn.absen[id] = [
-        await conn.sendButton(m.chat, `Absen dimulai`, '© stikerin', 'Absen', `${usedPrefix}absen`, m),
+        await conn.sendButton(m.chat, `Absen dimulai`, '© Maceng', 'Absen', `${usedPrefix}absen`, m),
         [],
         text
     ]

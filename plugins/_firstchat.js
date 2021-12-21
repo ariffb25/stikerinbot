@@ -11,7 +11,7 @@ handler.all = async function (m, { isBlocked }) {
 Hai, ${ucapan()}
 
 ${user.banned ? 'kamu dibanned' : `Ada yang bisa ${this.user.name} bantu?`}
-`.trim(), '© stikerin', user.banned ? 'Pemilik Bot' : 'Menu', user.banned ? ',owner' : ',?', m)
+`.trim(), '© Maceng', user.banned ? 'Pemilik Bot' : 'Menu', user.banned ? ',owner' : ',?', m)
     user.pc = new Date * 1
 }
 

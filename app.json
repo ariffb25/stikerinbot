@@ -1,7 +1,7 @@
 {
-  "name": "stikerinbot",
-  "description": "Lightweight WhatsApp Bot",
-  "repository": "https://github.com/ariffb25/stikerinbot",
+  "name": "MacengBot",
+  "description": "WhatsApp Bot",
+  "repository": "https://github.com/dawnlinch/stikerinbot",
   "logo": "https://node-js-sample.herokuapp.com/node.png",
   "keywords": [
     "bot",

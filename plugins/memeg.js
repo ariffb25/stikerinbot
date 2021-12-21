@@ -11,7 +11,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   let link = await uploadImage(img).catch(e => uploadFile(img))
   conn.sendFile(m.chat, global.API('https://api.memegen.link', `/images/custom/${encodeURIComponent(t1 ? t1 : '_')}/${encodeURIComponent(t2 ? t2 : '_')}.png`, {
     background: link
-  }), 'meme.png', '© stikerin', m)
+  }), 'meme.png', '© Maceng', m)
 }
 handler.help = ['mememaker'].map(v => v + ' <teks atas>|<teks bawah>')
 handler.tags = ['tools']
