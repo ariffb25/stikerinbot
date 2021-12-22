@@ -1,10 +1,10 @@
 const fetch = require('node-fetch')
 const FormData = require('form-data')
 
-let handler = async (m, { usedPrefix }) => {
+let handler = async (m, { command, usedPrefix }) => {
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
-  if (!mime) throw `Kirim/balas gambar dengan caption ${usedPrefix}hd`
+  if (!mime) throw `Kirim/balas gambar dengan perintah *${usedPrefix + command}*`
   if (!/image\/(jpe?g|png)/.test(mime)) throw `Mime ${mime} tidak didukung`
   let img = await q.download()
   let body = new FormData
@@ -14,7 +14,7 @@ let handler = async (m, { usedPrefix }) => {
     body
   })
   if (!res.ok) throw eror
-  await conn.sendFile(m.chat, await res.buffer(), 'hd.jpg', '', m, false, { thumbnail: Buffer.alloc(0) })
+  await conn.sendFile(m.chat, await res.buffer(), 'hd.jpg', '', m)
 }
 handler.help = ['hd', 'enhance']
 handler.tags = ['tools']

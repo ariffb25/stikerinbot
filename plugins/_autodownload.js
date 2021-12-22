@@ -1,8 +1,7 @@
-const { igdl, tiktok, twitter, pin } = require('../lib/scrape')
-const { servers, yta, ytv } = require('../lib/y2mate')
+const { igdl, twitter, pin } = require('../lib/scrape')
+const { ytIdRegex, servers, yta, ytv } = require('../lib/y2mate')
 const fetch = require('node-fetch')
-let yts = require('yt-search')
-let util = require('util')
+
 let handler = m => m
 
 handler.all = async function (m, { isPrems }) {

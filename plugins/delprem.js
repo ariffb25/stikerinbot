@@ -1,24 +1,17 @@
-let fs = require('fs')
-let handler = async (m, { conn, text }) => {
-
-    const json = JSON.parse(fs.readFileSync('./src/premium.json'))
+let handler = async (m, { usedPrefix, command, text }) => {
     let who
-    if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '') + '@s.whatsapp.net'
+    if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : false
     else who = text ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : m.chat
-    if (json.includes(who)) throw `${conn.getName(who)} belum premium!`
-    let index = json.findIndex(v => (v.replace(/[^0-9]/g, '') + '@s.whatsapp.net') === (who.replace(/[^0-9]/g, '') + '@s.whatsapp.net'))
-    json.splice(index, 1)
-    fs.writeFileSync('./src/premium.json', JSON.stringify(json))
-    m.reply(`${conn.getName(who)} sekarang bukan premium!`)
-
-    delete require.cache[require.resolve('../config')]
-    require('../config')
-
+    let user = db.data.users[who]
+    if (!who) return m.reply(`Tag/Mention!\n\nPengunaan:\n${usedPrefix + command} <>\n\nexample:\n${usedPrefix + command} @${m.sender.split`@`[0]}`)
+    user.premium = false
+    user.premiumTime = 0
+    m.reply(`Berhasil menghapus premium *${user.name}*`)
 }
 handler.help = ['delprem [@user]']
 handler.tags = ['owner']
-handler.command = /^(remove|hapus|-|del)prem$/i
+handler.command = /^(-|del)p(rem)?$/i
 
-handler.owner = true
+handler.rowner = true
 
 module.exports = handler

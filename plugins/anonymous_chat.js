@@ -1,20 +1,12 @@
-const { MessageType } = require("@adiwajshing/baileys")
-
-async function handler(m, { command, usedPrefix }) {
-    if (!global.db.data.settings.anon) {
-        await this.sendButton(m.chat, 'Anonymous Chat tidak diaktifkan', '© stikerin', 'Aktifkan', '.on anon', m)
-        throw false
-    }
+async function handler(m, { command, usedPrefix, isOwner }) {
+    if (!global.db.data.settings[this.user.jid].anon) return await this.sendButton(m.chat, isOwner ? 'Aktifkan' : 'Anonymous Chat dimatikan', '© stikerin', isOwner ? 'Aktifkan' : 'Owner', isOwner ? '.on anon' : '.owner', m)
     command = command.toLowerCase()
     this.anonymous = this.anonymous ? this.anonymous : {}
     switch (command) {
         case 'next':
         case 'leave': {
             let room = Object.values(this.anonymous).find(room => room.check(m.sender))
-            if (!room) {
-                await this.sendButton(m.chat, '_Kamu tidak sedang berada di anonymous chat_', '© stikerin', 'Cari Partner', `${usedPrefix}start`, m)
-                throw false
-            }
+            if (!room) return await this.sendButton(m.chat, '_Kamu tidak sedang berada di anonymous chat_', '© stikerin', 'Cari Partner', `${usedPrefix}start`, m)
             m.reply('_Ok_')
             let other = room.other(m.sender)
             if (other) await this.sendButton(other, '_Partner meninggalkan chat_', '© stikerin', 'Cari Partner', `${usedPrefix}start`, m)
@@ -22,10 +14,7 @@ async function handler(m, { command, usedPrefix }) {
             if (command === 'leave') break
         }
         case 'start': {
-            if (Object.values(this.anonymous).find(room => room.check(m.sender))) {
-                await this.sendButton(m.chat, '_Kamu masih berada di dalam anonymous chat, menunggu partner_', '© stikerin', 'Keluar', `${usedPrefix}leave`, m)
-                throw false
-            }
+            if (Object.values(this.anonymous).find(room => room.check(m.sender))) return await this.sendButton(m.chat, '_Kamu masih berada di dalam anonymous chat, menunggu partner_', '© stikerin', 'Keluar', `${usedPrefix}leave`, m)
             let room = Object.values(this.anonymous).find(room => room.state === 'WAITING' && !room.check(m.sender))
             if (room) {
                 await this.sendButton(room.a, '_Partner ditemukan!_', '© stikerin', 'Next', `${usedPrefix}next`, m)

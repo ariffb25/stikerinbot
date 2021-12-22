@@ -1,6 +1,9 @@
 let fetch = require('node-fetch')
 
 let handler = async (m, { conn, text, participants, usedPrefix, command }) => {
+  if (m.quoted) {
+    await conn.groupAdd(m.chat, [m.quoted.sender]).catch(_ => _)
+  }
   if (!text) throw `uhm.. nomornya mana?\n\ncontoh:\n\n${usedPrefix + command + ' ' + global.owner[0]}`
   let _participants = participants.map(user => user.jid)
   let users = (await Promise.all(

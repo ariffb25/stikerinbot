@@ -14,6 +14,8 @@ function handler(m, { text }) {
         }
     }))
 }
+handler.help = ['alay <teks>']
+handler.tags = ['tools']
 handler.command = ['alay', 'case']
 
 module.exports = handler

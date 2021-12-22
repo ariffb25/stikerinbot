@@ -1,16 +1,10 @@
 let handler = async (m, { conn, usedPrefix, text }) => {
     if (m.isGroup) {
-        if (!(isAdmin || isOwner)) {
-            global.dfail('admin', m, conn)
-            throw false
-        }
+        if (!(isAdmin || isOwner)) return dfail('admin', m, conn)
     }
     conn.absen = conn.absen ? conn.absen : {}
     let id = m.chat
-    if (id in conn.absen) {
-        await conn.sendButton(m.chat, `Masih ada absen di chat ini!`, '© stikerin', 'Hapus', `${usedPrefix}hapusabsen`, conn.absen[id][0])
-        throw false
-    }
+    if (id in conn.absen) return await conn.sendButton(m.chat, `Masih ada absen di chat ini!`, '© stikerin', 'Hapus', `${usedPrefix}-absen`, conn.absen[id][0])
     conn.absen[id] = [
         await conn.sendButton(m.chat, `Absen dimulai`, '© stikerin', 'Absen', `${usedPrefix}absen`, m),
         [],

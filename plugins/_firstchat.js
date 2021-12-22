@@ -1,14 +1,12 @@
-let moment = require('moment-timezone')
-
 let handler = m => m
 
-handler.all = async function (m, { isBlocked }) {
+handler.all = async function (m) {
 
-    if (m.chat.endsWith('broadcast') || m.fromMe || isBlocked || m.isGroup || db.data.settings[this.user.jid].group) return
+    if (m.chat.endsWith('broadcast') || m.fromMe || m.isGroup || db.data.settings[this.user.jid].group) return
     let user = global.db.data.users[m.sender]
     if (new Date - user.pc < 86400000) return // setiap 24 jam sekali
     await this.sendButton(m.chat, `
-Hai, ${ucapan()}
+Hai, ${this.ucapan()}
 
 ${user.banned ? 'kamu dibanned' : `Ada yang bisa ${this.user.name} bantu?`}
 `.trim(), '© stikerin', user.banned ? 'Pemilik Bot' : 'Menu', user.banned ? ',owner' : ',?', m)
@@ -16,21 +14,3 @@ ${user.banned ? 'kamu dibanned' : `Ada yang bisa ${this.user.name} bantu?`}
 }
 
 module.exports = handler
-
-function ucapan() {
-    const time = moment.tz('Asia/Jakarta').format('HH')
-    res = "Selamat dinihari"
-    if (time >= 4) {
-        res = "Selamat pagi"
-    }
-    if (time > 10) {
-        res = "Selamat siang"
-    }
-    if (time >= 15) {
-        res = "Selamat sore"
-    }
-    if (time >= 18) {
-        res = "Selamat malam"
-    }
-    return res
-}
