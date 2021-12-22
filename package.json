@@ -9,7 +9,7 @@
     "plugins": "plugins"
   },
   "scripts": {
-    "start": "node index.js --self",
+    "start": "node index",
     "test": "node test.js"
   },
   "repository": {

@@ -9,8 +9,10 @@ let handler = async (m, { conn, usedPrefix }) => {
         conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebakkimia[id][0])
         throw false
     }
-    let src = await (await fetch('https://raw.githubusercontent.com/BochilTeam/database/master/games/tebakkimia.json')).json()
-    let json = src[Math.floor(Math.random() * src.length)]
+    let res = await fetch(API('amel', '/tebakkimia', {}, 'apikey'))
+    if (!res.ok) throw eror
+    let json = await res.json()
+    if (!json.status) throw json
     let caption = `
 Nama unsur dari lambang ${json.lambang} adalah...
 
