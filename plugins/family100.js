@@ -7,7 +7,7 @@ async function handler(m) {
         this.sendButton(m.chat, 'Masih ada kuis yang belum terjawab di chat ini', '© Maceng', 'Nyerah', 'nyerah', this.game[id].msg)
         throw false
     }
-    let res = await fetch(global.API('mel', '/game/caklontong', {}, 'apikey'))
+    let res = await fetch(global.API('mel', '/family100', {}, 'apikey'))
     if (!res.ok) throw await `${res.status} ${res.statusText}`
     let json = await res.json()
     if (!json.status) throw json
