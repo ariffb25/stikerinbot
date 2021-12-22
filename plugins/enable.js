@@ -32,6 +32,18 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       chat.detect = isEnable
       break
+    case 'download':
+      if (m.isGroup) {
+        if (!isPrems) {
+          global.dfail('premium', m, conn)
+          throw false
+        }
+      } else if (!(isAdmin || isOwner)) {
+        global.dfail('admin', m, conn)
+        throw false
+      }
+      chat.download = isEnable
+      break
     case 'desc':
       if (!m.isGroup) {
         if (!isOwner) {
@@ -216,12 +228,10 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       break
     case 'simi':
       if (m.isGroup) {
-        global.dfail('private', m, conn)
-        throw false
-
-      } else if (!(isAdmin || isOwner)) {
-        global.dfail('admin', m, conn)
-        throw false
+        if (!(isAdmin || isOwner)) {
+          global.dfail('admin', m, conn)
+          throw 0
+        }
       }
       chat.simi = isEnable
       break

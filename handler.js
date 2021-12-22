@@ -79,13 +79,14 @@ module.exports = {
           if (!('sBye' in chat)) chat.sBye = ''
           if (!('sPromote' in chat)) chat.sPromote = ''
           if (!('sDemote' in chat)) chat.sDemote = ''
-          if (!('descUpdate' in chat)) chat.descUpdate = true
-          if (!('stiker' in chat)) chat.stiker = false
-          if (!('delete' in chat)) chat.delete = true
-          if (!('antiLink' in chat)) chat.antiLink = false
-          if (!isNumber(chat.expired)) chat.expired = 0
           if (!('antiBadword' in chat)) chat.antiBadword = true
+          if (!('antiLink' in chat)) chat.antiLink = false
+          if (!('delete' in chat)) chat.delete = true
+          if (!('descUpdate' in chat)) chat.descUpdate = true
+          if (!('download' in chat)) chat.download = true
+          if (!isNumber(chat.expired)) chat.expired = 0
           if (!('getmsg' in chat)) chat.getmsg = false
+          if (!('stiker' in chat)) chat.stiker = false
           if (!('viewonce' in chat)) chat.viewonce = true
         } else global.db.data.chats[m.chat] = {
           isBanned: false,
@@ -95,13 +96,14 @@ module.exports = {
           sBye: '',
           sPromote: '',
           sDemote: '',
-          descUpdate: true,
-          stiker: false,
-          delete: true,
-          antiLink: false,
-          expired: 0,
           antiBadword: true,
+          antiLink: false,
+          delete: true,
+          descUpdate: true,
+          download: true,
+          expired: 0,
           getmsg: false,
+          stiker: false,
           viewonce: true,
         }
 

@@ -1,16 +1,16 @@
 let fs = require('fs')
 let handler = m => m
 
-handler.all = async function (m, { isBlocked }) {
+handler.all = async function (m, { conn, isBlocked }) {
 
     if (isBlocked || m.fromMe || m.chat.endsWith('broadcast')) return
     let set = db.data.settings[this.user.jid]
     let { isBanned } = db.data.chats[m.chat]
     let { banned } = db.data.users[m.sender]
 
-    // ketika ditag
-    try {
-        if (m.mentionedJid.includes(this.user.jid) && m.isGroup) {
+    // ketika ditag 
+    if (m.isGroup) {
+        if (m.mentionedJid.includes(this.user.jid)) {
             await this.send2Button(m.chat,
                 isBanned ? 'stikerin tidak aktif' : banned ? 'kamu dibanned' : 'stikerin aktif',
                 '© stikerin',
@@ -19,13 +19,11 @@ handler.all = async function (m, { isBlocked }) {
                 m.isGroup ? 'Ban' : isBanned ? 'Unban' : 'Donasi',
                 m.isGroup ? '.ban' : isBanned ? '.unban' : '.donasi', m)
         }
-    } catch (e) {
-        return
     }
 
     // ketika ada yang invite/kirim link grup di chat pribadi
     if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('Buka tautan ini')) && !m.isBaileys && !m.isGroup) {
-        this.sendButton(m.chat, `┌「 Undang Bot ke Grup 」
+        this.sendButton(m.chat, `┌「 *Undang Bot ke Grup* 」
 ├ 7 Hari / Rp 5,000
 ├ 30 Hari / Rp 10,000
 └────
@@ -61,7 +59,7 @@ https://github.com/ariffb25/stikerinbot
     if (set.autoupdatestatus) {
         if (new Date() * 1 - set.status > 1000) {
             let _uptime = process.uptime() * 1000
-            let uptime = clockString(_uptime)
+            let uptime = conn.clockString(_uptime)
             await this.setStatus(`Aktif selama ${uptime} | Mode: ${set.self ? 'Private' : set.group ? 'Hanya Grup' : 'Publik'} | stikerinbot oleh ariffb`).catch(_ => _)
             set.status = new Date() * 1
         }
@@ -69,11 +67,4 @@ https://github.com/ariffb25/stikerinbot
 
 }
 
-module.exports = handler
-
-function clockString(ms) {
-    let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
-    let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
-    let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
-    return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
-}
+module.exports = handler 
