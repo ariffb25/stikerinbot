@@ -1,4 +1,4 @@
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn, text, usedPrefix, command }) => {
   let id = m.chat
   conn.math = conn.math ? conn.math : {}
   if (id in conn.math) {
@@ -26,13 +26,12 @@ let handler = async (m, { conn, text }) => {
     if (!result) throw result
     m.reply(`*${format}* = _${result}_`)
   } catch (e) {
-    if (e == undefined) throw 'Isinya?'
+    if (e == undefined) throw `Penggunaan:\n${usedPrefix + command} <expression>\n\nContoh:\n${usedPrefix + command} 1 + 1`
     throw 'Format salah, hanya 0-9 dan Simbol -, +, *, /, ×, ÷, π, e, (, ) yang disupport'
   }
 }
 handler.help = ['calc <expression>']
 handler.tags = ['tools']
 handler.command = /^(calc(ulat(e|or))?|kalk(ulator)?)$/i
-handler.exp = 5
 
 module.exports = handler

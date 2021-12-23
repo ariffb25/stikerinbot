@@ -1,5 +1,5 @@
 let handler = async (m, { conn }) => {
-conn.sendFile(m.chat, global.API('mel', '/darkjokes', {}, 'apikey'), '', '', m, false, { thumbnail: Buffer.alloc(0) })
+    conn.sendFile(m.chat, global.API('amel', '/darkjokes', {}, 'apikey'), '', '', m, 0, { thumbnail: Buffer.alloc(0) })
 }
 handler.help = ['darkjoke']
 handler.tags = ['internet']

@@ -1,25 +1,15 @@
 let handler = async (m, { conn, usedPrefix, command }) => {
+<<<<<<< HEAD
   await conn.sendButton(m.chat, `“${pickRandom(global.bucin)}”`, '© Maceng', 'Bucin', `${usedPrefix + command}`)
+=======
+  await conn.sendButton(m.chat, `“${conn.pickRandom(global.bucin)}”`, '© stikerin', 'Bucin', `${usedPrefix + command}`)
+>>>>>>> ecf6fc563b6b07bd684a6ce349e0f54706aca3cc
 }
 handler.help = ['bucin']
 handler.tags = ['quotes']
 handler.command = /^(bucin)$/i
-handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
-
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
 
 module.exports = handler
-
-function pickRandom(list) {
-  return list[Math.floor(list.length * Math.random())]
-}
 
 // https://jalantikus.com/tips/kata-kata-bucin/
 global.bucin = [

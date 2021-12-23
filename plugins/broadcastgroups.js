@@ -2,32 +2,22 @@ let handler = async (m, { conn, text }) => {
   let groups = conn.chats.all().filter(v => v.jid.endsWith('g.us')).map(v => v.jid)
   let cc = text ? m : m.quoted ? await m.getQuotedObj() : false || m
   let teks = text ? text : cc.text
-  conn.reply(m.chat, `_Mengirim pesan broadcast ke ${groups.length} grup_\nestimasi selesai ${groups.length * 1.5} detik`, m)
+  conn.reply(m.chat, `Mengirim pesan broadcast ke ${groups.length} grup\nEstimasi selesai ${groups.length * 1.5} detik`, m)
   for (let id of groups) {
+<<<<<<< HEAD
     await delay(1500)
     await conn.copyNForward(id, conn.cMod(m.chat, cc, /bc|broadcast/i.test(teks) ? teks : '〔 Maceng Broadcast 〕\n\n' + teks + '\n\n' + '© Maceng'), true).catch(_ => _)
+=======
+    await conn.delay(1500)
+    await conn.copyNForward(id, conn.cMod(m.chat, cc, /bc|broadcast/i.test(teks) ? teks : '「 *Stikerin Broadcast* 」\n\n' + teks + '\n\n© stikerin'), true).catch(_ => _)
+>>>>>>> ecf6fc563b6b07bd684a6ce349e0f54706aca3cc
   }
-  m.reply('_*Broadcast Selesai*_')
+  m.reply('*Broadcast Selesai*')
 }
 handler.help = ['broadcastgroup', 'bcgc'].map(v => v + ' <teks>')
 handler.tags = ['owner']
 handler.command = /^(broadcast|bc)(group|grup|gc)$/i
+
 handler.owner = true
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
 
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
-
-module.exports = handler
-
-const more = String.fromCharCode(8206)
-const readMore = more.repeat(4001)
-
-const randomID = length => require('crypto').randomBytes(Math.ceil(length * .5)).toString('hex').slice(0, length)
-
-const delay = time => new Promise(res => setTimeout(res, time))
+module.exports = handler 

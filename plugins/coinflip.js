@@ -6,7 +6,7 @@ let handler = async (m, { conn }) => {
 	let res = await axios.get(
 		API("https://no-api-key.com", "/api/v2/coin-flip")
 	);
-	if (res.status !== 200) throw await `${res.status} ${res.statusText}`;
+	if (res.status !== 200) throw `${res.status} ${res.statusText}`;
 	const sticker = await createSticker(res.data.gif, {
 		type: StickerTypes.FULL,
 		pack: global.packname,

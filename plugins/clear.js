@@ -13,7 +13,7 @@ let handler = async (m, { conn, command, args }) => {
     }).catch(console.log)
     else await conn.modifyChat(id, 'mute', -Math.floor(new Date / 1e3) * 1e3 - 1e3).catch(console.log)
   }
-  m.reply(`_*Selesai*_`)
+  m.reply(`*Selesai*`)
 }
 handler.help = [
   'clearchat',
@@ -31,6 +31,7 @@ handler.help = [
 ]
 handler.tags = ['owner']
 handler.command = /^(clear|delete|mute)chat$/i
+
 handler.owner = true
 
 module.exports = handler

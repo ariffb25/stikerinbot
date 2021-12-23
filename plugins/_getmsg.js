@@ -1,6 +1,6 @@
 let handler = m => m
 
-handler.all = async function (m) {
+handler.before = async function (m) {
     let chat = db.data.chats[m.chat]
     if (m.chat.endsWith('broadcast') || chat.isBanned || !chat.getmsg || db.data.users[m.sender].banned || m.isBaileys) return
     let msgs = db.data.msgs

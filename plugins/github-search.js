@@ -1,6 +1,11 @@
 let fetch = require('node-fetch')
+
 let handler = async (m, { text, command, usedPrefix }) => {
+<<<<<<< HEAD
     if (!text) throw `contoh:\n${usedPrefix + command} Maceng`
+=======
+    if (!text) throw `Pengunaan:\n${usedPrefix + command} <teks>\n\nContoh:\n${usedPrefix + command} stikerinbot`
+>>>>>>> ecf6fc563b6b07bd684a6ce349e0f54706aca3cc
     let res = await fetch(global.API('https://api.github.com', '/search/repositories', {
         q: text
     }))

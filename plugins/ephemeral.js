@@ -1,13 +1,7 @@
 let handler = async (m, { conn, args, isBotAdmin, isAdmin, isOwner }) => {
     if (m.isGroup) {
-        if (!isBotAdmin) {
-            global.dfail('botAdmin', m, conn)
-            throw false
-        }
-        if (!(isAdmin || isOwner)) {
-            global.dfail('admin', m, conn)
-            throw false
-        }
+        if (!isBotAdmin) return dfail('botAdmin', m, conn)
+        if (!(isAdmin || isOwner)) return dfail('admin', m, conn)
     }
     if (args[0] == 'on') await conn.toggleDisappearingMessages(
         m.chat,

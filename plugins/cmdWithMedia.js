@@ -1,5 +1,3 @@
-const { MessageType, newMessagesDB } = require("@adiwajshing/baileys")
-
 module.exports = {
     async all(m, chatUpdate) {
         if (m.isBaileys) return
@@ -12,7 +10,7 @@ module.exports = {
             ...chatUpdate,
             messages: newMessagesDB([
                 this.cMod(m.chat,
-                    await this.prepareMessage(m.chat, text, MessageType.extendedText, {
+                    await this.prepareMessage(m.chat, text, 'extendedTextMessage', {
                         contextInfo: {
                             mentionedJid
                         },

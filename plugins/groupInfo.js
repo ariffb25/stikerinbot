@@ -8,18 +8,22 @@ let handler = async (m, { conn, participants, groupMetadata, text }) => {
         return admins
     }
 
+    let ogc = participants.find(v => v.isSuperAdmin)
+    let ownergc = ogc.jid
+
     let pp = './src/avatar_contact.png'
     try {
         pp = await conn.getProfilePicture(m.chat)
     } catch (e) {
     } finally {
-        let { isBanned, welcome, detect, sWelcome, sBye, sPromote, sDemote, antiLink, expired, descUpdate, stiker } = global.db.data.chats[m.chat]
+        let { isBanned, welcome, detect, sWelcome, sBye, sPromote, sDemote, antiBadword, antiLink, expired, descUpdate, download, getmsg, read, stiker, viewonce } = global.db.data.chats[m.chat]
         const groupAdmins = getGroupAdmins(participants)
         let listAdmin = groupAdmins.map((v, i) => `${i + 1}. @${v.split`@`[0]}`).join('\n')
 
         if (text) return m.reply(msToDate(expired - new Date() * 1))
 
-        let caption = `*Informasi Grup*\n
+        let caption = `「 *Informasi Grup* 」
+        
 *ID:* 
 ${groupMetadata.id}
 
@@ -33,18 +37,23 @@ ${groupMetadata.desc}
 ${participants.length} Anggota
 
 *Pembuat Grup:* 
-@${m.chat.split`-`[0]}
+@${ownergc.split`@`[0]}
 
 *Admin Grup:*
 ${listAdmin}
 
 *Pengaturan Bot:*
 ${antiLink ? '✅' : '❌'} Anti Link
+${antiBadword ? '✅' : '❌'} Anti Badword
 ${global.db.data.chats[m.chat].delete ? '❌' : '✅'} Anti Delete
+${read ? '✅' : '❌'} Autoread
 ${isBanned ? '✅' : '❌'} Banned
 ${descUpdate ? '✅' : '❌'} Deskprisi
 ${detect ? '✅' : '❌'} Detect
+${download ? '✅' : '❌'} Download
+${getmsg ? '✅' : '❌'} Getmsg
 ${stiker ? '✅' : '❌'} Stiker
+${viewonce ? '✅' : '❌'} Viewonce
 ${welcome ? '✅' : '❌'} Welcome
 
 *Pengaturan Pesan Bot:*
