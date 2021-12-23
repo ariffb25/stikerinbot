@@ -1,14 +1,11 @@
 let handler = async (m, { conn, usedPrefix, command }) => {
-    await conn.sendButton(m.chat, `“${pickRandom(global.galau)}”`, '© stikerin', 'Galau', `${usedPrefix + command}`, m)
+    await conn.sendButton(m.chat, `“${conn.pickRandom(global.galau)}”`, '© stikerin', 'Galau', `${usedPrefix + command}`, m)
 }
 handler.help = ['galau']
 handler.tags = ['quotes']
 handler.command = /^(galau)$/i
-module.exports = handler
 
-function pickRandom(list) {
-    return list[Math.floor(list.length * Math.random())]
-}
+module.exports = handler
 
 global.galau = [
     "Gak salah kalo aku lebih berharap sama orang yang lebih pasti tanpa khianati janji-janji",

@@ -1,8 +1,9 @@
 const fetch = require('node-fetch')
+
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-    if (!text) throw `contoh:\n${usedPrefix + command} ariffb|${conn.getName(m.sender)}`
+    if (!text) throw `contoh:\n${usedPrefix + command} ariffb|amel`
     let [nama1, nama2] = text.split(/[&|.]/i)
-    if (!nama1 || !nama2) throw `contoh:\n${usedPrefix + command} ariffb|${conn.getName(m.sender)}`
+    if (!nama1 || !nama2) throw `contoh:\n${usedPrefix + command} ariffb|amel`
 
     let res = await fetch(global.API('zeks', '/api/primbonjodoh', { nama1, nama2 }, 'apikey'))
     if (!res.ok) throw eror
@@ -24,7 +25,5 @@ ${negatif}
 handler.help = ['jodoh'].map(v => v + ' <nama>|<nama doi>')
 handler.tags = ['fun']
 handler.command = /^(jodoh)$/i
-
-handler.limit = true
 
 module.exports = handler

@@ -2,7 +2,7 @@ const { igstory } = require('../lib/scrape')
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
 
-  if (!args[0]) throw `uhm.. username nya mana?\n\ncontoh:\n\n${usedPrefix + command} stikerinbot`
+  if (!args[0]) throw `Pengunaan:\n${usedPrefix + command} <url>\n\nContoh:\n\n${usedPrefix + command} stikerinbot`
   if (args[0].startsWith('http') || args[0].startsWith('@')) throw `username salah`
 
   igstory(args[0]).then(async res => {
@@ -19,6 +19,6 @@ handler.help = ['igstory'].map(v => v + ' <username>')
 handler.tags = ['downloader']
 handler.command = /^(igs(tory)?)$/i
 
-handler.limit = true
+handler.limit = 1
 
 module.exports = handler

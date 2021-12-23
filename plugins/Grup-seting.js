@@ -12,24 +12,22 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 	}[(args[0] || '')]
 	if (isClose === undefined) {
 		await conn.send2Button(m.chat, `
-contoh:
+Pengunaan:
+${usedPrefix + command} <buka/tutup>
+
+Contoh:
 ${usedPrefix + command} tutup
 ${usedPrefix + command} buka
-	`.trim(), '© stikerin', 'Buka', ',grup 1', 'Tutup', ',grup 0')
-		throw false
+	`.trim(), '© stikerin', 'Buka', ',grup 1', 'Tutup', ',grup 0', m)
+		throw 0
 	}
 	await conn.groupSettingChange(m.chat, GroupSettingChange.messageSend, isClose)
 }
 handler.help = ['grup <buka/tutup>']
 handler.tags = ['group']
 handler.command = /^(gro?up)$/i
-handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
+
 handler.admin = true
 handler.botAdmin = true
-handler.fail = null
-handler.exp = 0
+
 module.exports = handler

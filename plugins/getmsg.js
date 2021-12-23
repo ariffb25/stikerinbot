@@ -15,7 +15,6 @@ let handler = async (m, { conn, command, usedPrefix, text }) => {
         }
         return v
     }))
-    // m.reply(`[debug]\n${require('util').format(_m)}`)
     await _m.copyNForward(m.chat, true)
 }
 handler.help = ['vn', 'msg', 'video', 'audio', 'img', 'sticker', 'gif'].map(v => 'get' + v + ' <teks>')

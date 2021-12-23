@@ -1,5 +1,5 @@
 let handler = async (m, { conn, command, usedPrefix }) => {
-  if (!m.quoted) throw `balas pesan bot dengan perintah ${usedPrefix + command}`
+  if (!m.quoted) throw `Valas pesan bot dengan perintah *${usedPrefix + command}*`
   if (!m.quoted.fromMe) throw false
   if (!m.quoted.id) throw false
   let members = m.quoted.chat.endsWith('g.us') ? (await conn.groupMetadata(m.quoted.chat)).participants.length - 1 : m.quoted.chat.endsWith('@broadcast') ? -1 : 1
@@ -21,7 +21,6 @@ ${members > 1 ? `${members - reads.length - deliveries.length} tersisa` : ''}
 }
 handler.help = ['getsider']
 handler.tags = ['group']
-
 handler.command = /^getsider$/
 
 module.exports = handler

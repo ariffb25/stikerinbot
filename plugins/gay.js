@@ -1,4 +1,5 @@
 let fetch = require('node-fetch')
+
 let handler = async (m, { conn }) => {
   let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
   let url = global.API('https://some-random-api.ml', '/canvas/gay', {
@@ -9,7 +10,6 @@ let handler = async (m, { conn }) => {
 
 handler.help = ['gay']
 handler.tags = ['maker']
-
 handler.command = /^(gay)$/i
 
 module.exports = handler
