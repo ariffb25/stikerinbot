@@ -1,7 +1,7 @@
 const fetch = require('node-fetch')
 
 let handler = async (m, { conn }) => {
-    let res = await fetch(global.API('xteam', '/randomimage/wpmobile', {}, 'APIKEY'))
+    let res = await fetch(API('xteam', '/randomimage/wpmobile', {}, 'APIKEY'))
     if (!res.ok) throw eror
     let img = await res.buffer()
     if (!img) throw img
@@ -10,6 +10,7 @@ let handler = async (m, { conn }) => {
 handler.help = ['wallpaperanime']
 handler.tags = ['internet']
 handler.command = /^(wallpaper|wp)anime$/i
-handler.limit = true
 
-module.exports = handler
+handler.limit = 1
+
+module.exports = handler 

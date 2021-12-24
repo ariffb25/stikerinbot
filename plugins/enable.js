@@ -1,3 +1,5 @@
+const { set } = require("lodash")
+
 let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isROwner }) => {
   let isEnable = /true|enable|(turn)?on|1/i.test(command)
   let chat = global.db.data.chats[m.chat]
@@ -103,7 +105,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
         global.dfail('rowner', m, conn)
         throw false
       }
-      global.opts['self'] = !isEnable
+      setting.self = !isEnable
       break
     case 'antilink':
     case 'antiurl':

@@ -128,6 +128,7 @@ module.exports = {
           if (!'jadibot' in settings) settings.jadibot = false
           if (!'nsfw' in settings) settings.nsfw = true
           if (!'restrict' in settings) settings.restrict = false
+          if (!'self' in settings) settings.self = false
           if (!isNumber(settings.status)) settings.status = 0
         } else global.db.data.settings[this.user.jid] = {
           anon: true,
@@ -142,13 +143,12 @@ module.exports = {
           jadibot: false,
           nsfw: true,
           restrict: false,
+          self: false,
           status: 0,
         }
       } catch (e) {
         console.error(e)
       }
-      if (opts['nyimak']) return
-      if (!m.fromMe && db.data.settings[this.user.jid].self) return
       if (typeof m.text !== 'string') m.text = ''
       for (let name in global.plugins) {
         let plugin = global.plugins[name]
@@ -174,6 +174,7 @@ module.exports = {
 
       let isROwner = [global.conn.user.jid, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
       let isOwner = isROwner || m.fromMe
+      if (!isOwner && db.data.settings[this.user.jid].self) return // Saat mode self diaktifkan hanya owner yang dapat menggunakannya
       let isPrems = isROwner || db.data.users[m.sender].premium
       if (!isPrems && !m.isGroup && global.db.data.settings.groupOnly) return
       let groupMetadata = m.isGroup ? this.chats.get(m.chat).metadata || await this.groupMetadata(m.chat) : {} || {}

@@ -1,44 +1,29 @@
-const axios = require('axios')
+const fetch = require('node-fetch')
 
-
-
-
-let handler = async (m, { conn, args  , usedPrefix, command })=>{
-
-
-if(!args[0]) throw " please provide place or location name"
-  
-    try{
-
-        const response = axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${args[0]}&units=metric&appid=060a6bcfa19809c2cd4d97a212b19273`)
-        const res = await response
-        
-        const name = res.data.name
-        const Country = res.data.sys.country
-        const Weather= res.data.weather[0].description
-        const Temperature = res.data.main.temp + '°C'
-        const Minimum_Temperature= res.data.main.temp_min + '°C'
-        const Maximum_Temperature= res.data.main.temp_max + '°C'
-        const Humidity= res.data.main.humidity + '%'
-        const Wind= res.data.wind.speed + 'km/h'
-        
-
-        conn.reply(m.chat,`
-        🌸 Place: ${name}\n💮 Country: ${Country}\n🌈 Weather: ${Weather}\n🎋 Temperature: ${Temperature}\n💠 Minimum Temperature: ${Minimum_Temperature}\n📛 Maximum Temperature: ${Maximum_Temperature}\n💦 Humidity: ${Humidity}\n🎐 Wind: ${Wind}
-        `.trim(),m)
-    }catch(e){
-throw 'location not found' 
-console.log(e)
-
-    }
-
-
-
-
+let handler = async (m, { text, usedPrefix, command }) => {
+    if (!text) throw `Pengunaan:\n${usedPrefix + command} <teks>\n\nContoh:\n${usedPrefix + command} Jakarta`
+    let res = await fetch(API('https://api.openweathermap.org', '/data/2.5/weather', {
+        q: text,
+        units: 'metric',
+        appid: '060a6bcfa19809c2cd4d97a212b19273'
+    }))
+    if (!res.ok) throw eror
+    let json = await res.json()
+    if (json.cod != 200) throw json
+    m.reply(`
+Lokasi: ${json.name}
+Negara: ${json.sys.country}
+Cuaca: ${json.weather[0].description}
+Suhu saat ini: ${json.main.temp} °C
+Suhu tertinggi: ${json.main.temp_max} °C
+Suhu terendah: ${json.main.tmemp_min} °C
+Kelembapan: ${json.main.humidity} %
+Angin: ${json.wind.speed} km/jam
+    `.trim())
 }
 
-handler.help = ['weather']
+handler.help = ['cuaca']
 handler.tags = ['internet']
-handler.command = /^(weather|wthr)$/i
+handler.command = /^(cuaca|weather)$/i
 
 module.exports = handler

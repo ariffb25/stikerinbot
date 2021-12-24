@@ -13,6 +13,7 @@ global.APIs = { // API Prefix
   neoxr: 'https://api.neoxr.eu.org',
   nrtm: 'https://nurutomo.herokuapp.com',
   pencarikode: 'https://pencarikode.xyz',
+  waifupics: 'https://api.waifu.pics',
   xteam: 'https://api.xteam.xyz',
   zeks: 'https://api.zeks.xyz',
 }

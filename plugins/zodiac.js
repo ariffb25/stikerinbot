@@ -1,8 +1,8 @@
 let handler = (m, { usedPrefix, command, text }) => {
-    if (!text) throw `uhm.. angkanya mana?\n\nformat:\n${usedPrefix + command} <tahun> <bulan> <lahir>\ncontoh:\n${usedPrefix + command} 2002 02 25`
+    if (!text) throw `Pengunaan:\n${usedPrefix + command} <tahun> <bulan> <lahir>\n\nContoh:\n${usedPrefix + command} 2002 02 25`
 
     const date = new Date(text)
-    if (date == 'Invalid Date') throw `tanggal salah!\n\ncontoh:\n${usedPrefix + command} 2002 02 25`
+    if (date == 'Invalid Date') throw `Pengunaan salah!\n\nContoh:\n${usedPrefix + command} 2002 02 25`
     const d = new Date()
     const [tahun, bulan, tanggal] = [d.getFullYear(), d.getMonth() + 1, d.getDate()]
     const birth = [date.getFullYear(), date.getMonth() + 1, date.getDate()]
