@@ -1,13 +1,11 @@
 let fetch = require('node-fetch')
 let timeout = 120000
 let poin = 500
+
 let handler = async (m, { conn, usedPrefix }) => {
     conn.tebaklirik = conn.tebaklirik ? conn.tebaklirik : {}
     let id = m.chat
-    if (id in conn.tebaklirik) {
-        conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebaklirik[id][0])
-        throw false
-    }
+    if (id in conn.tebaklirik) return conn.reply(m.chat, 'Belum dijawab!', conn.tebaklirik[id][0])
     let res = await fetch(API('amel', '/tebaklirik', {}, 'apikey'))
     if (!res.ok) throw eror
     let json = await res.json()
@@ -22,8 +20,8 @@ Bonus: ${poin} XP
     conn.tebaklirik[id] = [
         await conn.sendButton(m.chat, caption, '© stikerin', 'Bantuan', `.teli`, m),
         json, poin,
-        setTimeout(async () => {
-            if (conn.tebaklirik[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, '© stikerin', 'Tebak Lirik', `.tebaklirik`, conn.tebaklirik[id][0])
+        setTimeout(() => {
+            if (conn.tebaklirik[id]) conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, '© stikerin', 'Tebak Lirik', `.tebaklirik`, conn.tebaklirik[id][0])
             delete conn.tebaklirik[id]
         }, timeout)
     ]
@@ -31,5 +29,7 @@ Bonus: ${poin} XP
 handler.help = ['tebaklirik']
 handler.tags = ['game']
 handler.command = /^tebaklirik/i
+
+handler.game = true
 
 module.exports = handler

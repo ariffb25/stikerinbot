@@ -14,6 +14,7 @@ let handler = async (m, { conn, text }) => {
   })
 }
 handler.command = /^sudo$/
+
 handler.rowner = true
 
 module.exports = handler

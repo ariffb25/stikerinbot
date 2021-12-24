@@ -5,27 +5,26 @@ let poin = 500
 let handler = async (m, { conn, usedPrefix }) => {
     conn.tebaklagu = conn.tebaklagu ? conn.tebaklagu : {}
     let id = m.chat
-    if (id in conn.tebaklagu) {
-        conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebaklagu[id][0])
-        throw false
-    }
-    // ubah isi 'id' kalo mau ganti playlist spotifynya
-    let res = await fetch(global.API('mel', '/game/tebaklagu/', { id: '3AaKHE9ZMMEdyRadsg8rcy' }, 'apikey'))
-    if (!res.ok) throw await `${res.status} ${res.statusText}`
-    let result = await res.json()
-    let json = result.result
-    if (!result.status) throw json
+    if (id in conn.tebaklagu) return conn.reply(m.chat, 'Belum dijawab!', conn.tebaklagu[id][0])
+    /**
+     * silahkan tambahkan sendiri playlistnya
+     * ['id', 'id', 'dan seterusnya']
+     */
+    let playlist = ['3AaKHE9ZMMEdyRadsg8rcy']
+    let res = await fetch(API('amel', '/tebaklagu', { id: conn.pickRandom(playlist) }, 'apikey'))
+    if (!res.ok) throw res.status
+    let json = await res.json()
+    if (!json.status) throw json
     let caption = `
-TEBAK JUDUL LAGU
+Balas audionya kamu mau jawab
 Timeout *${(timeout / 1000).toFixed(2)} detik*
 Ketik *${usedPrefix}cek* untuk bantuan
-Bonus: ${poin} XP
-*Balas pesan ini untuk menjawab!*`.trim()
+Bonus: ${poin} XP`.trim()
     conn.tebaklagu[id] = [
-        await m.reply(caption),
+        await conn.sendButton(m.chat, caption, '© stikerin', 'Bantuan', `.cek`, m),
         json, poin,
-        setTimeout(async () => {
-            if (conn.tebaklagu[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.judul}*`, '© stikerin', 'Tebak Lirik', `.tebaklirik`, conn.tebaklagu[id][0])
+        setTimeout(() => {
+            if (conn.tebaklagu[id]) conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.judul}*`, '© stikerin', 'Tebak Lagu', `.tebaklagu`, conn.tebaklagu[id][0])
             delete conn.tebaklagu[id]
         }, timeout)
     ]
@@ -34,5 +33,7 @@ Bonus: ${poin} XP
 handler.help = ['tebaklagu']
 handler.tags = ['game']
 handler.command = /^tebaklagu$/i
+
+handler.game = true
 
 module.exports = handler

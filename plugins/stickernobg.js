@@ -1,7 +1,7 @@
-const { MessageType } = require('@adiwajshing/baileys')
-const { sticker } = require('../lib/sticker')
+const { sticker5 } = require('../lib/sticker')
 const axios = require('axios')
 const WSF = require('wa-sticker-formatter')
+
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   let stiker = false
   let wsf = false
@@ -10,32 +10,32 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     let mime = (q.msg || q).mimetype || ''
     if (/webp/.test(mime)) {
       let img = await q.download()
-      if (!img) throw `balas stiker dengan perintah ${usedPrefix + command}`
+      if (!img) throw `Balas stiker dengan perintah *${usedPrefix + command}*`
       let imgbase64 = img.toString('base64')
       let data = await axios.post('https://salisganteng.pythonanywhere.com/api/remove-bg', {
-          'api-key': 'salisheker',
-          'image': imgbase64,
+        'api-key': 'salisheker',
+        'image': imgbase64,
       })
       wsf = new WSF.Sticker(data.data.image, {
-        pack: global.packname,
-        author: global.author,
+        pack: packname,
+        author: author,
         crop: false,
       })
     } else if (/image/.test(mime)) {
       let img = await q.download()
-      if (!img) throw `balas gambar dengan perintah ${usedPrefix + command}`
+      if (!img) throw `Balas stiker dengan perintah *${usedPrefix + command}*`
       let imgbase64 = img.toString('base64')
       let data = await axios.post('https://salisganteng.pythonanywhere.com/api/remove-bg', {
-          'api-key': 'salisheker',
-          'image': imgbase64,
+        'api-key': 'salisheker',
+        'image': imgbase64,
       })
       wsf = new WSF.Sticker(data.data.image, {
-        pack: global.packname,
-        author: global.author,
+        pack: packname,
+        author: author,
         crop: false,
       })
     } else if (args[0]) {
-      if (isUrl(args[0])) stiker = await sticker(false, args[0], global.packname, global.author)
+      if (isUrl(args[0])) stiker = await sticker5(false, args[0], packname, author)
       else throw 'URL tidak valid!'
     }
   } catch (e) {
@@ -45,15 +45,9 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (wsf) {
       await wsf.build()
       const sticBuffer = await wsf.get()
-      if (sticBuffer) await conn.sendMessage(m.chat, sticBuffer, MessageType.sticker, {
-        quoted: m,
-        mimetype: 'image/webp'
-      })
+      if (sticBuffer) await conn.sendFile(m.chat, sticBuffer, '', '', m, 0, { asSticker: true })
     }
-    if (stiker) await conn.sendMessage(m.chat, stiker, MessageType.sticker, {
-      quoted: m
-    })
-    // else throw `Gagal${m.isGroup ? ', balas gambarnya!' : ''}`
+    if (stiker) await conn.sendFile(m.chat, stiker, '', '', m, 0, { asSticker: true })
   }
 }
 handler.help = ['stickernobg', 'stickernobg <url>']

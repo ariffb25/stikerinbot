@@ -3,10 +3,10 @@ let handler = async (m, { conn }) => {
     let id = m.chat
     if (!(id in conn.tebakkabupaten)) throw false
     let json = conn.tebakkabupaten[id][1]
-    let ans = json.title.trim()
-    let clue = ans.replace(/[AIUEOaiueo]/g, '_')
-    conn.reply(m.chat, '```' + clue + '```\nBalas soalnya, bukan pesan ini', conn.tebakkabupaten[id][0])
+    conn.reply(m.chat, '```' + json.bantuan + '```\nBalas soalnya, bukan pesan ini', conn.tebakkabupaten[id][0])
 }
 handler.command = /^teka$/i
-handler.limit = true
+
+handler.limit = 1
+
 module.exports = handler

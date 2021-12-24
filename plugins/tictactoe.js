@@ -1,4 +1,4 @@
-const TicTacToe = require("../lib/tictactoe")
+const TicTacToe = require('../lib/tictactoe')
 
 let handler = async (m, { conn, usedPrefix, command, text }) => {
     conn.game = conn.game ? conn.game : {}
@@ -38,16 +38,8 @@ ${arr.slice(6).join('')}
 Menunggu @${room.game.currentTurn.split('@')[0]}
 Ketik *nyerah* untuk nyerah
 `.trim()
-            if (room.x !== room.o) await conn.sendButton(room.x, str, '© stikerin', 'Nyerah', 'nyerah', m, {
-                contextInfo: {
-                    mentionedJid: conn.parseMention(str)
-                }
-            })
-            await conn.sendButton(room.o, str, '© stikerin', 'Nyerah', 'nyerah', m, {
-                contextInfo: {
-                    mentionedJid: conn.parseMention(str)
-                }
-            })
+            if (room.x !== room.o) await conn.sendButton(room.x, str, '© stikerin', 'Nyerah', 'nyerah', m)
+            await conn.sendButton(room.o, str, '© stikerin', 'Nyerah', 'nyerah', m)
         } else {
             room = {
                 id: 'tictactoe-' + (+new Date),
@@ -63,9 +55,10 @@ ${usedPrefix}${command} ${text}` : ''))
         }
     }
 }
-
 handler.help = ['tictactoe', 'ttt', 'tttexit'].map(v => v + ' [nama room]')
 handler.tags = ['game']
 handler.command = /^(tictactoe|t{3})(exit)?$/
+
+handler.game = true
 
 module.exports = handler

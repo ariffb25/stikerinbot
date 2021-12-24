@@ -34,7 +34,8 @@ Silahkan @${m.mentionedJid[0].split`@`[0]}
 handler.tags = ['game']
 handler.help = ['suitpvp', 'suit'].map(v => v + ' @tag')
 handler.command = /^suit(pvp)?$/i
-handler.limit = false
+
 handler.group = true
+handler.game = true
 
 module.exports = handler

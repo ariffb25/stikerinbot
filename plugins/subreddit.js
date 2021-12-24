@@ -1,13 +1,12 @@
-let fetch = require("node-fetch")
+let fetch = require('node-fetch')
 
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn, text, isOwner }) => {
   let res = await fetch(API('https://meme-api.herokuapp.com', '/gimme/' + encodeURI(text || ''), {}))
   if (!res.ok) throw eror
   let json = await res.json()
   if (!json.url) throw 'Media tidak ditemukan!'
-  if (json.nsfw && !db.data.settings.nsfw) throw 'Mode NSFW tidak aktif'
-
-  await conn.sendFile(m.chat, json.url, text, json.title, m, false, { thumbnail: await (await fetch(json.url)).buffer() })
+  if (json.nsfw && !db.data.settings[conn.user.jid].nsfw) return conn.sendButton(m.chat, 'NSFW!', '© stikerin', isOwner ? 'Nyalakan' : 'Donasi', isOwner ? '.1 nsfw' : '.donasi')
+  await conn.sendFile(m.chat, json.url, text, json.title, m)
 }
 handler.help = ['subreddit <pencarian>']
 handler.tags = ['internet']

@@ -4,7 +4,7 @@ const fetch = require('node-fetch')
 
 let handler = m => m
 
-handler.all = async function (m, { isPrems }) {
+handler.before = async function (m, { isPrems }) {
     let chat = db.data.chats[m.chat]
     let user = db.data.users[m.sender]
     let set = db.data.settings[this.user.jid]

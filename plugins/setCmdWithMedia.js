@@ -1,11 +1,11 @@
-module.exports = Object.assign(async function handler(m, { text }) {
-    global.db.data.sticker = global.db.data.sticker || {}
-    if (!m.quoted) throw 'balas stikernya!'
+module.exports = Object.assign(async function handler(m, { text, usedPrefix, command }) {
+    db.data.sticker = db.data.sticker || {}
+    if (!m.quoted) throw `Balas stiker dengan perintah *${usedPrefix + command}*`
     if (!m.quoted.fileSha256) throw 'SHA256 Hash Missing'
-    if (!text) throw `uhm.. teksnya mana?`
-    let sticker = global.db.data.sticker
+    if (!text) throw `Penggunaan:\n${usedPrefix + command} <teks>\n\nContoh:\n${usedPrefix + command} tes`
+    let sticker = db.data.sticker
     let hash = m.quoted.fileSha256.toString('hex')
-    if (sticker[hash] && sticker[hash].locked) throw 'kamu tidak memiliki izin untuk mengubah perintah stiker ini'
+    if (sticker[hash] && sticker[hash].locked) throw 'Kamu tidak memiliki izin untuk mengubah perintah stiker ini'
     sticker[hash] = {
         text,
         mentionedJid: m.mentionedJid,

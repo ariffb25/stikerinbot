@@ -21,7 +21,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         if (/tupai|squirrel|chipmunk/.test(command)) set = '-filter:a "atempo=0.5,asetrate=65100"'
         if (/audio/.test(mime)) {
             let media = await conn.downloadAndSaveMediaMessage(q)
-            let ran = getRandom('.mp3')
+            let ran = conn.getRandom('.mp3')
             exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
                 fs.unlinkSync(media)
                 if (err) throw `_*Error!*_`
@@ -29,7 +29,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
                 conn.sendFile(m.chat, buff, ran, null, m, /vn/.test(args[0]), { quoted: m, mimetype: 'audio/mp4' })
                 fs.unlinkSync(ran)
             })
-        } else throw `Balas vn/audio yang ingin diubah dengan caption *${usedPrefix + command}*`
+        } else throw `Balas vn/audio dengan perintah *${usedPrefix + command}*`
     } catch (e) {
         throw e
     }
@@ -39,7 +39,3 @@ handler.tags = ['audio']
 handler.command = /^(bass|blown|deep|earrape|fas?t|nightcore|reverse|robot|slow|smooth|tupai|squirrel|chipmunk)$/i
 
 module.exports = handler
-
-const getRandom = (ext) => {
-    return `${Math.floor(Math.random() * 10000)}${ext}`
-}

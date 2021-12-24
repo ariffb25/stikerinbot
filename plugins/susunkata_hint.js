@@ -3,9 +3,7 @@ let handler = async (m, { conn }) => {
     let id = m.chat
     if (!(id in conn.susunkata)) throw 0
     let json = conn.susunkata[id][1]
-    let ans = json.jawaban.trim()
-    let clue = ans.replace(/[AIUEOaiueo]/g, '_')
-    conn.reply(m.chat, '```' + clue + '```\n\nbalas soalnya, bukan pesan ini!', conn.susunkata[id][0])
+    conn.reply(m.chat, '```' + json.bantuan + '```\n\nBalas soalnya, bukan pesan ini!', conn.susunkata[id][0])
 }
 handler.command = /^suka$/i
 

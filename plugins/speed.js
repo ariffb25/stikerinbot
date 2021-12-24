@@ -1,5 +1,4 @@
 let os = require('os')
-let util = require('util')
 let { performance } = require('perf_hooks')
 let { sizeFormatter } = require('human-readable')
 let format = sizeFormatter({
@@ -8,6 +7,7 @@ let format = sizeFormatter({
   keepTrailingZeroes: false,
   render: (literal, symbol) => `${literal} ${symbol}B`,
 })
+
 let handler = async (m, { conn }) => {
   const used = process.memoryUsage()
   const cpus = os.cpus().map(cpu => {
@@ -35,12 +35,11 @@ let handler = async (m, { conn }) => {
     }
   })
   let old = performance.now()
-  await m.reply('_Testing speed..._')
   let neww = performance.now()
   let speed = neww - old
   let txt = `
 Merespon dalam ${speed} millidetik
-
+${readMore}
 💻 *Server Info* :
 RAM: ${format(os.totalmem() - os.freemem())} / ${format(os.totalmem())}
 
@@ -57,6 +56,9 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
 }
 handler.help = ['ping']
 handler.tags = ['info']
-
 handler.command = /^(ping|speed)$/i
+
 module.exports = handler
+
+const more = String.fromCharCode(1)
+const readMore = more.repeat(1)

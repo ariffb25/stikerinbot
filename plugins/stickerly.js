@@ -1,12 +1,9 @@
 const fetch = require('node-fetch')
-const { MessageType } = require('@adiwajshing/baileys')
-const { sticker } = require('../lib/sticker')
+const { sticker5 } = require('../lib/sticker')
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-
-    if (!text) throw `*Perintah ini untuk mengambil stiker dari Stickerly berdasarkan pencarian*\n\nContoh penggunaan:\n${usedPrefix + command} spongebob`
-
-    let res = await fetch(global.API('zeks', '/api/searchsticker', { q: text }, 'apikey'))
+    if (!text) throw `Penggunaan:\n${usedPrefix + command} <teks>\n\nContoh:\n${usedPrefix + command} spongebob`
+    let res = await fetch(API('zeks', '/api/searchsticker', { q: text }, 'apikey'))
     if (!res.ok) throw eror
     let json = await res.json()
     if (!json.status) throw json
@@ -16,19 +13,17 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 `.trim())
 
     for (let i of json.sticker) {
-        stiker = await sticker(false, i, global.packname, global.author)
-        await conn.sendMessage(m.chat, stiker, MessageType.sticker)
-        await delay(1500)
+        stiker = await sticker5(false, i, packname, author)
+        await conn.sendFile(m.chat, stiker, '', '', m, 0, { asSticker: true })
+        await conn.delay(1500)
     }
     m.reply('_*Selesai*_')
 
 }
-handler.help = ['stikerly <pencarian>']
+handler.help = ['stikerly <teks>']
 handler.tags = ['sticker']
 handler.command = /^(stic?kerly)$/i
 
-handler.limit = true
+handler.limit = 1
 
-module.exports = handler
-
-const delay = time => new Promise(res => setTimeout(res, time))
+module.exports = handler 

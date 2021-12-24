@@ -1,6 +1,6 @@
 let { spawn } = require('child_process')
-const { unlinkSync } = require('fs')
 let fs = require('fs')
+
 let handler = async (m, { text, usedPrefix, command }) => {
   if (text) {
     try {
@@ -32,13 +32,14 @@ let handler = async (m, { text, usedPrefix, command }) => {
         })
     } catch (e) {
       console.log(e)
-      throw '_*Error!*_'
+      throw eror
     }
   } else throw `contoh:\n${usedPrefix + command} ariffb`
 }
 handler.help = ['harta2'].map(v => v + ' <teks>')
 handler.tags = ['tools']
 handler.command = /^(harta|ht|tahta)2$/i
-handler.limit = true
-module.exports = handler
 
+handler.limit = 1
+
+module.exports = handler 

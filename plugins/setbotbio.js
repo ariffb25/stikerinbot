@@ -1,6 +1,6 @@
 // NurNurz
 let handler = async (m, { conn, text }) => {
-  if (!text) throw `uhm.. teksnya mana?`
+  if (!text) throw `Penggunaan:\n${usedPrefix + command} <teks>\n\nContoh:\n${usedPrefix + command} tes`
   try {
     await conn.setStatus(text)
     m.reply('Berhasil!')
@@ -12,6 +12,7 @@ let handler = async (m, { conn, text }) => {
 handler.help = ['setbotbio <teks>']
 handler.tags = ['owner']
 handler.command = /^(setbotbio)$/i
+
 handler.owner = true
 
 module.exports = handler

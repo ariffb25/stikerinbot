@@ -5,10 +5,7 @@ let poin = 500
 let handler = async (m, { conn, usedPrefix }) => {
     conn.susunkata = conn.susunkata ? conn.susunkata : {}
     let id = m.chat
-    if (id in conn.susunkata) {
-        conn.reply(m.chat, 'belum dijawab!', conn.susunkata[id][0])
-        throw false
-    }
+    if (id in conn.susunkata) return conn.reply(m.chat, 'Belum dijawab!', conn.susunkata[id][0])
     let res = await fetch(API('amel', '/susunkata', {}, 'apikey'))
     if (!res.ok) throw eror
     let json = await res.json()
@@ -22,10 +19,10 @@ Timeout *${(timeout / 1000).toFixed(2)} detik*
 Ketik ${usedPrefix}suka untuk bantuan
 `.trim()
     conn.susunkata[id] = [
-        await conn.sendButton(m.chat, caption, wm, 'Bantuan', '.suka', m),
+        await conn.sendButton(m.chat, caption, '© stikerin', 'Bantuan', '.suka', m),
         json, poin,
-        setTimeout(async () => {
-            if (conn.susunkata[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, wm, 'Susun Kata', '.susunkata', conn.susunkata[id][0])
+        setTimeout(() => {
+            if (conn.susunkata[id]) conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, '© stikerin', 'Susun Kata', '.susunkata', conn.susunkata[id][0])
             delete conn.susunkata[id]
         }, timeout)
     ]

@@ -5,10 +5,7 @@ let poin = 500
 let handler = async (m, { conn, usedPrefix }) => {
     conn.siapakahaku = conn.siapakahaku ? conn.siapakahaku : {}
     let id = m.chat
-    if (id in conn.siapakahaku) {
-        conn.reply(m.chat, 'belum dijawab!', conn.siapakahaku[id][0])
-        throw false
-    }
+    if (id in conn.siapakahaku) return conn.reply(m.chat, 'Velum dijawab!', conn.siapakahaku[id][0])
     let res = await fetch(API('amel', '/siapakahaku', {}, 'apikey'))
     if (!res.ok) throw eror
     let json = await res.json()
@@ -20,10 +17,10 @@ Timeout *${(timeout / 1000).toFixed(2)} detik*
 Ketik ${usedPrefix}who untuk bantuan
 `.trim()
     conn.siapakahaku[id] = [
-        await conn.sendButton(m.chat, caption, wm, 'Bantuan', '.who', m),
+        await conn.sendButton(m.chat, caption, '© stikerin', 'Bantuan', '.who', m),
         json, poin,
-        setTimeout(async () => {
-            if (conn.siapakahaku[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, wm, 'Siapakah Aku', '.siapaaku', conn.siapakahaku[id][0])
+        setTimeout(() => {
+            if (conn.siapakahaku[id]) conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, '© stikerin', 'Siapakah Aku', '.siapaaku', conn.siapakahaku[id][0])
             delete conn.siapakahaku[id]
         }, timeout)
     ]
