@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
 
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) throw `Pengunaan:\n${usedPrefix + command} <teks>\n\nContoh:\n${usedPrefix + command} Gunung kembar`
   let res = await fetch(global.API('https://wall.alphacoders.com/api2.0', '/get.php', {
     auth: '3e7756c85df54b78f934a284c11abe4e',
