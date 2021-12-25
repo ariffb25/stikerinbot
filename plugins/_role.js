@@ -1,44 +1,51 @@
-let handler = m => m
-
-handler.before = function (m) {
-    let user = global.db.data.users[m.sender]
-    let role = (user.level <= 3) ? 'Warrior V'
-        : ((user.level >= 3) && (user.level <= 6)) ? 'Warrior IV'
-            : ((user.level >= 6) && (user.level <= 9)) ? 'Warrior III'
-                : ((user.level >= 9) && (user.level <= 12)) ? 'Warrior II'
-                    : ((user.level >= 12) && (user.level <= 15)) ? 'Warrior I'
-                        : ((user.level >= 15) && (user.level <= 18)) ? 'Elite V'
-                            : ((user.level >= 18) && (user.level <= 21)) ? 'Elite IV'
-                                : ((user.level >= 21) && (user.level <= 24)) ? 'Elite III'
-                                    : ((user.level >= 24) && (user.level <= 27)) ? 'Elite II'
-                                        : ((user.level >= 27) && (user.level <= 30)) ? 'Elite I'
-                                            : ((user.level >= 30) && (user.level <= 33)) ? 'Master V'
-                                                : ((user.level >= 33) && (user.level <= 36)) ? 'Master IV'
-                                                    : ((user.level >= 36) && (user.level <= 39)) ? 'Master III'
-                                                        : ((user.level >= 39) && (user.level <= 42)) ? 'Master II'
-                                                            : ((user.level >= 42) && (user.level <= 45)) ? 'Master I'
-                                                                : ((user.level >= 45) && (user.level <= 48)) ? 'Grand Master V'
-                                                                    : ((user.level >= 48) && (user.level <= 51)) ? 'Grand Master IV'
-                                                                        : ((user.level >= 51) && (user.level <= 54)) ? 'Grand Master III'
-                                                                            : ((user.level >= 54) && (user.level <= 57)) ? 'Grand Master II'
-                                                                                : ((user.level >= 57) && (user.level <= 60)) ? 'Grand Master I'
-                                                                                    : ((user.level >= 60) && (user.level <= 63)) ? 'Epic V'
-                                                                                        : ((user.level >= 63) && (user.level <= 66)) ? 'Epic IV'
-                                                                                            : ((user.level >= 66) && (user.level <= 69)) ? 'Epic III'
-                                                                                                : ((user.level >= 69) && (user.level <= 71)) ? 'Epic II'
-                                                                                                    : ((user.level >= 71) && (user.level <= 74)) ? 'Epic I'
-                                                                                                        : ((user.level >= 74) && (user.level <= 77)) ? 'Legend V'
-                                                                                                            : ((user.level >= 77) && (user.level <= 80)) ? 'Legend IV'
-                                                                                                                : ((user.level >= 80) && (user.level <= 83)) ? 'Legend III'
-                                                                                                                    : ((user.level >= 83) && (user.level <= 86)) ? 'Legend II'
-                                                                                                                        : ((user.level >= 86) && (user.level <= 89)) ? 'Legend I'
-                                                                                                                            : ((user.level >= 89) && (user.level <= 91)) ? 'Mythic V'
-                                                                                                                                : ((user.level >= 91) && (user.level <= 94)) ? 'Mythic IV'
-                                                                                                                                    : ((user.level >= 94) && (user.level <= 97)) ? 'Mythic III'
-                                                                                                                                        : ((user.level >= 97) && (user.level <= 100)) ? 'Mythic II'
-                                                                                                                                            : 'Mythic I'
-    user.role = role
-    return true
+const roles = {
+    /*
+    'Role Name': <Minimal Level To Obtain this Role>
+    */
+    'Warrior V': 0,
+    'Warrior IV': 5,
+    'Warrior III': 10,
+    'Warrior II': 15,
+    'Warrior I': 20,
+    'Elite V': 25,
+    'Elite IV': 30,
+    'Elite III': 35,
+    'Elite II': 40,
+    'Elite I': 45,
+    'Master V': 50,
+    'Master IV': 55,
+    'Master III': 60,
+    'Master II': 65,
+    'Master I': 70,
+    'Grand Master V': 75,
+    'Grand Master IV': 80,
+    'Grand Master III': 85,
+    'Grand Master II': 90,
+    'Grand Master I': 95,
+    'Epic V': 100,
+    'Epic IV': 105,
+    'Epic III': 110,
+    'Epic II': 115,
+    'Epic I': 120,
+    'Legend V': 125,
+    'Legend IV': 130,
+    'Legend III': 135,
+    'Legend II': 140,
+    'Legend I': 145,
+    'Mythic V': 150,
+    'Mythic IV': 155,
+    'Mythic III': 160,
+    'Mythic II': 165,
+    'Mythic I': 170,
+    'Mythic Glory': 175
 }
 
-module.exports = handler
+module.exports = {
+    before(m) {
+        let user = db.data.users[m.sender]
+        let level = user.level
+        let role = (Object.entries(roles).sort((a, b) => b[1] - a[1]).find(([, minLevel]) => level >= minLevel) || Object.entries(roles)[0])[0]
+        user.role = role
+        return !0
+    }
+}
