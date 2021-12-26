@@ -3,7 +3,6 @@ let { MessageType } = require('@adiwajshing/baileys')
 let fs = require('fs')
 let path = require('path')
 let fetch = require('node-fetch')
-let moment = require('moment-timezone')
 const defaultMenu = {
   before: `
 ┌─〔 %me 〕
@@ -410,7 +409,7 @@ function clockString(ms) {
   return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
 }
 function ucapan() {
-  const time = moment.tz('Asia/Jakarta').format('HH')
+  const time = (new Date().getUTCHours() + 7) % 24
   res = "Selamat dinihari"
   if (time >= 4) {
     res = "Selamat pagi"
