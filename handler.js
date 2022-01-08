@@ -475,7 +475,10 @@ ketik *.on delete* untuk mematikan pesan ini
         'count': '0'
       }, null]]]]
       this.sendJSON(nodePayload, tag)
-      m.reply(`Kamu dibanned karena menelepon bot, owner : @${owner[0]}`)
+      this.reply(jid, `Kamu dibanned karena menelpon nomor bot, Kontak owner untuk me-unban.\nOwner: wa.me/${owner[0]}`, null).then(async() => {
+        user.banned = true
+        await this.blockUser(jid, 'add')
+      })
     }
   },
   async GroupUpdate({ jid, desc, descId, descTime, descOwner, announce }) {
