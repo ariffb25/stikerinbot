@@ -34,6 +34,7 @@
     "cfonts": "^2.9.3",
     "chalk": "^4.1.1",
     "cheerio": "^1.0.0-rc.10",
+    "colors": "1.4.0",
     "emoji-api": "^1.0.2",
     "express": "^4.17.1",
     "file-type": "^16.5.1",
