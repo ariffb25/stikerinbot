@@ -1,26 +1,60 @@
-let fetch = require('node-fetch')
-
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-    if (!(args[0] || args[1])) throw `Contoh:\n${usedPrefix + command} 1 2\n\nMaka hasilnya adalah surah Al-Fatihah ayat 2 beserta audionya, dan ayatnya 1 aja`
-    if (isNaN(args[0]) || isNaN(args[1])) throw `contoh:\n${usedPrefix + command} 1 2\n\nmaka hasilnya adalah surah Al-Fatihah ayat 2 beserta audionya, dan ayatnya 1 aja`
-
-    let res = await fetch(API('https://islamic-api-indonesia.herokuapp.com', '/api/data/quran', { surah: args[0], ayat: args[1] }))
-    if (!res.ok) throw eror
-    let json = await res.json()
-    if (json.status != 'OK.') return m.reply(json.result.message)
-    m.reply(conn.format(json))
-    let mes = `
-${json.result.data.text.arab}
-    
-${json.result.data.translation.id}
-
-( Q.S ${json.result.data.surah.name.transliteration.id} : ${json.result.data.number.inSurah} )
-`.trim()
-    m.reply(mes)
-    conn.sendFile(m.chat, json.result.data.audio.primary, 'audio.mp3', '', m, 0, { mimetype: 'audio/mp4' })
+    let prehelp = `${usedPrefix + command}`
+    if (sudahbaca === false) {
+    let res = await alquran(args[0], args[1], prehelp)
+    return await conn.sendButton(m.chat, `${res.pesan}`.trim(), '© stikerin', 'Menampilkan audio', `${usedPrefix+command} audio`)
+    } else {
+        if (args[0] === "audio") {
+            if (sudahbaca === true) {
+                conn.sendFile(m.chat, audioa, 'Alquran.mp3', '', m)
+            }
+            sudahbaca = false;
+        }
+    }
 }
-handler.help = ['alquran <no surah> <no ayat>']
+
+
+handler.help = ['alquran <114> <1>']
 handler.tags = ['quran']
 handler.command = /^(al)?quran$/i
-
 module.exports = handler
+const more = String.fromCharCode(8206)
+const readMore = more.repeat(4001)
+global.sudahbaca = false;
+const fetch = require('node-fetch')
+const cheerio = require('cheerio')
+async function alquran2(ad) {
+audioa
+}
+async function alquran(surah, ayat, hlp) {
+    if (!(surah||ayat)) return `contoh:\n${hlp} 1 2 \n\nmaka hasilnya adalah surah Al-Fatihah ayat 2 `
+    if (isNaN(surah)||isNaN(ayat)) return `contoh:\n${hlp} 1 2 \n\nmaka hasilnya adalah surah Al-Fatihah ayat 2 `
+    let res = await fetch(`https://kalam.sindonews.com/ayat/${ayat}/${surah}`)
+    if (!res.ok) throw 'Error, maybe not found?'
+    let $ = cheerio.load(await res.text())
+    let content = $('body > main > div > div.content.clearfix > div.news > section > div.list-content.clearfix')//content
+    let Surah = $(content).find('div.ayat-title > h1').text()//surah
+    let arab = $(content).find('div.ayat-detail > div.ayat-arab').text()//arab
+    let latin = $(content).find('div.ayat-detail > div.ayat-latin').text()//latin
+    let terjemahan = $(content).find('div.ayat-detail > div.ayat-detail-text').text()//terjemahan
+    let tafsir = ''
+    $(content).find('div.ayat-detail > div.tafsir-box > div').each(function () {
+        tafsir += $(this).text() + '\n'
+    })//tafsir
+    tafsir = tafsir.trim()
+    keterangan = $(content).find('div.ayat-detail > div.ayat-summary').text()//keterangan
+    let isi = []
+    isi.push(arab, latin, terjemahan, readMore, tafsir, "(" + Surah + ")")
+    // https://quran.kemenag.go.id/assets/js/quran.js
+    audioa = `https://quran.kemenag.go.id/cmsq/source/s01/${surah < 10 ? '00' : surah >= 10 && surah < 100 ? '0' : ''}${surah}${ayat < 10 ? '00' : ayat >= 10 && ayat < 100 ? '0' : ''}${ayat}.mp3`
+    pesan = ""
+    for (let i = 0; i < isi.length;i++) {
+        pesan += isi[i]
+        pesan += "\n\n"
+    }
+    sudahbaca = true;
+    return {
+        pesan,
+        keterangan
+    }
+}
