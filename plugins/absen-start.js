@@ -1,4 +1,4 @@
-let handler = async (m, { conn, usedPrefix, text }) => {
+let handler = async (m, { conn, usedPrefix, text, isAdmin, isOwner}) => {
     if (m.isGroup) {
         if (!(isAdmin || isOwner)) return dfail('admin', m, conn)
     }
