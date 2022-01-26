@@ -186,6 +186,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       }
     })
     if (teks == '404') {
+      // beri comment dari sini jika menggunakan whatsapp bisnis
       return conn.relayWAMessage(conn.prepareMessageFromContent(m.chat, {
         "listMessage": {
           "title": `${ucapan()}, ${name}`.trim(),
@@ -299,7 +300,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
           }
         }
       }, {}), { waitForAck: true })
-    }
+    
     // gunakan ini jika kamu menggunakan whatsapp bisnis
     //   throw `
     // ┌〔 DAFTAR MENU 〕
@@ -328,6 +329,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     // ├ ${_p + command} owner
     // └────  
     //     `.trim()
+    }
     let groups = {}
     for (let tag in tags) {
       groups[tag] = []
