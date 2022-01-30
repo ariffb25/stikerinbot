@@ -15,7 +15,7 @@ global.APIs = { // API Prefix
   pencarikode: 'https://pencarikode.xyz',
   waifupics: 'https://api.waifu.pics',
   xteam: 'https://api.xteam.xyz',
-  zeks: 'https://api.zeks.xyz',
+  zeks: 'https://api.zeks.me',
 }
 global.APIKeys = { // APIKey nya disini
   // 'https://website': 'apikey'
