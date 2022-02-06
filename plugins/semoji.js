@@ -5,8 +5,8 @@ const emoji = new EmojiAPI()
 
 let handler = async (m, { conn, args, usedPrefix, command, isPrems }) => {
   let er = `contoh:
-*${usedPrefix}emo(spasi)ap(spasi)❤️*
-*${usedPrefix}emo ap ❤️*
+*${usedPrefix}${command}(spasi)ap(spasi)❤️*
+*${usedPrefix}${command} ap ❤️*
 
 ┌〔 Opsi 〕
 ├ ap = apple
