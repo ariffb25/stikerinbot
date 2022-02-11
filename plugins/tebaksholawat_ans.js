@@ -10,7 +10,7 @@ handler.before = async function (m) {
     if (!(id in this.tebaksholawat)) return m.reply('Tebak Sholawat telah berakhir')
     if (m.quoted.id == this.tebaksholawat[id][0].id) {
         let json = JSON.parse(JSON.stringify(this.tebaksholawat[id][1]))
-        if (['.cek', 'Bantuan', ''].includes(m.text)) return !0
+        if (['.shola', 'Bantuan', ''].includes(m.text)) return !0
         if (m.text.toLowerCase() == json.judul.toLowerCase()) {
             db.data.users[m.sender].exp += this.tebaksholawat[id][2]
             await this.sendButton(m.chat, benar + ` +${this.tebaksholawat[id][2]} XP`, '© sekha', 'Tebak Sholawat', '.tebaksholawat', m)
