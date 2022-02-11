@@ -7,7 +7,7 @@ global.APIs = { // API Prefix
   // nama: 'https://website'
   amel: 'https://melcanz.com',
   bx: 'https://bx-hunter.herokuapp.com',
-  rey: 'https://server-api-rey.herokuapp.com',
+  rey: 'https://api.reysekha.xyz',
   dhnjing: 'https://dhnjing.xyz',
   hardianto: 'https://hardianto-chan.herokuapp.com',
   neoxr: 'https://api.neoxr.eu.org',
