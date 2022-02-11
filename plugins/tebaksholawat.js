@@ -22,7 +22,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     let caption = `
 TEBAK SHOLAWAT
 Timeout *${(timeout / 1000).toFixed(2)} detik*
-Ketik *${usedPrefix}cek* untuk bantuan
+Ketik *${usedPrefix}shola* untuk bantuan
 Bonus: ${poin} XP
 *Balas pesan ini untuk menjawab!*`.trim()
     conn.tebaksholawat[id] = [
