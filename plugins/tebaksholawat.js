@@ -16,9 +16,8 @@ let handler = async (m, { conn, usedPrefix }) => {
     }
     let res = await fetch(API('rey', '/api/game/tebaksholawat', {}, 'apikey'))
     if (!res.ok) throw await `${res.status} ${res.statusText}`
-    let result = await res.json()
-    let json = result.result
-    if (!result.status) throw json
+    if (!res.ok) throw eror
+    let json = await res.json()
     let caption = `
 TEBAK SHOLAWAT
 Timeout *${(timeout / 1000).toFixed(2)} detik*
