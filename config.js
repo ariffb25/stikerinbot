@@ -7,12 +7,12 @@ global.APIs = { // API Prefix
   // nama: 'https://website'
   amel: 'https://melcanz.com',
   bx: 'https://bx-hunter.herokuapp.com',
-  rey: 'https://server-api-rey.herokuapp.com',
+  rey: 'https://api.reysekha.my.id',
   dhnjing: 'https://dhnjing.xyz',
-  hardianto: 'https://hardianto-chan.herokuapp.com',
+  hardianto: 'https://hardianto.xyz',
   neoxr: 'https://api.neoxr.eu.org',
   nrtm: 'https://nurutomo.herokuapp.com',
-  pencarikode: 'https://pencarikode.xyz',
+  pencarikode: 'https://api.chipa.xyz',
   waifupics: 'https://api.waifu.pics',
   xteam: 'https://api.xteam.xyz',
   zeks: 'https://api.zeks.me',
@@ -20,13 +20,13 @@ global.APIs = { // API Prefix
 global.APIKeys = { // APIKey nya disini
   // 'https://website': 'apikey'
   'https://melcanz.com': 'trial',
-  'https://server-api-rey.herokuapp.com': 'apirey',
+  'https://api.reysekha.my.id': 'apirey',
   'https://bx-hunter.herokuapp.com': 'Ikyy69',
-  'https://hardianto-chan.herokuapp.com': 'hardianto',
-  'https://neoxr-api.herokuapp.com': 'yntkts',
-  'https://pencarikode.xyz': 'pais',
+  'https://hardianto.xyz': 'hardianto',
+  'https://api.neoxr.eu.org': 'yntkts',
+  'https://api.chipa.xyz': 'pais',
   'https://api.xteam.xyz': 'apikeymu',
-  'https://api.zeks.xyz': 'apivinz',
+  'https://api.zeks.me': 'apivinz',
 }
 
 // Sticker WM
