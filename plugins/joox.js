@@ -4,11 +4,11 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     if (!text) throw `Pengunaan:\n${usedPrefix + command} <teks>\n\nContoh:\n${usedPrefix + command} akad`
     if (isUrl(text)) throw `uhm.. judul kak bukan pake url\n\ncontoh:\n${usedPrefix + command} akad`
 
-    let res = await fetch(API('pencarikode', '/download/joox', { search: text }, 'apikey'))
+    let res = await fetch(API('pencarikode', '/api/download/joox', { query: text }, 'apikey'))
     if (!res.ok) throw await `${res.status} ${res.statusText}`
     let json = await res.json()
     if (!json.status) throw json
-    let { judul, artist, album, img_url, mp3_url, filesize, duration } = json.result
+    let { judul, artist, album, thumb, mp3_url, filesize, duration } = json.result
     let pesan = `
 Judul: ${judul}
 Artis: ${artist}
@@ -19,7 +19,7 @@ Durasi: ${duration}
 © stikerin
     `.trim()
 
-    conn.sendFile(m.chat, img_url, 'eror.jpg', pesan, m, 0, { thumbnail: await (await fetch(img_url)).buffer() })
+    conn.sendFile(m.chat, thumb, 'eror.jpg', pesan, m, 0, { thumbnail: await (await fetch(thumb)).buffer() })
     conn.sendFile(m.chat, mp3_url, 'error.mp3', '', m, 0, { asDocument: db.data.chats[m.chat].useDocument, mimetype: 'audio/mp4' })
 }
 handler.help = ['joox'].map(v => v + ' <judul>')
