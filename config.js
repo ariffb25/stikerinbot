@@ -25,16 +25,16 @@ global.APIKeys = { // APIKey nya disini
   'https://hardianto.xyz': 'hardianto',
   'https://api.neoxr.eu.org': 'yntkts',
   'https://api.chipa.xyz': 'pais',
-  'https://api.xteam.xyz': 'apikeymu',
+  'https://api.xteam.xyz': 'f4a27fd3b3a157f7',
   'https://api.zeks.me': 'apivinz',
 }
 
 // Sticker WM
-global.packname = 'arif️fb'
-global.author = 'amel'
+global.packname = 'R-BOT'
+global.author = 'RamaGans'
 
-global.wm = '© ariffb & melcanz'
-global.wait = '_*tunggu sedang diproses...*_'
+global.wm = 'R-BOT'
+global.wait = '_*wait a moment....*_'
 global.eror = '_*Server Error*_'
 global.benar = '✅'
 global.salah = '❌'
