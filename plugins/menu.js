@@ -189,8 +189,22 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       return conn.relayWAMessage(conn.prepareMessageFromContent(m.chat, {
         "listMessage": {
           "title": `${ucapan()}, ${name}`.trim(),
-          "description": "© stikerin",
-          "buttonText": "Klik Disini",
+          "description": `⇘ %me
+➥ Hai, %name!
+
+➥ Tersisa *%limit Limit*
+➥ Role *%role*
+➥ Level *%level (%exp / %maxexp)* [%xp4levelup]
+➥ %totalexp XP secara Total
+ 
+➥ Tanggal: *%week %weton, %date*
+➥ Tanggal Islam: *%dateIslamic*
+➥ Waktu: *%time*
+
+➥ Uptime: *%uptime (%muptime)*
+➥ Database: %rtotalreg dari %totalreg
+`,
+          "buttonText": "CLICK HERE",
           "listType": "SINGLE_SELECT",
           "sections": [
             {
@@ -391,7 +405,7 @@ handler.mods = false
 handler.premium = false
 handler.group = false
 handler.private = false
-
+handler.register = true
 handler.admin = false
 handler.botAdmin = false
 

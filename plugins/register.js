@@ -1,5 +1,6 @@
 const { createHash } = require('crypto')
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
+let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
 let handler = async function (m, { text, usedPrefix, command }) {
   let user = global.db.data.users[m.sender]
   if (user.registered === true) throw `Kamu sudah terdaftar\nMau daftar ulang? ${usedPrefix}unreg <SERIAL NUMBER>`
@@ -17,14 +18,11 @@ let handler = async function (m, { text, usedPrefix, command }) {
   let sn = createHash('md5').update(m.sender).digest('hex')
   m.reply(`
 Daftar berhasil!
-
-┌─〔 Info 〕
-├ Nama: ${name}
-├ Umur: ${age} tahun
-├ SN: ${sn}
-└────
-
-simpan/bintangi pesan ini karena SN (Serial Number) digunaan untuk daftar ulang
+➥ Nama: ${name}
+➥ Umur: ${age} tahun
+➥ SN: ${sn}
+➥ User: %rtotalreg
+└────➥ *simpan/bintangi pesan ini karena SN (Serial Number) digunaan untuk daftar ulang*
 `.trim())
 }
 handler.help = ['daftar', 'reg', 'register'].map(v => v + ' <nama>.<umur>')
